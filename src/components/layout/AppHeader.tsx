@@ -38,11 +38,11 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
           onClick={() => navigate('/')}
           className="flex items-center gap-2 cursor-pointer select-none flex-shrink-0"
         >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#1F2A44] to-[#3D4D7C] flex items-center justify-center text-white shadow-xs border border-white/30 flex-shrink-0">
-            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
-              <path d="M12 2L2 20h20L12 2zm0 4.5l6.5 11.5h-13L12 6.5z" />
-            </svg>
-          </div>
+          <img
+            src="/brand-icon.png"
+            alt="Williams & Williams LLC"
+            className="w-8 h-8 object-contain flex-shrink-0"
+          />
           <div className="leading-tight">
             <span className="font-heading font-bold text-xs tracking-wider text-[#1F2A44] whitespace-nowrap block">
               WILLIAMS &amp; WILLIAMS

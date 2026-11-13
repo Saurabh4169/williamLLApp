@@ -2,11 +2,10 @@ import React, { useRef, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { BottomNav } from './BottomNav';
 import { useAppStore } from '../../store/useAppStore';
-import { Smartphone, Monitor } from 'lucide-react';
 
 export const AppShell: React.FC = () => {
   const location = useLocation();
-  const { desktopFrameMode, toggleDesktopFrameMode } = useAppStore();
+  const { desktopFrameMode } = useAppStore();
   const mainRef = useRef<HTMLElement>(null);
 
   // Automatically scroll main content to top on navigation
@@ -20,30 +19,6 @@ export const AppShell: React.FC = () => {
 
   return (
     <div className="h-screen h-[100dvh] max-h-[100dvh] w-full bg-[#F2F3F5] lg:bg-gradient-to-br lg:from-[#B7C3DA]/40 lg:via-[#F2F3F5] lg:to-[#7D90B5]/30 flex flex-col items-center justify-start py-0 lg:py-6 px-0 lg:px-4 overflow-hidden">
-      {/* Desktop Helper Toggle */}
-      <aside
-        aria-label="Desktop Preview Mode Controls"
-        className="hidden lg:flex fixed top-4 right-4 z-50 items-center gap-2 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-white shadow-sm text-xs font-medium text-[#1F2A44]"
-      >
-        <span className="text-[#8A93A6]">Preview:</span>
-        <button
-          onClick={toggleDesktopFrameMode}
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded-full btn-glossy-navy text-xs font-semibold shadow-xs"
-        >
-          {desktopFrameMode ? (
-            <>
-              <Smartphone className="w-3.5 h-3.5" />
-              <span>Mobile Frame (430px)</span>
-            </>
-          ) : (
-            <>
-              <Monitor className="w-3.5 h-3.5" />
-              <span>Full Width Fluid</span>
-            </>
-          )}
-        </button>
-      </aside>
-
       {/* Main Container - edge-to-edge native on mobile, framed only on desktop */}
       <div
         className={`w-full h-full max-h-[100dvh] transition-all duration-300 relative flex flex-col overflow-hidden border-0 rounded-none shadow-none ${

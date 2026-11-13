@@ -885,7 +885,8 @@ export const ProfileScreen: React.FC = () => {
           </div>
 
           {/* Legal / Disclaimers Footer */}
-          <div className="pt-2 text-center space-y-1 text-[#8A93A6]">
+          <div className="pt-2 text-center space-y-1 text-[#8A93A6] flex flex-col items-center">
+            <img src="/brand-icon-navy.png" alt="" className="w-5 h-5 object-contain opacity-40 mb-1" />
             <p className="text-[10px]">
               Williams &amp; Williams LLC &bull; Chicago Zoning Specialists
             </p>

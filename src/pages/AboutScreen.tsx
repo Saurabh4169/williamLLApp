@@ -34,10 +34,8 @@ export const AboutScreen: React.FC = () => {
               Navigating complex zoning with ease. Tailored zoning solutions in Chicago.
             </p>
           </div>
-          <div className="absolute right-0 bottom-0 opacity-15 translate-x-4 translate-y-4">
-            <svg width="180" height="180" viewBox="0 0 24 24" fill="white">
-              <path d="M12 2L2 20h20L12 2zm0 4.5l6.5 11.5h-13L12 6.5z" />
-            </svg>
+          <div className="absolute right-0 bottom-0 opacity-20 translate-x-4 translate-y-4 pointer-events-none">
+            <img src="/brand-icon-white.png" alt="" className="w-36 h-36 object-contain" />
           </div>
         </div>
 

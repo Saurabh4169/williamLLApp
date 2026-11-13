@@ -81,12 +81,12 @@ export const OnboardingScreen: React.FC = () => {
 
       {/* Top Header: Logo + Skip Button */}
       <header className="relative z-10 p-6 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#B7C3DA] to-[#7D90B5] flex items-center justify-center text-[#1F2A44] shadow-md">
-            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
-              <path d="M12 2L2 20h20L12 2zm0 4.5l6.5 11.5h-13L12 6.5z" />
-            </svg>
-          </div>
+        <div className="flex items-center gap-2.5">
+          <img
+            src="/brand-icon-white.png"
+            alt="Williams & Williams LLC"
+            className="w-8 h-8 object-contain"
+          />
           <div>
             <div className="font-heading text-xs font-bold tracking-widest text-[#B7C3DA]">
               WILLIAMS &amp; WILLIAMS LLC
