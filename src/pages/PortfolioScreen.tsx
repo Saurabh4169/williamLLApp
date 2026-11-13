@@ -46,15 +46,15 @@ export const PortfolioScreen: React.FC = () => {
       <AppHeader title="Construction & Design" showBack />
 
       <main className="px-4 py-3.5 space-y-3.5 max-w-md mx-auto w-full">
-        {/* Segmented Pill Tab Switcher matching CasesScreen active effect */}
-        <div className="flex rounded-full liquid-glass-card p-1 shadow-xs border border-white/80 bg-white/80">
+        {/* Segmented Pill Tab Switcher with Pure Liquid Glass Effect (No wrapped words) */}
+        <div className="grid grid-cols-2 p-1 rounded-full bg-white/75 backdrop-blur-xl border border-white/80 shadow-[0_4px_20px_rgba(31,42,68,0.06),inset_0_1px_1px_rgba(255,255,255,0.95)]">
           <button
             type="button"
             onClick={() => handleTabChange('Current')}
-            className={`flex-1 py-2 text-xs font-semibold rounded-full transition-all select-none min-h-[36px] flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-95 ${
+            className={`py-2.5 px-3 rounded-full text-xs font-bold transition-all flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-95 ${
               activeTab === 'Current'
-                ? 'btn-glossy-navy shadow-sm'
-                : 'text-[#8A93A6] hover:text-[#1F2A44]'
+                ? 'btn-glossy-navy shadow-[0_4px_14px_rgba(31,42,68,0.25)] text-white'
+                : 'text-[#5A657D] hover:text-[#1F2A44]'
             }`}
           >
             <HardHat className="w-3.5 h-3.5 stroke-[2.2] flex-shrink-0" />
@@ -64,10 +64,10 @@ export const PortfolioScreen: React.FC = () => {
           <button
             type="button"
             onClick={() => handleTabChange('Past')}
-            className={`flex-1 py-2 text-xs font-semibold rounded-full transition-all select-none min-h-[36px] flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-95 ${
+            className={`py-2.5 px-3 rounded-full text-xs font-bold transition-all flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-95 ${
               activeTab === 'Past'
-                ? 'btn-glossy-navy shadow-sm'
-                : 'text-[#8A93A6] hover:text-[#1F2A44]'
+                ? 'btn-glossy-navy shadow-[0_4px_14px_rgba(31,42,68,0.25)] text-white'
+                : 'text-[#5A657D] hover:text-[#1F2A44]'
             }`}
           >
             <CheckCircle2 className="w-3.5 h-3.5 stroke-[2.2] flex-shrink-0" />

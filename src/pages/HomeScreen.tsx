@@ -139,7 +139,7 @@ export const HomeScreen: React.FC = () => {
             {/* Tile 1: Current Projects */}
             <button
               onClick={() => navigate('/construction?tab=current')}
-              className="h-[78px] rounded-[20px] btn-glossy-navy text-white flex flex-col items-center justify-center gap-1 shadow-md transition-all active:scale-95 group relative overflow-hidden"
+              className="h-[78px] rounded-[20px] bg-[#1F2A44] text-white flex flex-col items-center justify-center gap-1 shadow-md shadow-[#1F2A44]/25 transition-all active:scale-95 group relative overflow-hidden"
             >
               <div className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center">
                 <HardHat className="w-4 h-4 text-white stroke-[2.2]" />
