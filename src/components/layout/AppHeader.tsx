@@ -18,7 +18,10 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
   const unreadCount = notifications.filter((n) => !n.read).length;
 
   return (
-    <header className="sticky top-0 z-40 w-full h-16 liquid-glass-bar flex items-center justify-between px-4 transition-all flex-shrink-0">
+    <header
+      style={{ position: 'sticky', top: 0, zIndex: 40 }}
+      className="sticky top-0 z-40 w-full h-16 liquid-glass-bar flex items-center justify-between px-4 transition-all flex-shrink-0"
+    >
       {/* Zone 1: Left Brand / Logo (Always consistent on every page) */}
       <div className="flex items-center gap-2 min-w-0">
         {showBack && (

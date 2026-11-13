@@ -18,7 +18,7 @@ export const AppShell: React.FC = () => {
   const hideBottomNav = isServiceDetail || isConstructionDetail || isBookConsultation || isSplash;
 
   return (
-    <div className="min-h-screen w-full bg-[#F2F3F5] lg:bg-gradient-to-br lg:from-[#B7C3DA]/40 lg:via-[#F2F3F5] lg:to-[#7D90B5]/30 flex flex-col items-center justify-start py-0 lg:py-6 px-0 lg:px-4">
+    <div className="h-screen h-[100dvh] max-h-[100dvh] w-full bg-[#F2F3F5] lg:bg-gradient-to-br lg:from-[#B7C3DA]/40 lg:via-[#F2F3F5] lg:to-[#7D90B5]/30 flex flex-col items-center justify-start py-0 lg:py-6 px-0 lg:px-4 overflow-hidden">
       {/* Desktop Helper Toggle */}
       <aside
         aria-label="Desktop Preview Mode Controls"
@@ -43,18 +43,13 @@ export const AppShell: React.FC = () => {
         </button>
       </aside>
 
-      {/* Main Container - strictly bounds all inner content within phone frame */}
+      {/* Main Container - edge-to-edge native on mobile, framed only on desktop */}
       <div
-        className={`w-full transition-all duration-300 relative flex flex-col overflow-hidden ${
+        className={`w-full h-full max-h-[100dvh] transition-all duration-300 relative flex flex-col overflow-hidden border-0 rounded-none shadow-none ${
           desktopFrameMode
-            ? 'max-w-[430px] h-[890px] max-h-[92vh] rounded-[44px] shadow-[0_25px_70px_rgba(31,42,68,0.24)] border-[8px] border-[#1F2A44]'
-            : 'max-w-2xl min-h-screen shadow-md'
+            ? 'lg:max-w-[430px] lg:min-h-0 lg:h-[890px] lg:max-h-[92vh] lg:rounded-[44px] lg:shadow-[0_25px_70px_rgba(31,42,68,0.24)] lg:border-[8px] lg:border-[#1F2A44]'
+            : 'lg:max-w-2xl lg:h-full lg:shadow-md'
         }`}
-        style={{
-          boxShadow: desktopFrameMode
-            ? '0 25px 60px -15px rgba(31, 42, 68, 0.30), 0 0 0 1px rgba(255,255,255,0.4) inset'
-            : undefined,
-        }}
       >
         {/* Fixed full-screen soft ambient background layer */}
         <div
@@ -75,13 +70,17 @@ export const AppShell: React.FC = () => {
           </div>
         )}
 
-        {/* Scrollable Content Container (hides ugly desktop scrollbars) */}
-        <main className="flex-1 w-full overflow-y-auto overflow-x-hidden no-scrollbar flex flex-col relative z-10">
+        {/* Scrollable Content Container (hides ugly desktop scrollbars, native momentum scrolling) */}
+        <main className="flex-1 w-full overflow-y-auto overflow-x-hidden no-scrollbar flex flex-col relative z-10 overscroll-contain">
           <Outlet />
         </main>
 
-        {/* Docked Edge-to-Edge Liquid-Glass Bottom Nav */}
-        {!hideBottomNav && <BottomNav />}
+        {/* Docked Edge-to-Edge Liquid-Glass Bottom Nav (Always Fixed at Bottom) */}
+        {!hideBottomNav && (
+          <div className="w-full flex-shrink-0 z-30 select-none">
+            <BottomNav />
+          </div>
+        )}
       </div>
     </div>
   );
