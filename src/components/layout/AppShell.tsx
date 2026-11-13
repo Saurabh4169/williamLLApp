@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { BottomNav } from './BottomNav';
 import { useAppStore } from '../../store/useAppStore';
@@ -7,6 +7,12 @@ import { Smartphone, Monitor } from 'lucide-react';
 export const AppShell: React.FC = () => {
   const location = useLocation();
   const { desktopFrameMode, toggleDesktopFrameMode } = useAppStore();
+  const mainRef = useRef<HTMLElement>(null);
+
+  // Automatically scroll main content to top on navigation
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0, behavior: 'instant' });
+  }, [location.pathname]);
 
   // Hide bottom nav on detail screens with their own sticky action bars
   const isServiceDetail = location.pathname.startsWith('/services/') && location.pathname !== '/services';
@@ -71,7 +77,10 @@ export const AppShell: React.FC = () => {
         )}
 
         {/* Scrollable Content Container (hides ugly desktop scrollbars, native momentum scrolling) */}
-        <main className="flex-1 w-full overflow-y-auto overflow-x-hidden no-scrollbar flex flex-col relative z-10 overscroll-contain">
+        <main
+          ref={mainRef}
+          className="flex-1 w-full overflow-y-auto overflow-x-hidden no-scrollbar flex flex-col relative z-10 overscroll-contain"
+        >
           <Outlet />
         </main>
 

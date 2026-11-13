@@ -45,7 +45,7 @@ export const PortfolioScreen: React.FC = () => {
     <div className="min-h-full flex flex-col text-[#1F2A44] pb-10">
       <AppHeader title="Construction & Design" showBack />
 
-      <main className="px-4 py-3.5 space-y-3.5 max-w-md mx-auto w-full">
+      <div className="px-4 py-3.5 space-y-3.5 max-w-md mx-auto w-full">
         {/* Segmented Pill Tab Switcher with Pure Liquid Glass Effect (No wrapped words) */}
         <div className="grid grid-cols-2 p-1 rounded-full bg-white/75 backdrop-blur-xl border border-white/80 shadow-[0_4px_20px_rgba(31,42,68,0.06),inset_0_1px_1px_rgba(255,255,255,0.95)]">
           <button
@@ -168,7 +168,7 @@ export const PortfolioScreen: React.FC = () => {
             );
           })}
         </div>
-      </main>
+      </div>
     </div>
   );
 };
