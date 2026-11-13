@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Heart, Scale } from 'lucide-react';
 import { ServiceItem } from '../../data/services';
 import ImageWithFallback from '../ui/ImageWithFallback';
-import GlassCard from '../ui/GlassCard';
+import { useAppStore } from '../../store/useAppStore';
 
 export interface ServiceCardProps {
   service: ServiceItem;
@@ -12,82 +12,101 @@ export interface ServiceCardProps {
 
 export const ServiceCard: React.FC<ServiceCardProps> = ({ service, className = '' }) => {
   const navigate = useNavigate();
+  const { user, toggleSavedService } = useAppStore();
+  const isSaved = (user.savedServiceIds || []).includes(service.id);
+
+  // Clean code matching Solar Depot reference (e.g. WW-SRV-01)
+  const serviceCode = `WW-${service.id.slice(0, 3).toUpperCase()}-${service.category.slice(0, 3).toUpperCase()}`;
 
   return (
-    <GlassCard
-      variant="card"
-      interactive
+    <div
       onClick={() => navigate(`/services/${service.slug}`)}
-      className={`p-3 flex flex-col justify-between cursor-pointer group hover:shadow-lg transition-all h-full bg-white/90 border border-white/90 rounded-[22px] shadow-[0_8px_25px_rgba(31,42,68,0.06)] ${className}`}
+      className={`p-2.5 sm:p-3 flex flex-col justify-between cursor-pointer group bg-white border border-[#E5E9F0] rounded-[18px] sm:rounded-[20px] shadow-[0_4px_16px_rgba(31,42,68,0.04)] hover:shadow-md hover:border-[#3D4D7C]/30 transition-all select-none ${className}`}
     >
       <div>
-        {/* Fixed Aspect 4/3 Image on top with navy gradient */}
-        <div className="relative aspect-[4/3] w-full rounded-[14px] overflow-hidden bg-[#1F2A44] flex-shrink-0">
+        {/* Compact Image Container with Top-Right Action Buttons (Solar Depot Reference) */}
+        <div className="relative aspect-[4/3] w-full rounded-[13px] overflow-hidden bg-[#F2F4F8] flex-shrink-0">
           <ImageWithFallback
             imageKey={service.imageKey}
             aspectRatio="aspect-auto h-full w-full"
             className="group-hover:scale-105 transition-transform duration-500 object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
 
-          {/* Badge top-left inside the image */}
+          {/* Top-Right Action Badges: Scale & Heart */}
+          <div className="absolute top-1.5 right-1.5 flex items-center gap-1 z-10">
+            <div className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-md shadow-xs border border-white flex items-center justify-center text-[#5A657D]">
+              <Scale className="w-3 h-3 stroke-[2]" />
+            </div>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleSavedService(service.id);
+              }}
+              aria-label={isSaved ? 'Remove from saved' : 'Save service'}
+              className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-md shadow-xs border border-white flex items-center justify-center transition-transform active:scale-75"
+            >
+              <Heart
+                className={`w-3 h-3 transition-colors ${
+                  isSaved
+                    ? 'fill-[#E5484D] text-[#E5484D]'
+                    : 'text-[#5A657D] hover:text-[#E5484D]'
+                }`}
+              />
+            </button>
+          </div>
+
+          {/* Optional fast-track badge */}
           {service.badge && (
-            <div className="absolute top-2 left-2">
-              <span className="text-[9px] font-bold uppercase tracking-wider bg-[#3D4D7C] text-white px-2 py-0.5 rounded-md shadow-xs border border-white/20">
+            <div className="absolute bottom-1.5 left-1.5">
+              <span className="text-[8.5px] font-bold uppercase tracking-wider bg-[#1F2A44]/80 backdrop-blur-sm text-white px-1.5 py-0.5 rounded-md">
                 {service.badge}
               </span>
             </div>
           )}
-
-          {/* Category Chip over image bottom-left */}
-          <div className="absolute bottom-2 left-2 right-2">
-            <span className="text-[9px] font-bold uppercase tracking-wider text-white/90 block truncate drop-shadow-xs">
-              {service.category}
-            </span>
-          </div>
         </div>
 
-        {/* Title in Plus Jakarta Sans Uppercase matching reference */}
-        <div className="mt-2.5 min-w-0">
-          <h3 className="font-heading text-xs sm:text-[13px] font-bold text-[#1F2A44] uppercase line-clamp-2 leading-snug tracking-tight min-h-[30px] sm:min-h-[34px]">
-            {service.title}
-          </h3>
-
-          {/* Two-line benefit text */}
-          <p className="text-[11px] text-[#8A93A6] line-clamp-2 mt-1 leading-snug font-normal">
-            {service.shortDescription}
-          </p>
+        {/* Top Micro-Row: Code in Blue & Specs on Right */}
+        <div className="mt-2 flex items-center justify-between text-[9.5px]">
+          <span className="font-bold text-[#3D4D7C] tracking-wide uppercase truncate">
+            {serviceCode}
+          </span>
+          <span className="font-semibold text-[#8A93A6] text-[9px] flex-shrink-0">
+            {service.priceNote.split(' ')[0]} {service.priceNote.split(' ')[1] || 'Zoning'}
+          </span>
         </div>
+
+        {/* Title: 2-line bold clean clamp */}
+        <h3 className="font-heading text-xs font-bold text-[#1F2A44] leading-snug line-clamp-2 mt-1 min-h-[30px] group-hover:text-[#3D4D7C] transition-colors">
+          {service.title}
+        </h3>
       </div>
 
-      {/* Card Footer: Benefit Note + View Arrow */}
-      <div className="mt-3 pt-2 border-t border-[#DDE2EA]/80 flex items-center justify-between gap-1">
-        <span className="text-[10px] font-semibold text-[#8A93A6] truncate">
-          {service.priceNote}
+      {/* Bottom Row: Category on left, Details link on right */}
+      <div className="mt-2 pt-1.5 border-t border-[#EEF1F6] flex items-center justify-between text-[10px]">
+        <span className="text-[#8A93A6] font-medium truncate max-w-[65px] sm:max-w-[80px]">
+          {service.category.split(' ')[0]}
         </span>
-        <div
-          aria-label={`View ${service.title}`}
-          className="w-7 h-7 rounded-full bg-[#1F2A44] group-hover:bg-[#3D4D7C] text-white flex items-center justify-center flex-shrink-0 shadow-xs transition-colors"
-        >
-          <ArrowRight className="w-3.5 h-3.5 stroke-[2.2]" />
-        </div>
+        <span className="font-bold text-[#3D4D7C] flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform flex-shrink-0">
+          <span>Details</span>
+          <ArrowRight className="w-2.5 h-2.5 stroke-[2.5]" />
+        </span>
       </div>
-    </GlassCard>
+    </div>
   );
 };
 
 export const ServiceCardSkeleton: React.FC = () => {
   return (
-    <div className="liquid-glass-card p-3 animate-pulse h-full flex flex-col justify-between rounded-[22px]">
+    <div className="bg-white border border-[#E5E9F0] p-2.5 animate-pulse rounded-[18px] flex flex-col justify-between">
       <div>
-        <div className="aspect-[4/3] w-full rounded-[14px] bg-slate-200/80" />
-        <div className="h-4 bg-slate-200/80 rounded mt-2.5 w-3/4" />
-        <div className="h-4 bg-slate-200/80 rounded mt-1 w-1/2" />
-        <div className="h-3 bg-slate-200/60 rounded mt-1.5 w-full" />
+        <div className="aspect-[4/3] w-full rounded-[13px] bg-slate-200" />
+        <div className="h-3 bg-slate-200 rounded mt-2 w-1/2" />
+        <div className="h-4 bg-slate-200 rounded mt-1 w-3/4" />
       </div>
-      <div className="mt-3 pt-2 border-t border-[#DDE2EA]/50 flex justify-between items-center">
-        <div className="h-3 bg-slate-200/60 rounded w-16" />
-        <div className="w-7 h-7 rounded-full bg-slate-200/80" />
+      <div className="mt-2 pt-1.5 border-t border-slate-100 flex justify-between items-center">
+        <div className="h-2.5 bg-slate-200 rounded w-12" />
+        <div className="h-2.5 bg-slate-200 rounded w-10" />
       </div>
     </div>
   );

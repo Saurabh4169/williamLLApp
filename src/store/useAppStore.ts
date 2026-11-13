@@ -50,10 +50,12 @@ export interface AppState {
     company: string;
     notifications: boolean;
     savedServiceIds: string[];
+    savedProjectIds: string[];
     isLoggedIn: boolean;
   };
   updateUserProfile: (updates: Partial<AppState['user']>) => void;
   toggleSavedService: (serviceId: string) => void;
+  toggleSavedProject: (projectId: string) => void;
 
   // Client Cases & Appointments
   cases: ClientCase[];
@@ -159,6 +161,33 @@ const INITIAL_NOTIFICATIONS: AppNotification[] = [
   },
 ];
 
+const INITIAL_QUOTES: QuoteRequest[] = [
+  {
+    id: 'quote-101',
+    serviceType: 'Zoning Analysis & Strategy Consultation',
+    propertyType: 'Multi-Family Residential (3-Flat)',
+    name: 'Alex Sterling',
+    email: 'alex.sterling@example.com',
+    phone: '312-555-0198',
+    address: '2144 N. Damen Ave, Chicago, IL 60647',
+    message: 'Requesting rear yard setback assessment and parking reduction under Connected Communities Ordinance.',
+    dateSubmitted: 'Nov 10, 2026',
+    status: 'In Review',
+  },
+  {
+    id: 'quote-102',
+    serviceType: 'ZBA Variance Petitions',
+    propertyType: 'Commercial Mixed-Use',
+    name: 'Alex Sterling',
+    email: 'alex.sterling@example.com',
+    phone: '312-555-0198',
+    address: '1250 W. Fulton Market, Chicago, IL 60607',
+    message: 'FAR bonus verification and aldermanic rapport review for 6-story boutique residential.',
+    dateSubmitted: 'Nov 02, 2026',
+    status: 'Received',
+  },
+];
+
 export const useAppStore = create<AppState>((set, get) => ({
   hasSeenOnboarding: true,
   completeOnboarding: () => set({ hasSeenOnboarding: true }),
@@ -171,6 +200,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     company: 'Sterling Developments LLC',
     notifications: true,
     savedServiceIds: ['zoning-appeals', 'permit-assistance'],
+    savedProjectIds: ['1508-n-talman', 'west-loop-tower'],
     isLoggedIn: true,
   },
   updateUserProfile: (updates) =>
@@ -182,6 +212,15 @@ export const useAppStore = create<AppState>((set, get) => ({
         ? state.user.savedServiceIds.filter((id) => id !== serviceId)
         : [...state.user.savedServiceIds, serviceId];
       return { user: { ...state.user, savedServiceIds } };
+    }),
+  toggleSavedProject: (projectId) =>
+    set((state) => {
+      const current = state.user.savedProjectIds || [];
+      const exists = current.includes(projectId);
+      const savedProjectIds = exists
+        ? current.filter((id) => id !== projectId)
+        : [...current, projectId];
+      return { user: { ...state.user, savedProjectIds } };
     }),
 
   cases: CLIENT_CASES,
@@ -305,7 +344,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       },
     })),
 
-  quotes: [],
+  quotes: INITIAL_QUOTES,
   submitQuoteRequest: (quote) =>
     set((state) => ({
       quotes: [

@@ -6,14 +6,17 @@ import {
   CheckCircle2,
   Sparkles,
   ArrowRight,
+  Heart,
 } from 'lucide-react';
 import { PORTFOLIO_PROJECTS } from '../data/portfolio';
 import { AppHeader } from '../components/layout/AppHeader';
 import { APP_IMAGES } from '../data/images';
+import { useAppStore } from '../store/useAppStore';
 
 export const PortfolioScreen: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { user, toggleSavedProject } = useAppStore();
 
   // Read URL query parameter for tab (?tab=current or ?tab=past)
   const tabParam = searchParams.get('tab');
@@ -93,6 +96,7 @@ export const PortfolioScreen: React.FC = () => {
           {filteredProjects.map((project) => {
             const isCompleted = project.category === 'Past';
             const imgSrc = getProjectImage(project.imageKey);
+            const isSaved = (user.savedProjectIds || []).includes(project.id);
 
             return (
               <div
@@ -123,6 +127,23 @@ export const PortfolioScreen: React.FC = () => {
                       {isCompleted ? 'Completed' : 'In Progress'}
                     </span>
                   </div>
+
+                  {/* Top Right Save Heart Button */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleSavedProject(project.id);
+                    }}
+                    aria-label={isSaved ? 'Remove from saved' : 'Save project'}
+                    className="absolute top-1.5 right-1.5 z-10 w-6 h-6 rounded-full bg-white/90 backdrop-blur-md shadow-xs flex items-center justify-center transition-transform active:scale-75"
+                  >
+                    <Heart
+                      className={`w-3 h-3 transition-colors ${
+                        isSaved ? 'fill-[#E5484D] text-[#E5484D]' : 'text-[#5A657D] hover:text-[#E5484D]'
+                      }`}
+                    />
+                  </button>
 
                   {/* Central Play Button */}
                   <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">

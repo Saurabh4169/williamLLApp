@@ -48,6 +48,26 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Hide Netlify-injected badge & feedback drawer */
+#netlify-badge,
+.netlify-badge,
+[data-netlify-badge],
+#netlify-drawer,
+iframe#netlify-drawer,
+iframe[data-netlify-drawer],
+iframe[title*="Netlify"],
+iframe[src*="netlify"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  bottom: -9999px !important;
+}
+
 html, body, #root {
   margin: 0;
   padding: 0;

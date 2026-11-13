@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
   Calendar,
@@ -10,15 +9,17 @@ import {
   Building2,
   CheckCircle2,
   ArrowRight,
-  CalendarPlus,
-  ShieldCheck,
+  Sparkles,
+  MapPin,
+  Mail,
+  User,
+  FileText,
+  CalendarCheck,
   Check,
 } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
 import { BUSINESS_INFO } from '../data/businessInfo';
 import AppHeader from '../components/layout/AppHeader';
-import GlassCard from '../components/ui/GlassCard';
-import GlassButton from '../components/ui/GlassButton';
 
 export const BookConsultationScreen: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -29,48 +30,53 @@ export const BookConsultationScreen: React.FC = () => {
   const preselectedDay = searchParams.get('day') || 'Mon';
   const preselectedTime = searchParams.get('time') || '10:00 AM';
 
+  const [selectedService, setSelectedService] = useState(preselectedService);
   const [selectedDay, setSelectedDay] = useState(preselectedDay);
   const [selectedTime, setSelectedTime] = useState(preselectedTime);
   const [consultType, setConsultType] = useState<'Video' | 'Phone' | 'In-office'>('Video');
   const [name, setName] = useState(user.name || 'Alex Sterling');
   const [phone, setPhone] = useState(user.phone || '312-555-0198');
   const [email, setEmail] = useState(user.email || 'alex.sterling@example.com');
+  const [address, setAddress] = useState('2144 N. Damen Ave, Chicago, IL');
   const [notes, setNotes] = useState('');
   const [isBooked, setIsBooked] = useState(false);
+  const [bookedAppointmentId, setBookedAppointmentId] = useState('');
 
   const days = [
-    { day: 'Mon', num: '24', date: '24 Nov 2026' },
-    { day: 'Tue', num: '25', date: '25 Nov 2026' },
-    { day: 'Wed', num: '26', date: '26 Nov 2026' },
-    { day: 'Thu', num: '27', date: '27 Nov 2026' },
-    { day: 'Fri', num: '28', date: '28 Nov 2026' },
+    { day: 'Mon', num: '24', fullDate: 'Mon, Nov 24, 2026' },
+    { day: 'Tue', num: '25', fullDate: 'Tue, Nov 25, 2026' },
+    { day: 'Wed', num: '26', fullDate: 'Wed, Nov 26, 2026' },
+    { day: 'Thu', num: '27', fullDate: 'Thu, Nov 27, 2026' },
+    { day: 'Fri', num: '28', fullDate: 'Fri, Nov 28, 2026' },
   ];
 
   const timeSlots = [
     { time: '09:00 AM', available: true },
     { time: '10:00 AM', available: true },
-    { time: '11:30 AM', available: false }, // booked / strike
+    { time: '11:30 AM', available: false },
     { time: '01:00 PM', available: true },
     { time: '02:30 PM', available: true },
-    { time: '04:00 PM', available: false }, // booked / strike
+    { time: '04:00 PM', available: false },
   ];
 
   const handleBooking = (e: React.FormEvent) => {
     e.preventDefault();
     const selectedDateObj = days.find((d) => d.day === selectedDay) || days[0];
+    const newId = `app-${Date.now()}`;
+    setBookedAppointmentId(newId);
 
     addAppointment({
-      title: `${preselectedService} (${consultType})`,
+      title: `${selectedService} (${consultType})`,
       type: consultType,
-      date: selectedDateObj.date,
+      date: selectedDateObj.fullDate,
       time: `${selectedTime} CST`,
-      expertName: 'Marcus Vance',
+      expertName: 'Marcus Vance, Esq.',
       location:
         consultType === 'In-office'
           ? BUSINESS_INFO.address
           : consultType === 'Phone'
-          ? `Phone to ${phone}`
-          : 'Google Meet / Zoom',
+          ? `Direct Call to ${phone}`
+          : 'Google Meet / Zoom (Link sent to email)',
       status: 'Confirmed',
     });
 
@@ -78,345 +84,383 @@ export const BookConsultationScreen: React.FC = () => {
 
     try {
       confetti({
-        particleCount: 75,
-        spread: 65,
-        origin: { y: 0.6 },
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.5 },
         colors: ['#3D4D7C', '#1F2A44', '#B7C3DA', '#3FA66B'],
       });
     } catch {
-      // safe fallback
+      // fallback
     }
   };
 
-  const handleAddToCalendar = () => {
-    alert(`Appointment "${preselectedService}" saved to device calendar.`);
-  };
+  const selectedDateObj = days.find((d) => d.day === selectedDay) || days[0];
 
   if (isBooked) {
-    const selectedDateObj = days.find((d) => d.day === selectedDay) || days[0];
-
     return (
-      <div className="min-h-full flex flex-col justify-between p-6">
-        <div className="pt-10 text-center space-y-4 max-w-sm mx-auto">
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: 'spring', damping: 15 }}
-            className="w-20 h-20 mx-auto rounded-full bg-[#3FA66B]/15 text-[#3FA66B] flex items-center justify-center border-2 border-[#3FA66B]/30"
-          >
-            <CheckCircle2 className="w-10 h-10 stroke-[2.2]" />
-          </motion.div>
+      <div className="min-h-full flex flex-col text-[#1F2A44] bg-[#F2F3F5] pb-24">
+        <AppHeader title="Booking Confirmed" />
 
-          <div>
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#3FA66B]">
-              Appointment Confirmed
-            </span>
-            <h1 className="font-heading text-2xl font-bold text-[#1F2A44] mt-1">
-              Consultation Booked
+        <div className="px-4 py-6 max-w-md mx-auto w-full space-y-5">
+          {/* Success Banner */}
+          <div className="text-center space-y-2 pt-2">
+            <div className="w-16 h-16 rounded-full bg-emerald-500/15 text-emerald-600 flex items-center justify-center mx-auto ring-8 ring-emerald-500/10 shadow-sm animate-bounce">
+              <CheckCircle2 className="w-9 h-9 stroke-[2.4]" />
+            </div>
+            <h1 className="font-heading text-xl font-black text-[#1F2A44]">
+              Appointment Confirmed!
             </h1>
+            <p className="text-xs text-[#5A657D] max-w-xs mx-auto leading-relaxed">
+              Your consultation has been booked with Williams &amp; Williams LLC. We have emailed you calendar details and access links.
+            </p>
           </div>
 
-          <p className="text-xs text-[#8A93A6] leading-relaxed">
-            Your zoning strategy session with <strong className="text-[#1F2A44]">Marcus Vance</strong> is scheduled. A confirmation email has been dispatched to {email}.
-          </p>
-
-          {/* Booking Summary Card */}
-          <GlassCard variant="card" className="p-4 text-left space-y-2.5">
-            <div className="flex justify-between text-xs">
-              <span className="text-[#8A93A6]">Service:</span>
-              <span className="font-semibold text-[#1F2A44] truncate max-w-[190px]">{preselectedService}</span>
-            </div>
-            <div className="flex justify-between text-xs">
-              <span className="text-[#8A93A6]">Date &amp; Time:</span>
-              <span className="font-semibold text-[#1F2A44]">
-                {selectedDateObj.date} &bull; {selectedTime} CST
+          {/* Ticket Card */}
+          <div className="p-4 rounded-[22px] bg-white border border-[#DDE2EA] shadow-md space-y-3.5 relative overflow-hidden">
+            <div className="flex items-center justify-between border-b border-[#EEF1F6] pb-3">
+              <div>
+                <span className="text-[9.5px] font-bold text-[#8A93A6] uppercase tracking-wider block">
+                  Reference Code
+                </span>
+                <span className="font-mono text-xs font-bold text-[#1F2A44]">
+                  WW-{selectedDay.toUpperCase()}-2026
+                </span>
+              </div>
+              <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-extrabold uppercase">
+                Confirmed &bull; Free Initial
               </span>
             </div>
-            <div className="flex justify-between text-xs">
-              <span className="text-[#8A93A6]">Format:</span>
-              <span className="font-semibold text-[#3D4D7C]">{consultType} Consultation</span>
+
+            <div className="space-y-2">
+              <h3 className="font-heading text-sm font-bold text-[#1F2A44]">
+                {selectedService}
+              </h3>
+
+              <div className="grid grid-cols-2 gap-2 pt-1 text-xs">
+                <div className="rounded-xl p-2 bg-[#F8F9FB] border border-[#EEF1F6]">
+                  <span className="text-[10px] font-medium text-[#8A93A6] block">Date &amp; Time</span>
+                  <span className="font-bold text-[#1F2A44] mt-0.5 block">
+                    {selectedDateObj.day}, Nov {selectedDateObj.num} &bull; {selectedTime}
+                  </span>
+                </div>
+
+                <div className="rounded-xl p-2 bg-[#F8F9FB] border border-[#EEF1F6]">
+                  <span className="text-[10px] font-medium text-[#8A93A6] block">Consultation Format</span>
+                  <span className="font-bold text-[#1F2A44] mt-0.5 block">
+                    {consultType === 'Video' ? 'Video Meeting (Zoom)' : consultType === 'Phone' ? 'Direct Phone Call' : 'Chicago Office'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="pt-2 text-xs text-[#5A657D] flex items-center gap-2">
+                <User className="w-4 h-4 text-[#3D4D7C] flex-shrink-0" />
+                <span>Advisor: <strong className="text-[#1F2A44]">Marcus Vance, Esq.</strong> (Principal Zoning Strategist)</span>
+              </div>
             </div>
-            <div className="flex justify-between text-xs pt-2 border-t border-[#DDE2EA]">
-              <span className="text-[#8A93A6]">Consultation Fee:</span>
-              <span className="font-bold text-[#3FA66B]">Free Initial</span>
-            </div>
-          </GlassCard>
+          </div>
 
-          <button
-            onClick={handleAddToCalendar}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full liquid-glass-chip text-xs font-semibold text-[#3D4D7C] hover:bg-white shadow-xs"
-          >
-            <CalendarPlus className="w-4 h-4" />
-            <span>Add to Google / Apple Calendar</span>
-          </button>
-        </div>
+          {/* Action Buttons */}
+          <div className="space-y-2 pt-1">
+            <button
+              type="button"
+              onClick={() => navigate('/profile?tab=bookings')}
+              className="w-full py-3 rounded-full btn-glossy-navy text-xs font-bold shadow-md flex items-center justify-center gap-2 active:scale-98 transition-all"
+            >
+              <span>View in My Bookings</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
 
-        <div className="space-y-2 pt-6 max-w-sm mx-auto w-full">
-          <GlassButton
-            variant="primary"
-            fullWidth
-            onClick={() => navigate('/cases')}
-          >
-            View in My Cases
-          </GlassButton>
-
-          <GlassButton
-            variant="outline"
-            fullWidth
-            onClick={() => navigate('/')}
-          >
-            Return to Home
-          </GlassButton>
+            <button
+              type="button"
+              onClick={() => navigate('/')}
+              className="w-full py-2.5 rounded-full bg-white border border-[#DDE2EA] text-[#1F2A44] text-xs font-bold text-center hover:bg-[#F2F3F5] active:scale-98 transition-all"
+            >
+              Return to Home
+            </button>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-full flex flex-col text-[#1F2A44]">
-      {/* AppHeader */}
+    <div className="min-h-full flex flex-col text-[#1F2A44] bg-[#F2F3F5] pb-28">
       <AppHeader title="Book Consultation" showBack />
 
-      <form onSubmit={handleBooking} className="flex-1 flex flex-col justify-between">
-        <div className="px-4 py-4 space-y-6">
-          {/* Summary Card */}
-          <GlassCard variant="card" className="p-4 space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#3D4D7C]">
-                Zoning Advisory Session
-              </span>
-              <span className="text-xs font-bold text-[#3FA66B] bg-[#3FA66B]/12 px-2.5 py-0.5 rounded-full">
-                Free initial
-              </span>
-            </div>
-            <h2 className="font-heading text-base font-bold text-[#1F2A44] leading-snug">
-              {preselectedService}
+      <form onSubmit={handleBooking} className="px-4 py-3 space-y-4 max-w-md mx-auto w-full">
+        {/* Top Summary Banner */}
+        <div className="p-3.5 rounded-[20px] bg-white border border-[#DDE2EA] shadow-xs space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#3D4D7C] flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Chicago Zoning Advisory</span>
+            </span>
+            <span className="text-[10px] font-bold text-[#3FA66B] bg-[#3FA66B]/12 px-2.5 py-0.5 rounded-full">
+              $0.00 Free Initial
+            </span>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-sm sm:text-base font-bold text-[#1F2A44] leading-snug">
+              {selectedService}
             </h2>
-            <div className="flex items-center gap-3 text-xs text-[#8A93A6] pt-1">
-              <span className="flex items-center gap-1 font-medium">
-                <Clock className="w-3.5 h-3.5 text-[#3D4D7C]" />
-                <span>45 min session</span>
+            <div className="flex items-center gap-2 text-[11px] text-[#8A93A6] mt-1">
+              <span className="flex items-center gap-1 font-semibold text-[#3D4D7C]">
+                <Clock className="w-3.5 h-3.5" />
+                <span>45 Min Strategy</span>
               </span>
               <span>&bull;</span>
-              <span>Dedicated Chicago Zoning Consultant</span>
-            </div>
-          </GlassCard>
-
-          {/* Section 1: Format (3 equal tiles in one row, height 88px) */}
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <span className="w-5 h-5 rounded-full bg-[#3D4D7C] text-white text-[10px] font-bold flex items-center justify-center">
-                1
-              </span>
-              <h3 className="font-heading text-sm font-bold text-[#1F2A44] tracking-tight">
-                Select Format
-              </h3>
-            </div>
-
-            <div className="grid grid-cols-3 gap-2">
-              {[
-                { type: 'Video' as const, label: 'Video Call', icon: Video, sub: 'Meet / Zoom' },
-                { type: 'Phone' as const, label: 'Phone', icon: Phone, sub: 'Direct Call' },
-                { type: 'In-office' as const, label: 'In-Office', icon: Building2, sub: 'Chicago Office' },
-              ].map((item) => {
-                const Icon = item.icon;
-                const isSelected = consultType === item.type;
-                return (
-                  <button
-                    key={item.type}
-                    type="button"
-                    onClick={() => setConsultType(item.type)}
-                    className={`h-[88px] rounded-tile p-2.5 flex flex-col items-center justify-center gap-1 text-center transition-all select-none border ${
-                      isSelected
-                        ? 'btn-glossy-navy shadow-md ring-2 ring-[#3D4D7C]/30 text-white'
-                        : 'liquid-glass-chip bg-white/70 text-[#1F2A44] hover:bg-white'
-                    }`}
-                  >
-                    <Icon className={`w-5 h-5 stroke-[2] ${isSelected ? 'text-white' : 'text-[#3D4D7C]'}`} />
-                    <span className="text-xs font-bold leading-tight">{item.label}</span>
-                    <span className={`text-[10px] ${isSelected ? 'text-white/80' : 'text-[#8A93A6]'}`}>
-                      {item.sub}
-                    </span>
-                  </button>
-                );
-              })}
+              <span>Direct Attorney Review</span>
             </div>
           </div>
+        </div>
 
-          {/* Section 2: Date (Horizontally scrollable, 64x72 equal size) */}
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <span className="w-5 h-5 rounded-full bg-[#3D4D7C] text-white text-[10px] font-bold flex items-center justify-center">
+        {/* 1. Format Selection */}
+        <div className="space-y-1.5">
+          <div className="flex items-center gap-1.5 px-0.5">
+            <span className="w-4 h-4 rounded-full bg-[#1F2A44] text-white text-[10px] font-bold flex items-center justify-center">
+              1
+            </span>
+            <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-[#1F2A44]">
+              Select Consultation Format
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-3 gap-2">
+            {[
+              { type: 'Video' as const, label: 'Video Call', icon: Video, sub: 'Meet / Zoom' },
+              { type: 'Phone' as const, label: 'Phone', icon: Phone, sub: 'Direct Call' },
+              { type: 'In-office' as const, label: 'In-Office', icon: Building2, sub: 'Chicago Office' },
+            ].map((item) => {
+              const Icon = item.icon;
+              const isSelected = consultType === item.type;
+              return (
+                <button
+                  key={item.type}
+                  type="button"
+                  onClick={() => setConsultType(item.type)}
+                  className={`py-3 px-2 rounded-[16px] flex flex-col items-center justify-center gap-1 text-center transition-all select-none border active:scale-95 ${
+                    isSelected
+                      ? 'bg-[#1F2A44] text-white border-[#1F2A44] shadow-sm'
+                      : 'bg-white text-[#1F2A44] border-[#DDE2EA] hover:border-[#3D4D7C]/40'
+                  }`}
+                >
+                  <Icon className={`w-4 h-4 stroke-[2.2] ${isSelected ? 'text-white' : 'text-[#3D4D7C]'}`} />
+                  <span className="text-[11px] font-bold leading-tight">{item.label}</span>
+                  <span className={`text-[9px] ${isSelected ? 'text-white/70' : 'text-[#8A93A6]'}`}>
+                    {item.sub}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* 2. Date Selection */}
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between px-0.5">
+            <div className="flex items-center gap-1.5">
+              <span className="w-4 h-4 rounded-full bg-[#1F2A44] text-white text-[10px] font-bold flex items-center justify-center">
                 2
               </span>
-              <h3 className="font-heading text-sm font-bold text-[#1F2A44] tracking-tight">
-                Select Date (Mon – Fri)
+              <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-[#1F2A44]">
+                Select Date
               </h3>
             </div>
-
-            <div className="flex gap-2 overflow-x-auto no-scrollbar py-0.5 -mx-4 px-4">
-              {days.map((d) => {
-                const isSelected = selectedDay === d.day;
-                return (
-                  <button
-                    key={d.day}
-                    type="button"
-                    onClick={() => setSelectedDay(d.day)}
-                    className={`w-16 h-[72px] flex-shrink-0 rounded-tile flex flex-col items-center justify-center transition-all select-none border ${
-                      isSelected
-                        ? 'btn-glossy-navy shadow-md text-white'
-                        : 'liquid-glass-chip bg-white/70 text-[#1F2A44] hover:bg-white'
-                    }`}
-                  >
-                    <span className={`text-[11px] font-medium ${isSelected ? 'text-white/80' : 'text-[#8A93A6]'}`}>
-                      {d.day}
-                    </span>
-                    <span className="text-base font-heading font-bold mt-0.5">
-                      {d.num}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+            <span className="text-[10px] font-semibold text-[#8A93A6]">
+              Monday &ndash; Friday
+            </span>
           </div>
 
-          {/* Section 3: Time (2-column grid of 48px height chips, disabled strike) */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="w-5 h-5 rounded-full bg-[#3D4D7C] text-white text-[10px] font-bold flex items-center justify-center">
-                  3
-                </span>
-                <h3 className="font-heading text-sm font-bold text-[#1F2A44] tracking-tight">
-                  Select Time
-                </h3>
-              </div>
-              <span className="text-[11px] font-semibold text-[#8A93A6]">
-                Chicago Time (CST)
-              </span>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2">
-              {timeSlots.map((slot) => {
-                const isSelected = selectedTime === slot.time;
-                return (
-                  <button
-                    key={slot.time}
-                    type="button"
-                    disabled={!slot.available}
-                    onClick={() => setSelectedTime(slot.time)}
-                    className={`h-12 rounded-tile px-3 flex items-center justify-between transition-all select-none border text-xs font-semibold ${
-                      !slot.available
-                        ? 'bg-slate-100/70 border-slate-200 text-[#8A93A6] line-through cursor-not-allowed opacity-60'
-                        : isSelected
-                        ? 'btn-glossy-navy shadow-md text-white'
-                        : 'liquid-glass-chip bg-white/70 text-[#1F2A44] hover:bg-white'
-                    }`}
-                  >
-                    <span>{slot.time}</span>
-                    {isSelected && <Check className="w-4 h-4 text-white" />}
-                    {!slot.available && (
-                      <span className="text-[9px] uppercase font-bold no-underline text-[#8A93A6]">
-                        Booked
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
+          <div className="grid grid-cols-5 gap-1.5">
+            {days.map((d) => {
+              const isSelected = selectedDay === d.day;
+              return (
+                <button
+                  key={d.day}
+                  type="button"
+                  onClick={() => setSelectedDay(d.day)}
+                  className={`py-2 rounded-[14px] flex flex-col items-center justify-center transition-all select-none border active:scale-95 ${
+                    isSelected
+                      ? 'bg-[#1F2A44] text-white border-[#1F2A44] shadow-sm'
+                      : 'bg-white text-[#1F2A44] border-[#DDE2EA] hover:border-[#3D4D7C]/40'
+                  }`}
+                >
+                  <span className={`text-[10px] font-semibold ${isSelected ? 'text-white/80' : 'text-[#8A93A6]'}`}>
+                    {d.day}
+                  </span>
+                  <span className="text-sm font-heading font-black mt-0.5">
+                    {d.num}
+                  </span>
+                </button>
+              );
+            })}
           </div>
+        </div>
 
-          {/* Section 4: Details (One glass card with floating-label inputs) */}
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <span className="w-5 h-5 rounded-full bg-[#3D4D7C] text-white text-[10px] font-bold flex items-center justify-center">
-                4
+        {/* 3. Time Slot Selection */}
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between px-0.5">
+            <div className="flex items-center gap-1.5">
+              <span className="w-4 h-4 rounded-full bg-[#1F2A44] text-white text-[10px] font-bold flex items-center justify-center">
+                3
               </span>
-              <h3 className="font-heading text-sm font-bold text-[#1F2A44] tracking-tight">
-                Your Details
+              <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-[#1F2A44]">
+                Select Time Slot
               </h3>
             </div>
+            <span className="text-[10px] font-semibold text-[#8A93A6]">
+              Chicago CST
+            </span>
+          </div>
 
-            <GlassCard variant="card" className="p-4 space-y-3">
-              <div>
-                <label className="block text-[11px] font-bold text-[#8A93A6] uppercase tracking-wider mb-1">
-                  Full Name *
-                </label>
+          <div className="grid grid-cols-2 gap-2">
+            {timeSlots.map((slot) => {
+              const isSelected = selectedTime === slot.time;
+              return (
+                <button
+                  key={slot.time}
+                  type="button"
+                  disabled={!slot.available}
+                  onClick={() => setSelectedTime(slot.time)}
+                  className={`h-11 rounded-[14px] px-3 flex items-center justify-between transition-all select-none border text-xs font-semibold ${
+                    !slot.available
+                      ? 'bg-slate-100/70 border-slate-200 text-[#8A93A6] line-through cursor-not-allowed opacity-60'
+                      : isSelected
+                      ? 'bg-[#1F2A44] text-white border-[#1F2A44] shadow-sm'
+                      : 'bg-white text-[#1F2A44] border-[#DDE2EA] hover:border-[#3D4D7C]/40 active:scale-95'
+                  }`}
+                >
+                  <span>{slot.time}</span>
+                  {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
+                  {!slot.available && (
+                    <span className="text-[9px] uppercase font-bold no-underline text-[#8A93A6]">
+                      Booked
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* 4. Client & Parcel Information */}
+        <div className="space-y-1.5">
+          <div className="flex items-center gap-1.5 px-0.5">
+            <span className="w-4 h-4 rounded-full bg-[#1F2A44] text-white text-[10px] font-bold flex items-center justify-center">
+              4
+            </span>
+            <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-[#1F2A44]">
+              Your Contact &amp; Property Details
+            </h3>
+          </div>
+
+          <div className="p-3.5 rounded-[20px] bg-white border border-[#DDE2EA] shadow-xs space-y-2.5">
+            <div>
+              <label className="block text-[10px] font-bold text-[#8A93A6] uppercase tracking-wider mb-1">
+                Full Name *
+              </label>
+              <div className="relative">
+                <User className="w-3.5 h-3.5 text-[#8A93A6] absolute left-3 top-3" />
                 <input
                   type="text"
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Alex Sterling"
-                  className="w-full h-11 px-3 rounded-tile border border-[#DDE2EA] bg-white text-xs text-[#1F2A44] focus:outline-none focus:ring-2 focus:ring-[#3D4D7C]"
+                  className="w-full h-10 pl-8 pr-3 rounded-[12px] border border-[#DDE2EA] bg-[#F8F9FB] text-xs text-[#1F2A44] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#3D4D7C]"
                 />
               </div>
+            </div>
 
-              <div className="grid grid-cols-2 gap-2">
-                <div>
-                  <label className="block text-[11px] font-bold text-[#8A93A6] uppercase tracking-wider mb-1">
-                    Phone *
-                  </label>
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label className="block text-[10px] font-bold text-[#8A93A6] uppercase tracking-wider mb-1">
+                  Mobile Phone *
+                </label>
+                <div className="relative">
+                  <Phone className="w-3.5 h-3.5 text-[#8A93A6] absolute left-3 top-3" />
                   <input
                     type="tel"
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="312-555-0198"
-                    className="w-full h-11 px-3 rounded-tile border border-[#DDE2EA] bg-white text-xs text-[#1F2A44] focus:outline-none focus:ring-2 focus:ring-[#3D4D7C]"
+                    className="w-full h-10 pl-8 pr-3 rounded-[12px] border border-[#DDE2EA] bg-[#F8F9FB] text-xs text-[#1F2A44] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#3D4D7C]"
                   />
                 </div>
-                <div>
-                  <label className="block text-[11px] font-bold text-[#8A93A6] uppercase tracking-wider mb-1">
-                    Email *
-                  </label>
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-bold text-[#8A93A6] uppercase tracking-wider mb-1">
+                  Email Address *
+                </label>
+                <div className="relative">
+                  <Mail className="w-3.5 h-3.5 text-[#8A93A6] absolute left-3 top-3" />
                   <input
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="alex@example.com"
-                    className="w-full h-11 px-3 rounded-tile border border-[#DDE2EA] bg-white text-xs text-[#1F2A44] focus:outline-none focus:ring-2 focus:ring-[#3D4D7C]"
+                    className="w-full h-10 pl-8 pr-3 rounded-[12px] border border-[#DDE2EA] bg-[#F8F9FB] text-xs text-[#1F2A44] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#3D4D7C]"
                   />
                 </div>
               </div>
+            </div>
 
-              <div>
-                <label className="block text-[11px] font-bold text-[#8A93A6] uppercase tracking-wider mb-1">
-                  Project Notes (Optional)
-                </label>
+            <div>
+              <label className="block text-[10px] font-bold text-[#8A93A6] uppercase tracking-wider mb-1">
+                Chicago Property Address or PIN
+              </label>
+              <div className="relative">
+                <MapPin className="w-3.5 h-3.5 text-[#8A93A6] absolute left-3 top-3" />
+                <input
+                  type="text"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="e.g. 2144 N Damen Ave or PIN"
+                  className="w-full h-10 pl-8 pr-3 rounded-[12px] border border-[#DDE2EA] bg-[#F8F9FB] text-xs text-[#1F2A44] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#3D4D7C]"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-[10px] font-bold text-[#8A93A6] uppercase tracking-wider mb-1">
+                Project Goals / Notes (Optional)
+              </label>
+              <div className="relative">
+                <FileText className="w-3.5 h-3.5 text-[#8A93A6] absolute left-3 top-2.5" />
                 <textarea
                   rows={2}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  placeholder="Address or brief zoning goals..."
-                  className="w-full p-2.5 rounded-tile border border-[#DDE2EA] bg-white text-xs text-[#1F2A44] focus:outline-none focus:ring-2 focus:ring-[#3D4D7C]"
+                  placeholder="Describe your parcel, zoning denial, or expansion goals..."
+                  className="w-full pl-8 pr-3 py-2 rounded-[12px] border border-[#DDE2EA] bg-[#F8F9FB] text-xs text-[#1F2A44] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#3D4D7C]"
                 />
               </div>
-            </GlassCard>
+            </div>
           </div>
         </div>
 
-        {/* Sticky Liquid-Glass Bottom Action Bar */}
-        <div className="sticky bottom-0 left-0 right-0 z-40 liquid-glass-bar border-t border-white/80 px-4 py-3 shadow-[0_-8px_25px_rgba(31,42,68,0.12)] mt-auto">
-          <div className="max-w-[430px] mx-auto flex items-center justify-between gap-3">
-            <div>
-              <span className="text-[10px] uppercase font-bold tracking-wider text-[#8A93A6] block leading-none">
-                Session Fee
-              </span>
-              <span className="font-heading text-base font-bold text-[#3FA66B] mt-0.5 block">
-                $0.00 (Free Initial)
-              </span>
-            </div>
-
-            <button
-              type="submit"
-              className="h-11 px-6 rounded-full btn-glossy-navy font-semibold text-xs flex items-center gap-2 shadow-md active:scale-98 transition-transform"
-            >
-              <span>Confirm Booking</span>
-              <ArrowRight className="w-4 h-4 stroke-[2.2]" />
-            </button>
+        {/* Submit Booking Action inside the form with ample spacing */}
+        <div className="p-3.5 rounded-[20px] bg-white border border-[#DDE2EA] shadow-sm flex items-center justify-between gap-3">
+          <div>
+            <span className="text-[9.5px] uppercase font-bold tracking-wider text-[#8A93A6] block leading-none">
+              Consultation Fee
+            </span>
+            <span className="font-heading text-sm font-bold text-[#3FA66B] mt-0.5 block">
+              $0.00 (Free Initial)
+            </span>
           </div>
+
+          <button
+            type="submit"
+            className="h-10 px-5 rounded-full btn-glossy-navy font-bold text-xs flex items-center gap-2 shadow-sm active:scale-98 transition-transform"
+          >
+            <span>Confirm Booking</span>
+            <ArrowRight className="w-3.5 h-3.5 stroke-[2.2]" />
+          </button>
         </div>
       </form>
     </div>

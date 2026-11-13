@@ -14,14 +14,9 @@ export const AppShell: React.FC = () => {
     mainRef.current?.scrollTo({ top: 0, behavior: 'instant' });
   }, [location.pathname]);
 
-  // Hide bottom nav on detail screens with their own sticky action bars
-  const isServiceDetail = location.pathname.startsWith('/services/') && location.pathname !== '/services';
-  const isConstructionDetail =
-    (location.pathname.startsWith('/construction/') && location.pathname !== '/construction') ||
-    (location.pathname.startsWith('/portfolio/') && location.pathname !== '/portfolio');
-  const isBookConsultation = location.pathname === '/book-consultation';
+  // Bottom nav is always visible across the entire app for native navigation, hidden only on splash
   const isSplash = location.pathname === '/splash';
-  const hideBottomNav = isServiceDetail || isConstructionDetail || isBookConsultation || isSplash;
+  const hideBottomNav = isSplash;
 
   return (
     <div className="h-screen h-[100dvh] max-h-[100dvh] w-full bg-[#F2F3F5] lg:bg-gradient-to-br lg:from-[#B7C3DA]/40 lg:via-[#F2F3F5] lg:to-[#7D90B5]/30 flex flex-col items-center justify-start py-0 lg:py-6 px-0 lg:px-4 overflow-hidden">
