@@ -1,0 +1,90 @@
+import React from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import { BottomNav } from './BottomNav';
+import { useAppStore } from '../../store/useAppStore';
+import { Smartphone, Monitor } from 'lucide-react';
+
+export const AppShell: React.FC = () => {
+  const location = useLocation();
+  const { desktopFrameMode, toggleDesktopFrameMode } = useAppStore();
+
+  // Hide bottom nav on detail screens with their own sticky action bars
+  const isServiceDetail = location.pathname.startsWith('/services/') && location.pathname !== '/services';
+  const isConstructionDetail =
+    (location.pathname.startsWith('/construction/') && location.pathname !== '/construction') ||
+    (location.pathname.startsWith('/portfolio/') && location.pathname !== '/portfolio');
+  const isBookConsultation = location.pathname === '/book-consultation';
+  const isSplash = location.pathname === '/splash';
+  const hideBottomNav = isServiceDetail || isConstructionDetail || isBookConsultation || isSplash;
+
+  return (
+    <div className="min-h-screen w-full bg-[#F2F3F5] lg:bg-gradient-to-br lg:from-[#B7C3DA]/40 lg:via-[#F2F3F5] lg:to-[#7D90B5]/30 flex flex-col items-center justify-start py-0 lg:py-6 px-0 lg:px-4">
+      {/* Desktop Helper Toggle */}
+      <aside
+        aria-label="Desktop Preview Mode Controls"
+        className="hidden lg:flex fixed top-4 right-4 z-50 items-center gap-2 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-white shadow-sm text-xs font-medium text-[#1F2A44]"
+      >
+        <span className="text-[#8A93A6]">Preview:</span>
+        <button
+          onClick={toggleDesktopFrameMode}
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-full btn-glossy-navy text-xs font-semibold shadow-xs"
+        >
+          {desktopFrameMode ? (
+            <>
+              <Smartphone className="w-3.5 h-3.5" />
+              <span>Mobile Frame (430px)</span>
+            </>
+          ) : (
+            <>
+              <Monitor className="w-3.5 h-3.5" />
+              <span>Full Width Fluid</span>
+            </>
+          )}
+        </button>
+      </aside>
+
+      {/* Main Container - strictly bounds all inner content within phone frame */}
+      <div
+        className={`w-full transition-all duration-300 relative flex flex-col overflow-hidden ${
+          desktopFrameMode
+            ? 'max-w-[430px] h-[890px] max-h-[92vh] rounded-[44px] shadow-[0_25px_70px_rgba(31,42,68,0.24)] border-[8px] border-[#1F2A44]'
+            : 'max-w-2xl min-h-screen shadow-md'
+        }`}
+        style={{
+          boxShadow: desktopFrameMode
+            ? '0 25px 60px -15px rgba(31, 42, 68, 0.30), 0 0 0 1px rgba(255,255,255,0.4) inset'
+            : undefined,
+        }}
+      >
+        {/* Fixed full-screen soft ambient background layer */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            background:
+              'radial-gradient(circle at 90% 12%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 45%), radial-gradient(circle at 10% 25%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 35%), linear-gradient(180deg, #F2F3F5 0%, #F5F7FA 50%, #EBF0F7 80%, #DFE7F2 100%)',
+          }}
+        />
+
+        {/* Dynamic Island / Speaker cutout in desktop frame mode */}
+        {desktopFrameMode && (
+          <div className="hidden lg:flex w-full justify-center pt-2.5 pb-1 sticky top-0 z-50 pointer-events-none flex-shrink-0">
+            <div className="w-28 h-4 bg-[#1F2A44] rounded-full shadow-inner flex items-center justify-end px-3">
+              <div className="w-2 h-2 rounded-full bg-[#3D4D7C]/60" />
+            </div>
+          </div>
+        )}
+
+        {/* Scrollable Content Container (hides ugly desktop scrollbars) */}
+        <main className="flex-1 w-full overflow-y-auto overflow-x-hidden no-scrollbar flex flex-col relative z-10">
+          <Outlet />
+        </main>
+
+        {/* Docked Edge-to-Edge Liquid-Glass Bottom Nav */}
+        {!hideBottomNav && <BottomNav />}
+      </div>
+    </div>
+  );
+};
+
+export default AppShell;

@@ -1,0 +1,271 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@theme {
+  --color-primary: #3D4D7C;
+  --color-primary-hover: #313E64;
+  --color-primary-light: #EBEFF7;
+  --color-ink: #1F2A44;
+  --color-ink-light: #2E3D60;
+  --color-background: #F2F3F5;
+  --color-surface: #F8F9FB;
+  --color-surface-card: #F8F9FB;
+  --color-border: #DDE2EA;
+  --color-border-light: #EEF1F6;
+  --color-muted: #8A93A6;
+  --color-muted-dark: #6A748A;
+  --color-gradient-start: #B7C3DA;
+  --color-gradient-end: #7D90B5;
+  --color-success: #3FA66B;
+  --color-danger: #E5484D;
+
+  --font-heading: 'Plus Jakarta Sans', Inter, system-ui, -apple-system, sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --radius-card: 24px;
+  --radius-tile: 16px;
+  --radius-image: 20px;
+  --radius-pill: 9999px;
+
+  --shadow-glass: 0 10px 30px rgba(31, 42, 68, 0.10), 0 2px 6px rgba(31, 42, 68, 0.06);
+  --shadow-glass-pressed: 0 4px 14px rgba(31, 42, 68, 0.08), 0 1px 3px rgba(31, 42, 68, 0.04);
+}
+
+:root {
+  --app-primary: #3D4D7C;
+  --app-ink: #1F2A44;
+  --app-bg: #F2F3F5;
+  --app-surface: #F8F9FB;
+  --app-border: #DDE2EA;
+  --app-muted: #8A93A6;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #F2F3F5;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #1F2A44;
+  overflow-x: hidden;
+}
+
+/* Fluid Typography with Clamp (320px+) */
+/* H1: Plus Jakarta Sans 800, 28/34, letter-spacing -0.02em */
+h1, .font-h1 {
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+  font-size: clamp(24px, 5vw, 28px);
+  line-height: 34px;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+/* H2: Plus Jakarta Sans 700, 20/26, letter-spacing -0.01em */
+h2, .font-h2 {
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+  font-size: clamp(18px, 4vw, 20px);
+  line-height: 26px;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+/* Card title & H3: Plus Jakarta Sans 700, 16/22 */
+h3, .font-h3, .card-title {
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 700;
+}
+
+.font-heading {
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+}
+
+/* Button & Nav labels: Plus Jakarta Sans 600, 14/20 */
+button, .btn-label, .nav-label {
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+}
+
+/* Body: Inter 400, 14/21 */
+p, .font-body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
+}
+
+/* Caption: Inter 500, 12/16 */
+.font-caption {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+/* Numbers (dates, case IDs, prices) use Inter with tabular-nums */
+.tabular-nums {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Tiny labels and chips uppercase only (11-12px, letter-spacing 0.06em) */
+.label-chip-upper {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Fixed full-screen soft ambient background layer */
+.bg-fixed-canvas {
+  background:
+    radial-gradient(circle at 90% 12%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 45%),
+    radial-gradient(circle at 10% 25%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 35%),
+    linear-gradient(180deg, #F2F3F5 0%, #F5F7FA 50%, #EBF0F7 80%, #DFE7F2 100%);
+  background-attachment: fixed;
+}
+
+/* Liquid Glass System */
+.liquid-glass-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.42));
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.70);
+  box-shadow:
+    0 10px 30px rgba(31, 42, 68, 0.10),
+    0 2px 6px rgba(31, 42, 68, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.25);
+  border-radius: 24px;
+  transition: transform 120ms ease-out, box-shadow 120ms ease-out;
+}
+
+.liquid-glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 40%);
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+.liquid-glass-chip {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.55));
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.80);
+  box-shadow:
+    0 4px 14px rgba(31, 42, 68, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  border-radius: 9999px;
+  transition: all 120ms ease-out;
+}
+
+.liquid-glass-bar {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.72));
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 4px 20px rgba(31, 42, 68, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.liquid-glass-nav {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.78));
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 12px 35px rgba(31, 42, 68, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  border-radius: 28px;
+}
+
+/* Primary glossy navy button with liquid specular glass highlight */
+.btn-glossy-navy {
+  position: relative;
+  background: linear-gradient(180deg, #4A5C8E 0%, #3D4D7C 100%);
+  box-shadow:
+    0 4px 14px rgba(61, 77, 124, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  color: #FFFFFF !important;
+  border-radius: 9999px;
+  overflow: hidden;
+  transition: transform 120ms ease-out, box-shadow 120ms ease-out, background 120ms ease-out;
+}
+
+.btn-glossy-navy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.04) 100%);
+  border-radius: 9999px 9999px 0 0;
+  pointer-events: none;
+}
+
+.btn-glossy-navy:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 6px rgba(61, 77, 124, 0.25);
+}
+
+/* Active navy pill for tabs */
+.nav-pill-active {
+  position: relative;
+  background: linear-gradient(180deg, #4A5C8E 0%, #3D4D7C 100%);
+  color: #FFFFFF !important;
+  box-shadow:
+    0 4px 12px rgba(61, 77, 124, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  border-radius: 9999px;
+  overflow: hidden;
+  transition: all 120ms ease-out;
+}
+
+.nav-pill-active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.04) 100%);
+  border-radius: 9999px 9999px 0 0;
+  pointer-events: none;
+}
+
+/* Fallback for unsupported backdrop-filter */
+@supports not ((-webkit-backdrop-filter: blur(20px)) or (backdrop-filter: blur(20px))) {
+  .liquid-glass-card,
+  .liquid-glass-chip,
+  .liquid-glass-bar,
+  .liquid-glass-nav {
+    background: rgba(248, 249, 251, 0.95) !important;
+  }
+}
+
+/* Custom hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
