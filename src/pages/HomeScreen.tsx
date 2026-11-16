@@ -15,10 +15,16 @@ import {
   Users2,
   ArrowRight,
   PhoneCall,
+  Phone,
   FileText,
   HardHat,
   CheckCircle2,
   Briefcase,
+  Building2,
+  ChevronRight,
+  Check,
+  Star,
+  Mail,
 } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
 import { BUSINESS_INFO } from '../data/businessInfo';
@@ -133,89 +139,77 @@ export const HomeScreen: React.FC = () => {
           </div>
         </form>
 
-        {/* 3. 4 Category / Quick-Action Tiles */}
+        {/* 3. 4 Clean Quick-Action Tiles */}
         <section aria-label="Quick Actions">
           <div className="grid grid-cols-4 gap-2 sm:gap-2.5">
-            {/* Tile 1: Current Projects */}
+            {/* Tile 1: Current */}
             <button
               onClick={() => navigate('/construction?tab=current')}
-              className="h-[78px] rounded-[20px] bg-[#1F2A44] text-white flex flex-col items-center justify-center gap-1 shadow-md shadow-[#1F2A44]/25 transition-all active:scale-95 group relative overflow-hidden"
+              className="h-[58px] rounded-[16px] bg-[#1F2A44] text-white flex flex-col items-center justify-center shadow-sm shadow-[#1F2A44]/20 transition-all active:scale-95 group relative overflow-hidden"
             >
-              <div className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center">
-                <HardHat className="w-4 h-4 text-white stroke-[2.2]" />
+              <div className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+                <HardHat className="w-3.5 h-3.5 text-white stroke-[2.2]" />
               </div>
-              <span className="text-[10px] sm:text-[10.5px] font-bold text-white tracking-tight leading-tight px-1 text-center line-clamp-1">
+              <span className="text-[11px] font-bold text-white tracking-tight mt-1 text-center line-clamp-1">
                 Current
               </span>
-              <span className="text-[8px] uppercase tracking-wider text-[#3FA66B] font-extrabold -mt-0.5">
-                In Progress
-              </span>
             </button>
 
-            {/* Tile 2: Past Projects */}
+            {/* Tile 2: Past */}
             <button
               onClick={() => navigate('/construction?tab=past')}
-              className="h-[78px] rounded-[20px] bg-white text-[#1F2A44] border border-[#DDE2EA] flex flex-col items-center justify-center gap-1 shadow-xs hover:border-[#3D4D7C]/40 transition-all active:scale-95 group"
+              className="h-[58px] rounded-[16px] bg-white text-[#1F2A44] border border-[#DDE2EA] flex flex-col items-center justify-center shadow-2xs hover:border-[#3D4D7C]/40 transition-all active:scale-95 group"
             >
-              <div className="w-8 h-8 rounded-full bg-[#3D4D7C]/10 flex items-center justify-center text-[#3D4D7C] group-hover:bg-[#3D4D7C] group-hover:text-white transition-colors">
-                <CheckCircle2 className="w-4 h-4 stroke-[2.2]" />
+              <div className="w-7 h-7 rounded-full bg-[#3D4D7C]/10 flex items-center justify-center text-[#3D4D7C] group-hover:bg-[#3D4D7C] group-hover:text-white transition-colors">
+                <CheckCircle2 className="w-3.5 h-3.5 stroke-[2.2]" />
               </div>
-              <span className="text-[10px] sm:text-[10.5px] font-bold text-[#1F2A44] tracking-tight leading-tight px-1 text-center line-clamp-1">
+              <span className="text-[11px] font-bold text-[#1F2A44] tracking-tight mt-1 text-center line-clamp-1">
                 Past
-              </span>
-              <span className="text-[8px] uppercase tracking-wider text-[#3D4D7C] font-extrabold -mt-0.5">
-                Completed
               </span>
             </button>
 
-            {/* Tile 3: Cases (Replaced Consult as requested) */}
+            {/* Tile 3: Cases */}
             <button
               onClick={() => navigate('/cases')}
-              className="h-[78px] rounded-[20px] bg-white text-[#1F2A44] border border-[#DDE2EA] flex flex-col items-center justify-center gap-1 shadow-xs hover:border-[#3D4D7C]/40 transition-all active:scale-95 group relative"
+              className="h-[58px] rounded-[16px] bg-white text-[#1F2A44] border border-[#DDE2EA] flex flex-col items-center justify-center shadow-2xs hover:border-[#3D4D7C]/40 transition-all active:scale-95 group relative"
             >
-              <div className="w-8 h-8 rounded-full bg-[#3D4D7C]/10 flex items-center justify-center text-[#3D4D7C] group-hover:bg-[#3D4D7C] group-hover:text-white transition-colors relative">
-                <Briefcase className="w-4 h-4 stroke-[2]" />
+              <div className="w-7 h-7 rounded-full bg-[#3D4D7C]/10 flex items-center justify-center text-[#3D4D7C] group-hover:bg-[#3D4D7C] group-hover:text-white transition-colors relative">
+                <Briefcase className="w-3.5 h-3.5 stroke-[2]" />
               </div>
-              <span className="text-[10px] sm:text-[10.5px] font-bold text-[#1F2A44] tracking-tight leading-tight px-1 text-center line-clamp-1">
+              <span className="text-[11px] font-bold text-[#1F2A44] tracking-tight mt-1 text-center line-clamp-1">
                 Cases
-              </span>
-              <span className="text-[8px] uppercase tracking-wider text-[#8A93A6] font-semibold -mt-0.5">
-                Filings
               </span>
             </button>
 
             {/* Tile 4: Permits */}
             <button
               onClick={() => navigate('/checklist')}
-              className="h-[78px] rounded-[20px] bg-white text-[#1F2A44] border border-[#DDE2EA] flex flex-col items-center justify-center gap-1 shadow-xs hover:border-[#3D4D7C]/40 transition-all active:scale-95 group"
+              className="h-[58px] rounded-[16px] bg-white text-[#1F2A44] border border-[#DDE2EA] flex flex-col items-center justify-center shadow-2xs hover:border-[#3D4D7C]/40 transition-all active:scale-95 group"
             >
-              <div className="w-8 h-8 rounded-full bg-[#3D4D7C]/10 flex items-center justify-center text-[#3D4D7C] group-hover:bg-[#3D4D7C] group-hover:text-white transition-colors">
-                <CheckSquare className="w-4 h-4 stroke-[2]" />
+              <div className="w-7 h-7 rounded-full bg-[#3D4D7C]/10 flex items-center justify-center text-[#3D4D7C] group-hover:bg-[#3D4D7C] group-hover:text-white transition-colors">
+                <CheckSquare className="w-3.5 h-3.5 stroke-[2]" />
               </div>
-              <span className="text-[10px] sm:text-[10.5px] font-bold text-[#1F2A44] tracking-tight leading-tight px-1 text-center line-clamp-1">
+              <span className="text-[11px] font-bold text-[#1F2A44] tracking-tight mt-1 text-center line-clamp-1">
                 Permits
-              </span>
-              <span className="text-[8px] uppercase tracking-wider text-[#8A93A6] font-semibold -mt-0.5">
-                Checklist
               </span>
             </button>
           </div>
         </section>
 
-        {/* 4. Featured Big Card (Flagship Zoning Case Banner) */}
+        {/* 4. Featured Banner Card (Proportional Mobile Sizing) */}
         <section aria-label="Featured Highlight">
-          <div className="relative rounded-[26px] sm:rounded-[28px] overflow-hidden shadow-md bg-[#1F2A44] cursor-pointer group">
-            <div className="relative aspect-[16/13] sm:aspect-[16/11] min-h-[295px] w-full">
+          <div className="relative rounded-[20px] overflow-hidden shadow-md bg-[#1F2A44] cursor-pointer group">
+            <div className="relative h-[215px] sm:h-[235px] w-full">
               <img
                 src={featuredSlides[featuredIndex].image}
                 alt={featuredSlides[featuredIndex].title}
                 className="w-full h-full object-cover brightness-[0.78] group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/25" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/20" />
 
               {/* Top Badges / Heart Action */}
-              <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
-                <span className="bg-black/40 backdrop-blur-md text-white text-[11px] font-semibold px-3 py-1 rounded-full border border-white/20 shadow-xs">
+              <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between z-10">
+                <span className="bg-black/45 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-0.5 rounded-full border border-white/20 shadow-xs">
                   {featuredSlides[featuredIndex].tag}
                 </span>
 
@@ -226,10 +220,10 @@ export const HomeScreen: React.FC = () => {
                     setIsFavorite(!isFavorite);
                   }}
                   aria-label="Save to favorites"
-                  className="w-9 h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#1F2A44] shadow-md hover:bg-white active:scale-90 transition-all"
+                  className="w-7 h-7 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#1F2A44] shadow-xs hover:bg-white active:scale-90 transition-all"
                 >
                   <Heart
-                    className={`w-4 h-4 transition-colors ${
+                    className={`w-3.5 h-3.5 transition-colors ${
                       isFavorite ? 'fill-[#E5484D] text-[#E5484D]' : 'text-[#1F2A44]'
                     }`}
                   />
@@ -239,30 +233,30 @@ export const HomeScreen: React.FC = () => {
               {/* Bottom Overlay Content */}
               <div
                 onClick={() => navigate(featuredSlides[featuredIndex].path)}
-                className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 flex flex-col justify-end text-white z-10"
+                className="absolute bottom-0 left-0 right-0 p-3 sm:p-3.5 flex flex-col justify-end text-white z-10"
               >
                 {/* Title & Price Row */}
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="font-heading text-[16px] sm:text-[18px] font-bold text-white line-clamp-1 leading-snug">
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="font-heading text-sm sm:text-[15px] font-bold text-white line-clamp-1 leading-snug">
                     {featuredSlides[featuredIndex].title}
                   </h3>
-                  <span className="text-xs sm:text-sm font-bold text-white/90 bg-white/15 backdrop-blur-md border border-white/20 px-2.5 py-0.5 rounded-full whitespace-nowrap">
+                  <span className="text-[10px] sm:text-xs font-bold text-white/90 bg-white/15 backdrop-blur-md border border-white/20 px-2 py-0.5 rounded-full whitespace-nowrap">
                     {featuredSlides[featuredIndex].price}
                   </span>
                 </div>
 
                 {/* Address */}
-                <p className="text-[11px] text-white/80 line-clamp-1 mt-0.5">
+                <p className="text-[10.5px] text-white/80 line-clamp-1 mt-0.5">
                   {featuredSlides[featuredIndex].location}
                 </p>
 
                 {/* Stats Row */}
-                <div className="flex items-center gap-2 sm:gap-3 mt-2 pt-2 border-t border-white/15 text-[11px] text-white/90 overflow-x-auto no-scrollbar">
+                <div className="flex items-center gap-2 mt-1.5 pt-1.5 border-t border-white/15 text-[10px] text-white/90 overflow-x-auto no-scrollbar">
                   {featuredSlides[featuredIndex].stats.map((stat, sIdx) => {
                     const StatIcon = stat.icon;
                     return (
                       <div key={sIdx} className="flex items-center gap-1 whitespace-nowrap">
-                        <StatIcon className="w-3.5 h-3.5 text-[#B7C3DA]" />
+                        <StatIcon className="w-3 h-3 text-[#B7C3DA]" />
                         <span>{stat.label}</span>
                       </div>
                     );
@@ -270,26 +264,26 @@ export const HomeScreen: React.FC = () => {
                 </div>
 
                 {/* Action Buttons: Request Free Quote & Call */}
-                <div className="pt-2.5 mt-2 flex items-center gap-2">
+                <div className="pt-2 mt-1 flex items-center gap-2">
                   <button
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
                       navigate('/quote');
                     }}
-                    className="flex-1 h-10 rounded-full btn-glossy-navy border border-white/25 text-white font-heading font-bold text-xs flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition-all"
+                    className="flex-1 h-8 rounded-full btn-glossy-navy border border-white/25 text-white font-heading font-bold text-[11px] flex items-center justify-center gap-1 shadow-sm active:scale-95 transition-all"
                   >
                     <span>Request Free Quote</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-3 h-3" />
                   </button>
 
                   <a
                     href={`tel:${BUSINESS_INFO.phoneRaw}`}
                     onClick={(e) => e.stopPropagation()}
-                    className="h-10 px-4 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white font-heading font-semibold text-xs flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-all flex-shrink-0"
+                    className="h-8 px-3.5 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white font-heading font-semibold text-[11px] flex items-center justify-center gap-1 shadow-xs active:scale-95 transition-all flex-shrink-0"
                     aria-label={`Call Williams & Williams LLC at ${BUSINESS_INFO.phone}`}
                   >
-                    <PhoneCall className="w-3.5 h-3.5 text-white stroke-[2.2]" />
+                    <PhoneCall className="w-3 h-3 text-white stroke-[2.2]" />
                     <span>Call</span>
                   </a>
                 </div>
@@ -298,14 +292,14 @@ export const HomeScreen: React.FC = () => {
           </div>
 
           {/* Dots Indicator */}
-          <div className="flex items-center justify-center gap-1.5 pt-2.5">
+          <div className="flex items-center justify-center gap-1.5 pt-2">
             {featuredSlides.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setFeaturedIndex(i)}
                 aria-label={`Slide ${i + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === featuredIndex ? 'w-6 bg-[#3D4D7C]' : 'w-1.5 bg-[#DDE2EA]'
+                className={`h-1 rounded-full transition-all duration-300 ${
+                  i === featuredIndex ? 'w-5 bg-[#3D4D7C]' : 'w-1 bg-[#DDE2EA]'
                 }`}
               />
             ))}
@@ -366,174 +360,304 @@ export const HomeScreen: React.FC = () => {
           </div>
         </section>
 
-        {/* 6. Why Choose Williams & Williams LLC - Compact Liquid Glass Bento */}
-        <section aria-label="Why Choose Us" className="space-y-2.5">
-          {/* Section Header with Accent Pill */}
+        {/* 6. Key Performance Metrics Bar */}
+        <section aria-label="Key Performance Metrics">
+          <div className="bg-white rounded-[22px] border border-[#E2E8F0] shadow-xs p-3.5 sm:p-4 grid grid-cols-3 divide-x divide-slate-100">
+            {/* Stat 1 */}
+            <div className="flex flex-col items-center justify-center text-center px-1">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 stroke-[2.5]" />
+                <span className="font-heading font-extrabold text-sm sm:text-base text-[#1F2A44] tracking-tight">
+                  500+
+                </span>
+              </div>
+              <span className="text-[8px] sm:text-[8.5px] uppercase tracking-wider text-[#8A93A6] font-bold mt-0.5">
+                Variances Approved
+              </span>
+            </div>
+
+            {/* Stat 2 */}
+            <div className="flex flex-col items-center justify-center text-center px-1">
+              <div className="flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-sky-500 stroke-[2.5]" />
+                <span className="font-heading font-extrabold text-sm sm:text-base text-[#1F2A44] tracking-tight">
+                  45-Day
+                </span>
+              </div>
+              <span className="text-[8px] sm:text-[8.5px] uppercase tracking-wider text-[#8A93A6] font-bold mt-0.5">
+                Avg Approval
+              </span>
+            </div>
+
+            {/* Stat 3 */}
+            <div className="flex flex-col items-center justify-center text-center px-1">
+              <div className="flex items-center gap-1.5">
+                <Building2 className="w-3.5 h-3.5 text-amber-500 stroke-[2.5]" />
+                <span className="font-heading font-extrabold text-sm sm:text-base text-[#1F2A44] tracking-tight">
+                  20+ Yrs
+                </span>
+              </div>
+              <span className="text-[8px] sm:text-[8.5px] uppercase tracking-wider text-[#8A93A6] font-bold mt-0.5">
+                Experience
+              </span>
+            </div>
+          </div>
+        </section>
+
+        {/* 7. Specialized Zoning Solutions (Matching Reference Image 1) */}
+        <section aria-label="Practice Areas" className="space-y-3">
           <div className="flex items-center justify-between">
             <div>
-              <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#3D4D7C]" />
-                <span className="text-[9.5px] font-bold uppercase tracking-widest text-[#3D4D7C]">
-                  Our Core Pillars
-                </span>
-              </div>
-              <h2 className="font-heading text-[17px] sm:text-[19px] font-bold text-[#1F2A44] tracking-tight mt-0.5">
-                Why Choose Us
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#3D4D7C] block">
+                Practice Areas
+              </span>
+              <h2 className="font-heading text-lg font-bold text-[#1F2A44] tracking-tight mt-0.5">
+                Specialized Zoning Solutions
               </h2>
             </div>
-            <span className="text-[9.5px] font-semibold text-[#3D4D7C] bg-white/80 backdrop-blur-md px-2 py-0.5 rounded-full border border-[#DDE2EA] shadow-2xs">
-              Experienced • Knowledgeable • Dedicated
-            </span>
+            <button
+              onClick={() => navigate('/services')}
+              className="text-xs font-semibold text-[#3D4D7C] hover:text-[#1F2A44] flex items-center gap-0.5 transition-colors"
+            >
+              <span>Explore All</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
           </div>
 
-          {/* Liquid Glass Bento Layout (Dark & Light Balanced Combination) */}
-          <div className="space-y-2">
-            {/* Flagship Hero Card: 01 Experienced (Dark Liquid Glass) */}
-            <div className="relative rounded-[20px] p-3.5 sm:p-4 bg-gradient-to-br from-[#162035] via-[#1F2A44] to-[#2B3B60] text-white backdrop-blur-xl border border-white/20 shadow-[0_12px_28px_rgba(31,42,68,0.22),inset_0_1px_1px_rgba(255,255,255,0.2)] overflow-hidden group hover:border-[#B7C3DA]/40 active:scale-[0.99] transition-all">
-              {/* Radial glow background sheen */}
-              <div className="absolute -top-10 -right-10 w-28 h-28 rounded-full bg-gradient-to-br from-[#3D4D7C]/60 to-transparent blur-xl pointer-events-none" />
-              <span className="absolute top-1 right-3 font-heading font-black text-3xl text-white/[0.08] select-none pointer-events-none">
-                01
-              </span>
+          <div className="space-y-3">
+            {/* Card 1: Commercial & Mixed-Use Entitlements */}
+            <div
+              onClick={() => navigate('/services/zoning-analysis-consultation')}
+              className="bg-white rounded-[22px] border border-[#E2E8F0] overflow-hidden shadow-xs group cursor-pointer hover:border-[#3D4D7C]/30 active:scale-[0.99] transition-all"
+            >
+              {/* Image Banner */}
+              <div className="relative h-[180px] w-full overflow-hidden">
+                <img
+                  src={APP_IMAGES.serviceZoningAnalysis.src}
+                  alt="Commercial & Mixed-Use Entitlements"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-              <div className="relative z-10">
-                {/* Top Row: Icon + Badge */}
-                <div className="flex items-center justify-between">
-                  <div className="w-9 h-9 rounded-xl bg-white/15 text-white flex items-center justify-center shadow-xs ring-2 ring-white/25 flex-shrink-0 backdrop-blur-md">
-                    <Award className="w-4.5 h-4.5 stroke-[2.2] text-[#B7C3DA]" />
+                {/* Top Floating Badges */}
+                <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10">
+                  <div className="w-7 h-7 rounded-lg bg-black/60 backdrop-blur-md flex items-center justify-center text-amber-400 border border-white/20 shadow-xs">
+                    <Scale className="w-3.5 h-3.5" />
                   </div>
-
-                  <span className="px-2 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase bg-white/12 text-[#B7C3DA] border border-white/20 backdrop-blur-md">
-                    Decades of Casework
+                  <span className="bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/20">
+                    Land Use &amp; FAR
                   </span>
                 </div>
 
-                {/* Content */}
-                <div className="mt-2.5">
-                  <h3 className="font-heading text-sm sm:text-[15px] font-bold text-white tracking-tight">
-                    Experienced Chicago Advocates
+                {/* Title on Image */}
+                <div className="absolute bottom-3 left-3.5 right-3.5 z-10">
+                  <h3 className="font-heading text-base font-bold text-white tracking-tight leading-snug">
+                    Commercial &amp; Mixed-Use Entitlements
                   </h3>
-                  <p className="text-[11.5px] sm:text-xs text-[#DDE2EA] leading-relaxed mt-0.5 font-normal">
-                    Decades of specialized casework navigating Cook County &amp; City Hall hearing divisions with established aldermanic rapport.
-                  </p>
                 </div>
+              </div>
 
-                {/* Micro tags */}
-                <div className="flex items-center gap-1.5 mt-2.5 pt-2 border-t border-white/15 text-[9.5px] text-white/90 font-medium overflow-x-auto no-scrollbar">
-                  <span className="px-2 py-0.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md shadow-2xs whitespace-nowrap">
-                    City Hall ZBA
+              {/* White Card Body */}
+              <div className="p-3.5 space-y-2.5">
+                <p className="text-xs text-[#64748B] leading-relaxed">
+                  Navigate complex FAR bonuses, downtown planned developments, and City Hall aldermanic zoning amendments.
+                </p>
+
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+                  <span className="text-[11px] font-semibold text-[#8A93A6]">
+                    Municipal Counsel
                   </span>
-                  <span className="px-2 py-0.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md shadow-2xs whitespace-nowrap">
-                    Variance Petitions
-                  </span>
-                  <span className="px-2 py-0.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md shadow-2xs whitespace-nowrap">
-                    Cook County PINs
-                  </span>
+                  <div className="font-bold text-[#3D4D7C] group-hover:text-[#1F2A44] flex items-center gap-1 transition-colors text-xs">
+                    <span>Explore Service</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Split Row: Twin Liquid Glass Pods (Crisp Light Glass) */}
-            <div className="grid grid-cols-2 gap-2">
-              {/* Card 2: Knowledgeable (Light Glass) */}
-              <div className="relative rounded-[18px] p-3 sm:p-3.5 bg-gradient-to-br from-white/98 via-white/90 to-[#F2F4F8] backdrop-blur-xl border border-white shadow-[0_8px_20px_rgba(31,42,68,0.06),inset_0_1px_1px_rgba(255,255,255,0.95)] overflow-hidden flex flex-col justify-between group hover:border-[#3D4D7C]/30 active:scale-[0.98] transition-all">
-                <span className="absolute top-1 right-2 font-heading font-black text-2xl text-[#1F2A44]/[0.05] select-none pointer-events-none">
-                  02
-                </span>
+            {/* Card 2: ZBA Variances & Administrative Appeals */}
+            <div
+              onClick={() => navigate('/services/zba-variance-appeals')}
+              className="bg-white rounded-[22px] border border-[#E2E8F0] overflow-hidden shadow-xs group cursor-pointer hover:border-[#3D4D7C]/30 active:scale-[0.99] transition-all"
+            >
+              {/* Image Banner */}
+              <div className="relative h-[180px] w-full overflow-hidden">
+                <img
+                  src={APP_IMAGES.serviceAppealsHearing.src}
+                  alt="ZBA Variances & Administrative Appeals"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between">
-                    <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#1F2A44] to-[#3D4D7C] text-white flex items-center justify-center shadow-xs ring-2 ring-white flex-shrink-0">
-                      <ShieldCheck className="w-4 h-4 stroke-[2.2]" />
-                    </div>
-                    <span className="px-1.5 py-0.5 rounded-full text-[8px] font-bold tracking-wider uppercase bg-[#3D4D7C]/10 text-[#3D4D7C] border border-[#3D4D7C]/15">
-                      Title 17 Code
-                    </span>
+                {/* Top Floating Badges */}
+                <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10">
+                  <div className="w-7 h-7 rounded-lg bg-black/60 backdrop-blur-md flex items-center justify-center text-sky-400 border border-white/20 shadow-xs">
+                    <ShieldCheck className="w-3.5 h-3.5" />
                   </div>
-
-                  <h3 className="font-heading text-xs sm:text-[13px] font-bold text-[#1F2A44] tracking-tight leading-snug mt-2">
-                    Knowledgeable
-                  </h3>
-
-                  <p className="text-[10.5px] sm:text-[11px] text-[#5A657D] leading-snug mt-0.5 line-clamp-2">
-                    Mastery of Title 17, Connected Communities &amp; FAR rules.
-                  </p>
+                  <span className="bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/20">
+                    ZBA Appeals
+                  </span>
                 </div>
 
-                <div className="relative z-10 mt-2 pt-1.5 border-t border-[#DDE2EA]/70 flex items-center gap-1 text-[9px] font-semibold text-[#3D4D7C]">
-                  <span>FAR &amp; ARO Rules</span>
+                {/* Title on Image */}
+                <div className="absolute bottom-3 left-3.5 right-3.5 z-10">
+                  <h3 className="font-heading text-base font-bold text-white tracking-tight leading-snug">
+                    ZBA Variances &amp; Administrative Appeals
+                  </h3>
                 </div>
               </div>
 
-              {/* Card 3: Dedicated (Light Glass) */}
-              <div className="relative rounded-[18px] p-3 sm:p-3.5 bg-gradient-to-br from-white/98 via-white/90 to-[#F2F4F8] backdrop-blur-xl border border-white shadow-[0_8px_20px_rgba(31,42,68,0.06),inset_0_1px_1px_rgba(255,255,255,0.95)] overflow-hidden flex flex-col justify-between group hover:border-[#3D4D7C]/30 active:scale-[0.98] transition-all">
-                <span className="absolute top-1 right-2 font-heading font-black text-2xl text-[#1F2A44]/[0.05] select-none pointer-events-none">
-                  03
-                </span>
+              {/* White Card Body */}
+              <div className="p-3.5 space-y-2.5">
+                <p className="text-xs text-[#64748B] leading-relaxed">
+                  Specialized representation for front &amp; rear yard setbacks, building height exceptions, and lot coverage relief.
+                </p>
 
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between">
-                    <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#1F2A44] to-[#3D4D7C] text-white flex items-center justify-center shadow-xs ring-2 ring-white flex-shrink-0">
-                      <Users2 className="w-4 h-4 stroke-[2.2]" />
-                    </div>
-                    <span className="px-1.5 py-0.5 rounded-full text-[8px] font-bold tracking-wider uppercase bg-[#3FA66B]/10 text-[#3FA66B] border border-[#3FA66B]/20">
-                      Permit Stamped
-                    </span>
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+                  <span className="text-[11px] font-semibold text-[#8A93A6]">
+                    Cook County Division
+                  </span>
+                  <div className="font-bold text-[#3D4D7C] group-hover:text-[#1F2A44] flex items-center gap-1 transition-colors text-xs">
+                    <span>Explore Service</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </div>
-
-                  <h3 className="font-heading text-xs sm:text-[13px] font-bold text-[#1F2A44] tracking-tight leading-snug mt-2">
-                    Dedicated
-                  </h3>
-
-                  <p className="text-[10.5px] sm:text-[11px] text-[#5A657D] leading-snug mt-0.5 line-clamp-2">
-                    Relentless client advocacy from parcel audit to permit stamp.
-                  </p>
-                </div>
-
-                <div className="relative z-10 mt-2 pt-1.5 border-t border-[#DDE2EA]/70 flex items-center gap-1 text-[9px] font-semibold text-[#3D4D7C]">
-                  <span>End-to-End Support</span>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 8. Direct Contact / Immediate Consultation Callout */}
-        <section aria-label="Direct Contact Card">
-          <div className="p-5 space-y-3 bg-white rounded-[24px] border border-[#DDE2EA] shadow-xs">
-            <div className="flex items-center justify-between">
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#3D4D7C]">
-                  Direct Chicago Hotline
-                </span>
-                <h3 className="font-heading text-lg font-bold text-[#1F2A44] mt-0.5">
-                  Speak with a Specialist Today
-                </h3>
-              </div>
-              <a
-                href={`tel:${BUSINESS_INFO.phoneRaw}`}
-                className="w-11 h-11 rounded-full btn-glossy-navy flex items-center justify-center text-white shadow-md active:scale-95 transition-all flex-shrink-0"
-                aria-label="Call Williams & Williams LLC"
-              >
-                <PhoneCall className="w-5 h-5 stroke-[2]" />
-              </a>
+        {/* 8. Featured Case Studies & Entitlements (Matching Reference Image 2) */}
+        <section aria-label="Featured Entitlements" className="space-y-3">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#3D4D7C] block">
+                Case Studies
+              </span>
+              <h2 className="font-heading text-lg font-bold text-[#1F2A44] tracking-tight mt-0.5">
+                Featured Entitlements
+              </h2>
             </div>
-            <p className="text-xs text-[#8A93A6] leading-relaxed">
-              Call us directly at <strong className="text-[#1F2A44]">{BUSINESS_INFO.phone}</strong> or email <strong className="text-[#1F2A44]">{BUSINESS_INFO.email}</strong> for immediate zoning reviews.
-            </p>
-            <div className="pt-1 flex items-center gap-2">
-              <button
-                onClick={() => navigate('/quote')}
-                className="flex-1 h-10 rounded-full btn-glossy-navy text-xs font-semibold text-white flex items-center justify-center shadow-xs active:scale-95 transition-transform"
-              >
-                Request Free Quote
-              </button>
-              <button
-                onClick={() => navigate('/book-consultation')}
-                className="flex-1 h-10 rounded-full bg-white border border-[#DDE2EA] text-xs font-semibold text-[#1F2A44] flex items-center justify-center shadow-xs hover:border-[#3D4D7C]/40 active:scale-95 transition-transform"
-              >
-                Book Consultation
-              </button>
+            <button
+              onClick={() => navigate('/construction')}
+              className="text-xs font-semibold text-[#3D4D7C] hover:text-[#1F2A44] flex items-center gap-0.5 transition-colors"
+            >
+              <span>Portfolio</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          <div className="space-y-3">
+            {/* Case Study Card 1: Residential Rooftop System */}
+            <div
+              onClick={() => navigate('/cases/ww-2026-0842')}
+              className="bg-white rounded-[22px] border border-[#E2E8F0] overflow-hidden shadow-xs group cursor-pointer hover:border-[#3D4D7C]/30 active:scale-[0.99] transition-all"
+            >
+              {/* Image Banner */}
+              <div className="relative h-[180px] w-full overflow-hidden">
+                <img
+                  src={APP_IMAGES.heroChicagoSkyline.src}
+                  alt="Suburban Rooftop Residential Addition"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+                {/* Top Badges */}
+                <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10">
+                  <span className="bg-[#FFF3E0] text-[#D97706] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-amber-200">
+                    Residential
+                  </span>
+                  <span className="bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded-full border border-white/20">
+                    2026
+                  </span>
+                </div>
+
+                {/* Title on Image */}
+                <div className="absolute bottom-3 left-3.5 right-3.5 z-10">
+                  <h3 className="font-heading text-base font-bold text-white tracking-tight leading-snug">
+                    Suburban Rooftop &amp; 3-Flat Addition
+                  </h3>
+                </div>
+              </div>
+
+              {/* White Card Body */}
+              <div className="p-3.5 space-y-2.5">
+                <div className="flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-1.5 text-[#64748B]">
+                    <MapPin className="w-3.5 h-3.5 text-[#8A93A6]" />
+                    <span>2144 N. Damen Ave, Chicago</span>
+                  </div>
+                  <span className="font-bold text-[#1F2A44] text-[11px]">
+                    B3-2 District
+                  </span>
+                </div>
+
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+                  <span className="text-[11px] font-semibold text-[#8A93A6]">
+                    Verified Approval
+                  </span>
+                  <div className="font-bold text-[#3D4D7C] group-hover:text-[#1F2A44] flex items-center gap-1 transition-colors text-xs">
+                    <span>Case Study</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Case Study Card 2: Commercial Warehouse Rooftop Array */}
+            <div
+              onClick={() => navigate('/cases/ww-2026-0791')}
+              className="bg-white rounded-[22px] border border-[#E2E8F0] overflow-hidden shadow-xs group cursor-pointer hover:border-[#3D4D7C]/30 active:scale-[0.99] transition-all"
+            >
+              {/* Image Banner */}
+              <div className="relative h-[180px] w-full overflow-hidden">
+                <img
+                  src={APP_IMAGES.serviceConstruction.src}
+                  alt="Commercial Warehouse Rezoning"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+                {/* Top Badges */}
+                <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10">
+                  <span className="bg-[#E0F2FE] text-[#0284C7] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-sky-200">
+                    Commercial
+                  </span>
+                  <span className="bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded-full border border-white/20">
+                    2026
+                  </span>
+                </div>
+
+                {/* Title on Image */}
+                <div className="absolute bottom-3 left-3.5 right-3.5 z-10">
+                  <h3 className="font-heading text-base font-bold text-white tracking-tight leading-snug">
+                    Commercial Warehouse &amp; Creative Office
+                  </h3>
+                </div>
+              </div>
+
+              {/* White Card Body */}
+              <div className="p-3.5 space-y-2.5">
+                <div className="flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-1.5 text-[#64748B]">
+                    <MapPin className="w-3.5 h-3.5 text-[#8A93A6]" />
+                    <span>1250 W. Fulton Market, Chicago</span>
+                  </div>
+                  <span className="font-bold text-[#1F2A44] text-[11px]">
+                    DX-5 / FAR 5.0
+                  </span>
+                </div>
+
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+                  <span className="text-[11px] font-semibold text-[#8A93A6]">
+                    Verified Approval
+                  </span>
+                  <div className="font-bold text-[#3D4D7C] group-hover:text-[#1F2A44] flex items-center gap-1 transition-colors text-xs">
+                    <span>Case Study</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

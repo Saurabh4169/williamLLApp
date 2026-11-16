@@ -60,7 +60,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         answer: 'Yes, we frequently evaluate lot combinations, lot splits, and planned developments encompassing several PINs.',
       },
     ],
-    priceNote: 'Complimentary Initial Assessment',
+    priceNote: 'Complimentary Assessment',
   },
   {
     id: 'zoning-appeals',
@@ -99,7 +99,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         answer: 'We organize proactive community outreach and adapt site plans to address legitimate community priorities while defending your property rights.',
       },
     ],
-    priceNote: 'Flat-Fee Case Structure Available',
+    priceNote: 'Flat-Fee Case Structure',
   },
   {
     id: 'zoning-law-updates',
@@ -201,7 +201,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         answer: 'Yes, we collaborate with licensed Self-Cert architects to expedite eligible commercial and residential project approvals.',
       },
     ],
-    priceNote: 'Tiered by Project Valuation',
+    priceNote: 'Tiered Project Scope',
   },
   {
     id: 'compliance-planning',
@@ -234,7 +234,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         answer: 'A use or structure that was lawfully established under prior zoning laws but no longer conforms to current rules. It can often be certified and maintained.',
       },
     ],
-    priceNote: 'Hourly or Fixed Audit Fee',
+    priceNote: 'Hourly or Fixed Fee',
   },
   {
     id: 'community-engagement',
@@ -267,7 +267,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         answer: 'In Chicago, the local ward alderman holds significant influence over zoning changes in their district. Strong community backing is key to securing their blessing.',
       },
     ],
-    priceNote: 'Comprehensive Engagement Retainer',
+    priceNote: 'Comprehensive Retainer',
   },
   {
     id: 'feasibility-studies',
@@ -301,7 +301,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         answer: 'Yes, we explicitly check Lake Michigan and Chicago Waterway Protection Ordinance regulations and setback mandates.',
       },
     ],
-    priceNote: 'Per Parcel or Portfolio Pricing',
+    priceNote: 'Per-Parcel Pricing',
   },
   {
     id: 'urban-planning',

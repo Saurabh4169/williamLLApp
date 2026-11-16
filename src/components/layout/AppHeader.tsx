@@ -1,30 +1,53 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ArrowLeft, Bell } from 'lucide-react';
 import { useAppStore } from '../../store/useAppStore';
 
 export interface AppHeaderProps {
+  isMaster?: boolean;
   title?: string;
   showBack?: boolean;
   rightAction?: React.ReactNode;
 }
 
 export const AppHeader: React.FC<AppHeaderProps> = ({
-  showBack = false,
+  isMaster = false,
+  showBack,
   rightAction,
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, notifications } = useAppStore();
   const unreadCount = notifications.filter((n) => !n.read).length;
 
+  const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(() =>
+    typeof document !== 'undefined' ? document.getElementById('app-header-right-slot') : null
+  );
+
+  useEffect(() => {
+    if (!portalTarget && typeof document !== 'undefined') {
+      const el = document.getElementById('app-header-right-slot');
+      if (el) setPortalTarget(el);
+    }
+  }, [portalTarget]);
+
+  // If this is an inline header rendered inside a page component:
+  if (!isMaster) {
+    if (rightAction && portalTarget) {
+      return createPortal(rightAction, portalTarget);
+    }
+    return null;
+  }
+
+  const isHome = location.pathname === '/' || location.pathname === '/home';
+  const shouldShowBack = showBack !== undefined ? showBack : !isHome;
+
   return (
-    <header
-      style={{ position: 'sticky', top: 0, zIndex: 40 }}
-      className="sticky top-0 z-40 w-full h-16 liquid-glass-bar flex items-center justify-between px-4 transition-all flex-shrink-0"
-    >
+    <header className="w-full h-16 liquid-glass-bar flex items-center justify-between px-4 flex-shrink-0 select-none">
       {/* Zone 1: Left Brand / Logo (Always consistent on every page) */}
       <div className="flex items-center gap-2 min-w-0">
-        {showBack && (
+        {shouldShowBack && (
           <button
             onClick={() => navigate(-1)}
             aria-label="Go back"
@@ -54,37 +77,37 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
         </div>
       </div>
 
-      {/* Zone 2: Right Action (Bell with badge + Avatar - Always consistent on every page) */}
+      {/* Zone 2: Right Action (Slot for page portals + Fallback Bell & Avatar) */}
       <div className="flex items-center gap-2 flex-shrink-0">
-        {rightAction ? (
-          rightAction
-        ) : (
-          <>
-            <button
-              onClick={() => navigate('/notifications')}
-              className="relative flex items-center justify-center w-10 h-10 rounded-full liquid-glass-chip text-[#1F2A44] hover:border-[#3D4D7C]/50 active:scale-95 transition-all"
-              aria-label={`Notifications (${unreadCount} unread)`}
-            >
-              <Bell className="w-4 h-4 stroke-[2]" />
-              {unreadCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 px-1 rounded-full bg-[#E5484D] text-white text-[9px] font-bold flex items-center justify-center ring-2 ring-white shadow-xs">
-                  {unreadCount}
-                </span>
-              )}
-            </button>
+        {/* Dynamic portal destination for page-specific right actions */}
+        <div id="app-header-right-slot" className="flex items-center gap-2 empty:hidden" />
 
-            <button
-              onClick={() => navigate('/profile')}
-              className="w-10 h-10 rounded-full bg-[#3D4D7C] text-white text-xs font-bold flex items-center justify-center ring-2 ring-white shadow-xs hover:ring-[#3D4D7C]/30 active:scale-95 transition-all select-none"
-              aria-label="Profile and Settings"
-            >
-              {user.name
-                .split(' ')
-                .map((n) => n[0])
-                .join('')}
-            </button>
-          </>
-        )}
+        {/* Default actions (Bell & Profile) - automatically hidden when custom action portal is mounted */}
+        <div id="app-header-default-actions" className="flex items-center gap-2">
+          <button
+            onClick={() => navigate('/notifications')}
+            className="relative flex items-center justify-center w-10 h-10 rounded-full liquid-glass-chip text-[#1F2A44] hover:border-[#3D4D7C]/50 active:scale-95 transition-all"
+            aria-label={`Notifications (${unreadCount} unread)`}
+          >
+            <Bell className="w-4 h-4 stroke-[2]" />
+            {unreadCount > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 px-1 rounded-full bg-[#E5484D] text-white text-[9px] font-bold flex items-center justify-center ring-2 ring-white shadow-xs">
+                {unreadCount}
+              </span>
+            )}
+          </button>
+
+          <button
+            onClick={() => navigate('/profile')}
+            className="w-10 h-10 rounded-full bg-[#3D4D7C] text-white text-xs font-bold flex items-center justify-center ring-2 ring-white shadow-xs hover:ring-[#3D4D7C]/30 active:scale-95 transition-all select-none"
+            aria-label="Profile and Settings"
+          >
+            {user.name
+              .split(' ')
+              .map((n) => n[0])
+              .join('')}
+          </button>
+        </div>
       </div>
     </header>
   );

@@ -322,31 +322,34 @@ export const ServiceDetailScreen: React.FC = () => {
         </GlassCard>
       </div>
 
-      {/* Sticky Bottom Action Bar (Reference Layout) */}
-      <div className="sticky bottom-0 left-0 right-0 z-40 liquid-glass-bar border-t border-white/70 px-4 py-3 shadow-[0_-8px_25px_rgba(31,42,68,0.12)] mt-auto">
-        <div className="max-w-[430px] mx-auto flex items-center justify-between gap-3">
-          <div>
-            <span className="text-[10px] uppercase font-bold tracking-wider text-[#8A93A6] block">
+      {/* Sticky Bottom Action Bar (Streamlined Mobile Bar) */}
+      <div className="sticky bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-[#DDE2EA] px-3.5 sm:px-4 py-2.5 shadow-[0_-4px_20px_rgba(31,42,68,0.08)] mt-auto">
+        <div className="max-w-[430px] mx-auto flex items-center justify-between gap-2 sm:gap-3">
+          <div className="min-w-0 flex-1 pr-1">
+            <span className="text-[9.5px] uppercase font-bold tracking-wider text-[#8A93A6] block leading-none mb-1 truncate">
               Consultation
             </span>
-            <span className="font-heading text-base font-bold text-[#1F2A44]">
+            <span
+              className="text-xs sm:text-[13px] font-bold text-[#1F2A44] leading-tight block truncate whitespace-nowrap"
+              title={service.priceNote}
+            >
               {service.priceNote}
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
             <GlassButton
               variant="outline"
-              size="md"
+              size="sm"
               onClick={() => navigate('/quote')}
-              className="px-3 text-xs"
+              className="px-2.5 sm:px-3 text-xs whitespace-nowrap shadow-2xs bg-white/80"
             >
               Free Quote
             </GlassButton>
 
             <GlassButton
               variant="primary"
-              size="md"
+              size="sm"
               onClick={() =>
                 navigate(
                   `/book-consultation?service=${encodeURIComponent(
@@ -354,10 +357,10 @@ export const ServiceDetailScreen: React.FC = () => {
                   )}&day=${selectedDay}&time=${selectedTime}`
                 )
               }
-              className="flex items-center gap-2 px-4"
+              className="flex items-center gap-1.5 px-3 sm:px-3.5 text-xs whitespace-nowrap shadow-xs"
             >
               <span>Confirm Booking</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5 stroke-[2.2]" />
             </GlassButton>
           </div>
         </div>

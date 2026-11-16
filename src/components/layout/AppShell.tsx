@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { BottomNav } from './BottomNav';
+import { AppHeader } from './AppHeader';
 import { useAppStore } from '../../store/useAppStore';
 
 export const AppShell: React.FC = () => {
@@ -13,9 +14,10 @@ export const AppShell: React.FC = () => {
     mainRef.current?.scrollTo({ top: 0, behavior: 'instant' });
   }, [location.pathname]);
 
-  // Bottom nav is always visible across the entire app for native navigation, hidden only on splash
+  // Top header and bottom nav are always fixed across the entire app, hidden only on splash
   const isSplash = location.pathname === '/splash';
   const hideBottomNav = isSplash;
+  const hideTopBar = isSplash;
 
   return (
     <div className="h-screen h-[100dvh] max-h-[100dvh] w-full bg-[#F2F3F5] lg:bg-gradient-to-br lg:from-[#B7C3DA]/40 lg:via-[#F2F3F5] lg:to-[#7D90B5]/30 flex flex-col items-center justify-start py-0 lg:py-6 px-0 lg:px-4 overflow-hidden">
@@ -46,10 +48,17 @@ export const AppShell: React.FC = () => {
           </div>
         )}
 
+        {/* Docked Edge-to-Edge Liquid-Glass Top Header (Always Permanently Fixed at Top) */}
+        {!hideTopBar && (
+          <div className="w-full flex-shrink-0 z-40 select-none">
+            <AppHeader isMaster />
+          </div>
+        )}
+
         {/* Scrollable Content Container (hides ugly desktop scrollbars, native momentum scrolling) */}
         <main
           ref={mainRef}
-          className="flex-1 w-full overflow-y-auto overflow-x-hidden no-scrollbar flex flex-col relative z-10 overscroll-contain"
+          className="flex-1 w-full overflow-y-auto overflow-x-clip no-scrollbar flex flex-col relative z-10 overscroll-contain"
         >
           <Outlet />
         </main>

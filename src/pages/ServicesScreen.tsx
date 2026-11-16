@@ -24,7 +24,7 @@ export const ServicesScreen: React.FC = () => {
   });
 
   return (
-    <div className="min-h-full flex flex-col text-[#1F2A44] pb-24">
+    <div className="min-h-full flex flex-col text-[#1F2A44] pb-24 overflow-visible">
       {/* 1. Global AppHeader */}
       <AppHeader title="Our Services" showBack />
 

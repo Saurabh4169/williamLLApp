@@ -18,7 +18,7 @@ export const GlassButton: React.FC<GlassButtonProps> = ({
   ...props
 }) => {
   const baseClasses =
-    'relative inline-flex items-center justify-center font-medium transition-all duration-120 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D4D7C] disabled:opacity-50 disabled:pointer-events-none select-none';
+    'relative inline-flex items-center justify-center font-medium transition-all duration-120 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D4D7C] disabled:opacity-50 disabled:pointer-events-none select-none whitespace-nowrap';
 
   const sizeClasses = {
     sm: 'h-9 px-3.5 text-xs rounded-full min-h-[36px]',
