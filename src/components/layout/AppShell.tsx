@@ -20,7 +20,7 @@ export const AppShell: React.FC = () => {
   const hideTopBar = isSplash;
 
   return (
-    <div className="h-screen h-[100dvh] max-h-[100dvh] w-full bg-[#F4F5F5] lg:bg-gradient-to-br lg:from-[#C0D0E1]/20 lg:via-[#F4F5F5] lg:to-[#A4B3BE]/20 flex flex-col items-center justify-start py-0 lg:py-6 px-0 lg:px-4 overflow-hidden">
+    <div className="h-screen h-[100dvh] max-h-[100dvh] w-full bg-[#FAFBFC] lg:bg-gradient-to-br lg:from-[#C0D0E1]/10 lg:via-[#FAFBFC] lg:to-[#A4B3BE]/10 flex flex-col items-center justify-start py-0 lg:py-6 px-0 lg:px-4 overflow-hidden">
       {/* Main Container - edge-to-edge native on mobile, framed only on desktop */}
       <div
         className={`w-full h-full max-h-[100dvh] transition-all duration-300 relative flex flex-col overflow-hidden border-0 rounded-none shadow-none ${
@@ -35,7 +35,7 @@ export const AppShell: React.FC = () => {
           className="absolute inset-0 z-0 pointer-events-none"
           style={{
             background:
-              'radial-gradient(circle at 50% -10%, rgba(199, 211, 220, 0.45) 0%, rgba(165, 181, 193, 0.22) 35%, rgba(244, 245, 245, 0) 70%), radial-gradient(circle at 85% 15%, rgba(165, 181, 193, 0.28) 0%, rgba(244, 245, 245, 0) 45%), radial-gradient(circle at 15% 65%, rgba(160, 176, 188, 0.22) 0%, rgba(137, 158, 174, 0.12) 50%), linear-gradient(180deg, #FFFFFF 0%, #F4F5F5 30%, #ECEEF0 100%)',
+              'radial-gradient(circle at 50% 25%, rgba(199, 211, 220, 0.12) 0%, transparent 65%), radial-gradient(circle at 85% 65%, rgba(165, 181, 193, 0.08) 0%, transparent 50%), linear-gradient(180deg, #FFFFFF 0%, #FAFBFC 40%, #F5F7F8 100%)',
           }}
         />
 

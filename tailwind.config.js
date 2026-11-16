@@ -41,7 +41,7 @@ export default {
           DEFAULT: '#191919',
           light: '#323232',
         },
-        background: '#F4F5F5',
+        background: '#FAFBFC',
         surface: {
           DEFAULT: '#FEFEFE',
           card: 'rgba(254, 254, 254, 0.88)',

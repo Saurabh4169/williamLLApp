@@ -18,7 +18,7 @@
   --color-softgrey: #D8D8D8;
   --color-ink: #191919;
   --color-ink-light: #323232;
-  --color-background: #F4F5F5;
+  --color-background: #FAFBFC;
   --color-surface: #FEFEFE;
   --color-surface-card: rgba(254, 254, 254, 0.88);
   --color-border: #D8D8D8;
@@ -56,7 +56,7 @@
   --app-ice: #C0D0E1;
   --app-purewhite: #FEFEFE;
   --app-softgrey: #D8D8D8;
-  --app-bg: #F4F5F5;
+  --app-bg: #FAFBFC;
   --app-surface: #FEFEFE;
   --app-border: #D8D8D8;
   --app-muted: #71717A;
@@ -96,7 +96,7 @@ html, body, #root {
   height: 100%;
   height: 100dvh;
   overflow: hidden;
-  background-color: #F4F5F5;
+  background-color: #FAFBFC;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   color: #191919;
 }
@@ -198,28 +198,27 @@ button, .btn-label, .nav-label {
   text-transform: uppercase;
 }
 
-/* Fixed full-screen soft ambient liquid-glass canvas */
+/* Fixed full-screen soft ambient liquid-glass canvas (Clean, Light & Luminous) */
 .bg-fixed-canvas {
   background:
-    radial-gradient(circle at 50% -10%, rgba(199, 211, 220, 0.45) 0%, rgba(165, 181, 193, 0.22) 35%, rgba(244, 245, 245, 0) 70%),
-    radial-gradient(circle at 85% 15%, rgba(165, 181, 193, 0.28) 0%, rgba(244, 245, 245, 0) 45%),
-    radial-gradient(circle at 15% 65%, rgba(160, 176, 188, 0.22) 0%, rgba(137, 158, 174, 0.12) 50%),
-    linear-gradient(180deg, #FFFFFF 0%, #F4F5F5 30%, #ECEEF0 100%);
+    radial-gradient(circle at 50% 25%, rgba(199, 211, 220, 0.12) 0%, transparent 65%),
+    radial-gradient(circle at 85% 65%, rgba(165, 181, 193, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, #FFFFFF 0%, #FAFBFC 40%, #F5F7F8 100%);
   background-attachment: fixed;
 }
 
 /* Premium Liquid Glass Card with Subtle Misty-Blue Gradient Reflections */
 .liquid-glass-card {
   position: relative;
-  background: linear-gradient(135deg, rgba(254, 254, 254, 0.94) 0%, rgba(246, 249, 252, 0.85) 50%, rgba(254, 254, 254, 0.90) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 251, 254, 0.90) 50%, rgba(255, 255, 255, 0.94) 100%);
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
-  border: 1px solid rgba(216, 216, 216, 0.70);
+  border: 1px solid rgba(226, 230, 235, 0.85);
   box-shadow:
-    0 10px 30px rgba(25, 25, 25, 0.04),
-    0 2px 8px rgba(163, 180, 192, 0.10),
-    inset 0 1px 1px rgba(255, 255, 255, 0.95),
-    inset 0 -1px 2px rgba(165, 181, 193, 0.30);
+    0 8px 24px rgba(25, 25, 25, 0.03),
+    0 2px 6px rgba(163, 180, 192, 0.06),
+    inset 0 1px 1px rgba(255, 255, 255, 0.98),
+    inset 0 -1px 1px rgba(199, 211, 220, 0.20);
   border-radius: 24px;
   transition: transform 140ms ease-out, box-shadow 140ms ease-out, border-color 140ms ease-out;
 }
@@ -227,9 +226,9 @@ button, .btn-label, .nav-label {
 .liquid-glass-card:hover {
   border-color: rgba(163, 180, 192, 0.85);
   box-shadow:
-    0 14px 36px rgba(25, 25, 25, 0.06),
-    0 4px 14px rgba(137, 158, 174, 0.16),
-    inset 0 1px 1px rgba(255, 255, 255, 0.95);
+    0 12px 30px rgba(25, 25, 25, 0.05),
+    0 4px 12px rgba(137, 158, 174, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.98);
 }
 
 .liquid-glass-card::before {
