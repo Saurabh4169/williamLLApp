@@ -24,7 +24,7 @@ export const AboutScreen: React.FC = () => {
         {/* Hero Header */}
         <div className="relative rounded-card-lg overflow-hidden bg-[#121214] text-white p-6 shadow-glass">
           <div className="relative z-10 space-y-2">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[#EFE7DC] bg-white/10 px-2.5 py-1 rounded-full border border-white/20">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#C7D3DC] bg-white/10 px-2.5 py-1 rounded-full border border-white/20">
               CHICAGO ZONING SPECIALISTS
             </span>
             <h1 className="font-heading text-2xl font-bold leading-tight">

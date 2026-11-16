@@ -106,7 +106,7 @@ export const ServicesScreen: React.FC = () => {
 
             <button
               onClick={() => navigate('/quote')}
-              className="flex-1 h-10 rounded-full bg-white/20 hover:bg-white/30 border border-white/40 !text-white font-heading font-bold text-xs flex items-center justify-center shadow-xs active:scale-95 transition-all"
+              className="flex-1 h-10 rounded-full btn-glossy-secondary font-heading font-bold text-xs flex items-center justify-center shadow-xs active:scale-95 transition-all"
             >
               Free Assessment
             </button>

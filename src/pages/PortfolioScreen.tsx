@@ -155,7 +155,7 @@ export const PortfolioScreen: React.FC = () => {
                   {/* Bottom Duration Badge */}
                   <div className="absolute bottom-1.5 left-2 right-2 flex items-center justify-between text-white text-[8.5px] font-semibold z-10 pointer-events-none">
                     <span className="flex items-center gap-1">
-                      <Sparkles className="w-2.5 h-2.5 text-[#EFE7DC]" />
+                      <Sparkles className="w-2.5 h-2.5 text-[#C7D3DC]" />
                       <span>{project.videoPresentation.duration}</span>
                     </span>
                     <span className="text-white/80 font-mono text-[8px]">

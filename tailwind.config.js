@@ -19,9 +19,12 @@ export default {
           light: '#4A4A4A',
         },
         misty: {
-          DEFAULT: '#A4B3BE', // Misty Blue
-          light: '#C0D0E1',
-          dark: '#8C9DAA',
+          highlight: '#C7D3DC',
+          light: '#A5B5C1',
+          DEFAULT: '#A3B4C0',
+          deep: '#A0B0BC',
+          shadow: '#899EAE',
+          dark: '#899EAE',
         },
         ice: {
           DEFAULT: '#C0D0E1', // Ice Blue
@@ -93,6 +96,9 @@ export default {
         'brand-gradient': 'linear-gradient(180deg, #FEFEFE 0%, #F4F5F5 100%)',
         'brand-gradient-horizontal': 'linear-gradient(90deg, #FEFEFE 0%, #F4F5F5 100%)',
         'glass-gradient': 'linear-gradient(135deg, rgba(254,254,254,0.95) 0%, rgba(244,248,252,0.80) 100%)',
+        'misty-gradient': 'linear-gradient(135deg, #C7D3DC 0%, #A5B5C1 30%, #A3B4C0 60%, #A0B0BC 85%, #899EAE 100%)',
+        'misty-water': 'linear-gradient(180deg, #C7D3DC 0%, #A5B5C1 35%, #A3B4C0 70%, #899EAE 100%)',
+        'misty-glass': 'linear-gradient(135deg, rgba(199, 211, 220, 0.40) 0%, rgba(165, 181, 193, 0.22) 50%, rgba(137, 158, 174, 0.18) 100%)',
       }
     },
   },

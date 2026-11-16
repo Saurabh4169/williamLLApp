@@ -72,7 +72,7 @@ export const APP_IMAGES: Record<string, ImageAsset> = {
   appIcon: {
     src: appIcon,
     alt: 'Williams & Williams LLC triangular architectural monogram icon',
-    blurColor: '#EFE7DC',
+    blurColor: '#C7D3DC',
   },
 
   // Onboarding Slides

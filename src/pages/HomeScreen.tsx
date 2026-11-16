@@ -158,9 +158,9 @@ export const HomeScreen: React.FC = () => {
             {/* Tile 2: Past */}
             <button
               onClick={() => navigate('/construction?tab=past')}
-              className="h-[58px] rounded-[16px] liquid-glass-card text-[#323232] border border-[#D8D8D8]/75 flex flex-col items-center justify-center shadow-2xs hover:border-[#A4B3BE] transition-all active:scale-95 group"
+              className="h-[58px] rounded-[16px] liquid-glass-card text-[#323232] border border-[#D8D8D8]/75 flex flex-col items-center justify-center shadow-2xs hover:border-[#A3B4C0] transition-all active:scale-95 group"
             >
-              <div className="w-7 h-7 rounded-full bg-[#C0D0E1]/35 flex items-center justify-center text-[#323232] group-hover:bg-[#323232] group-hover:text-white transition-colors">
+              <div className="w-7 h-7 rounded-full misty-icon-badge flex items-center justify-center text-[#191919] group-hover:bg-[#323232] group-hover:text-white transition-colors">
                 <CheckCircle2 className="w-3.5 h-3.5 stroke-[2.2]" />
               </div>
               <span className="text-[11px] font-bold text-[#323232] tracking-tight mt-1 text-center line-clamp-1">
@@ -171,9 +171,9 @@ export const HomeScreen: React.FC = () => {
             {/* Tile 3: Cases */}
             <button
               onClick={() => navigate('/cases')}
-              className="h-[58px] rounded-[16px] liquid-glass-card text-[#323232] border border-[#D8D8D8]/75 flex flex-col items-center justify-center shadow-2xs hover:border-[#A4B3BE] transition-all active:scale-95 group relative"
+              className="h-[58px] rounded-[16px] liquid-glass-card text-[#323232] border border-[#D8D8D8]/75 flex flex-col items-center justify-center shadow-2xs hover:border-[#A3B4C0] transition-all active:scale-95 group relative"
             >
-              <div className="w-7 h-7 rounded-full bg-[#C0D0E1]/35 flex items-center justify-center text-[#323232] group-hover:bg-[#323232] group-hover:text-white transition-colors relative">
+              <div className="w-7 h-7 rounded-full misty-icon-badge flex items-center justify-center text-[#191919] group-hover:bg-[#323232] group-hover:text-white transition-colors relative">
                 <Briefcase className="w-3.5 h-3.5 stroke-[2]" />
               </div>
               <span className="text-[11px] font-bold text-[#323232] tracking-tight mt-1 text-center line-clamp-1">
@@ -184,9 +184,9 @@ export const HomeScreen: React.FC = () => {
             {/* Tile 4: Permits */}
             <button
               onClick={() => navigate('/checklist')}
-              className="h-[58px] rounded-[16px] liquid-glass-card text-[#323232] border border-[#D8D8D8]/75 flex flex-col items-center justify-center shadow-2xs hover:border-[#A4B3BE] transition-all active:scale-95 group"
+              className="h-[58px] rounded-[16px] liquid-glass-card text-[#323232] border border-[#D8D8D8]/75 flex flex-col items-center justify-center shadow-2xs hover:border-[#A3B4C0] transition-all active:scale-95 group"
             >
-              <div className="w-7 h-7 rounded-full bg-[#C0D0E1]/35 flex items-center justify-center text-[#323232] group-hover:bg-[#323232] group-hover:text-white transition-colors">
+              <div className="w-7 h-7 rounded-full misty-icon-badge flex items-center justify-center text-[#191919] group-hover:bg-[#323232] group-hover:text-white transition-colors">
                 <CheckSquare className="w-3.5 h-3.5 stroke-[2]" />
               </div>
               <span className="text-[11px] font-bold text-[#323232] tracking-tight mt-1 text-center line-clamp-1">
@@ -224,7 +224,7 @@ export const HomeScreen: React.FC = () => {
                 >
                   <Heart
                     className={`w-3.5 h-3.5 transition-colors ${
-                      isFavorite ? 'fill-[#A4B3BE] text-[#A4B3BE]' : 'text-[#323232]'
+                      isFavorite ? 'fill-[#A3B4C0] text-[#A3B4C0]' : 'text-[#323232]'
                     }`}
                   />
                 </button>
@@ -256,7 +256,7 @@ export const HomeScreen: React.FC = () => {
                     const StatIcon = stat.icon;
                     return (
                       <div key={sIdx} className="flex items-center gap-1 whitespace-nowrap">
-                        <StatIcon className="w-3 h-3 text-[#C0D0E1]" />
+                        <StatIcon className="w-3 h-3 text-[#C7D3DC]" />
                         <span className="!text-[#F4F5F5] font-semibold">{stat.label}</span>
                       </div>
                     );
@@ -299,7 +299,7 @@ export const HomeScreen: React.FC = () => {
                 onClick={() => setFeaturedIndex(i)}
                 aria-label={`Slide ${i + 1}`}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === featuredIndex ? 'w-6 bg-gradient-to-r from-[#323232] to-[#191919] shadow-xs shadow-black/20' : 'w-1.5 bg-[#A4B3BE]/40 hover:bg-[#A4B3BE]'
+                  i === featuredIndex ? 'w-6 bg-gradient-to-r from-[#323232] to-[#191919] shadow-xs shadow-black/20' : 'w-1.5 bg-[#A3B4C0]/40 hover:bg-[#A3B4C0]'
                 }`}
               />
             ))}
@@ -314,7 +314,7 @@ export const HomeScreen: React.FC = () => {
             </h2>
             <button
               onClick={() => navigate('/zoning-lookup')}
-              className="text-xs font-semibold text-[#8C9DAA] hover:text-[#191919] transition-colors"
+              className="text-xs font-semibold text-[#899EAE] hover:text-[#191919] transition-colors"
             >
               View all
             </button>

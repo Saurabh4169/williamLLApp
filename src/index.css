@@ -8,7 +8,11 @@
   --color-primary-light: #F4F5F5;
   --color-charcoal: #323232;
   --color-charcoal-deep: #191919;
-  --color-misty: #A4B3BE;
+  --color-misty-highlight: #C7D3DC;
+  --color-misty-light: #A5B5C1;
+  --color-misty: #A3B4C0;
+  --color-misty-deep: #A0B0BC;
+  --color-misty-shadow: #899EAE;
   --color-ice: #C0D0E1;
   --color-purewhite: #FEFEFE;
   --color-softgrey: #D8D8D8;
@@ -44,7 +48,11 @@
   --app-primary: #323232;
   --app-charcoal: #323232;
   --app-deep: #191919;
-  --app-misty: #A4B3BE;
+  --app-misty-highlight: #C7D3DC;
+  --app-misty-light: #A5B5C1;
+  --app-misty: #A3B4C0;
+  --app-misty-deep: #A0B0BC;
+  --app-misty-shadow: #899EAE;
   --app-ice: #C0D0E1;
   --app-purewhite: #FEFEFE;
   --app-softgrey: #D8D8D8;
@@ -193,9 +201,9 @@ button, .btn-label, .nav-label {
 /* Fixed full-screen soft ambient liquid-glass canvas */
 .bg-fixed-canvas {
   background:
-    radial-gradient(circle at 50% -10%, rgba(192, 208, 225, 0.40) 0%, rgba(164, 179, 190, 0.15) 35%, rgba(244, 245, 245, 0) 70%),
-    radial-gradient(circle at 85% 15%, rgba(192, 208, 225, 0.25) 0%, rgba(244, 245, 245, 0) 45%),
-    radial-gradient(circle at 15% 65%, rgba(164, 179, 190, 0.18) 0%, rgba(244, 245, 245, 0) 50%),
+    radial-gradient(circle at 50% -10%, rgba(199, 211, 220, 0.45) 0%, rgba(165, 181, 193, 0.22) 35%, rgba(244, 245, 245, 0) 70%),
+    radial-gradient(circle at 85% 15%, rgba(165, 181, 193, 0.28) 0%, rgba(244, 245, 245, 0) 45%),
+    radial-gradient(circle at 15% 65%, rgba(160, 176, 188, 0.22) 0%, rgba(137, 158, 174, 0.12) 50%),
     linear-gradient(180deg, #FFFFFF 0%, #F4F5F5 30%, #ECEEF0 100%);
   background-attachment: fixed;
 }
@@ -203,24 +211,24 @@ button, .btn-label, .nav-label {
 /* Premium Liquid Glass Card with Subtle Misty-Blue Gradient Reflections */
 .liquid-glass-card {
   position: relative;
-  background: linear-gradient(135deg, rgba(254, 254, 254, 0.94) 0%, rgba(246, 249, 252, 0.82) 50%, rgba(254, 254, 254, 0.90) 100%);
+  background: linear-gradient(135deg, rgba(254, 254, 254, 0.94) 0%, rgba(246, 249, 252, 0.85) 50%, rgba(254, 254, 254, 0.90) 100%);
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
   border: 1px solid rgba(216, 216, 216, 0.70);
   box-shadow:
     0 10px 30px rgba(25, 25, 25, 0.04),
-    0 2px 8px rgba(164, 179, 190, 0.08),
+    0 2px 8px rgba(163, 180, 192, 0.10),
     inset 0 1px 1px rgba(255, 255, 255, 0.95),
-    inset 0 -1px 1px rgba(192, 208, 225, 0.25);
+    inset 0 -1px 2px rgba(165, 181, 193, 0.30);
   border-radius: 24px;
   transition: transform 140ms ease-out, box-shadow 140ms ease-out, border-color 140ms ease-out;
 }
 
 .liquid-glass-card:hover {
-  border-color: rgba(164, 179, 190, 0.80);
+  border-color: rgba(163, 180, 192, 0.85);
   box-shadow:
     0 14px 36px rgba(25, 25, 25, 0.06),
-    0 4px 12px rgba(164, 179, 190, 0.12),
+    0 4px 14px rgba(137, 158, 174, 0.16),
     inset 0 1px 1px rgba(255, 255, 255, 0.95);
 }
 
@@ -232,9 +240,9 @@ button, .btn-label, .nav-label {
   right: 0;
   height: 40%;
   border-radius: inherit;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0.75) 0%, rgba(192, 208, 225, 0.15) 35%, rgba(255, 255, 255, 0) 65%);
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.80) 0%, rgba(199, 211, 220, 0.22) 35%, rgba(255, 255, 255, 0) 65%);
   pointer-events: none;
-  opacity: 0.85;
+  opacity: 0.90;
 }
 
 .liquid-glass-chip {
@@ -251,18 +259,50 @@ button, .btn-label, .nav-label {
 }
 
 .liquid-glass-chip:hover {
-  border-color: rgba(164, 179, 190, 0.80);
+  border-color: rgba(165, 181, 193, 0.85);
   background: linear-gradient(135deg, rgba(254, 254, 254, 0.98), rgba(232, 240, 248, 0.90));
 }
 
+/* Water-Glass Misty Blue Gradient Elements */
+.bg-misty-gradient {
+  background: linear-gradient(135deg, #C7D3DC 0%, #A5B5C1 30%, #A3B4C0 60%, #A0B0BC 85%, #899EAE 100%);
+}
+
+.misty-icon-badge {
+  background: linear-gradient(145deg, rgba(199, 211, 220, 0.60) 0%, rgba(165, 181, 193, 0.35) 60%, rgba(137, 158, 174, 0.25) 100%);
+  border: 1px solid rgba(165, 181, 193, 0.65);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.90), 0 2px 6px rgba(137, 158, 174, 0.15);
+}
+
+.misty-water-chip {
+  background: linear-gradient(135deg, rgba(199, 211, 220, 0.35) 0%, rgba(165, 181, 193, 0.20) 100%);
+  border: 1px solid rgba(165, 181, 193, 0.55);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.80);
+}
+
+/* Premium Misty-Blue Liquid Water Glass Header Bar (Ultra-Delicate Whisper Tint, -20% More Color) */
 .liquid-glass-bar {
-  background: linear-gradient(180deg, rgba(254, 254, 254, 0.92) 0%, rgba(246, 248, 250, 0.82) 100%);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  border-bottom: 1px solid rgba(216, 216, 216, 0.65);
+  position: relative;
+  background: linear-gradient(180deg, rgba(232, 239, 245, 0.92) 0%, rgba(216, 225, 233, 0.82) 50%, rgba(211, 221, 229, 0.86) 100%);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border-bottom: 1px solid rgba(137, 158, 174, 0.32);
   box-shadow:
-    0 4px 20px rgba(25, 25, 25, 0.03),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    0 4px 20px rgba(137, 158, 174, 0.12),
+    0 1px 2px rgba(25, 25, 25, 0.03),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px 0 rgba(137, 158, 174, 0.20);
+}
+
+.liquid-glass-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.05) 100%);
+  pointer-events: none;
 }
 
 /* Ensure sticky app header stays permanently fixed on scroll across all mobile & desktop browsers */
@@ -281,25 +321,41 @@ button, .btn-label, .nav-label {
   display: none !important;
 }
 
-/* Frosted Silver-Blue Bottom Navigation Dock */
+/* Premium Misty-Blue Liquid Water Glass Bottom Navigation Dock (Ultra-Delicate Whisper Tint, -20% More Color) */
 .liquid-glass-nav,
 .liquid-red-glass-nav {
   position: relative;
-  background: linear-gradient(180deg, rgba(254, 254, 254, 0.92) 0%, rgba(244, 247, 250, 0.86) 100%);
-  backdrop-filter: blur(28px) saturate(160%);
-  -webkit-backdrop-filter: blur(28px) saturate(160%);
-  border-top: 1px solid rgba(216, 216, 216, 0.75);
+  background: linear-gradient(180deg, rgba(232, 239, 245, 0.94) 0%, rgba(216, 225, 233, 0.85) 50%, rgba(211, 221, 229, 0.88) 100%);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border-top: 1px solid rgba(137, 158, 174, 0.32);
   box-shadow:
-    0 -8px 30px rgba(25, 25, 25, 0.04),
-    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95);
+    0 -8px 28px rgba(137, 158, 174, 0.14),
+    0 -1px 3px rgba(25, 25, 25, 0.03),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px 0 rgba(137, 158, 174, 0.20);
 }
 
-/* Central Floating Action Calendar Button: Charcoal-to-Black Liquid Water Gloss */
+.liquid-glass-nav::before,
+.liquid-red-glass-nav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.05) 100%);
+  pointer-events: none;
+}
+
+/* Central Floating Action Calendar Button: Charcoal-to-Black Liquid Water Gloss with Misty Blue Outer Glow */
 .liquid-charcoal-water-button,
 .liquid-red-water-button {
   background: radial-gradient(circle at 35% 25%, #444444 0%, #323232 50%, #191919 100%);
   box-shadow:
     0 8px 24px rgba(25, 25, 25, 0.32),
+    0 0 16px rgba(165, 181, 193, 0.35),
     inset 0 2px 2px rgba(255, 255, 255, 0.40),
     inset 0 -2px 4px rgba(0, 0, 0, 0.50);
   position: relative;
@@ -356,14 +412,16 @@ button, .btn-label, .nav-label {
   box-shadow: 0 2px 8px rgba(25, 25, 25, 0.20);
 }
 
-/* Secondary Button: Misty-Blue to Ice-Blue Gradient */
+/* Secondary Button: Exact Misty-Blue Liquid Water Gradient (#C7D3DC -> #A5B5C1 -> #A3B4C0 -> #899EAE) */
 .btn-glossy-secondary {
-  background: linear-gradient(180deg, #DCE6F0 0%, #BACAD7 100%);
+  background: linear-gradient(180deg, #C7D3DC 0%, #A5B5C1 35%, #A3B4C0 70%, #899EAE 100%);
   box-shadow:
-    0 4px 14px rgba(164, 179, 190, 0.25),
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.70);
+    0 4px 14px rgba(137, 158, 174, 0.35),
+    0 1px 2px rgba(25, 25, 25, 0.10),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.75),
+    inset 0 -1px 1px rgba(137, 158, 174, 0.60);
   color: #191919;
-  border: 1px solid rgba(164, 179, 190, 0.65);
+  border: 1px solid rgba(160, 176, 188, 0.80);
   border-radius: 9999px;
   position: relative;
   overflow: hidden;
@@ -372,7 +430,7 @@ button, .btn-label, .nav-label {
 
 .btn-glossy-secondary:active {
   transform: scale(0.98);
-  box-shadow: 0 2px 6px rgba(164, 179, 190, 0.20);
+  box-shadow: 0 2px 6px rgba(137, 158, 174, 0.25);
 }
 
 /* Active Charcoal Pill for Tabs */
@@ -388,10 +446,12 @@ button, .btn-label, .nav-label {
 /* Fallback for unsupported backdrop-filter */
 @supports not ((-webkit-backdrop-filter: blur(20px)) or (backdrop-filter: blur(20px))) {
   .liquid-glass-card,
-  .liquid-glass-chip,
+  .liquid-glass-chip {
+    background: rgba(244, 245, 245, 0.95) !important;
+  }
   .liquid-glass-bar,
   .liquid-glass-nav {
-    background: rgba(244, 245, 245, 0.95) !important;
+    background: rgba(165, 181, 193, 0.95) !important;
   }
 }
 

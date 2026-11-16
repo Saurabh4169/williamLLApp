@@ -61,11 +61,11 @@ export const CaseDetailScreen: React.FC = () => {
           {/* Next Hearing / Event Reminder Box */}
           <div className="btn-glossy-navy rounded-2xl p-3.5 flex items-center justify-between shadow-md text-white">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#EFE7DC]">
+              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#C7D3DC]">
                 <Calendar className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-[10px] text-[#EFE7DC] font-semibold block uppercase tracking-wider">
+                <span className="text-[10px] text-[#C7D3DC] font-semibold block uppercase tracking-wider">
                   {caseItem.nextEventTitle}
                 </span>
                 <span className="font-heading text-sm font-bold text-white">

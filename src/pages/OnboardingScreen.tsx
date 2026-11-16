@@ -88,7 +88,7 @@ export const OnboardingScreen: React.FC = () => {
             className="w-8 h-8 object-contain"
           />
           <div>
-            <div className="font-heading text-xs font-bold tracking-widest text-[#EFE7DC]">
+            <div className="font-heading text-xs font-bold tracking-widest text-[#C7D3DC]">
               WILLIAMS &amp; WILLIAMS LLC
             </div>
             <div className="text-[10px] tracking-wider uppercase text-white/70">
@@ -109,7 +109,7 @@ export const OnboardingScreen: React.FC = () => {
       <div className="relative z-10 px-6 pb-10 flex flex-col">
         {/* Progress Pill */}
         <div className="flex items-center gap-2 mb-4">
-          <span className="text-xs font-semibold tracking-wider text-[#EFE7DC] bg-white/10 px-3 py-1 rounded-full border border-white/15">
+          <span className="text-xs font-semibold tracking-wider text-[#C7D3DC] bg-white/10 px-3 py-1 rounded-full border border-white/15">
             {currentSlide + 1} / {slides.length}
           </span>
           <div className="flex gap-1.5">
@@ -117,7 +117,7 @@ export const OnboardingScreen: React.FC = () => {
               <div
                 key={idx}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  idx === currentSlide ? 'w-6 bg-[#EFE7DC]' : 'w-2 bg-white/30'
+                  idx === currentSlide ? 'w-6 bg-[#C7D3DC]' : 'w-2 bg-white/30'
                 }`}
               />
             ))}
@@ -134,7 +134,7 @@ export const OnboardingScreen: React.FC = () => {
             transition={{ duration: 0.35 }}
             className="space-y-3"
           >
-            <span className="inline-block text-[11px] font-bold tracking-widest uppercase text-[#EFE7DC]">
+            <span className="inline-block text-[11px] font-bold tracking-widest uppercase text-[#C7D3DC]">
               {slide.tag}
             </span>
             <h1 className="font-heading text-3xl font-bold tracking-tight text-white leading-tight">

@@ -35,7 +35,7 @@ export const AppShell: React.FC = () => {
           className="absolute inset-0 z-0 pointer-events-none"
           style={{
             background:
-              'radial-gradient(circle at 50% -10%, rgba(192, 208, 225, 0.40) 0%, rgba(164, 179, 190, 0.15) 35%, rgba(244, 245, 245, 0) 70%), radial-gradient(circle at 85% 15%, rgba(192, 208, 225, 0.25) 0%, rgba(244, 245, 245, 0) 45%), radial-gradient(circle at 15% 65%, rgba(164, 179, 190, 0.18) 0%, rgba(244, 245, 245, 0) 50%), linear-gradient(180deg, #FFFFFF 0%, #F4F5F5 30%, #ECEEF0 100%)',
+              'radial-gradient(circle at 50% -10%, rgba(199, 211, 220, 0.45) 0%, rgba(165, 181, 193, 0.22) 35%, rgba(244, 245, 245, 0) 70%), radial-gradient(circle at 85% 15%, rgba(165, 181, 193, 0.28) 0%, rgba(244, 245, 245, 0) 45%), radial-gradient(circle at 15% 65%, rgba(160, 176, 188, 0.22) 0%, rgba(137, 158, 174, 0.12) 50%), linear-gradient(180deg, #FFFFFF 0%, #F4F5F5 30%, #ECEEF0 100%)',
           }}
         />
 

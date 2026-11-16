@@ -105,12 +105,12 @@ export const ZoningLookupScreen: React.FC = () => {
               className="absolute inset-0 opacity-20"
               style={{
                 backgroundImage:
-                  'radial-gradient(circle, #EFE7DC 1px, transparent 1px), linear-gradient(to right, #EFE7DC 1px, transparent 1px)',
+                  'radial-gradient(circle, #C7D3DC 1px, transparent 1px), linear-gradient(to right, #C7D3DC 1px, transparent 1px)',
                 backgroundSize: '20px 20px',
               }}
             />
             <div className="relative z-10 space-y-2">
-              <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md mx-auto flex items-center justify-center text-[#EFE7DC] border border-white/20">
+              <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md mx-auto flex items-center justify-center text-[#C7D3DC] border border-white/20">
                 <MapPin className="w-6 h-6 stroke-[2.2]" />
               </div>
               <div className="text-white font-heading text-sm font-bold tracking-wide">

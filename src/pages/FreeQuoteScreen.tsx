@@ -67,7 +67,7 @@ export const FreeQuoteScreen: React.FC = () => {
           particleCount: 80,
           spread: 70,
           origin: { y: 0.6 },
-          colors: ['#323232', '#191919', '#A4B3BE', '#C0D0E1', '#D8D8D8', '#FEFEFE'],
+          colors: ['#323232', '#191919', '#C7D3DC', '#A5B5C1', '#A3B4C0', '#899EAE', '#FEFEFE'],
         });
       } catch {
         // Safe fallback
@@ -138,7 +138,7 @@ export const FreeQuoteScreen: React.FC = () => {
             <span className="font-bold text-[#323232] uppercase tracking-wider">
               Step {step} of 4
             </span>
-            <span className="text-[#8C9DAA]">
+            <span className="text-[#899EAE]">
               {step === 1 && 'Service & Property Type'}
               {step === 2 && 'Your Contact Info'}
               {step === 3 && 'Project Details'}
@@ -148,7 +148,7 @@ export const FreeQuoteScreen: React.FC = () => {
 
           <div className="w-full h-2 rounded-full bg-white/60 border border-white overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-[#323232] via-[#A4B3BE] to-[#C0D0E1] transition-all duration-300 rounded-full shadow-xs"
+              className="h-full bg-gradient-to-r from-[#323232] via-[#A5B5C1] to-[#C7D3DC] transition-all duration-300 rounded-full shadow-xs"
               style={{ width: `${(step / 4) * 100}%` }}
             />
           </div>

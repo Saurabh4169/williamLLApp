@@ -134,7 +134,7 @@ export const ProjectDetailScreen: React.FC = () => {
                 onClick={() => setIsPlayingVideo(!isPlayingVideo)}
                 className="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[9.5px] font-bold flex items-center gap-1.5 border border-white/20 shadow-xs active:scale-95 transition-all"
               >
-                <Sparkles className="w-3 h-3 text-[#EFE7DC]" />
+                <Sparkles className="w-3 h-3 text-[#C7D3DC]" />
                 <span>{isPlayingVideo ? 'Presentation Active' : '360° Film View'}</span>
               </button>
             </div>
@@ -176,13 +176,13 @@ export const ProjectDetailScreen: React.FC = () => {
                 className="w-full h-1 bg-white/25 rounded-full overflow-hidden cursor-pointer relative"
               >
                 <div
-                  className="h-full bg-gradient-to-r from-[#EFE7DC] to-white rounded-full transition-all duration-300"
+                  className="h-full bg-gradient-to-r from-[#C7D3DC] to-[#A5B5C1] rounded-full transition-all duration-300"
                   style={{ width: `${videoProgress}%` }}
                 />
               </div>
 
               <div className="flex items-center justify-between mt-1 text-white/80">
-                <span className="text-[8.5px] font-bold uppercase tracking-wider text-[#EFE7DC]">
+                <span className="text-[8.5px] font-bold uppercase tracking-wider text-[#C7D3DC]">
                   HD 4K &bull; Architectural Film
                 </span>
                 <div className="flex items-center gap-2">

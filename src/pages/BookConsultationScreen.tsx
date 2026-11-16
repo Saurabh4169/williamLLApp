@@ -87,7 +87,7 @@ export const BookConsultationScreen: React.FC = () => {
         particleCount: 80,
         spread: 70,
         origin: { y: 0.5 },
-        colors: ['#323232', '#191919', '#A4B3BE', '#C0D0E1', '#D8D8D8', '#FEFEFE'],
+        colors: ['#323232', '#191919', '#C7D3DC', '#A5B5C1', '#A3B4C0', '#899EAE', '#FEFEFE'],
       });
     } catch {
       // fallback

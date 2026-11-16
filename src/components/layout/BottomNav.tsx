@@ -45,19 +45,19 @@ export const BottomNav: React.FC = () => {
       >
         <Home
           className={`w-5 h-5 transition-colors ${
-            isHome ? 'text-[#323232] stroke-[2.4]' : 'text-[#A4B3BE] stroke-[1.8] group-hover:text-[#323232]'
+            isHome ? 'text-[#191919] stroke-[2.5]' : 'text-[#334454] stroke-[1.9] group-hover:text-[#191919]'
           }`}
         />
         <span
           className={`text-[11px] mt-0.5 tracking-tight leading-tight transition-colors ${
-            isHome ? 'font-bold text-[#323232]' : 'font-medium text-[#A4B3BE] group-hover:text-[#323232]'
+            isHome ? 'font-bold text-[#191919]' : 'font-semibold text-[#334454] group-hover:text-[#191919]'
           }`}
         >
           Home
         </span>
         <span
           className={`w-1.5 h-1.5 rounded-full mt-0.5 transition-all ${
-            isHome ? 'bg-[#323232] shadow-[0_0_8px_rgba(50,50,50,0.35)] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
+            isHome ? 'bg-[#191919] shadow-[0_0_8px_rgba(25,25,25,0.4)] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
           }`}
         />
       </button>
@@ -70,19 +70,19 @@ export const BottomNav: React.FC = () => {
       >
         <Sparkles
           className={`w-5 h-5 transition-colors ${
-            isServices ? 'text-[#323232] stroke-[2.4]' : 'text-[#A4B3BE] stroke-[1.8] group-hover:text-[#323232]'
+            isServices ? 'text-[#191919] stroke-[2.5]' : 'text-[#334454] stroke-[1.9] group-hover:text-[#191919]'
           }`}
         />
         <span
           className={`text-[11px] mt-0.5 tracking-tight leading-tight transition-colors ${
-            isServices ? 'font-bold text-[#323232]' : 'font-medium text-[#A4B3BE] group-hover:text-[#323232]'
+            isServices ? 'font-bold text-[#191919]' : 'font-semibold text-[#334454] group-hover:text-[#191919]'
           }`}
         >
           Services
         </span>
         <span
           className={`w-1.5 h-1.5 rounded-full mt-0.5 transition-all ${
-            isServices ? 'bg-[#323232] shadow-[0_0_8px_rgba(50,50,50,0.35)] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
+            isServices ? 'bg-[#191919] shadow-[0_0_8px_rgba(25,25,25,0.4)] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
           }`}
         />
       </button>
@@ -92,7 +92,7 @@ export const BottomNav: React.FC = () => {
         <button
           onClick={() => navigate('/book-consultation')}
           aria-label="Book Consultation"
-          className="w-[50px] h-[50px] rounded-full liquid-charcoal-water-button flex items-center justify-center ring-4 ring-white shadow-[0_8px_22px_rgba(25,25,25,0.25)] active:scale-95 transition-all -translate-y-3.5 z-10 group"
+          className="w-[50px] h-[50px] rounded-full liquid-charcoal-water-button flex items-center justify-center ring-4 ring-white shadow-[0_8px_24px_rgba(25,25,25,0.35),0_0_16px_rgba(165,181,193,0.40)] active:scale-95 transition-all -translate-y-3.5 z-10 group"
         >
           <Calendar className="w-5 h-5 text-white stroke-[2.2] relative z-10 drop-shadow-xs" />
         </button>
@@ -107,20 +107,20 @@ export const BottomNav: React.FC = () => {
         <div className="relative">
           <HardHat
             className={`w-5 h-5 transition-colors ${
-              isConstruction ? 'text-[#323232] stroke-[2.4]' : 'text-[#A4B3BE] stroke-[1.8] group-hover:text-[#323232]'
+              isConstruction ? 'text-[#191919] stroke-[2.5]' : 'text-[#334454] stroke-[1.9] group-hover:text-[#191919]'
             }`}
           />
         </div>
         <span
           className={`text-[11px] mt-0.5 tracking-tight leading-tight transition-colors ${
-            isConstruction ? 'font-bold text-[#323232]' : 'font-medium text-[#A4B3BE] group-hover:text-[#323232]'
+            isConstruction ? 'font-bold text-[#191919]' : 'font-semibold text-[#334454] group-hover:text-[#191919]'
           }`}
         >
           Construction
         </span>
         <span
           className={`w-1.5 h-1.5 rounded-full mt-0.5 transition-all ${
-            isConstruction ? 'bg-[#323232] shadow-[0_0_8px_rgba(50,50,50,0.35)] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
+            isConstruction ? 'bg-[#191919] shadow-[0_0_8px_rgba(25,25,25,0.4)] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
           }`}
         />
       </button>
@@ -133,19 +133,19 @@ export const BottomNav: React.FC = () => {
       >
         <Menu
           className={`w-5 h-5 transition-colors ${
-            isMore ? 'text-[#323232] stroke-[2.4]' : 'text-[#A4B3BE] stroke-[1.8] group-hover:text-[#323232]'
+            isMore ? 'text-[#191919] stroke-[2.5]' : 'text-[#334454] stroke-[1.9] group-hover:text-[#191919]'
           }`}
         />
         <span
           className={`text-[11px] mt-0.5 tracking-tight leading-tight transition-colors ${
-            isMore ? 'font-bold text-[#323232]' : 'font-medium text-[#A4B3BE] group-hover:text-[#323232]'
+            isMore ? 'font-bold text-[#191919]' : 'font-semibold text-[#334454] group-hover:text-[#191919]'
           }`}
         >
           More
         </span>
         <span
           className={`w-1.5 h-1.5 rounded-full mt-0.5 transition-all ${
-            isMore ? 'bg-[#323232] shadow-[0_0_8px_rgba(50,50,50,0.35)] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
+            isMore ? 'bg-[#191919] shadow-[0_0_8px_rgba(25,25,25,0.4)] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
           }`}
         />
       </button>

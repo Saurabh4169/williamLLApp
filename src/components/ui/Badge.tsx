@@ -2,7 +2,7 @@ import React from 'react';
 
 export interface BadgeProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'success' | 'danger' | 'warning' | 'neutral' | 'glass' | 'solid-primary' | 'solid-success' | 'solid-danger';
+  variant?: 'primary' | 'misty' | 'success' | 'danger' | 'warning' | 'neutral' | 'glass' | 'solid-primary' | 'solid-success' | 'solid-danger';
   size?: 'sm' | 'md';
   className?: string;
 }
@@ -19,7 +19,8 @@ export const Badge: React.FC<BadgeProps> = ({
   };
 
   const variantClasses = {
-    primary: 'bg-[#C0D0E1]/35 text-[#323232] border border-[#A4B3BE]/45',
+    primary: 'bg-gradient-to-r from-[#C7D3DC]/40 to-[#A5B5C1]/30 text-[#191919] border border-[#A5B5C1]/60 shadow-[inset_0_1px_1px_rgba(255,255,255,0.85)]',
+    misty: 'bg-gradient-to-r from-[#C7D3DC] to-[#A5B5C1] text-[#191919] border border-[#A0B0BC] shadow-xs',
     success: 'bg-[#22C55E]/15 text-[#16A34A] border border-[#22C55E]/30',
     danger: 'bg-rose-500/15 text-rose-700 border border-rose-500/25',
     warning: 'bg-amber-500/15 text-amber-800 border border-amber-500/25',
