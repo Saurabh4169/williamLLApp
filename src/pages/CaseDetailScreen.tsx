@@ -28,7 +28,7 @@ export const CaseDetailScreen: React.FC = () => {
   const [reminderEnabled, setReminderEnabled] = useState(true);
 
   return (
-    <div className="min-h-full flex flex-col text-[#1F2A44] pb-6">
+    <div className="min-h-full flex flex-col text-[#121214] pb-6">
       {/* Standard AppHeader */}
       <AppHeader
         showBack
@@ -45,14 +45,14 @@ export const CaseDetailScreen: React.FC = () => {
         <GlassCard className="p-4 space-y-3">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#3D4D7C] bg-[#3D4D7C]/10 px-2.5 py-0.5 rounded-full">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#323232] bg-[#323232]/10 px-2.5 py-0.5 rounded-full">
                 {caseItem.type}
               </span>
-              <h2 className="font-heading text-lg font-bold text-[#1F2A44] mt-1.5 leading-snug">
+              <h2 className="font-heading text-lg font-bold text-[#121214] mt-1.5 leading-snug">
                 {caseItem.title}
               </h2>
-              <div className="flex items-center gap-1.5 text-xs text-[#8A93A6] mt-1">
-                <MapPin className="w-3.5 h-3.5 text-[#3D4D7C] flex-shrink-0" />
+              <div className="flex items-center gap-1.5 text-xs text-[#82807A] mt-1">
+                <MapPin className="w-3.5 h-3.5 text-[#323232] flex-shrink-0" />
                 <span>{caseItem.address}</span>
               </div>
             </div>
@@ -61,11 +61,11 @@ export const CaseDetailScreen: React.FC = () => {
           {/* Next Hearing / Event Reminder Box */}
           <div className="btn-glossy-navy rounded-2xl p-3.5 flex items-center justify-between shadow-md text-white">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#B7C3DA]">
+              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#EFE7DC]">
                 <Calendar className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-[10px] text-[#B7C3DA] font-semibold block uppercase tracking-wider">
+                <span className="text-[10px] text-[#EFE7DC] font-semibold block uppercase tracking-wider">
                   {caseItem.nextEventTitle}
                 </span>
                 <span className="font-heading text-sm font-bold text-white">
@@ -90,17 +90,17 @@ export const CaseDetailScreen: React.FC = () => {
           {/* Assigned Expert Box */}
           <div className="pt-2 border-t border-white/60 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-full overflow-hidden bg-[#3D4D7C] flex-shrink-0 border border-white/80">
+              <div className="w-10 h-10 rounded-full overflow-hidden bg-[#323232] flex-shrink-0 border border-white/80">
                 <ImageWithFallback
                   imageKey={caseItem.assignedExpert.avatarKey}
                   aspectRatio="aspect-square w-full h-full"
                 />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-[#1F2A44]">
+                <h4 className="text-xs font-bold text-[#121214]">
                   {caseItem.assignedExpert.name}
                 </h4>
-                <p className="text-[10px] text-[#8A93A6]">
+                <p className="text-[10px] text-[#82807A]">
                   {caseItem.assignedExpert.role}
                 </p>
               </div>
@@ -110,7 +110,7 @@ export const CaseDetailScreen: React.FC = () => {
               <a
                 href={`tel:${caseItem.assignedExpert.phone}`}
                 aria-label="Call Expert"
-                className="w-8 h-8 rounded-full liquid-glass-chip flex items-center justify-center text-[#3D4D7C] hover:border-[#3D4D7C]/50 active:scale-95 transition-all"
+                className="w-8 h-8 rounded-full liquid-glass-chip flex items-center justify-center text-[#323232] hover:border-[#323232]/50 active:scale-95 transition-all"
               >
                 <Phone className="w-3.5 h-3.5" />
               </a>
@@ -132,7 +132,7 @@ export const CaseDetailScreen: React.FC = () => {
             className={`flex-1 py-1.5 text-xs font-bold rounded-full transition-all min-h-[36px] ${
               activeTab === 'timeline'
                 ? 'btn-glossy-navy shadow-sm'
-                : 'text-[#8A93A6] hover:text-[#1F2A44]'
+                : 'text-[#82807A] hover:text-[#121214]'
             }`}
           >
             Timeline
@@ -142,7 +142,7 @@ export const CaseDetailScreen: React.FC = () => {
             className={`flex-1 py-1.5 text-xs font-bold rounded-full transition-all min-h-[36px] ${
               activeTab === 'documents'
                 ? 'btn-glossy-navy shadow-sm'
-                : 'text-[#8A93A6] hover:text-[#1F2A44]'
+                : 'text-[#82807A] hover:text-[#121214]'
             }`}
           >
             Documents ({caseItem.documents.length})
@@ -152,7 +152,7 @@ export const CaseDetailScreen: React.FC = () => {
             className={`flex-1 py-1.5 text-xs font-bold rounded-full transition-all min-h-[36px] ${
               activeTab === 'updates'
                 ? 'btn-glossy-navy shadow-sm'
-                : 'text-[#8A93A6] hover:text-[#1F2A44]'
+                : 'text-[#82807A] hover:text-[#121214]'
             }`}
           >
             Updates ({caseItem.updates.length})
@@ -162,21 +162,21 @@ export const CaseDetailScreen: React.FC = () => {
         {/* Tab 1: Vertical Stages Timeline */}
         {activeTab === 'timeline' && (
           <GlassCard className="p-5 space-y-5">
-            <h3 className="font-heading text-base font-bold text-[#1F2A44]">
+            <h3 className="font-heading text-base font-bold text-[#121214]">
               Case Proceedings Timeline
             </h3>
 
-            <div className="relative pl-6 space-y-6 before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-[#DDE2EA]">
+            <div className="relative pl-6 space-y-6 before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-[#D8D8D8]">
               {caseItem.timeline.map((step, idx) => (
                 <div key={step.id} className="relative">
                   {/* Status Circle Node */}
                   <div
                     className={`absolute -left-[27px] top-0.5 w-6 h-6 rounded-full flex items-center justify-center ring-4 ring-white ${
                       step.completed
-                        ? 'bg-[#3FA66B] text-white shadow-xs'
+                        ? 'bg-[#22C55E] text-white shadow-xs'
                         : step.current
-                        ? 'bg-[#3D4D7C] text-white animate-pulse'
-                        : 'bg-[#DDE2EA] text-[#8A93A6]'
+                        ? 'bg-[#323232] text-white animate-pulse'
+                        : 'bg-[#D8D8D8] text-[#8C9DAA]'
                     }`}
                   >
                     {step.completed ? (
@@ -188,14 +188,14 @@ export const CaseDetailScreen: React.FC = () => {
 
                   <div>
                     <div className="flex items-center justify-between">
-                      <h4 className="font-heading text-sm font-bold text-[#1F2A44]">
+                      <h4 className="font-heading text-sm font-bold text-[#121214]">
                         {step.stage}
                       </h4>
-                      <span className="text-[11px] font-semibold text-[#8A93A6]">
+                      <span className="text-[11px] font-semibold text-[#82807A]">
                         {step.date}
                       </span>
                     </div>
-                    <p className="text-xs text-[#8A93A6] mt-1 leading-relaxed">
+                    <p className="text-xs text-[#82807A] mt-1 leading-relaxed">
                       {step.notes}
                     </p>
                   </div>
@@ -209,12 +209,12 @@ export const CaseDetailScreen: React.FC = () => {
         {activeTab === 'documents' && (
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-[#8A93A6] uppercase tracking-wider">
+              <span className="text-xs font-bold text-[#82807A] uppercase tracking-wider">
                 Case Files &amp; Exhibits
               </span>
               <button
                 onClick={() => navigate('/vault')}
-                className="text-xs font-semibold text-[#3D4D7C] flex items-center gap-1 hover:underline"
+                className="text-xs font-semibold text-[#323232] flex items-center gap-1 hover:underline"
               >
                 <Upload className="w-3.5 h-3.5" />
                 <span>Upload New File</span>
@@ -228,14 +228,14 @@ export const CaseDetailScreen: React.FC = () => {
                   className="p-3.5 flex items-center justify-between"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#3D4D7C]/10 flex items-center justify-center text-[#3D4D7C]">
+                    <div className="w-10 h-10 rounded-xl bg-[#323232]/10 flex items-center justify-center text-[#323232]">
                       <FileText className="w-5 h-5" />
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold text-[#1F2A44] truncate max-w-[200px]">
+                      <h4 className="text-xs font-bold text-[#121214] truncate max-w-[200px]">
                         {doc.name}
                       </h4>
-                      <div className="flex items-center gap-2 text-[10px] text-[#8A93A6] mt-0.5">
+                      <div className="flex items-center gap-2 text-[10px] text-[#82807A] mt-0.5">
                         <span>{doc.size}</span>
                         <span>&bull;</span>
                         <span>{doc.uploadDate}</span>
@@ -261,15 +261,15 @@ export const CaseDetailScreen: React.FC = () => {
                 className="p-4 space-y-2"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold text-[#3D4D7C] uppercase tracking-wider">
+                  <span className="text-[10px] font-bold text-[#323232] uppercase tracking-wider">
                     {up.author}
                   </span>
-                  <span className="text-[10px] text-[#8A93A6]">{up.date}</span>
+                  <span className="text-[10px] text-[#82807A]">{up.date}</span>
                 </div>
-                <h4 className="font-heading text-sm font-bold text-[#1F2A44]">
+                <h4 className="font-heading text-sm font-bold text-[#121214]">
                   {up.title}
                 </h4>
-                <p className="text-xs text-[#8A93A6] leading-relaxed">
+                <p className="text-xs text-[#82807A] leading-relaxed">
                   {up.message}
                 </p>
               </GlassCard>

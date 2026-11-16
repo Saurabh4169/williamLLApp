@@ -24,18 +24,18 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({
     switch (type) {
       case 'case':
         return {
-          icon: <Briefcase className="w-5 h-5 text-[#3D4D7C]" />,
-          bg: 'bg-[#3D4D7C]/12',
+          icon: <Briefcase className="w-5 h-5 text-[#323232]" />,
+          bg: 'bg-[#C0D0E1]/30',
         };
       case 'appointment':
         return {
-          icon: <Calendar className="w-5 h-5 text-[#3FA66B]" />,
-          bg: 'bg-[#3FA66B]/15',
+          icon: <Calendar className="w-5 h-5 text-[#16A34A]" />,
+          bg: 'bg-[#22C55E]/15',
         };
       case 'document':
         return {
-          icon: <FileText className="w-5 h-5 text-[#3D4D7C]" />,
-          bg: 'bg-[#3D4D7C]/12',
+          icon: <FileText className="w-5 h-5 text-[#323232]" />,
+          bg: 'bg-[#C0D0E1]/30',
         };
       case 'message':
         return {
@@ -73,7 +73,7 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({
 
       <motion.div
         style={{ opacity: deleteOpacity }}
-        className="absolute inset-y-0 right-0 w-24 bg-[#E5484D] text-white flex items-center justify-center gap-1.5 px-3 rounded-r-card font-semibold text-xs z-0"
+        className="absolute inset-y-0 right-0 w-24 bg-[#E52E3A] text-white flex items-center justify-center gap-1.5 px-3 rounded-r-card font-semibold text-xs z-0"
       >
         <Trash2 className="w-4 h-4" />
         <span>Delete</span>
@@ -105,24 +105,24 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({
           <div className="flex items-center justify-between gap-2">
             <h4
               className={`font-heading text-xs tracking-wide truncate ${
-                notification.read ? 'font-semibold text-[#1F2A44]' : 'font-bold text-[#1F2A44]'
+                notification.read ? 'font-semibold text-[#121214]' : 'font-bold text-[#121214]'
               }`}
             >
               {notification.title}
             </h4>
-            <span className="text-[10px] text-[#8A93A6] whitespace-nowrap">
+            <span className="text-[10px] text-[#82807A] whitespace-nowrap">
               {notification.time}
             </span>
           </div>
 
-          <p className="text-[11px] text-[#8A93A6] line-clamp-2 mt-0.5 leading-snug">
+          <p className="text-[11px] text-[#82807A] line-clamp-2 mt-0.5 leading-snug">
             {notification.message}
           </p>
         </div>
 
-        {/* Unread Blue/Navy Dot */}
+        {/* Unread Charcoal Dot */}
         {!notification.read && (
-          <span className="w-2.5 h-2.5 rounded-full bg-[#3D4D7C] flex-shrink-0 shadow-xs" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#323232] flex-shrink-0 shadow-xs" />
         )}
       </motion.div>
     </div>

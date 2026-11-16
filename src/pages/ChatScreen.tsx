@@ -44,7 +44,7 @@ export const ChatScreen: React.FC = () => {
   };
 
   return (
-    <div className="min-h-full flex flex-col justify-between text-[#1F2A44] pb-0">
+    <div className="min-h-full flex flex-col justify-between text-[#121214] pb-0">
       {/* Top Header */}
       <AppHeader
         title="Zoning Counsel Chat"
@@ -52,7 +52,7 @@ export const ChatScreen: React.FC = () => {
         rightAction={
           <a
             href={`tel:${BUSINESS_INFO.phoneRaw}`}
-            className="w-10 h-10 rounded-full liquid-glass-chip flex items-center justify-center text-[#3D4D7C] hover:border-[#3D4D7C]/50 active:scale-95 transition-all"
+            className="w-10 h-10 rounded-full liquid-glass-chip flex items-center justify-center text-[#323232] hover:border-[#323232]/50 active:scale-95 transition-all"
             aria-label="Direct Phone Call"
           >
             <PhoneCall className="w-4 h-4 stroke-[2]" />
@@ -67,22 +67,22 @@ export const ChatScreen: React.FC = () => {
             <div className="w-2.5 h-2.5 rounded-full bg-[#3FA66B]" />
             <div className="w-2.5 h-2.5 rounded-full bg-[#3FA66B] absolute inset-0 animate-ping opacity-60" />
           </div>
-          <span className="font-semibold text-[#1F2A44]">
+          <span className="font-semibold text-[#121214]">
             Williams &amp; Williams Senior Advisory
           </span>
         </div>
-        <span className="text-[10px] text-[#8A93A6]">Avg response: 15 min</span>
+        <span className="text-[10px] text-[#82807A]">Avg response: 15 min</span>
       </div>
 
       {/* Messages Thread Container */}
       <div className="flex-1 p-4 space-y-4 overflow-y-auto">
         {/* Chat Intro Banner */}
         <GlassCard className="p-3.5 text-center space-y-1.5 max-w-sm mx-auto">
-          <ShieldCheck className="w-6 h-6 mx-auto text-[#3D4D7C]" />
-          <h4 className="font-heading text-xs font-bold text-[#1F2A44]">
+          <ShieldCheck className="w-6 h-6 mx-auto text-[#323232]" />
+          <h4 className="font-heading text-xs font-bold text-[#121214]">
             Direct Encrypted Zoning Channel
           </h4>
-          <p className="text-[10px] text-[#8A93A6]">
+          <p className="text-[10px] text-[#82807A]">
             Communicate directly with your assigned Chicago zoning consultant regarding permits, appeals, and hearings.
           </p>
         </GlassCard>
@@ -95,7 +95,7 @@ export const ChatScreen: React.FC = () => {
               key={msg.id}
               className={`flex flex-col ${isUser ? 'items-end' : 'items-start'} space-y-1`}
             >
-              <div className="flex items-center gap-1.5 text-[10px] text-[#8A93A6] px-1">
+              <div className="flex items-center gap-1.5 text-[10px] text-[#82807A] px-1">
                 <span>{msg.authorName}</span>
                 <span>&bull;</span>
                 <span>{msg.timestamp}</span>
@@ -105,7 +105,7 @@ export const ChatScreen: React.FC = () => {
                 className={`max-w-[82%] p-3.5 rounded-2xl text-xs leading-relaxed shadow-xs ${
                   isUser
                     ? 'btn-glossy-navy text-white rounded-br-xs'
-                    : 'liquid-glass-card text-[#1F2A44] rounded-bl-xs'
+                    : 'liquid-glass-card text-[#121214] rounded-bl-xs'
                 }`}
               >
                 {msg.text}
@@ -126,8 +126,8 @@ export const ChatScreen: React.FC = () => {
       {/* "Ask AI / Quick Questions" Chips Row */}
       <div className="px-4 py-2">
         <div className="flex items-center gap-1.5 mb-1.5">
-          <Sparkles className="w-3.5 h-3.5 text-[#3D4D7C]" />
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#3D4D7C]">
+          <Sparkles className="w-3.5 h-3.5 text-[#323232]" />
+          <span className="text-[10px] font-bold uppercase tracking-wider text-[#323232]">
             Quick Ordinance Questions
           </span>
         </div>
@@ -136,7 +136,7 @@ export const ChatScreen: React.FC = () => {
             <button
               key={idx}
               onClick={() => handleChipClick(prompt)}
-              className="px-3 py-1.5 rounded-full liquid-glass-chip text-[11px] font-medium text-[#1F2A44] whitespace-nowrap hover:border-[#3D4D7C]/40 active:scale-95 transition-all select-none"
+              className="px-3 py-1.5 rounded-full liquid-glass-chip text-[11px] font-medium text-[#121214] whitespace-nowrap hover:border-[#323232]/40 active:scale-95 transition-all select-none"
             >
               {prompt}
             </button>
@@ -158,7 +158,7 @@ export const ChatScreen: React.FC = () => {
             }
           }}
           aria-label="Attach File"
-          className="w-10 h-10 rounded-full liquid-glass-chip flex items-center justify-center text-[#8A93A6] hover:text-[#1F2A44] active:scale-95 transition-all flex-shrink-0"
+          className="w-10 h-10 rounded-full liquid-glass-chip flex items-center justify-center text-[#82807A] hover:text-[#121214] active:scale-95 transition-all flex-shrink-0"
         >
           <Paperclip className="w-4 h-4 stroke-[2]" />
         </button>
@@ -168,7 +168,7 @@ export const ChatScreen: React.FC = () => {
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           placeholder="Ask a zoning question or send update..."
-          className="flex-1 h-11 px-4 rounded-full border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#1F2A44] placeholder-[#8A93A6] focus:outline-none focus:ring-2 focus:ring-[#3D4D7C] transition-all"
+          className="flex-1 h-11 px-4 rounded-full border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#121214] placeholder-[#82807A] focus:outline-none focus:ring-2 focus:ring-[#323232] transition-all"
         />
 
         <button

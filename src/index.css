@@ -2,22 +2,30 @@
 @config "../tailwind.config.js";
 
 @theme {
-  --color-primary: #3D4D7C;
-  --color-primary-hover: #313E64;
-  --color-primary-light: #EBEFF7;
-  --color-ink: #1F2A44;
-  --color-ink-light: #2E3D60;
-  --color-background: #F2F3F5;
-  --color-surface: #F8F9FB;
-  --color-surface-card: #F8F9FB;
-  --color-border: #DDE2EA;
-  --color-border-light: #EEF1F6;
-  --color-muted: #8A93A6;
-  --color-muted-dark: #6A748A;
-  --color-gradient-start: #B7C3DA;
-  --color-gradient-end: #7D90B5;
-  --color-success: #3FA66B;
-  --color-danger: #E5484D;
+  --color-primary: #323232;
+  --color-primary-dark: #191919;
+  --color-primary-hover: #222222;
+  --color-primary-light: #F4F5F5;
+  --color-charcoal: #323232;
+  --color-charcoal-deep: #191919;
+  --color-misty: #A4B3BE;
+  --color-ice: #C0D0E1;
+  --color-purewhite: #FEFEFE;
+  --color-softgrey: #D8D8D8;
+  --color-ink: #191919;
+  --color-ink-light: #323232;
+  --color-background: #F4F5F5;
+  --color-surface: #FEFEFE;
+  --color-surface-card: rgba(254, 254, 254, 0.88);
+  --color-border: #D8D8D8;
+  --color-border-silver: #C0D0E1;
+  --color-border-light: #E6EAEF;
+  --color-muted: #71717A;
+  --color-muted-dark: #52525B;
+  --color-gradient-start: #323232;
+  --color-gradient-end: #191919;
+  --color-success: #22C55E;
+  --color-danger: #EF4444;
 
   --font-heading: 'Plus Jakarta Sans', Inter, system-ui, -apple-system, sans-serif;
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -28,17 +36,22 @@
   --radius-image: 20px;
   --radius-pill: 9999px;
 
-  --shadow-glass: 0 10px 30px rgba(31, 42, 68, 0.10), 0 2px 6px rgba(31, 42, 68, 0.06);
-  --shadow-glass-pressed: 0 4px 14px rgba(31, 42, 68, 0.08), 0 1px 3px rgba(31, 42, 68, 0.04);
+  --shadow-glass: 0 10px 30px rgba(25, 25, 25, 0.04), 0 2px 6px rgba(0, 0, 0, 0.03);
+  --shadow-glass-pressed: 0 4px 14px rgba(25, 25, 25, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
 :root {
-  --app-primary: #3D4D7C;
-  --app-ink: #1F2A44;
-  --app-bg: #F2F3F5;
-  --app-surface: #F8F9FB;
-  --app-border: #DDE2EA;
-  --app-muted: #8A93A6;
+  --app-primary: #323232;
+  --app-charcoal: #323232;
+  --app-deep: #191919;
+  --app-misty: #A4B3BE;
+  --app-ice: #C0D0E1;
+  --app-purewhite: #FEFEFE;
+  --app-softgrey: #D8D8D8;
+  --app-bg: #F4F5F5;
+  --app-surface: #FEFEFE;
+  --app-border: #D8D8D8;
+  --app-muted: #71717A;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
@@ -75,14 +88,49 @@ html, body, #root {
   height: 100%;
   height: 100dvh;
   overflow: hidden;
-  background-color: #F2F3F5;
+  background-color: #F4F5F5;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  color: #1F2A44;
+  color: #191919;
 }
 
-/* Fluid Typography with Clamp (320px+) */
-/* H1: Plus Jakarta Sans 800, 28/34, letter-spacing -0.02em */
-h1, .font-h1 {
+/* Fluid Base Typography inside @layer base so utility classes (e.g. text-white) always override */
+@layer base {
+  h1 {
+    font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+    font-size: clamp(24px, 5vw, 28px);
+    line-height: 34px;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+    color: #191919;
+  }
+
+  h2 {
+    font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+    font-size: clamp(18px, 4vw, 20px);
+    line-height: 26px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    color: #191919;
+  }
+
+  h3 {
+    font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 700;
+    color: #191919;
+  }
+
+  p {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 400;
+    color: #4A4A4A;
+  }
+}
+
+.font-h1 {
   font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
   font-size: clamp(24px, 5vw, 28px);
   line-height: 34px;
@@ -90,8 +138,7 @@ h1, .font-h1 {
   font-weight: 800;
 }
 
-/* H2: Plus Jakarta Sans 700, 20/26, letter-spacing -0.01em */
-h2, .font-h2 {
+.font-h2 {
   font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
   font-size: clamp(18px, 4vw, 20px);
   line-height: 26px;
@@ -99,8 +146,7 @@ h2, .font-h2 {
   font-weight: 700;
 }
 
-/* Card title & H3: Plus Jakarta Sans 700, 16/22 */
-h3, .font-h3, .card-title {
+.font-h3, .card-title {
   font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
   font-size: 16px;
   line-height: 22px;
@@ -116,8 +162,7 @@ button, .btn-label, .nav-label {
   font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
 }
 
-/* Body: Inter 400, 14/21 */
-p, .font-body {
+.font-body {
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 14px;
   line-height: 21px;
@@ -145,29 +190,38 @@ p, .font-body {
   text-transform: uppercase;
 }
 
-/* Fixed full-screen soft ambient background layer */
+/* Fixed full-screen soft ambient liquid-glass canvas */
 .bg-fixed-canvas {
   background:
-    radial-gradient(circle at 90% 12%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 45%),
-    radial-gradient(circle at 10% 25%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 35%),
-    linear-gradient(180deg, #F2F3F5 0%, #F5F7FA 50%, #EBF0F7 80%, #DFE7F2 100%);
+    radial-gradient(circle at 50% -10%, rgba(192, 208, 225, 0.40) 0%, rgba(164, 179, 190, 0.15) 35%, rgba(244, 245, 245, 0) 70%),
+    radial-gradient(circle at 85% 15%, rgba(192, 208, 225, 0.25) 0%, rgba(244, 245, 245, 0) 45%),
+    radial-gradient(circle at 15% 65%, rgba(164, 179, 190, 0.18) 0%, rgba(244, 245, 245, 0) 50%),
+    linear-gradient(180deg, #FFFFFF 0%, #F4F5F5 30%, #ECEEF0 100%);
   background-attachment: fixed;
 }
 
-/* Liquid Glass System */
+/* Premium Liquid Glass Card with Subtle Misty-Blue Gradient Reflections */
 .liquid-glass-card {
   position: relative;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.42));
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.70);
+  background: linear-gradient(135deg, rgba(254, 254, 254, 0.94) 0%, rgba(246, 249, 252, 0.82) 50%, rgba(254, 254, 254, 0.90) 100%);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(216, 216, 216, 0.70);
   box-shadow:
-    0 10px 30px rgba(31, 42, 68, 0.10),
-    0 2px 6px rgba(31, 42, 68, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.25);
+    0 10px 30px rgba(25, 25, 25, 0.04),
+    0 2px 8px rgba(164, 179, 190, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px rgba(192, 208, 225, 0.25);
   border-radius: 24px;
-  transition: transform 120ms ease-out, box-shadow 120ms ease-out;
+  transition: transform 140ms ease-out, box-shadow 140ms ease-out, border-color 140ms ease-out;
+}
+
+.liquid-glass-card:hover {
+  border-color: rgba(164, 179, 190, 0.80);
+  box-shadow:
+    0 14px 36px rgba(25, 25, 25, 0.06),
+    0 4px 12px rgba(164, 179, 190, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95);
 }
 
 .liquid-glass-card::before {
@@ -176,34 +230,39 @@ p, .font-body {
   top: 0;
   left: 0;
   right: 0;
-  height: 45%;
+  height: 40%;
   border-radius: inherit;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 40%);
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.75) 0%, rgba(192, 208, 225, 0.15) 35%, rgba(255, 255, 255, 0) 65%);
   pointer-events: none;
-  opacity: 0.65;
+  opacity: 0.85;
 }
 
 .liquid-glass-chip {
   position: relative;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.55));
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.80);
+  background: linear-gradient(135deg, rgba(254, 254, 254, 0.92), rgba(240, 244, 248, 0.80));
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(216, 216, 216, 0.75);
   box-shadow:
-    0 4px 14px rgba(31, 42, 68, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    0 4px 14px rgba(25, 25, 25, 0.03),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95);
   border-radius: 9999px;
-  transition: all 120ms ease-out;
+  transition: all 140ms ease-out;
+}
+
+.liquid-glass-chip:hover {
+  border-color: rgba(164, 179, 190, 0.80);
+  background: linear-gradient(135deg, rgba(254, 254, 254, 0.98), rgba(232, 240, 248, 0.90));
 }
 
 .liquid-glass-bar {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92));
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 1px solid rgba(221, 226, 234, 0.85);
+  background: linear-gradient(180deg, rgba(254, 254, 254, 0.92) 0%, rgba(246, 248, 250, 0.82) 100%);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border-bottom: 1px solid rgba(216, 216, 216, 0.65);
   box-shadow:
-    0 4px 20px rgba(31, 42, 68, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    0 4px 20px rgba(25, 25, 25, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 /* Ensure sticky app header stays permanently fixed on scroll across all mobile & desktop browsers */
@@ -222,40 +281,107 @@ p, .font-body {
   display: none !important;
 }
 
-.liquid-glass-nav {
+/* Frosted Silver-Blue Bottom Navigation Dock */
+.liquid-glass-nav,
+.liquid-red-glass-nav {
   position: relative;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.78));
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: linear-gradient(180deg, rgba(254, 254, 254, 0.92) 0%, rgba(244, 247, 250, 0.86) 100%);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border-top: 1px solid rgba(216, 216, 216, 0.75);
   box-shadow:
-    0 12px 35px rgba(31, 42, 68, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
-  border-radius: 28px;
+    0 -8px 30px rgba(25, 25, 25, 0.04),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95);
 }
 
-/* Primary glossy navy button */
-.btn-glossy-navy {
-  background: linear-gradient(180deg, #4A5C8E 0%, #3D4D7C 100%);
+/* Central Floating Action Calendar Button: Charcoal-to-Black Liquid Water Gloss */
+.liquid-charcoal-water-button,
+.liquid-red-water-button {
+  background: radial-gradient(circle at 35% 25%, #444444 0%, #323232 50%, #191919 100%);
   box-shadow:
-    0 4px 14px rgba(61, 77, 124, 0.32),
-    inset 0 1px 0 rgba(255, 255, 255, 0.35);
-  color: #FFFFFF;
+    0 8px 24px rgba(25, 25, 25, 0.32),
+    inset 0 2px 2px rgba(255, 255, 255, 0.40),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.50);
+  position: relative;
+  overflow: hidden;
+  transition: transform 120ms ease-out, box-shadow 120ms ease-out;
+}
+
+.liquid-charcoal-water-button::before,
+.liquid-red-water-button::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  right: 6px;
+  height: 12px;
   border-radius: 9999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.05) 100%);
+  pointer-events: none;
+}
+
+/* Primary Button: Charcoal-to-Deep-Black Gradient with Glossy Specular Reflection */
+.btn-glossy-primary,
+.btn-glossy-navy {
+  background: linear-gradient(180deg, #323232 0%, #191919 100%);
+  box-shadow:
+    0 4px 16px rgba(25, 25, 25, 0.22),
+    0 1px 3px rgba(0, 0, 0, 0.15),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.28),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.35);
+  color: #FEFEFE;
+  border: 1px solid rgba(25, 25, 25, 0.85);
+  border-radius: 9999px;
+  position: relative;
+  overflow: hidden;
   transition: transform 120ms ease-out, box-shadow 120ms ease-out, background 120ms ease-out;
 }
-.btn-glossy-navy:active {
-  transform: scale(0.98);
-  box-shadow: 0 2px 6px rgba(61, 77, 124, 0.25);
+
+.btn-glossy-primary::before,
+.btn-glossy-navy::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 8px;
+  right: 8px;
+  height: 38%;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
 }
 
-/* Active navy pill for tabs */
-.nav-pill-active {
-  background: linear-gradient(180deg, #4A5C8E 0%, #3D4D7C 100%);
-  color: #FFFFFF;
+.btn-glossy-primary:active,
+.btn-glossy-navy:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 8px rgba(25, 25, 25, 0.20);
+}
+
+/* Secondary Button: Misty-Blue to Ice-Blue Gradient */
+.btn-glossy-secondary {
+  background: linear-gradient(180deg, #DCE6F0 0%, #BACAD7 100%);
   box-shadow:
-    0 4px 12px rgba(61, 77, 124, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.30);
+    0 4px 14px rgba(164, 179, 190, 0.25),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.70);
+  color: #191919;
+  border: 1px solid rgba(164, 179, 190, 0.65);
+  border-radius: 9999px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 120ms ease-out, box-shadow 120ms ease-out;
+}
+
+.btn-glossy-secondary:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 6px rgba(164, 179, 190, 0.20);
+}
+
+/* Active Charcoal Pill for Tabs */
+.nav-pill-active {
+  background: linear-gradient(180deg, #323232 0%, #191919 100%);
+  color: #FEFEFE;
+  box-shadow:
+    0 4px 14px rgba(25, 25, 25, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
   border-radius: 9999px;
 }
 
@@ -265,7 +391,7 @@ p, .font-body {
   .liquid-glass-chip,
   .liquid-glass-bar,
   .liquid-glass-nav {
-    background: rgba(248, 249, 251, 0.95) !important;
+    background: rgba(244, 245, 245, 0.95) !important;
   }
 }
 

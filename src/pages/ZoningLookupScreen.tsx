@@ -47,16 +47,16 @@ export const ZoningLookupScreen: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-full flex flex-col text-[#1F2A44] pb-6">
+    <div className="min-h-full flex flex-col text-[#121214] pb-6">
       <AppHeader title="Chicago Zoning Lookup" showBack />
 
       <div className="px-4 py-4 space-y-5">
         {/* Title & Description */}
         <div>
-          <h1 className="font-heading text-xl font-bold text-[#1F2A44] tracking-tight">
+          <h1 className="font-heading text-xl font-bold text-[#121214] tracking-tight">
             Chicago Zoning District Lookup
           </h1>
-          <p className="text-xs text-[#8A93A6]">
+          <p className="text-xs text-[#82807A]">
             Search by Chicago address or parcel to inspect municipal zoning rules.
           </p>
         </div>
@@ -64,17 +64,17 @@ export const ZoningLookupScreen: React.FC = () => {
         {/* Address Search Form */}
         <form onSubmit={handleSearch} className="relative">
           <div className="flex items-center">
-            <Search className="absolute left-3.5 w-4 h-4 text-[#8A93A6]" />
+            <Search className="absolute left-3.5 w-4 h-4 text-[#82807A]" />
             <input
               type="text"
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
               placeholder="Enter Chicago street address or PIN..."
-              className="w-full h-12 pl-10 pr-22 rounded-full border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#1F2A44] focus:ring-2 focus:ring-[#3D4D7C] shadow-xs"
+              className="w-full h-12 pl-10 pr-22 rounded-full border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#191919] focus:ring-2 focus:ring-[#323232] shadow-xs"
             />
             <button
               type="submit"
-              className="absolute right-1.5 px-3.5 py-2 rounded-full btn-glossy-navy text-xs font-semibold active:scale-95 transition-all"
+              className="absolute right-1.5 px-3.5 py-2 rounded-full btn-glossy-primary text-xs font-semibold active:scale-95 transition-all"
             >
               Lookup
             </button>
@@ -83,7 +83,7 @@ export const ZoningLookupScreen: React.FC = () => {
 
         {/* Quick Sample Address Pills */}
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
-          <span className="text-[10px] font-bold text-[#8A93A6] whitespace-nowrap">Try:</span>
+          <span className="text-[10px] font-bold text-[#82807A] whitespace-nowrap">Try:</span>
           {quickAddresses.map((addr) => (
             <button
               key={addr}
@@ -91,7 +91,7 @@ export const ZoningLookupScreen: React.FC = () => {
                 setInputVal(addr);
                 setResult(lookupChicagoAddress(addr));
               }}
-              className="px-2.5 py-1 rounded-full liquid-glass-chip text-[11px] font-medium text-[#1F2A44] whitespace-nowrap hover:border-[#3D4D7C]/40 transition-all select-none"
+              className="px-2.5 py-1 rounded-full liquid-glass-chip text-[11px] font-medium text-[#191919] whitespace-nowrap hover:border-[#323232]/40 transition-all select-none"
             >
               {addr.split(',')[0]}
             </button>
@@ -100,17 +100,17 @@ export const ZoningLookupScreen: React.FC = () => {
 
         {/* Interactive Map Card with Official City Map Link */}
         <GlassCard className="overflow-hidden p-0">
-          <div className="relative h-44 w-full bg-[#1F2A44] flex items-center justify-center text-center p-4">
+          <div className="relative h-44 w-full bg-[#121214] flex items-center justify-center text-center p-4">
             <div
               className="absolute inset-0 opacity-20"
               style={{
                 backgroundImage:
-                  'radial-gradient(circle, #B7C3DA 1px, transparent 1px), linear-gradient(to right, #B7C3DA 1px, transparent 1px)',
+                  'radial-gradient(circle, #EFE7DC 1px, transparent 1px), linear-gradient(to right, #EFE7DC 1px, transparent 1px)',
                 backgroundSize: '20px 20px',
               }}
             />
             <div className="relative z-10 space-y-2">
-              <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md mx-auto flex items-center justify-center text-[#B7C3DA] border border-white/20">
+              <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md mx-auto flex items-center justify-center text-[#EFE7DC] border border-white/20">
                 <MapPin className="w-6 h-6 stroke-[2.2]" />
               </div>
               <div className="text-white font-heading text-sm font-bold tracking-wide">
@@ -137,11 +137,11 @@ export const ZoningLookupScreen: React.FC = () => {
           <div className="p-4 space-y-3">
             <div className="flex items-center justify-between">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#8A93A6]">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#82807A]">
                   Zoning Classification
                 </span>
                 <div className="flex items-center gap-2 mt-0.5">
-                  <h3 className="font-heading text-2xl font-bold text-[#1F2A44]">
+                  <h3 className="font-heading text-2xl font-bold text-[#121214]">
                     {result.zoningDistrict}
                   </h3>
                   <Badge variant="primary" size="sm">
@@ -151,16 +151,16 @@ export const ZoningLookupScreen: React.FC = () => {
               </div>
 
               <div className="text-right">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#8A93A6]">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#82807A]">
                   Max FAR
                 </span>
-                <div className="font-heading text-lg font-bold text-[#3D4D7C]">
+                <div className="font-heading text-lg font-bold text-[#323232]">
                   {result.maxFAR.split(' ')[0]}
                 </div>
               </div>
             </div>
 
-            <p className="text-xs text-[#8A93A6] leading-relaxed">
+            <p className="text-xs text-[#82807A] leading-relaxed">
               {result.districtName}
             </p>
           </div>
@@ -171,7 +171,7 @@ export const ZoningLookupScreen: React.FC = () => {
           <button
             onClick={() => setActiveTab('uses')}
             className={`flex-1 py-1.5 text-xs font-bold rounded-full transition-all min-h-[36px] ${
-              activeTab === 'uses' ? 'btn-glossy-navy shadow-sm' : 'text-[#8A93A6] hover:text-[#1F2A44]'
+              activeTab === 'uses' ? 'btn-glossy-navy shadow-sm' : 'text-[#82807A] hover:text-[#121214]'
             }`}
           >
             Allowed Uses
@@ -179,7 +179,7 @@ export const ZoningLookupScreen: React.FC = () => {
           <button
             onClick={() => setActiveTab('envelope')}
             className={`flex-1 py-1.5 text-xs font-bold rounded-full transition-all min-h-[36px] ${
-              activeTab === 'envelope' ? 'btn-glossy-navy shadow-sm' : 'text-[#8A93A6] hover:text-[#1F2A44]'
+              activeTab === 'envelope' ? 'btn-glossy-navy shadow-sm' : 'text-[#82807A] hover:text-[#121214]'
             }`}
           >
             Building Envelope
@@ -187,7 +187,7 @@ export const ZoningLookupScreen: React.FC = () => {
           <button
             onClick={() => setActiveTab('ward')}
             className={`flex-1 py-1.5 text-xs font-bold rounded-full transition-all min-h-[36px] ${
-              activeTab === 'ward' ? 'btn-glossy-navy shadow-sm' : 'text-[#8A93A6] hover:text-[#1F2A44]'
+              activeTab === 'ward' ? 'btn-glossy-navy shadow-sm' : 'text-[#82807A] hover:text-[#121214]'
             }`}
           >
             Ward &amp; Council
@@ -202,7 +202,7 @@ export const ZoningLookupScreen: React.FC = () => {
                 <CheckCircle className="w-3.5 h-3.5" />
                 Permitted Uses
               </span>
-              <ul className="space-y-1.5 text-xs text-[#1F2A44]">
+              <ul className="space-y-1.5 text-xs text-[#121214]">
                 {result.allowedUses.map((use, idx) => (
                   <li key={idx} className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#3FA66B]" />
@@ -213,14 +213,14 @@ export const ZoningLookupScreen: React.FC = () => {
             </div>
 
             <div className="pt-2 border-t border-white/60">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#E5484D] flex items-center gap-1 mb-2">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#E52E3A] flex items-center gap-1 mb-2">
                 <XCircle className="w-3.5 h-3.5" />
                 Prohibited / Special Use Needed
               </span>
-              <ul className="space-y-1.5 text-xs text-[#8A93A6]">
+              <ul className="space-y-1.5 text-xs text-[#82807A]">
                 {result.restrictedUses.map((use, idx) => (
                   <li key={idx} className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#E5484D]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#E52E3A]" />
                     <span>{use}</span>
                   </li>
                 ))}
@@ -233,19 +233,19 @@ export const ZoningLookupScreen: React.FC = () => {
         {activeTab === 'envelope' && (
           <GlassCard className="p-4 space-y-2.5 text-xs">
             <div className="flex justify-between py-1.5 border-b border-white/60">
-              <span className="text-[#8A93A6]">Maximum Height:</span>
-              <span className="font-semibold text-[#1F2A44]">{result.maxHeight}</span>
+              <span className="text-[#82807A]">Maximum Height:</span>
+              <span className="font-semibold text-[#121214]">{result.maxHeight}</span>
             </div>
             <div className="flex justify-between py-1.5 border-b border-white/60">
-              <span className="text-[#8A93A6]">Front Yard Setback:</span>
-              <span className="font-semibold text-[#1F2A44]">{result.frontSetback}</span>
+              <span className="text-[#82807A]">Front Yard Setback:</span>
+              <span className="font-semibold text-[#121214]">{result.frontSetback}</span>
             </div>
             <div className="flex justify-between py-1.5 border-b border-white/60">
-              <span className="text-[#8A93A6]">Rear Yard Setback:</span>
-              <span className="font-semibold text-[#1F2A44]">{result.rearSetback}</span>
+              <span className="text-[#82807A]">Rear Yard Setback:</span>
+              <span className="font-semibold text-[#121214]">{result.rearSetback}</span>
             </div>
             <div className="flex justify-between py-1.5">
-              <span className="text-[#8A93A6]">Transit Reduction:</span>
+              <span className="text-[#82807A]">Transit Reduction:</span>
               <span className="font-semibold text-[#3FA66B]">
                 {result.todEligible ? 'Eligible for 100% Parking Relief' : 'Standard Parking Mandate'}
               </span>
@@ -257,23 +257,23 @@ export const ZoningLookupScreen: React.FC = () => {
         {activeTab === 'ward' && (
           <GlassCard className="p-4 space-y-2 text-xs">
             <div className="flex justify-between py-1.5 border-b border-white/60">
-              <span className="text-[#8A93A6]">Municipal Ward:</span>
-              <span className="font-bold text-[#1F2A44]">{result.ward}</span>
+              <span className="text-[#82807A]">Municipal Ward:</span>
+              <span className="font-bold text-[#121214]">{result.ward}</span>
             </div>
             <div className="flex justify-between py-1.5 border-b border-white/60">
-              <span className="text-[#8A93A6]">City Council Member:</span>
-              <span className="font-bold text-[#1F2A44]">{result.alderman}</span>
+              <span className="text-[#82807A]">City Council Member:</span>
+              <span className="font-bold text-[#121214]">{result.alderman}</span>
             </div>
-            <p className="text-[11px] text-[#8A93A6] pt-1 leading-relaxed">
+            <p className="text-[11px] text-[#82807A] pt-1 leading-relaxed">
               {result.notes}
             </p>
           </GlassCard>
         )}
 
         {/* Legal Disclaimer Box */}
-        <div className="p-3 bg-white/60 backdrop-blur-sm rounded-xl border border-white/80 flex items-start gap-2.5 text-xs text-[#1F2A44]">
-          <Info className="w-4 h-4 text-[#3D4D7C] flex-shrink-0 mt-0.5" />
-          <p className="text-[10px] text-[#8A93A6] leading-tight">
+        <div className="p-3 bg-white/60 backdrop-blur-sm rounded-xl border border-white/80 flex items-start gap-2.5 text-xs text-[#191919]">
+          <Info className="w-4 h-4 text-[#323232] flex-shrink-0 mt-0.5" />
+          <p className="text-[10px] text-[#82807A] leading-tight">
             <strong>Legal Note:</strong> Informational only, not legal advice. Zoning codes are subject to municipal map amendments and aldermanic prerogatives.
           </p>
         </div>

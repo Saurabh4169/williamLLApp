@@ -32,7 +32,7 @@ export const BottomNav: React.FC = () => {
   return (
     <nav
       aria-label="Bottom Navigation"
-      className="w-full h-[68px] sm:h-[72px] bg-white/98 sm:bg-white backdrop-blur-xl border-t border-[#DDE2EA] rounded-t-[20px] sm:rounded-t-[24px] shadow-[0_-4px_25px_rgba(31,42,68,0.06)] grid grid-cols-5 items-center px-1 select-none z-30 flex-shrink-0"
+      className="w-full h-[68px] sm:h-[72px] liquid-glass-nav rounded-t-[22px] sm:rounded-t-[26px] grid grid-cols-5 items-center px-1 select-none z-30 flex-shrink-0"
       style={{
         paddingBottom: 'env(safe-area-inset-bottom, 0px)',
       }}
@@ -45,19 +45,19 @@ export const BottomNav: React.FC = () => {
       >
         <Home
           className={`w-5 h-5 transition-colors ${
-            isHome ? 'text-[#3D4D7C] stroke-[2.4]' : 'text-[#8A93A6] stroke-[1.8] group-hover:text-[#1F2A44]'
+            isHome ? 'text-[#323232] stroke-[2.4]' : 'text-[#A4B3BE] stroke-[1.8] group-hover:text-[#323232]'
           }`}
         />
         <span
           className={`text-[11px] mt-0.5 tracking-tight leading-tight transition-colors ${
-            isHome ? 'font-semibold text-[#3D4D7C]' : 'font-medium text-[#8A93A6] group-hover:text-[#1F2A44]'
+            isHome ? 'font-bold text-[#323232]' : 'font-medium text-[#A4B3BE] group-hover:text-[#323232]'
           }`}
         >
           Home
         </span>
         <span
           className={`w-1.5 h-1.5 rounded-full mt-0.5 transition-all ${
-            isHome ? 'bg-[#3D4D7C] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
+            isHome ? 'bg-[#323232] shadow-[0_0_8px_rgba(50,50,50,0.35)] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
           }`}
         />
       </button>
@@ -70,19 +70,19 @@ export const BottomNav: React.FC = () => {
       >
         <Sparkles
           className={`w-5 h-5 transition-colors ${
-            isServices ? 'text-[#3D4D7C] stroke-[2.4]' : 'text-[#8A93A6] stroke-[1.8] group-hover:text-[#1F2A44]'
+            isServices ? 'text-[#323232] stroke-[2.4]' : 'text-[#A4B3BE] stroke-[1.8] group-hover:text-[#323232]'
           }`}
         />
         <span
           className={`text-[11px] mt-0.5 tracking-tight leading-tight transition-colors ${
-            isServices ? 'font-semibold text-[#3D4D7C]' : 'font-medium text-[#8A93A6] group-hover:text-[#1F2A44]'
+            isServices ? 'font-bold text-[#323232]' : 'font-medium text-[#A4B3BE] group-hover:text-[#323232]'
           }`}
         >
           Services
         </span>
         <span
           className={`w-1.5 h-1.5 rounded-full mt-0.5 transition-all ${
-            isServices ? 'bg-[#3D4D7C] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
+            isServices ? 'bg-[#323232] shadow-[0_0_8px_rgba(50,50,50,0.35)] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
           }`}
         />
       </button>
@@ -92,9 +92,9 @@ export const BottomNav: React.FC = () => {
         <button
           onClick={() => navigate('/book-consultation')}
           aria-label="Book Consultation"
-          className="w-[50px] h-[50px] rounded-full btn-glossy-navy flex items-center justify-center shadow-[0_6px_20px_rgba(61,77,124,0.30)] ring-4 ring-white active:scale-95 transition-transform -translate-y-3.5 z-10"
+          className="w-[50px] h-[50px] rounded-full liquid-charcoal-water-button flex items-center justify-center ring-4 ring-white shadow-[0_8px_22px_rgba(25,25,25,0.25)] active:scale-95 transition-all -translate-y-3.5 z-10 group"
         >
-          <Calendar className="w-5 h-5 text-white stroke-[2.2]" />
+          <Calendar className="w-5 h-5 text-white stroke-[2.2] relative z-10 drop-shadow-xs" />
         </button>
       </div>
 
@@ -107,20 +107,20 @@ export const BottomNav: React.FC = () => {
         <div className="relative">
           <HardHat
             className={`w-5 h-5 transition-colors ${
-              isConstruction ? 'text-[#3D4D7C] stroke-[2.4]' : 'text-[#8A93A6] stroke-[1.8] group-hover:text-[#1F2A44]'
+              isConstruction ? 'text-[#323232] stroke-[2.4]' : 'text-[#A4B3BE] stroke-[1.8] group-hover:text-[#323232]'
             }`}
           />
         </div>
         <span
           className={`text-[11px] mt-0.5 tracking-tight leading-tight transition-colors ${
-            isConstruction ? 'font-semibold text-[#3D4D7C]' : 'font-medium text-[#8A93A6] group-hover:text-[#1F2A44]'
+            isConstruction ? 'font-bold text-[#323232]' : 'font-medium text-[#A4B3BE] group-hover:text-[#323232]'
           }`}
         >
           Construction
         </span>
         <span
           className={`w-1.5 h-1.5 rounded-full mt-0.5 transition-all ${
-            isConstruction ? 'bg-[#3D4D7C] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
+            isConstruction ? 'bg-[#323232] shadow-[0_0_8px_rgba(50,50,50,0.35)] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
           }`}
         />
       </button>
@@ -133,19 +133,19 @@ export const BottomNav: React.FC = () => {
       >
         <Menu
           className={`w-5 h-5 transition-colors ${
-            isMore ? 'text-[#3D4D7C] stroke-[2.4]' : 'text-[#8A93A6] stroke-[1.8] group-hover:text-[#1F2A44]'
+            isMore ? 'text-[#323232] stroke-[2.4]' : 'text-[#A4B3BE] stroke-[1.8] group-hover:text-[#323232]'
           }`}
         />
         <span
           className={`text-[11px] mt-0.5 tracking-tight leading-tight transition-colors ${
-            isMore ? 'font-semibold text-[#3D4D7C]' : 'font-medium text-[#8A93A6] group-hover:text-[#1F2A44]'
+            isMore ? 'font-bold text-[#323232]' : 'font-medium text-[#A4B3BE] group-hover:text-[#323232]'
           }`}
         >
           More
         </span>
         <span
           className={`w-1.5 h-1.5 rounded-full mt-0.5 transition-all ${
-            isMore ? 'bg-[#3D4D7C] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
+            isMore ? 'bg-[#323232] shadow-[0_0_8px_rgba(50,50,50,0.35)] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
           }`}
         />
       </button>

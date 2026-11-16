@@ -27,13 +27,13 @@ export const Chip: React.FC<ChipProps> = ({
   }[size];
 
   const activeClasses = active
-    ? 'nav-pill-active text-white border-transparent'
-    : 'liquid-glass-chip text-[#1F2A44] hover:border-[#3D4D7C]/40';
+    ? 'nav-pill-active text-[#FEFEFE] border-transparent'
+    : 'liquid-glass-chip text-[#191919] hover:border-[#323232]/40';
 
   const nonInteractiveVariant = {
     filter: activeClasses,
-    status: 'liquid-glass-chip text-[#1F2A44]',
-    badge: 'bg-[#3D4D7C]/12 text-[#3D4D7C] border border-[#3D4D7C]/25 rounded-full',
+    status: 'liquid-glass-chip text-[#191919]',
+    badge: 'bg-[#C0D0E1]/35 text-[#323232] border border-[#A4B3BE]/45 rounded-full',
   }[variant];
 
   const Tag = isInteractive ? 'button' : 'div';

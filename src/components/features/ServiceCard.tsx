@@ -21,11 +21,11 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, className = '
   return (
     <div
       onClick={() => navigate(`/services/${service.slug}`)}
-      className={`p-2.5 sm:p-3 flex flex-col justify-between cursor-pointer group bg-white border border-[#E5E9F0] rounded-[18px] sm:rounded-[20px] shadow-[0_4px_16px_rgba(31,42,68,0.04)] hover:shadow-md hover:border-[#3D4D7C]/30 transition-all select-none ${className}`}
+      className={`p-2.5 sm:p-3 flex flex-col justify-between cursor-pointer group bg-white border border-[#D8D8D8] rounded-[18px] sm:rounded-[20px] shadow-[0_4px_16px_rgba(25,25,25,0.04)] hover:shadow-md hover:border-[#323232]/30 transition-all select-none ${className}`}
     >
       <div>
         {/* Compact Image Container with Top-Right Action Buttons (Solar Depot Reference) */}
-        <div className="relative aspect-[4/3] w-full rounded-[13px] overflow-hidden bg-[#F2F4F8] flex-shrink-0">
+        <div className="relative aspect-[4/3] w-full rounded-[13px] overflow-hidden bg-[#F4F5F5] flex-shrink-0">
           <ImageWithFallback
             imageKey={service.imageKey}
             aspectRatio="aspect-auto h-full w-full"
@@ -34,7 +34,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, className = '
 
           {/* Top-Right Action Badges: Scale & Heart */}
           <div className="absolute top-1.5 right-1.5 flex items-center gap-1 z-10">
-            <div className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-md shadow-xs border border-white flex items-center justify-center text-[#5A657D]">
+            <div className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-md shadow-xs border border-white flex items-center justify-center text-[#82807A]">
               <Scale className="w-3 h-3 stroke-[2]" />
             </div>
             <button
@@ -49,8 +49,8 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, className = '
               <Heart
                 className={`w-3 h-3 transition-colors ${
                   isSaved
-                    ? 'fill-[#E5484D] text-[#E5484D]'
-                    : 'text-[#5A657D] hover:text-[#E5484D]'
+                    ? 'fill-[#323232] text-[#323232]'
+                    : 'text-[#82807A] hover:text-[#323232]'
                 }`}
               />
             </button>
@@ -59,7 +59,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, className = '
           {/* Optional fast-track badge */}
           {service.badge && (
             <div className="absolute bottom-1.5 left-1.5">
-              <span className="text-[8.5px] font-bold uppercase tracking-wider bg-[#1F2A44]/80 backdrop-blur-sm text-white px-1.5 py-0.5 rounded-md">
+              <span className="text-[8.5px] font-bold uppercase tracking-wider bg-[#191919]/80 backdrop-blur-sm text-[#FEFEFE] px-1.5 py-0.5 rounded-md">
                 {service.badge}
               </span>
             </div>
@@ -68,26 +68,26 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, className = '
 
         {/* Top Micro-Row: Code in Blue & Specs on Right */}
         <div className="mt-2 flex items-center justify-between text-[9.5px]">
-          <span className="font-bold text-[#3D4D7C] tracking-wide uppercase truncate">
+          <span className="font-bold text-[#323232] tracking-wide uppercase truncate">
             {serviceCode}
           </span>
-          <span className="font-semibold text-[#8A93A6] text-[9px] flex-shrink-0">
+          <span className="font-semibold text-[#82807A] text-[9px] flex-shrink-0">
             {service.priceNote.split(' ')[0]} {service.priceNote.split(' ')[1] || 'Zoning'}
           </span>
         </div>
 
         {/* Title: 2-line bold clean clamp */}
-        <h3 className="font-heading text-xs font-bold text-[#1F2A44] leading-snug line-clamp-2 mt-1 min-h-[30px] group-hover:text-[#3D4D7C] transition-colors">
+        <h3 className="font-heading text-xs font-bold text-[#191919] leading-snug line-clamp-2 mt-1 min-h-[30px] group-hover:text-[#323232] transition-colors">
           {service.title}
         </h3>
       </div>
 
       {/* Bottom Row: Category on left, Details link on right */}
-      <div className="mt-2 pt-1.5 border-t border-[#EEF1F6] flex items-center justify-between text-[10px]">
-        <span className="text-[#8A93A6] font-medium truncate max-w-[65px] sm:max-w-[80px]">
+      <div className="mt-2 pt-1.5 border-t border-[#D8D8D8]/60 flex items-center justify-between text-[10px]">
+        <span className="text-[#82807A] font-medium truncate max-w-[65px] sm:max-w-[80px]">
           {service.category.split(' ')[0]}
         </span>
-        <span className="font-bold text-[#3D4D7C] flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform flex-shrink-0">
+        <span className="font-bold text-[#323232] flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform flex-shrink-0">
           <span>Details</span>
           <ArrowRight className="w-2.5 h-2.5 stroke-[2.5]" />
         </span>

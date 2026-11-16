@@ -62,29 +62,29 @@ export const APP_IMAGES: Record<string, ImageAsset> = {
   heroChicagoSkyline: {
     src: heroChicagoSkyline,
     alt: 'Chicago skyline at twilight overlooking Lake Michigan with glowing architectural towers',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
   heroBlueprintsTeam: {
     src: heroBlueprintsTeam,
     alt: 'Williams & Williams zoning consultants reviewing Chicago architectural blueprints and site maps',
-    blurColor: '#3D4D7C',
+    blurColor: '#323232',
   },
   appIcon: {
     src: appIcon,
     alt: 'Williams & Williams LLC triangular architectural monogram icon',
-    blurColor: '#B7C3DA',
+    blurColor: '#EFE7DC',
   },
 
   // Onboarding Slides
   onboarding1: {
     src: onboarding1,
     alt: 'Chicago aerial view representing navigation of complex municipal zoning laws with ease',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
   onboarding2: {
     src: onboarding2,
     alt: 'Zoning consultant tracking building permits and appeals on a modern tablet',
-    blurColor: '#3D4D7C',
+    blurColor: '#323232',
   },
   onboarding3: {
     src: onboarding3,
@@ -96,22 +96,22 @@ export const APP_IMAGES: Record<string, ImageAsset> = {
   serviceZoningAnalysis: {
     src: serviceZoningAnalysis,
     alt: 'Urban zoning analysis with GIS cadastral overlay maps and zoning code books',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
   serviceAppealsHearing: {
     src: serviceAppealsHearing,
     alt: 'Chicago Zoning Board of Appeals municipal hearing presentation',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
   servicePermits: {
     src: servicePermits,
     alt: 'City of Chicago building permit documentation and stamped zoning approvals',
-    blurColor: '#3D4D7C',
+    blurColor: '#323232',
   },
   serviceFeasibility: {
     src: serviceFeasibility,
     alt: 'Land-use development site feasibility and FAR setback evaluation',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
   serviceUrbanPlanning: {
     src: serviceUrbanPlanning,
@@ -121,29 +121,29 @@ export const APP_IMAGES: Record<string, ImageAsset> = {
   serviceCompliance: {
     src: serviceCompliance,
     alt: 'Zoning code compliance audit checklist and municipal ordinance inspection',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
   serviceCommunity: {
     src: serviceCommunity,
     alt: 'Community engagement meeting presenting architectural site model to neighborhood stakeholders',
-    blurColor: '#3D4D7C',
+    blurColor: '#323232',
   },
   serviceConstruction: {
     src: serviceConstruction,
     alt: 'Modern residential and commercial construction in Chicago West Loop',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
 
   // Popular Neighborhoods
   areaLoop: {
     src: areaLoop,
     alt: 'Chicago Loop downtown commercial and business zoning district',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
   areaLincolnPark: {
     src: areaLincolnPark,
     alt: 'Lincoln Park historic residential neighborhood zoning district',
-    blurColor: '#3D4D7C',
+    blurColor: '#323232',
   },
   areaWestLoop: {
     src: areaWestLoop,
@@ -153,19 +153,19 @@ export const APP_IMAGES: Record<string, ImageAsset> = {
   areaHydePark: {
     src: areaHydePark,
     alt: 'Hyde Park academic, cultural and residential zoning district',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
 
   // Zoning Districts
   zoningResidential: {
     src: zoningResidential,
     alt: 'Residential Zoning Districts (RS, RT, RM) in Chicago',
-    blurColor: '#3D4D7C',
+    blurColor: '#323232',
   },
   zoningCommercial: {
     src: zoningCommercial,
     alt: 'Commercial and Business Zoning Districts (B, C) in Chicago',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
   zoningIndustrial: {
     src: zoningIndustrial,
@@ -175,24 +175,24 @@ export const APP_IMAGES: Record<string, ImageAsset> = {
   zoningMixedUse: {
     src: zoningMixedUse,
     alt: 'Downtown and Mixed-Use Districts (DX, DC, DS) in Chicago',
-    blurColor: '#3D4D7C',
+    blurColor: '#323232',
   },
   zoningAgricultural: {
     src: zoningAgricultural,
     alt: 'Agricultural and Open Space Parks (POS) in Illinois',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
 
   // Portfolio Current
   portfolioCurrent1: {
     src: portfolioCurrent1,
     alt: 'Fulton Market Boutique Mixed-Use Development (In Progress)',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
   portfolioCurrent2: {
     src: portfolioCurrent2,
     alt: 'Lincoln Park Luxury Multi-Unit Residential Addition (In Progress)',
-    blurColor: '#3D4D7C',
+    blurColor: '#323232',
   },
   portfolioCurrent3: {
     src: portfolioCurrent3,
@@ -204,12 +204,12 @@ export const APP_IMAGES: Record<string, ImageAsset> = {
   portfolioPast1: {
     src: portfolioPast1,
     alt: 'Bucktown Modern Residence with Rear Yard Variance Approval',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
   portfolioPast2: {
     src: portfolioPast2,
     alt: 'West Loop Creative Office Adaptive Reuse Transformation',
-    blurColor: '#3D4D7C',
+    blurColor: '#323232',
   },
   portfolioPast3: {
     src: portfolioPast3,
@@ -221,12 +221,12 @@ export const APP_IMAGES: Record<string, ImageAsset> = {
   news1: {
     src: news1,
     alt: 'Chicago City Council Connected Communities Ordinance Expansion',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
   news2: {
     src: news2,
     alt: '2026 Chicago Affordable Requirements Ordinance (ARO) Rule Revisions',
-    blurColor: '#3D4D7C',
+    blurColor: '#323232',
   },
   news3: {
     src: news3,
@@ -236,24 +236,24 @@ export const APP_IMAGES: Record<string, ImageAsset> = {
   news4: {
     src: news4,
     alt: 'Downtown Commercial to Residential Conversion Expedited Program',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
 
   // Team & Testimonials
   aboutFounder: {
     src: aboutFounder,
     alt: 'Williams & Williams LLC Principal Zoning Consultant portrait [Placeholder]',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
   avatar1: {
     src: avatar1,
     alt: 'Client avatar: Chicago residential property developer [Placeholder]',
-    blurColor: '#3D4D7C',
+    blurColor: '#323232',
   },
   avatar2: {
     src: avatar2,
     alt: 'Client avatar: Commercial architect and project director [Placeholder]',
-    blurColor: '#1F2A44',
+    blurColor: '#121214',
   },
   avatar3: {
     src: avatar3,
@@ -263,7 +263,7 @@ export const APP_IMAGES: Record<string, ImageAsset> = {
   avatar4: {
     src: avatar4,
     alt: 'Client avatar: General contractor partner [Placeholder]',
-    blurColor: '#3D4D7C',
+    blurColor: '#323232',
   },
 };
 

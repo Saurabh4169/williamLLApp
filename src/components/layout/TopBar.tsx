@@ -22,7 +22,7 @@ export const TopBar: React.FC<TopBarProps> = ({
     finalRightAction = (
       <button
         onClick={onShare}
-        className="flex items-center justify-center w-10 h-10 rounded-full liquid-glass-chip text-[#1F2A44] hover:border-[#3D4D7C]/50 active:scale-95 transition-all"
+        className="flex items-center justify-center w-10 h-10 rounded-full liquid-glass-chip text-[#191919] hover:border-[#323232]/50 active:scale-95 transition-all"
         aria-label="Share page"
       >
         <Share2 className="w-4 h-4 stroke-[2]" />

@@ -98,7 +98,7 @@ export const DocumentsVaultScreen: React.FC = () => {
       case 'notices':
         return <Bell className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-amber-600'}`} />;
       default:
-        return <Folder className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-[#3D4D7C]'}`} />;
+        return <Folder className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-[#323232]'}`} />;
     }
   };
 
@@ -119,27 +119,27 @@ export const DocumentsVaultScreen: React.FC = () => {
   };
 
   return (
-    <div className="min-h-full flex flex-col text-[#1F2A44] bg-[#F2F3F5] pb-28">
+    <div className="min-h-full flex flex-col text-[#191919] bg-transparent pb-28">
       {/* Header */}
       <AppHeader title="Documents Vault" showBack />
 
       <div className="px-4 py-3 space-y-3 max-w-md mx-auto w-full">
         {/* 1. Document Search Bar */}
         <div className="relative">
-          <div className="h-10 bg-white rounded-full border border-[#DDE2EA] shadow-2xs flex items-center px-3.5 gap-2.5 focus-within:ring-2 focus-within:ring-[#3D4D7C] focus-within:border-transparent transition-all">
-            <Search className="w-4 h-4 text-[#8A93A6] flex-shrink-0" />
+          <div className="h-10 bg-white rounded-full border border-[#D8D8D8] shadow-2xs flex items-center px-3.5 gap-2.5 focus-within:ring-2 focus-within:ring-[#323232] focus-within:border-transparent transition-all">
+            <Search className="w-4 h-4 text-[#82807A] flex-shrink-0" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by file name, survey type, DWG..."
-              className="flex-1 bg-transparent text-xs text-[#1F2A44] placeholder-[#8A93A6] focus:outline-none"
+              className="flex-1 bg-transparent text-xs text-[#121214] placeholder-[#82807A] focus:outline-none"
             />
             {searchQuery && (
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
-                className="text-[11px] font-bold text-[#8A93A6] hover:text-[#1F2A44]"
+                className="text-[11px] font-bold text-[#82807A] hover:text-[#121214]"
               >
                 Clear
               </button>
@@ -166,10 +166,10 @@ export const DocumentsVaultScreen: React.FC = () => {
         {/* 2. Folder Navigation Grid (Phone-Proportioned 2x2 Grid) */}
         <div className="space-y-1.5">
           <div className="flex items-center justify-between px-0.5">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#8A93A6]">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#82807A]">
               Vault Folders
             </span>
-            <span className="text-[10px] font-semibold text-[#3D4D7C]">
+            <span className="text-[10px] font-semibold text-[#323232]">
               {vaultFiles.length} total records
             </span>
           </div>
@@ -186,8 +186,8 @@ export const DocumentsVaultScreen: React.FC = () => {
                   onClick={() => setActiveVaultFolder(folder.id)}
                   className={`p-2.5 rounded-[16px] text-left transition-all select-none border flex flex-col justify-between active:scale-98 ${
                     isSelected
-                      ? 'bg-[#1F2A44] text-white border-[#1F2A44] shadow-xs'
-                      : 'bg-white text-[#1F2A44] border-[#DDE2EA] hover:border-[#3D4D7C]/40 shadow-2xs'
+                      ? 'bg-gradient-to-b from-[#323232] to-[#191919] text-[#FEFEFE] border-[#191919] shadow-sm'
+                      : 'liquid-glass-card text-[#323232] border-[#D8D8D8] hover:border-[#A4B3BE] shadow-2xs'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2">
@@ -203,7 +203,7 @@ export const DocumentsVaultScreen: React.FC = () => {
                       className={`text-[9.5px] font-bold px-1.5 py-0.5 rounded-full ${
                         isSelected
                           ? 'bg-white/20 text-white'
-                          : 'bg-[#F2F4F8] text-[#5A657D]'
+                          : 'bg-[#F2F4F8] text-[#82807A]'
                       }`}
                     >
                       {count} {count === 1 ? 'file' : 'files'}
@@ -222,16 +222,16 @@ export const DocumentsVaultScreen: React.FC = () => {
         </div>
 
         {/* 3. Quick Upload Action Bar */}
-        <div className="p-2.5 sm:p-3 rounded-[16px] bg-white border border-[#DDE2EA] shadow-2xs flex items-center justify-between gap-2.5">
+        <div className="p-2.5 sm:p-3 rounded-[16px] bg-white border border-[#D8D8D8] shadow-2xs flex items-center justify-between gap-2.5">
           <div className="flex items-center gap-2.5 min-w-0">
             <div className="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center flex-shrink-0">
               <UploadCloud className="w-4 h-4 stroke-[2]" />
             </div>
             <div className="min-w-0">
-              <h4 className="font-heading text-xs font-bold text-[#1F2A44] truncate">
+              <h4 className="font-heading text-xs font-bold text-[#121214] truncate">
                 Upload to {activeFolder.shortName}
               </h4>
-              <p className="text-[10px] text-[#8A93A6] truncate">
+              <p className="text-[10px] text-[#82807A] truncate">
                 PDF, DWG, BIM files up to 50 MB
               </p>
             </div>
@@ -247,7 +247,7 @@ export const DocumentsVaultScreen: React.FC = () => {
         {/* 4. Structured Files List */}
         <div className="space-y-1.5">
           <div className="flex items-center justify-between px-0.5">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#8A93A6]">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#82807A]">
               Files in {activeFolder.name} ({filteredFiles.length})
             </span>
             <span className="text-[10px] font-semibold text-[#3FA66B] flex items-center gap-1">
@@ -257,12 +257,12 @@ export const DocumentsVaultScreen: React.FC = () => {
           </div>
 
           {filteredFiles.length === 0 ? (
-            <div className="p-6 text-center bg-white rounded-[16px] border border-[#DDE2EA] space-y-1.5 shadow-2xs">
-              <Folder className="w-8 h-8 text-[#8A93A6] mx-auto opacity-40" />
-              <h4 className="font-heading text-xs font-bold text-[#1F2A44]">
+            <div className="p-6 text-center bg-white rounded-[16px] border border-[#D8D8D8] space-y-1.5 shadow-2xs">
+              <Folder className="w-8 h-8 text-[#82807A] mx-auto opacity-40" />
+              <h4 className="font-heading text-xs font-bold text-[#121214]">
                 No files found
               </h4>
-              <p className="text-[11px] text-[#8A93A6] max-w-xs mx-auto">
+              <p className="text-[11px] text-[#82807A] max-w-xs mx-auto">
                 {searchQuery
                   ? `No documents matching "${searchQuery}" in this folder.`
                   : `This folder currently has no files. Upload your first document above.`}
@@ -273,7 +273,7 @@ export const DocumentsVaultScreen: React.FC = () => {
               {filteredFiles.map((file) => (
                 <div
                   key={file.id}
-                  className="p-2.5 rounded-[14px] bg-white border border-[#DDE2EA] shadow-2xs flex items-center justify-between gap-2 hover:border-[#3D4D7C]/40 hover:shadow-xs transition-all"
+                  className="p-2.5 rounded-[14px] bg-white border border-[#D8D8D8] shadow-2xs flex items-center justify-between gap-2 hover:border-[#323232]/40 hover:shadow-xs transition-all"
                 >
                   <div
                     className="flex items-center gap-2.5 min-w-0 flex-1 cursor-pointer"
@@ -282,12 +282,12 @@ export const DocumentsVaultScreen: React.FC = () => {
                     {getFileIcon(file.type)}
 
                     <div className="min-w-0 flex-1">
-                      <h4 className="font-heading text-xs font-bold text-[#1F2A44] truncate">
+                      <h4 className="font-heading text-xs font-bold text-[#121214] truncate">
                         {file.name}
                       </h4>
 
-                      <div className="flex items-center gap-1.5 text-[10px] text-[#8A93A6] mt-0.5">
-                        <span className="font-bold text-[#3D4D7C]">{file.type}</span>
+                      <div className="flex items-center gap-1.5 text-[10px] text-[#82807A] mt-0.5">
+                        <span className="font-bold text-[#323232]">{file.type}</span>
                         <span>&bull;</span>
                         <span>{file.size}</span>
                         <span>&bull;</span>
@@ -306,7 +306,7 @@ export const DocumentsVaultScreen: React.FC = () => {
                       type="button"
                       onClick={() => setPreviewFile(file)}
                       aria-label={`Preview ${file.name}`}
-                      className="w-7 h-7 rounded-full bg-[#F2F4F8] hover:bg-slate-200 text-[#1F2A44] flex items-center justify-center active:scale-90 transition-all"
+                      className="w-7 h-7 rounded-full bg-[#F2F4F8] hover:bg-slate-200 text-[#121214] flex items-center justify-center active:scale-90 transition-all"
                     >
                       <Eye className="w-3.5 h-3.5" />
                     </button>
@@ -330,15 +330,15 @@ export const DocumentsVaultScreen: React.FC = () => {
       {/* Document Quick Preview Modal */}
       {previewFile && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/50 backdrop-blur-xs animate-fade-in">
-          <div className="bg-white rounded-t-[24px] sm:rounded-[20px] p-4 max-w-sm w-full space-y-3.5 border border-[#DDE2EA] shadow-xl">
-            <div className="flex items-center justify-between pb-2 border-b border-[#DDE2EA]">
+          <div className="bg-white rounded-t-[24px] sm:rounded-[20px] p-4 max-w-sm w-full space-y-3.5 border border-[#D8D8D8] shadow-xl">
+            <div className="flex items-center justify-between pb-2 border-b border-[#D8D8D8]">
               <div className="flex items-center gap-2 min-w-0">
                 {getFileIcon(previewFile.type)}
                 <div className="min-w-0">
-                  <h3 className="font-heading text-xs font-bold text-[#1F2A44] truncate">
+                  <h3 className="font-heading text-xs font-bold text-[#121214] truncate">
                     {previewFile.name}
                   </h3>
-                  <p className="text-[10px] text-[#8A93A6]">
+                  <p className="text-[10px] text-[#82807A]">
                     {previewFile.type} &bull; {previewFile.size} &bull; {previewFile.uploadDate}
                   </p>
                 </div>
@@ -346,20 +346,20 @@ export const DocumentsVaultScreen: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setPreviewFile(null)}
-                className="w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-[#5A657D] hover:bg-slate-200"
+                className="w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-[#82807A] hover:bg-slate-200"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             {/* Document Preview Placeholder Box */}
-            <div className="h-44 rounded-[14px] bg-[#F8F9FA] border border-dashed border-[#DDE2EA] flex flex-col items-center justify-center text-center p-3 space-y-2">
+            <div className="h-44 rounded-[14px] bg-[#F8F9FA] border border-dashed border-[#D8D8D8] flex flex-col items-center justify-center text-center p-3 space-y-2">
               <FileCheck2 className="w-10 h-10 text-[#3FA66B]" />
               <div>
-                <p className="text-xs font-bold text-[#1F2A44]">
+                <p className="text-xs font-bold text-[#121214]">
                   Cook County Certified Document
                 </p>
-                <p className="text-[10.5px] text-[#8A93A6] mt-0.5">
+                <p className="text-[10.5px] text-[#82807A] mt-0.5">
                   Official municipal digital copy with DOB verification stamp.
                 </p>
               </div>
@@ -380,7 +380,7 @@ export const DocumentsVaultScreen: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setPreviewFile(null)}
-                className="h-9 px-4 rounded-full bg-slate-100 text-xs font-bold text-[#5A657D] hover:bg-slate-200"
+                className="h-9 px-4 rounded-full bg-slate-100 text-xs font-bold text-[#82807A] hover:bg-slate-200"
               >
                 Close
               </button>

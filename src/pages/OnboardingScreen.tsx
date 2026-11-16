@@ -57,7 +57,7 @@ export const OnboardingScreen: React.FC = () => {
   const slide = slides[currentSlide];
 
   return (
-    <div className="relative min-h-screen w-full bg-[#1F2A44] text-white flex flex-col justify-between overflow-hidden">
+    <div className="relative min-h-screen w-full bg-[#121214] text-white flex flex-col justify-between overflow-hidden">
       {/* Background Image Carousel with smooth crossfade */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -74,8 +74,8 @@ export const OnboardingScreen: React.FC = () => {
             className="w-full h-full object-cover object-center brightness-75"
           />
           {/* Deep Navy Gradient Overlay for legibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1F2A44] via-[#1F2A44]/75 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1F2A44]/80 via-transparent to-[#1F2A44]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/75 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#121214]/80 via-transparent to-[#121214]" />
         </motion.div>
       </AnimatePresence>
 
@@ -88,7 +88,7 @@ export const OnboardingScreen: React.FC = () => {
             className="w-8 h-8 object-contain"
           />
           <div>
-            <div className="font-heading text-xs font-bold tracking-widest text-[#B7C3DA]">
+            <div className="font-heading text-xs font-bold tracking-widest text-[#EFE7DC]">
               WILLIAMS &amp; WILLIAMS LLC
             </div>
             <div className="text-[10px] tracking-wider uppercase text-white/70">
@@ -109,7 +109,7 @@ export const OnboardingScreen: React.FC = () => {
       <div className="relative z-10 px-6 pb-10 flex flex-col">
         {/* Progress Pill */}
         <div className="flex items-center gap-2 mb-4">
-          <span className="text-xs font-semibold tracking-wider text-[#B7C3DA] bg-white/10 px-3 py-1 rounded-full border border-white/15">
+          <span className="text-xs font-semibold tracking-wider text-[#EFE7DC] bg-white/10 px-3 py-1 rounded-full border border-white/15">
             {currentSlide + 1} / {slides.length}
           </span>
           <div className="flex gap-1.5">
@@ -117,7 +117,7 @@ export const OnboardingScreen: React.FC = () => {
               <div
                 key={idx}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  idx === currentSlide ? 'w-6 bg-[#B7C3DA]' : 'w-2 bg-white/30'
+                  idx === currentSlide ? 'w-6 bg-[#EFE7DC]' : 'w-2 bg-white/30'
                 }`}
               />
             ))}
@@ -134,7 +134,7 @@ export const OnboardingScreen: React.FC = () => {
             transition={{ duration: 0.35 }}
             className="space-y-3"
           >
-            <span className="inline-block text-[11px] font-bold tracking-widest uppercase text-[#B7C3DA]">
+            <span className="inline-block text-[11px] font-bold tracking-widest uppercase text-[#EFE7DC]">
               {slide.tag}
             </span>
             <h1 className="font-heading text-3xl font-bold tracking-tight text-white leading-tight">
@@ -166,7 +166,7 @@ export const OnboardingScreen: React.FC = () => {
             onClick={handleNext}
             variant="primary"
             size="lg"
-            className="flex-1 bg-gradient-to-r from-[#3D4D7C] to-[#2E3D60] border-t border-white/20 shadow-lg text-white font-semibold flex items-center justify-center gap-2"
+            className="flex-1 btn-glossy-primary text-[#FEFEFE] font-semibold flex items-center justify-center gap-2"
           >
             <span>{currentSlide === slides.length - 1 ? 'Get Started' : 'Next'}</span>
             <ArrowRight className="w-4 h-4 stroke-[2.2]" />

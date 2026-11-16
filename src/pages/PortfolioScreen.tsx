@@ -45,19 +45,19 @@ export const PortfolioScreen: React.FC = () => {
   };
 
   return (
-    <div className="min-h-full flex flex-col text-[#1F2A44] pb-10">
+    <div className="min-h-full flex flex-col text-[#121214] pb-10">
       <AppHeader title="Construction & Design" showBack />
 
       <div className="px-4 py-3.5 space-y-3.5 max-w-md mx-auto w-full">
         {/* Segmented Pill Tab Switcher with Pure Liquid Glass Effect (No wrapped words) */}
-        <div className="grid grid-cols-2 p-1 rounded-full bg-white/75 backdrop-blur-xl border border-white/80 shadow-[0_4px_20px_rgba(31,42,68,0.06),inset_0_1px_1px_rgba(255,255,255,0.95)]">
+        <div className="grid grid-cols-2 p-1 rounded-full bg-white/75 backdrop-blur-xl border border-white/80 shadow-[0_4px_20px_rgba(25,25,25,0.06),inset_0_1px_1px_rgba(255,255,255,0.95)]">
           <button
             type="button"
             onClick={() => handleTabChange('Current')}
             className={`py-2.5 px-3 rounded-full text-xs font-bold transition-all flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-95 ${
               activeTab === 'Current'
-                ? 'btn-glossy-navy shadow-[0_4px_14px_rgba(31,42,68,0.25)] text-white'
-                : 'text-[#5A657D] hover:text-[#1F2A44]'
+                ? 'btn-glossy-primary text-[#FEFEFE]'
+                : 'text-[#82807A] hover:text-[#191919]'
             }`}
           >
             <HardHat className="w-3.5 h-3.5 stroke-[2.2] flex-shrink-0" />
@@ -69,8 +69,8 @@ export const PortfolioScreen: React.FC = () => {
             onClick={() => handleTabChange('Past')}
             className={`py-2.5 px-3 rounded-full text-xs font-bold transition-all flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-95 ${
               activeTab === 'Past'
-                ? 'btn-glossy-navy shadow-[0_4px_14px_rgba(31,42,68,0.25)] text-white'
-                : 'text-[#5A657D] hover:text-[#1F2A44]'
+                ? 'btn-glossy-primary text-[#FEFEFE]'
+                : 'text-[#82807A] hover:text-[#191919]'
             }`}
           >
             <CheckCircle2 className="w-3.5 h-3.5 stroke-[2.2] flex-shrink-0" />
@@ -81,12 +81,12 @@ export const PortfolioScreen: React.FC = () => {
         {/* Section Sub-Header */}
         <div className="flex items-center justify-between px-0.5">
           <div className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#3D4D7C]" />
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#1F2A44]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#323232]" />
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#191919]">
               {activeTab === 'Current' ? 'Current Projects' : 'Past Projects'}
             </span>
           </div>
-          <span className="text-[10.5px] font-semibold text-[#8A93A6]">
+          <span className="text-[10.5px] font-semibold text-[#82807A]">
             4 Architectural Films
           </span>
         </div>
@@ -102,10 +102,10 @@ export const PortfolioScreen: React.FC = () => {
               <div
                 key={project.id}
                 onClick={() => navigate(`/construction/${project.id}`)}
-                className="relative rounded-[20px] bg-white border border-[#DDE2EA] shadow-[0_4px_16px_rgba(31,42,68,0.05)] overflow-hidden flex flex-col justify-between cursor-pointer group active:scale-[0.98] transition-all hover:border-[#3D4D7C]/40 hover:shadow-md"
+                className="relative rounded-[20px] bg-white border border-[#D8D8D8] shadow-[0_4px_16px_rgba(25,25,25,0.04)] overflow-hidden flex flex-col justify-between cursor-pointer group active:scale-[0.98] transition-all hover:border-[#323232]/40 hover:shadow-md"
               >
                 {/* Image & Video Presentation Preview */}
-                <div className="relative aspect-[4/3] w-full bg-[#1F2A44] overflow-hidden">
+                <div className="relative aspect-[4/3] w-full bg-[#191919] overflow-hidden">
                   <img
                     src={imgSrc}
                     alt={project.name}
@@ -120,8 +120,8 @@ export const PortfolioScreen: React.FC = () => {
                     <span
                       className={`text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border shadow-2xs backdrop-blur-md ${
                         isCompleted
-                          ? 'bg-[#1F2A44]/85 text-[#DDE2EA] border-white/20'
-                          : 'bg-[#3FA66B]/90 text-white border-white/30'
+                          ? 'bg-[#191919]/85 text-[#D8D8D8] border-white/20'
+                          : 'bg-[#22C55E]/90 text-white border-white/30'
                       }`}
                     >
                       {isCompleted ? 'Completed' : 'In Progress'}
@@ -140,22 +140,22 @@ export const PortfolioScreen: React.FC = () => {
                   >
                     <Heart
                       className={`w-3 h-3 transition-colors ${
-                        isSaved ? 'fill-[#E5484D] text-[#E5484D]' : 'text-[#5A657D] hover:text-[#E5484D]'
+                        isSaved ? 'fill-[#323232] text-[#323232]' : 'text-[#82807A] hover:text-[#323232]'
                       }`}
                     />
                   </button>
 
                   {/* Central Play Button */}
                   <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                    <div className="w-8 h-8 rounded-full bg-white/95 text-[#1F2A44] flex items-center justify-center shadow-[0_4px_14px_rgba(0,0,0,0.4)] ring-2 ring-white/30 group-hover:scale-110 group-hover:bg-white transition-all">
-                      <Play className="w-3.5 h-3.5 fill-[#1F2A44] text-[#1F2A44] ml-0.5" />
+                    <div className="w-8 h-8 rounded-full bg-white/95 text-[#121214] flex items-center justify-center shadow-[0_4px_14px_rgba(0,0,0,0.4)] ring-2 ring-white/30 group-hover:scale-110 group-hover:bg-white transition-all">
+                      <Play className="w-3.5 h-3.5 fill-[#121214] text-[#121214] ml-0.5" />
                     </div>
                   </div>
 
                   {/* Bottom Duration Badge */}
                   <div className="absolute bottom-1.5 left-2 right-2 flex items-center justify-between text-white text-[8.5px] font-semibold z-10 pointer-events-none">
                     <span className="flex items-center gap-1">
-                      <Sparkles className="w-2.5 h-2.5 text-[#B7C3DA]" />
+                      <Sparkles className="w-2.5 h-2.5 text-[#EFE7DC]" />
                       <span>{project.videoPresentation.duration}</span>
                     </span>
                     <span className="text-white/80 font-mono text-[8px]">
@@ -167,20 +167,20 @@ export const PortfolioScreen: React.FC = () => {
                 {/* Card Content (Mobile Proportioned) */}
                 <div className="p-2.5 flex flex-col justify-between flex-1">
                   <div>
-                    <h3 className="font-heading text-xs sm:text-[13px] font-bold text-[#1F2A44] leading-tight line-clamp-1 group-hover:text-[#3D4D7C] transition-colors uppercase">
+                    <h3 className="font-heading text-xs sm:text-[13px] font-bold text-[#191919] leading-tight line-clamp-1 group-hover:text-[#323232] transition-colors uppercase">
                       {project.name}
                     </h3>
-                    <p className="text-[10px] text-[#5A657D] font-medium line-clamp-1 mt-0.5">
+                    <p className="text-[10px] text-[#82807A] font-medium line-clamp-1 mt-0.5">
                       Watch the presentation
                     </p>
                   </div>
 
                   {/* Specs & Arrow Row */}
-                  <div className="mt-2 pt-1.5 border-t border-[#DDE2EA]/70 flex items-center justify-between text-[9.5px]">
-                    <span className="font-bold text-[#3D4D7C] truncate">
+                  <div className="mt-2 pt-1.5 border-t border-[#D8D8D8]/70 flex items-center justify-between text-[9.5px]">
+                    <span className="font-bold text-[#323232] truncate">
                       {project.specs.zoningDistrict.split(' ')[0]} &bull; {project.specs.units.split(' ')[0]} {project.specs.units.split(' ')[1] || 'Units'}
                     </span>
-                    <div className="w-5 h-5 rounded-full bg-[#1F2A44]/5 text-[#1F2A44] flex items-center justify-center group-hover:bg-[#1F2A44] group-hover:text-white transition-all flex-shrink-0 ml-1 shadow-2xs">
+                    <div className="w-5 h-5 rounded-full bg-[#191919]/5 text-[#191919] flex items-center justify-center group-hover:bg-[#323232] group-hover:text-[#FEFEFE] transition-all flex-shrink-0 ml-1 shadow-2xs">
                       <ArrowRight className="w-3 h-3" />
                     </div>
                   </div>

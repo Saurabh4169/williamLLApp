@@ -47,7 +47,7 @@ export const ProjectDetailScreen: React.FC = () => {
   const isCompleted = project.category === 'Past';
 
   return (
-    <div className="min-h-full flex flex-col text-[#1F2A44] bg-[#F2F3F5] pb-24">
+    <div className="min-h-full flex flex-col text-[#191919] bg-[#F4F5F5] pb-24">
       {/* Standard Unified AppHeader */}
       <AppHeader
         showBack
@@ -65,7 +65,7 @@ export const ProjectDetailScreen: React.FC = () => {
                 }
               }}
               aria-label="Share Project"
-              className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md border border-[#DDE2EA] text-[#1F2A44] flex items-center justify-center hover:bg-white active:scale-95 transition-all shadow-2xs"
+              className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md border border-[#D8D8D8] text-[#191919] flex items-center justify-center hover:bg-white active:scale-95 transition-all shadow-2xs"
             >
               <Share2 className="w-3.5 h-3.5 stroke-[2]" />
             </button>
@@ -73,11 +73,11 @@ export const ProjectDetailScreen: React.FC = () => {
               type="button"
               onClick={() => toggleSavedProject(project.id)}
               aria-label={isFavorite ? 'Remove from saved' : 'Save project'}
-              className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md border border-[#DDE2EA] text-[#1F2A44] flex items-center justify-center hover:bg-white active:scale-95 transition-all shadow-2xs"
+              className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md border border-[#D8D8D8] text-[#191919] flex items-center justify-center hover:bg-white active:scale-95 transition-all shadow-2xs"
             >
               <Heart
                 className={`w-3.5 h-3.5 transition-colors ${
-                  isFavorite ? 'fill-[#E5484D] text-[#E5484D]' : 'text-[#1F2A44]'
+                  isFavorite ? 'fill-[#323232] text-[#323232]' : 'text-[#8C9DAA]'
                 }`}
               />
             </button>
@@ -92,23 +92,23 @@ export const ProjectDetailScreen: React.FC = () => {
             <span
               className={`text-[9.5px] font-extrabold uppercase px-2 py-0.5 rounded-full border shadow-2xs ${
                 isCompleted
-                  ? 'bg-[#1F2A44] text-white border-[#1F2A44]'
-                  : 'bg-[#3FA66B] text-white border-[#3FA66B]'
+                  ? 'bg-[#191919] text-[#FEFEFE] border-[#191919]'
+                  : 'bg-[#22C55E] text-white border-[#22C55E]'
               }`}
             >
               {isCompleted ? 'Completed' : 'In Progress'}
             </span>
-            <span className="text-[10px] font-semibold text-[#8A93A6]">
+            <span className="text-[10px] font-semibold text-[#82807A]">
               {project.timelineRange}
             </span>
           </div>
 
-          <h1 className="font-heading text-lg sm:text-xl font-black text-[#1F2A44] uppercase tracking-tight mt-1">
+          <h1 className="font-heading text-lg sm:text-xl font-black text-[#191919] uppercase tracking-tight mt-1">
             {project.name}
           </h1>
 
-          <div className="flex items-center gap-1.5 text-xs text-[#5A657D] font-medium mt-0.5">
-            <MapPin className="w-3.5 h-3.5 text-[#3D4D7C] flex-shrink-0" />
+          <div className="flex items-center gap-1.5 text-xs text-[#82807A] font-medium mt-0.5">
+            <MapPin className="w-3.5 h-3.5 text-[#323232] flex-shrink-0" />
             <span className="truncate">{project.address}</span>
           </div>
         </div>
@@ -134,7 +134,7 @@ export const ProjectDetailScreen: React.FC = () => {
                 onClick={() => setIsPlayingVideo(!isPlayingVideo)}
                 className="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[9.5px] font-bold flex items-center gap-1.5 border border-white/20 shadow-xs active:scale-95 transition-all"
               >
-                <Sparkles className="w-3 h-3 text-[#B7C3DA]" />
+                <Sparkles className="w-3 h-3 text-[#EFE7DC]" />
                 <span>{isPlayingVideo ? 'Presentation Active' : '360° Film View'}</span>
               </button>
             </div>
@@ -145,12 +145,12 @@ export const ProjectDetailScreen: React.FC = () => {
                 type="button"
                 onClick={() => setIsPlayingVideo(!isPlayingVideo)}
                 aria-label={isPlayingVideo ? 'Pause Presentation' : 'Play Presentation'}
-                className="w-13 h-13 rounded-full bg-white/95 text-[#1F2A44] flex items-center justify-center shadow-[0_8px_25px_rgba(0,0,0,0.5)] ring-4 ring-white/40 hover:scale-105 active:scale-95 transition-all"
+                className="w-13 h-13 rounded-full bg-white/95 text-[#121214] flex items-center justify-center shadow-[0_8px_25px_rgba(0,0,0,0.5)] ring-4 ring-white/40 hover:scale-105 active:scale-95 transition-all"
               >
                 {isPlayingVideo ? (
-                  <Pause className="w-5 h-5 fill-[#1F2A44] text-[#1F2A44]" />
+                  <Pause className="w-5 h-5 fill-[#121214] text-[#121214]" />
                 ) : (
-                  <Play className="w-5 h-5 fill-[#1F2A44] text-[#1F2A44] ml-0.5" />
+                  <Play className="w-5 h-5 fill-[#121214] text-[#121214] ml-0.5" />
                 )}
               </button>
             </div>
@@ -176,13 +176,13 @@ export const ProjectDetailScreen: React.FC = () => {
                 className="w-full h-1 bg-white/25 rounded-full overflow-hidden cursor-pointer relative"
               >
                 <div
-                  className="h-full bg-gradient-to-r from-[#B7C3DA] to-white rounded-full transition-all duration-300"
+                  className="h-full bg-gradient-to-r from-[#EFE7DC] to-white rounded-full transition-all duration-300"
                   style={{ width: `${videoProgress}%` }}
                 />
               </div>
 
               <div className="flex items-center justify-between mt-1 text-white/80">
-                <span className="text-[8.5px] font-bold uppercase tracking-wider text-[#B7C3DA]">
+                <span className="text-[8.5px] font-bold uppercase tracking-wider text-[#EFE7DC]">
                   HD 4K &bull; Architectural Film
                 </span>
                 <div className="flex items-center gap-2">
@@ -210,9 +210,9 @@ export const ProjectDetailScreen: React.FC = () => {
 
         {/* 2. Interactive Thumbnail Gallery Strip */}
         <div className="space-y-1.5">
-          <div className="flex items-center justify-between text-xs font-semibold text-[#1F2A44] px-0.5">
+          <div className="flex items-center justify-between text-xs font-semibold text-[#121214] px-0.5">
             <span>Architectural Angles</span>
-            <span className="text-[10px] text-[#8A93A6]">Tap to switch angle</span>
+            <span className="text-[10px] text-[#82807A]">Tap to switch angle</span>
           </div>
 
           <div className="grid grid-cols-4 gap-2">
@@ -230,8 +230,8 @@ export const ProjectDetailScreen: React.FC = () => {
                   }}
                   className={`relative rounded-xl overflow-hidden aspect-[4/3] border-2 transition-all active:scale-95 group shadow-2xs ${
                     isSelected
-                      ? 'border-[#1F2A44] ring-2 ring-[#3D4D7C]/50 shadow-sm scale-[1.02]'
-                      : 'border-[#DDE2EA] hover:border-[#3D4D7C]/50'
+                      ? 'border-[#121214] ring-2 ring-[#323232]/50 shadow-sm scale-[1.02]'
+                      : 'border-[#D8D8D8] hover:border-[#323232]/50'
                   }`}
                 >
                   <img
@@ -257,10 +257,10 @@ export const ProjectDetailScreen: React.FC = () => {
               <CheckCircle2 className="w-3.5 h-3.5 stroke-[2.4]" />
             </div>
             <div>
-              <h4 className="text-xs font-bold text-[#1F2A44]">
+              <h4 className="text-xs font-bold text-[#121214]">
                 City of Chicago ZBA Approved
               </h4>
-              <p className="text-[10px] text-[#5A657D] line-clamp-1">
+              <p className="text-[10px] text-[#82807A] line-clamp-1">
                 {project.zoningChange}
               </p>
             </div>
@@ -274,59 +274,59 @@ export const ProjectDetailScreen: React.FC = () => {
         {/* 4. Specifications Grid (4 Focused Cards) */}
         <div className="space-y-1.5">
           <div className="flex items-center justify-between px-0.5">
-            <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-[#1F2A44]">
+            <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-[#121214]">
               Project Specifications
             </h3>
-            <span className="text-[10px] font-semibold text-[#3D4D7C]">
+            <span className="text-[10px] font-semibold text-[#323232]">
               Verified Parcel Data
             </span>
           </div>
 
           <div className="grid grid-cols-2 gap-2">
-            <div className="rounded-[14px] p-2.5 bg-white border border-[#DDE2EA] shadow-2xs flex flex-col justify-between">
-              <div className="flex items-center justify-between text-[#8A93A6] mb-0.5">
+            <div className="rounded-[14px] p-2.5 bg-white border border-[#D8D8D8] shadow-2xs flex flex-col justify-between">
+              <div className="flex items-center justify-between text-[#82807A] mb-0.5">
                 <span className="text-[9px] font-bold uppercase tracking-wider">
                   Zoning District
                 </span>
-                <Building2 className="w-3.5 h-3.5 text-[#3D4D7C]" />
+                <Building2 className="w-3.5 h-3.5 text-[#323232]" />
               </div>
-              <span className="font-heading text-xs font-bold text-[#1F2A44] truncate">
+              <span className="font-heading text-xs font-bold text-[#121214] truncate">
                 {project.specs.zoningDistrict}
               </span>
             </div>
 
-            <div className="rounded-[14px] p-2.5 bg-white border border-[#DDE2EA] shadow-2xs flex flex-col justify-between">
-              <div className="flex items-center justify-between text-[#8A93A6] mb-0.5">
+            <div className="rounded-[14px] p-2.5 bg-white border border-[#D8D8D8] shadow-2xs flex flex-col justify-between">
+              <div className="flex items-center justify-between text-[#82807A] mb-0.5">
                 <span className="text-[9px] font-bold uppercase tracking-wider">
                   Scale &amp; Units
                 </span>
-                <Layers className="w-3.5 h-3.5 text-[#3D4D7C]" />
+                <Layers className="w-3.5 h-3.5 text-[#323232]" />
               </div>
-              <span className="font-heading text-xs font-bold text-[#1F2A44] truncate">
+              <span className="font-heading text-xs font-bold text-[#121214] truncate">
                 {project.specs.units}
               </span>
             </div>
 
-            <div className="rounded-[14px] p-2.5 bg-white border border-[#DDE2EA] shadow-2xs flex flex-col justify-between">
-              <div className="flex items-center justify-between text-[#8A93A6] mb-0.5">
+            <div className="rounded-[14px] p-2.5 bg-white border border-[#D8D8D8] shadow-2xs flex flex-col justify-between">
+              <div className="flex items-center justify-between text-[#82807A] mb-0.5">
                 <span className="text-[9px] font-bold uppercase tracking-wider">
                   Floor Area Ratio
                 </span>
-                <Compass className="w-3.5 h-3.5 text-[#3D4D7C]" />
+                <Compass className="w-3.5 h-3.5 text-[#323232]" />
               </div>
-              <span className="font-heading text-xs font-bold text-[#1F2A44] truncate">
+              <span className="font-heading text-xs font-bold text-[#121214] truncate">
                 {project.specs.far}
               </span>
             </div>
 
-            <div className="rounded-[14px] p-2.5 bg-white border border-[#DDE2EA] shadow-2xs flex flex-col justify-between">
-              <div className="flex items-center justify-between text-[#8A93A6] mb-0.5">
+            <div className="rounded-[14px] p-2.5 bg-white border border-[#D8D8D8] shadow-2xs flex flex-col justify-between">
+              <div className="flex items-center justify-between text-[#82807A] mb-0.5">
                 <span className="text-[9px] font-bold uppercase tracking-wider">
                   Chicago Ward
                 </span>
-                <MapPin className="w-3.5 h-3.5 text-[#3D4D7C]" />
+                <MapPin className="w-3.5 h-3.5 text-[#323232]" />
               </div>
-              <span className="font-heading text-xs font-bold text-[#1F2A44] truncate">
+              <span className="font-heading text-xs font-bold text-[#121214] truncate">
                 {project.specs.wardAlderman}
               </span>
             </div>
@@ -334,15 +334,15 @@ export const ProjectDetailScreen: React.FC = () => {
         </div>
 
         {/* 5. In-Page Direct Action Card (No floating bar clutter) */}
-        <div className="p-4 rounded-[20px] bg-white border border-[#DDE2EA] shadow-sm space-y-3">
+        <div className="p-4 rounded-[20px] bg-white border border-[#D8D8D8] shadow-sm space-y-3">
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#3D4D7C]">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#323232]">
               Have a Similar Development?
             </span>
-            <h4 className="font-heading text-sm font-bold text-[#1F2A44] mt-0.5">
+            <h4 className="font-heading text-sm font-bold text-[#191919] mt-0.5">
               Consult with Williams &amp; Williams
             </h4>
-            <p className="text-xs text-[#5A657D] mt-0.5">
+            <p className="text-xs text-[#82807A] mt-0.5">
               Get an immediate preliminary review for variance feasibility and hearing timelines.
             </p>
           </div>
@@ -351,7 +351,7 @@ export const ProjectDetailScreen: React.FC = () => {
             <button
               type="button"
               onClick={() => navigate('/quote')}
-              className="w-full py-2.5 px-4 rounded-full btn-glossy-navy text-xs font-bold shadow-xs flex items-center justify-center gap-2 active:scale-98 transition-all"
+              className="w-full py-2.5 px-4 rounded-full btn-glossy-primary text-xs font-bold text-[#FEFEFE] shadow-xs flex items-center justify-center gap-2 active:scale-98 transition-all"
             >
               <span>Request Project Assessment</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -360,18 +360,18 @@ export const ProjectDetailScreen: React.FC = () => {
             <div className="grid grid-cols-2 gap-2">
               <a
                 href="tel:630-635-7688"
-                className="py-2 px-3 rounded-full bg-white border border-[#DDE2EA] text-[#1F2A44] text-xs font-semibold text-center flex items-center justify-center gap-1.5 hover:bg-[#F2F3F5] active:scale-95 transition-all"
+                className="py-2 px-3 rounded-full bg-white border border-[#D8D8D8] text-[#191919] text-xs font-semibold text-center flex items-center justify-center gap-1.5 hover:bg-[#F4F5F5] active:scale-95 transition-all"
               >
-                <Phone className="w-3 h-3 text-[#3D4D7C]" />
+                <Phone className="w-3 h-3 text-[#323232]" />
                 <span>630-635-7688</span>
               </a>
 
               <button
                 type="button"
                 onClick={() => navigate('/book-consultation')}
-                className="py-2 px-3 rounded-full bg-white border border-[#DDE2EA] text-[#1F2A44] text-xs font-semibold text-center flex items-center justify-center gap-1.5 hover:bg-[#F2F3F5] active:scale-95 transition-all"
+                className="py-2 px-3 rounded-full bg-white border border-[#D8D8D8] text-[#191919] text-xs font-semibold text-center flex items-center justify-center gap-1.5 hover:bg-[#F4F5F5] active:scale-95 transition-all"
               >
-                <Calendar className="w-3 h-3 text-[#3D4D7C]" />
+                <Calendar className="w-3 h-3 text-[#323232]" />
                 <span>Book Consult</span>
               </button>
             </div>

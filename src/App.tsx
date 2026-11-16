@@ -38,7 +38,7 @@ function ScrollToTop() {
 
 // Loading Skeleton Fallback
 const PageSkeleton = () => (
-  <div className="min-h-screen bg-[#F2F3F5] p-4 space-y-4 animate-pulse">
+  <div className="min-h-screen bg-[#F4F5F5] p-4 space-y-4 animate-pulse">
     <div className="h-12 w-full bg-slate-200 rounded-full" />
     <div className="h-60 w-full bg-slate-200 rounded-card-lg" />
     <div className="grid grid-cols-4 gap-2">

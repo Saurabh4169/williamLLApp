@@ -18,7 +18,7 @@ export const GlassButton: React.FC<GlassButtonProps> = ({
   ...props
 }) => {
   const baseClasses =
-    'relative inline-flex items-center justify-center font-medium transition-all duration-120 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D4D7C] disabled:opacity-50 disabled:pointer-events-none select-none whitespace-nowrap';
+    'relative inline-flex items-center justify-center font-medium transition-all duration-120 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#323232] disabled:opacity-50 disabled:pointer-events-none select-none whitespace-nowrap';
 
   const sizeClasses = {
     sm: 'h-9 px-3.5 text-xs rounded-full min-h-[36px]',
@@ -29,15 +29,15 @@ export const GlassButton: React.FC<GlassButtonProps> = ({
 
   const variantClasses = {
     primary:
-      'btn-glossy-navy font-semibold text-white',
+      'btn-glossy-primary font-semibold text-[#FEFEFE]',
     glass:
-      'liquid-glass-chip text-[#1F2A44] hover:bg-white active:scale-98 font-semibold shadow-xs',
+      'liquid-glass-chip text-[#191919] hover:bg-white active:scale-98 font-semibold shadow-xs',
     outline:
-      'bg-transparent text-[#1F2A44] border border-[#DDE2EA] hover:bg-white/60 active:scale-98 font-medium',
+      'bg-transparent text-[#191919] border border-[#D8D8D8] hover:bg-white/60 active:scale-98 font-medium',
     danger:
-      'bg-[#E5484D] text-white shadow-[0_4px_14px_rgba(229,72,77,0.30)] hover:bg-[#C93B40] active:scale-98 font-semibold',
+      'bg-rose-600 text-white shadow-[0_4px_14px_rgba(225,29,72,0.30)] hover:bg-rose-700 active:scale-98 font-semibold',
     ghost:
-      'bg-transparent text-[#1F2A44] hover:bg-black/5 active:scale-98',
+      'bg-transparent text-[#191919] hover:bg-black/5 active:scale-98',
   };
 
   const widthClass = fullWidth ? 'w-full' : '';

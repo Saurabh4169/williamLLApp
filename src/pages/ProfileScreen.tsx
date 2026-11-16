@@ -102,7 +102,7 @@ export const ProfileScreen: React.FC = () => {
   });
 
   return (
-    <div className="min-h-full flex flex-col text-[#1F2A44] bg-[#F2F3F5] pb-28">
+    <div className="min-h-full flex flex-col text-[#191919] bg-transparent pb-28">
       {/* Top Header */}
       <AppHeader title="Client Profile & Settings" />
 
@@ -116,7 +116,7 @@ export const ProfileScreen: React.FC = () => {
             <button
               type="button"
               onClick={handleBackToMain}
-              className="flex items-center gap-1.5 text-xs font-bold text-[#1F2A44] hover:text-[#3D4D7C] active:scale-95 transition-all"
+              className="flex items-center gap-1.5 text-xs font-bold text-[#191919] hover:text-[#323232] active:scale-95 transition-all"
             >
               <ArrowLeft className="w-4 h-4 stroke-[2.4]" />
               <span>Back to Account</span>
@@ -125,7 +125,7 @@ export const ProfileScreen: React.FC = () => {
             <button
               type="button"
               onClick={() => navigate('/book-consultation')}
-              className="py-1 px-3 rounded-full btn-glossy-navy text-[10.5px] font-bold text-white flex items-center gap-1 shadow-2xs active:scale-95"
+              className="py-1 px-3 rounded-full btn-glossy-primary text-[10.5px] font-bold text-[#FEFEFE] flex items-center gap-1 shadow-2xs active:scale-95"
             >
               <Plus className="w-3 h-3" />
               <span>Book New</span>
@@ -134,7 +134,7 @@ export const ProfileScreen: React.FC = () => {
 
           {/* Sub-filter chips */}
           <div className="flex items-center justify-between">
-            <div className="flex gap-1.5 p-0.5 rounded-full bg-white border border-[#DDE2EA] text-xs">
+            <div className="flex gap-1.5 p-0.5 rounded-full bg-white/80 border border-[#D8D8D8] text-xs">
               {[
                 { id: 'all' as const, label: `All (${appointments.length})` },
                 { id: 'confirmed' as const, label: 'Confirmed' },
@@ -146,8 +146,8 @@ export const ProfileScreen: React.FC = () => {
                   onClick={() => setBookingFilter(f.id)}
                   className={`py-1 px-3 rounded-full text-[11px] font-bold transition-all ${
                     bookingFilter === f.id
-                      ? 'bg-[#1F2A44] text-white shadow-2xs'
-                      : 'text-[#8A93A6] hover:text-[#1F2A44]'
+                      ? 'bg-gradient-to-b from-[#323232] to-[#191919] text-[#FEFEFE] shadow-xs'
+                      : 'text-[#82807A] hover:text-[#121214]'
                   }`}
                 >
                   {f.label}
@@ -155,7 +155,7 @@ export const ProfileScreen: React.FC = () => {
               ))}
             </div>
 
-            <span className="text-[10px] font-semibold text-[#8A93A6]">
+            <span className="text-[10px] font-semibold text-[#82807A]">
               Chicago CST
             </span>
           </div>
@@ -163,12 +163,12 @@ export const ProfileScreen: React.FC = () => {
           {/* Bookings List */}
           <div className="space-y-2.5">
             {filteredAppointments.length === 0 ? (
-              <div className="p-8 text-center bg-white rounded-[22px] border border-[#DDE2EA] space-y-2">
-                <Calendar className="w-10 h-10 text-[#8A93A6] mx-auto opacity-50" />
-                <h3 className="font-heading text-sm font-bold text-[#1F2A44]">
+              <div className="p-8 text-center liquid-glass-card rounded-[22px] border border-[#D8D8D8] space-y-2">
+                <Calendar className="w-10 h-10 text-[#82807A] mx-auto opacity-50" />
+                <h3 className="font-heading text-sm font-bold text-[#191919]">
                   No bookings found
                 </h3>
-                <p className="text-xs text-[#8A93A6]">
+                <p className="text-xs text-[#82807A]">
                   You have no scheduled consultations matching this filter.
                 </p>
               </div>
@@ -176,24 +176,24 @@ export const ProfileScreen: React.FC = () => {
               filteredAppointments.map((app) => (
                 <div
                   key={app.id}
-                  className="p-3.5 rounded-[20px] bg-white border border-[#DDE2EA] shadow-2xs space-y-2.5"
+                  className="p-3.5 rounded-[20px] liquid-glass-card border border-[#D8D8D8] shadow-2xs space-y-2.5"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-full bg-[#1F2A44]/5 text-[#1F2A44] flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-full bg-[#191919]/5 text-[#191919] flex items-center justify-center">
                         {app.type === 'Video' ? (
-                          <Video className="w-4 h-4 text-[#3D4D7C]" />
+                          <Video className="w-4 h-4 text-[#323232]" />
                         ) : app.type === 'Phone' ? (
-                          <Phone className="w-4 h-4 text-[#3D4D7C]" />
+                          <Phone className="w-4 h-4 text-[#323232]" />
                         ) : (
-                          <Building2 className="w-4 h-4 text-[#3D4D7C]" />
+                          <Building2 className="w-4 h-4 text-[#323232]" />
                         )}
                       </div>
                       <div>
-                        <span className="text-[9.5px] font-bold text-[#8A93A6] uppercase tracking-wide block">
+                        <span className="text-[9.5px] font-bold text-[#82807A] uppercase tracking-wide block">
                           {app.caseNumber || 'ZONING CONSULTATION'}
                         </span>
-                        <h4 className="font-heading text-xs font-bold text-[#1F2A44]">
+                        <h4 className="font-heading text-xs font-bold text-[#191919]">
                           {app.title}
                         </h4>
                       </div>
@@ -211,40 +211,40 @@ export const ProfileScreen: React.FC = () => {
                   </div>
 
                   <div className="grid grid-cols-2 gap-2 text-xs pt-1">
-                    <div className="p-2 rounded-[12px] bg-[#F8F9FB] border border-[#EEF1F6]">
-                      <span className="text-[9.5px] text-[#8A93A6] font-medium block">
+                    <div className="p-2 rounded-[12px] bg-white/80 border border-[#D8D8D8]/70">
+                      <span className="text-[9.5px] text-[#82807A] font-medium block">
                         Scheduled Time
                       </span>
-                      <span className="font-bold text-[#1F2A44] text-[11px] mt-0.5 block">
+                      <span className="font-bold text-[#191919] text-[11px] mt-0.5 block">
                         {app.date} &bull; {app.time}
                       </span>
                     </div>
 
-                    <div className="p-2 rounded-[12px] bg-[#F8F9FB] border border-[#EEF1F6]">
-                      <span className="text-[9.5px] text-[#8A93A6] font-medium block">
+                    <div className="p-2 rounded-[12px] bg-white/80 border border-[#D8D8D8]/70">
+                      <span className="text-[9.5px] text-[#82807A] font-medium block">
                         Assigned Specialist
                       </span>
-                      <span className="font-bold text-[#1F2A44] text-[11px] mt-0.5 block truncate">
+                      <span className="font-bold text-[#191919] text-[11px] mt-0.5 block truncate">
                         {app.expertName}
                       </span>
                     </div>
                   </div>
 
                   <div className="pt-1 flex items-center justify-between text-xs">
-                    <span className="text-[10px] text-[#8A93A6] truncate max-w-[180px]">
+                    <span className="text-[10px] text-[#82807A] truncate max-w-[180px]">
                       {app.location}
                     </span>
                     <div className="flex items-center gap-1.5">
                       <a
                         href="tel:630-635-7688"
-                        className="py-1 px-2.5 rounded-full bg-[#F2F4F8] text-[#1F2A44] text-[10px] font-bold hover:bg-slate-200"
+                        className="py-1 px-2.5 rounded-full bg-white/80 border border-[#D8D8D8]/70 text-[#191919] text-[10px] font-bold hover:bg-slate-200"
                       >
                         Call Line
                       </a>
                       <button
                         type="button"
                         onClick={() => alert(`Details sent for appointment ${app.id}`)}
-                        className="py-1 px-2.5 rounded-full btn-glossy-navy text-white text-[10px] font-bold shadow-2xs"
+                        className="py-1 px-2.5 rounded-full btn-glossy-primary text-[#FEFEFE] text-[10px] font-bold shadow-2xs"
                       >
                         Join Call
                       </button>
@@ -267,19 +267,19 @@ export const ProfileScreen: React.FC = () => {
             <button
               type="button"
               onClick={handleBackToMain}
-              className="flex items-center gap-1.5 text-xs font-bold text-[#1F2A44] hover:text-[#3D4D7C] active:scale-95 transition-all"
+              className="flex items-center gap-1.5 text-xs font-bold text-[#121214] hover:text-[#323232] active:scale-95 transition-all"
             >
               <ArrowLeft className="w-4 h-4 stroke-[2.4]" />
               <span>Back to Account</span>
             </button>
 
-            <span className="text-xs font-bold text-[#8A93A6]">
+            <span className="text-xs font-bold text-[#82807A]">
               {totalSavedCount} Saved
             </span>
           </div>
 
           {/* Sub-filter chips */}
-          <div className="flex gap-1.5 p-0.5 rounded-full bg-white border border-[#DDE2EA] text-xs">
+          <div className="flex gap-1.5 p-0.5 rounded-full bg-white/80 border border-[#D8D8D8] text-xs">
             {[
               { id: 'all' as const, label: `All (${totalSavedCount})` },
               { id: 'services' as const, label: `Services (${savedServices.length})` },
@@ -291,8 +291,8 @@ export const ProfileScreen: React.FC = () => {
                 onClick={() => setSavedFilter(f.id)}
                 className={`py-1 px-3 rounded-full text-[11px] font-bold transition-all ${
                   savedFilter === f.id
-                    ? 'bg-[#1F2A44] text-white shadow-2xs'
-                    : 'text-[#8A93A6] hover:text-[#1F2A44]'
+                    ? 'bg-gradient-to-b from-[#323232] to-[#191919] text-[#FEFEFE] shadow-xs'
+                    : 'text-[#82807A] hover:text-[#191919]'
                 }`}
               >
                 {f.label}
@@ -301,12 +301,12 @@ export const ProfileScreen: React.FC = () => {
           </div>
 
           {totalSavedCount === 0 ? (
-            <div className="p-8 text-center bg-white rounded-[22px] border border-[#DDE2EA] space-y-2">
-              <Heart className="w-10 h-10 text-[#8A93A6] mx-auto opacity-50" />
-              <h3 className="font-heading text-sm font-bold text-[#1F2A44]">
+            <div className="p-8 text-center liquid-glass-card rounded-[22px] border border-[#D8D8D8] space-y-2">
+              <Heart className="w-10 h-10 text-[#82807A] mx-auto opacity-50" />
+              <h3 className="font-heading text-sm font-bold text-[#191919]">
                 No saved items yet
               </h3>
-              <p className="text-xs text-[#8A93A6]">
+              <p className="text-xs text-[#82807A]">
                 Tap the heart icon on any service or construction project to save it here.
               </p>
             </div>
@@ -315,7 +315,7 @@ export const ProfileScreen: React.FC = () => {
               {/* Saved Services Section */}
               {(savedFilter === 'all' || savedFilter === 'services') && savedServices.length > 0 && (
                 <div className="space-y-2">
-                  <h4 className="font-heading text-xs font-bold uppercase tracking-wider text-[#1F2A44] px-0.5">
+                  <h4 className="font-heading text-xs font-bold uppercase tracking-wider text-[#191919] px-0.5">
                     Saved Services ({savedServices.length})
                   </h4>
 
@@ -324,7 +324,7 @@ export const ProfileScreen: React.FC = () => {
                       <div
                         key={service.id}
                         onClick={() => navigate(`/services/${service.slug}`)}
-                        className="p-2.5 rounded-[18px] bg-white border border-[#DDE2EA] shadow-2xs hover:shadow-xs transition-all cursor-pointer group flex flex-col justify-between"
+                        className="p-2.5 rounded-[18px] liquid-glass-card border border-[#D8D8D8] shadow-2xs hover:shadow-xs transition-all cursor-pointer group flex flex-col justify-between"
                       >
                         <div>
                           <div className="relative aspect-[4/3] w-full rounded-[12px] overflow-hidden bg-slate-100 flex-shrink-0">
@@ -342,21 +342,21 @@ export const ProfileScreen: React.FC = () => {
                               className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/90 backdrop-blur-md shadow-xs flex items-center justify-center"
                               aria-label="Remove from saved"
                             >
-                              <Heart className="w-3 h-3 fill-[#E5484D] text-[#E5484D]" />
+                              <Heart className="w-3 h-3 fill-[#323232] text-[#323232]" />
                             </button>
                           </div>
 
-                          <span className="text-[9px] font-bold text-[#3D4D7C] uppercase block mt-1.5 truncate">
+                          <span className="text-[9px] font-bold text-[#323232] uppercase block mt-1.5 truncate">
                             {service.category}
                           </span>
-                          <h5 className="font-heading text-xs font-bold text-[#1F2A44] line-clamp-2 leading-tight mt-0.5">
+                          <h5 className="font-heading text-xs font-bold text-[#121214] line-clamp-2 leading-tight mt-0.5">
                             {service.title}
                           </h5>
                         </div>
 
-                        <div className="mt-2 pt-1.5 border-t border-[#EEF1F6] flex items-center justify-between text-[9.5px]">
-                          <span className="text-[#8A93A6] truncate">{service.priceNote}</span>
-                          <span className="font-bold text-[#3D4D7C] flex items-center gap-0.5">
+                        <div className="mt-2 pt-1.5 border-t border-[#D8D8D8]/60 flex items-center justify-between text-[9.5px]">
+                          <span className="text-[#82807A] truncate">{service.priceNote}</span>
+                          <span className="font-bold text-[#323232] flex items-center gap-0.5">
                             View &rarr;
                           </span>
                         </div>
@@ -369,7 +369,7 @@ export const ProfileScreen: React.FC = () => {
               {/* Saved Construction Projects Section */}
               {(savedFilter === 'all' || savedFilter === 'construction') && savedProjects.length > 0 && (
                 <div className="space-y-2">
-                  <h4 className="font-heading text-xs font-bold uppercase tracking-wider text-[#1F2A44] px-0.5">
+                  <h4 className="font-heading text-xs font-bold uppercase tracking-wider text-[#191919] px-0.5">
                     Saved Construction Projects ({savedProjects.length})
                   </h4>
 
@@ -378,7 +378,7 @@ export const ProfileScreen: React.FC = () => {
                       <div
                         key={project.id}
                         onClick={() => navigate(`/construction/${project.id}`)}
-                        className="p-2.5 rounded-[18px] bg-white border border-[#DDE2EA] shadow-2xs hover:shadow-xs transition-all cursor-pointer group flex flex-col justify-between"
+                        className="p-2.5 rounded-[18px] liquid-glass-card border border-[#D8D8D8] shadow-2xs hover:shadow-xs transition-all cursor-pointer group flex flex-col justify-between"
                       >
                         <div>
                           <div className="relative aspect-[4/3] w-full rounded-[12px] overflow-hidden bg-slate-100 flex-shrink-0">
@@ -396,32 +396,32 @@ export const ProfileScreen: React.FC = () => {
                               className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/90 backdrop-blur-md shadow-xs flex items-center justify-center"
                               aria-label="Remove from saved"
                             >
-                              <Heart className="w-3 h-3 fill-[#E5484D] text-[#E5484D]" />
+                              <Heart className="w-3 h-3 fill-[#323232] text-[#323232]" />
                             </button>
 
                             <div className="absolute bottom-1.5 left-1.5">
                               <span className={`text-[8.5px] font-extrabold uppercase px-1.5 py-0.5 rounded-md text-white shadow-xs ${
-                                project.category === 'Past' ? 'bg-[#1F2A44]' : 'bg-[#3FA66B]'
+                                project.category === 'Past' ? 'bg-[#191919]' : 'bg-[#22C55E]'
                               }`}>
                                 {project.category === 'Past' ? 'Completed' : 'In Progress'}
                               </span>
                             </div>
                           </div>
 
-                          <span className="text-[9px] font-bold text-[#3D4D7C] uppercase block mt-1.5 truncate">
+                          <span className="text-[9px] font-bold text-[#323232] uppercase block mt-1.5 truncate">
                             {project.specs.zoningDistrict} &bull; {project.specs.units}
                           </span>
-                          <h5 className="font-heading text-xs font-bold text-[#1F2A44] line-clamp-1 leading-tight mt-0.5">
+                          <h5 className="font-heading text-xs font-bold text-[#191919] line-clamp-1 leading-tight mt-0.5">
                             {project.name}
                           </h5>
-                          <p className="text-[10px] text-[#8A93A6] line-clamp-1 mt-0.5">
+                          <p className="text-[10px] text-[#82807A] line-clamp-1 mt-0.5">
                             {project.address}
                           </p>
                         </div>
 
-                        <div className="mt-2 pt-1.5 border-t border-[#EEF1F6] flex items-center justify-between text-[9.5px]">
-                          <span className="text-[#8A93A6] truncate">{project.timelineRange}</span>
-                          <span className="font-bold text-[#3D4D7C] flex items-center gap-0.5">
+                        <div className="mt-2 pt-1.5 border-t border-[#D8D8D8]/60 flex items-center justify-between text-[9.5px]">
+                          <span className="text-[#82807A] truncate">{project.timelineRange}</span>
+                          <span className="font-bold text-[#323232] flex items-center gap-0.5">
                             Details &rarr;
                           </span>
                         </div>
@@ -445,7 +445,7 @@ export const ProfileScreen: React.FC = () => {
             <button
               type="button"
               onClick={handleBackToMain}
-              className="flex items-center gap-1.5 text-xs font-bold text-[#1F2A44] hover:text-[#3D4D7C] active:scale-95 transition-all"
+              className="flex items-center gap-1.5 text-xs font-bold text-[#121214] hover:text-[#323232] active:scale-95 transition-all"
             >
               <ArrowLeft className="w-4 h-4 stroke-[2.4]" />
               <span>Back to Account</span>
@@ -463,12 +463,12 @@ export const ProfileScreen: React.FC = () => {
 
           <div className="space-y-2.5">
             {quotes.length === 0 ? (
-              <div className="p-8 text-center bg-white rounded-[22px] border border-[#DDE2EA] space-y-2">
-                <FileText className="w-10 h-10 text-[#8A93A6] mx-auto opacity-50" />
-                <h3 className="font-heading text-sm font-bold text-[#1F2A44]">
+              <div className="p-8 text-center liquid-glass-card rounded-[22px] border border-[#D8D8D8] space-y-2">
+                <FileText className="w-10 h-10 text-[#82807A] mx-auto opacity-50" />
+                <h3 className="font-heading text-sm font-bold text-[#191919]">
                   No inquiries submitted
                 </h3>
-                <p className="text-xs text-[#8A93A6]">
+                <p className="text-xs text-[#82807A]">
                   Submit a Chicago property address to receive an official preliminary zoning assessment.
                 </p>
               </div>
@@ -476,10 +476,10 @@ export const ProfileScreen: React.FC = () => {
               quotes.map((q) => (
                 <div
                   key={q.id}
-                  className="p-3.5 rounded-[20px] bg-white border border-[#DDE2EA] shadow-2xs space-y-2.5"
+                  className="p-3.5 rounded-[20px] liquid-glass-card border border-[#D8D8D8] shadow-2xs space-y-2.5"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-bold text-[#3D4D7C] uppercase">
+                    <span className="text-[10px] font-mono font-bold text-[#323232] uppercase">
                       {q.id.toUpperCase()}
                     </span>
                     <span
@@ -494,38 +494,38 @@ export const ProfileScreen: React.FC = () => {
                   </div>
 
                   <div>
-                    <h4 className="font-heading text-xs font-bold text-[#1F2A44]">
+                    <h4 className="font-heading text-xs font-bold text-[#191919]">
                       {q.serviceType}
                     </h4>
-                    <p className="text-xs text-[#5A657D] font-medium truncate mt-0.5">
+                    <p className="text-xs text-[#82807A] font-medium truncate mt-0.5">
                       {q.address}
                     </p>
                   </div>
 
-                  <div className="p-2.5 rounded-[12px] bg-[#F8F9FB] border border-[#EEF1F6] text-xs">
-                    <span className="text-[9.5px] font-bold text-[#8A93A6] uppercase block mb-0.5">
+                  <div className="p-2.5 rounded-[12px] bg-white/80 border border-[#D8D8D8]/70 text-xs">
+                    <span className="text-[9.5px] font-bold text-[#82807A] uppercase block mb-0.5">
                       Inquiry Scope
                     </span>
-                    <p className="text-[#1F2A44] leading-relaxed line-clamp-2">
+                    <p className="text-[#191919] leading-relaxed line-clamp-2">
                       {q.message}
                     </p>
                   </div>
 
-                  <div className="pt-1 flex items-center justify-between text-xs border-t border-[#EEF1F6]">
-                    <span className="text-[10px] text-[#8A93A6]">
+                  <div className="pt-1 flex items-center justify-between text-xs border-t border-[#D8D8D8]/60">
+                    <span className="text-[10px] text-[#82807A]">
                       Submitted on {q.dateSubmitted}
                     </span>
                     <div className="flex items-center gap-1.5">
                       <a
                         href={`tel:${BUSINESS_INFO.phoneRaw}`}
-                        className="py-1 px-2.5 rounded-full bg-[#F2F4F8] text-[#1F2A44] text-[10px] font-bold hover:bg-slate-200"
+                        className="py-1 px-2.5 rounded-full bg-white/80 border border-[#D8D8D8]/70 text-[#191919] text-[10px] font-bold hover:bg-slate-200"
                       >
                         Call Office
                       </a>
                       <button
                         type="button"
                         onClick={() => navigate('/chat')}
-                        className="py-1 px-2.5 rounded-full btn-glossy-navy text-white text-[10px] font-bold shadow-2xs"
+                        className="py-1 px-2.5 rounded-full btn-glossy-primary text-[#FEFEFE] text-[10px] font-bold shadow-2xs"
                       >
                         Chat Updates
                       </button>
@@ -544,18 +544,18 @@ export const ProfileScreen: React.FC = () => {
       {activeView === 'main' && (
         <div className="px-4 py-3 space-y-4 max-w-md mx-auto w-full">
           {/* 1. Profile Card (Exact Match to Apex Repair Reference) */}
-          <div className="p-4 rounded-[22px] bg-white border border-[#DDE2EA] shadow-xs space-y-3">
+          <div className="p-4 rounded-[22px] liquid-glass-card border border-[#D8D8D8] shadow-xs space-y-3">
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-3">
                 {/* Avatar with Camera badge */}
                 <div className="relative">
-                  <div className="w-14 h-14 rounded-[18px] bg-gradient-to-br from-[#1F2A44] via-[#3D4D7C] to-[#2B3B60] flex items-center justify-center text-white text-lg font-bold shadow-sm ring-2 ring-white flex-shrink-0">
+                  <div className="w-14 h-14 rounded-[18px] bg-gradient-to-br from-[#323232] via-[#242424] to-[#191919] flex items-center justify-center text-[#FEFEFE] text-lg font-bold shadow-sm ring-2 ring-white flex-shrink-0">
                     {user.name
                       .split(' ')
                       .map((n) => n[0])
                       .join('')}
                   </div>
-                  <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#E5484D] text-white flex items-center justify-center ring-2 ring-white shadow-2xs">
+                  <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#323232] text-white flex items-center justify-center ring-2 ring-white shadow-2xs">
                     <Camera className="w-2.5 h-2.5 stroke-[2.5]" />
                   </div>
                 </div>
@@ -563,18 +563,18 @@ export const ProfileScreen: React.FC = () => {
                 {/* Name, Verified Badge & Role */}
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <h2 className="font-heading text-base font-bold text-[#1F2A44]">
+                    <h2 className="font-heading text-base font-bold text-[#191919]">
                       {user.name}
                     </h2>
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 fill-emerald-100 flex-shrink-0" />
                   </div>
 
-                  <p className="text-xs text-[#8A93A6] mt-0.5 font-medium">
+                  <p className="text-xs text-[#82807A] mt-0.5 font-medium">
                     Lead Property Developer
                   </p>
 
                   <div className="mt-1">
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-sky-50 text-[#3D4D7C] border border-sky-100 text-[10px] font-bold tracking-tight">
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-[#C0D0E1]/30 text-[#323232] border border-[#A4B3BE]/40 text-[10px] font-bold tracking-tight">
                       Verified Chicago Client
                     </span>
                   </div>
@@ -586,64 +586,64 @@ export const ProfileScreen: React.FC = () => {
                 type="button"
                 onClick={() => setIsEditing(!isEditing)}
                 aria-label="Edit Profile"
-                className="w-8 h-8 rounded-xl bg-slate-50 border border-slate-200 text-[#5A657D] flex items-center justify-center hover:bg-slate-100 active:scale-95 transition-all shadow-2xs"
+                className="w-8 h-8 rounded-xl bg-white/80 border border-[#D8D8D8] text-[#82807A] flex items-center justify-center hover:bg-white active:scale-95 transition-all shadow-2xs"
               >
                 <Pencil className="w-3.5 h-3.5" />
               </button>
             </div>
 
             {/* Contact Details (Company, Email, Phone) */}
-            <div className="pt-2 border-t border-[#EEF1F6] space-y-1.5 text-xs text-[#5A657D]">
+            <div className="pt-2 border-t border-[#D8D8D8]/60 space-y-1.5 text-xs text-[#82807A]">
               <div className="flex items-center gap-2">
-                <Building2 className="w-3.5 h-3.5 text-[#8A93A6] flex-shrink-0" />
+                <Building2 className="w-3.5 h-3.5 text-[#82807A] flex-shrink-0" />
                 <span className="truncate">{user.company}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-[#8A93A6] flex-shrink-0" />
+                <Mail className="w-3.5 h-3.5 text-[#82807A] flex-shrink-0" />
                 <span className="truncate">{user.email}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-[#8A93A6] flex-shrink-0" />
+                <Phone className="w-3.5 h-3.5 text-[#82807A] flex-shrink-0" />
                 <span>{user.phone}</span>
               </div>
             </div>
 
             {/* Inline Profile Editing Drawer */}
             {isEditing && (
-              <div className="pt-3 border-t border-[#EEF1F6] space-y-2 text-xs">
+              <div className="pt-3 border-t border-[#D8D8D8]/60 space-y-2 text-xs">
                 <div>
-                  <label className="block text-[10px] font-bold text-[#8A93A6] uppercase tracking-wider mb-0.5">
+                  <label className="block text-[10px] font-bold text-[#82807A] uppercase tracking-wider mb-0.5">
                     Full Name
                   </label>
                   <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full h-9 px-3 rounded-[10px] border border-[#DDE2EA] bg-[#F8F9FB] text-xs"
+                    className="w-full h-9 px-3 rounded-[10px] border border-[#D8D8D8] bg-white/90 text-xs text-[#191919]"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <label className="block text-[10px] font-bold text-[#8A93A6] uppercase tracking-wider mb-0.5">
+                    <label className="block text-[10px] font-bold text-[#82807A] uppercase tracking-wider mb-0.5">
                       Company
                     </label>
                     <input
                       type="text"
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
-                      className="w-full h-9 px-3 rounded-[10px] border border-[#DDE2EA] bg-[#F8F9FB] text-xs"
+                      className="w-full h-9 px-3 rounded-[10px] border border-[#D8D8D8] bg-white/90 text-xs text-[#191919]"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-[#8A93A6] uppercase tracking-wider mb-0.5">
+                    <label className="block text-[10px] font-bold text-[#82807A] uppercase tracking-wider mb-0.5">
                       Phone
                     </label>
                     <input
                       type="text"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full h-9 px-3 rounded-[10px] border border-[#DDE2EA] bg-[#F8F9FB] text-xs"
+                      className="w-full h-9 px-3 rounded-[10px] border border-[#D8D8D8] bg-white/90 text-xs text-[#191919]"
                     />
                   </div>
                 </div>
@@ -651,7 +651,7 @@ export const ProfileScreen: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleSaveProfile}
-                  className="w-full h-9 rounded-full btn-glossy-navy font-semibold text-xs text-white"
+                  className="w-full h-9 rounded-full btn-glossy-primary font-semibold text-xs text-[#FEFEFE]"
                 >
                   Save Profile
                 </button>
@@ -661,204 +661,204 @@ export const ProfileScreen: React.FC = () => {
 
           {/* 2. ACTIVITY & WORKSPACE (Apex Repair Reference Group 1) */}
           <div className="space-y-1.5">
-            <span className="text-[10.5px] font-bold uppercase tracking-wider text-[#8A93A6] px-1 block">
+            <span className="text-[10.5px] font-bold uppercase tracking-wider text-[#82807A] px-1 block">
               Activity &amp; Workspace
             </span>
 
-            <div className="rounded-[20px] bg-white border border-[#DDE2EA] shadow-xs divide-y divide-[#EEF1F6] overflow-hidden">
+            <div className="rounded-[20px] liquid-glass-card border border-[#D8D8D8] shadow-xs divide-y divide-[#D8D8D8]/50 overflow-hidden">
               {/* Row 1: Track Cases */}
               <div
                 onClick={() => navigate('/cases')}
-                className="p-3.5 flex items-center justify-between hover:bg-[#F8F9FB] transition-colors cursor-pointer group active:bg-slate-50"
+                className="p-3.5 flex items-center justify-between hover:bg-white/60 transition-colors cursor-pointer group active:bg-white/80"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center flex-shrink-0">
                     <Briefcase className="w-4 h-4 stroke-[2]" />
                   </div>
                   <div>
-                    <h4 className="font-heading text-xs font-bold text-[#1F2A44] leading-tight">
+                    <h4 className="font-heading text-xs font-bold text-[#191919] leading-tight">
                       Track Cases
                     </h4>
-                    <p className="text-[10.5px] text-[#8A93A6] font-medium mt-0.5">
+                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5">
                       #WW-2026-0842 &bull; ZBA Hearing Nov 24
                     </p>
                   </div>
                 </div>
-                <ChevronRight className="w-4 h-4 text-[#8A93A6] group-hover:translate-x-0.5 transition-transform" />
+                <ChevronRight className="w-4 h-4 text-[#82807A] group-hover:translate-x-0.5 transition-transform" />
               </div>
 
               {/* Row 2: My Bookings */}
               <div
                 onClick={() => handleOpenView('bookings')}
-                className="p-3.5 flex items-center justify-between hover:bg-[#F8F9FB] transition-colors cursor-pointer group active:bg-slate-50"
+                className="p-3.5 flex items-center justify-between hover:bg-white/60 transition-colors cursor-pointer group active:bg-white/80"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center flex-shrink-0">
                     <Calendar className="w-4 h-4 stroke-[2]" />
                   </div>
                   <div>
-                    <h4 className="font-heading text-xs font-bold text-[#1F2A44] leading-tight">
+                    <h4 className="font-heading text-xs font-bold text-[#191919] leading-tight">
                       My Bookings
                     </h4>
-                    <p className="text-[10.5px] text-[#8A93A6] font-medium mt-0.5">
+                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5">
                       Scheduled strategy consultations
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[11px] font-bold text-[#8A93A6]">
+                  <span className="text-[11px] font-bold text-[#82807A]">
                     {appointments.length}
                   </span>
-                  <ChevronRight className="w-4 h-4 text-[#8A93A6] group-hover:translate-x-0.5 transition-transform" />
+                  <ChevronRight className="w-4 h-4 text-[#82807A] group-hover:translate-x-0.5 transition-transform" />
                 </div>
               </div>
 
               {/* Row 3: Saved Items */}
               <div
                 onClick={() => handleOpenView('saved')}
-                className="p-3.5 flex items-center justify-between hover:bg-[#F8F9FB] transition-colors cursor-pointer group active:bg-slate-50"
+                className="p-3.5 flex items-center justify-between hover:bg-white/60 transition-colors cursor-pointer group active:bg-white/80"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center flex-shrink-0">
                     <Heart className="w-4 h-4 stroke-[2]" />
                   </div>
                   <div>
-                    <h4 className="font-heading text-xs font-bold text-[#1F2A44] leading-tight">
+                    <h4 className="font-heading text-xs font-bold text-[#191919] leading-tight">
                       Saved Items
                     </h4>
-                    <p className="text-[10.5px] text-[#8A93A6] font-medium mt-0.5">
+                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5">
                       Saved services &amp; construction projects
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[11px] font-bold text-[#8A93A6]">
+                  <span className="text-[11px] font-bold text-[#82807A]">
                     {totalSavedCount}
                   </span>
-                  <ChevronRight className="w-4 h-4 text-[#8A93A6] group-hover:translate-x-0.5 transition-transform" />
+                  <ChevronRight className="w-4 h-4 text-[#82807A] group-hover:translate-x-0.5 transition-transform" />
                 </div>
               </div>
 
               {/* Row 4: My Enquiries & Quotes */}
               <div
                 onClick={() => handleOpenView('enquiries')}
-                className="p-3.5 flex items-center justify-between hover:bg-[#F8F9FB] transition-colors cursor-pointer group active:bg-slate-50"
+                className="p-3.5 flex items-center justify-between hover:bg-white/60 transition-colors cursor-pointer group active:bg-white/80"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0">
                     <FileText className="w-4 h-4 stroke-[2]" />
                   </div>
                   <div>
-                    <h4 className="font-heading text-xs font-bold text-[#1F2A44] leading-tight">
+                    <h4 className="font-heading text-xs font-bold text-[#191919] leading-tight">
                       My Enquiries &amp; Quotes
                     </h4>
-                    <p className="text-[10.5px] text-[#8A93A6] font-medium mt-0.5">
+                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5">
                       Property reviews &amp; fee estimates
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[11px] font-bold text-[#8A93A6]">
+                  <span className="text-[11px] font-bold text-[#82807A]">
                     {quotes.length}
                   </span>
-                  <ChevronRight className="w-4 h-4 text-[#8A93A6] group-hover:translate-x-0.5 transition-transform" />
+                  <ChevronRight className="w-4 h-4 text-[#82807A] group-hover:translate-x-0.5 transition-transform" />
                 </div>
               </div>
 
               {/* Row 5: Documents Vault & Deeds */}
               <div
                 onClick={() => navigate('/vault')}
-                className="p-3.5 flex items-center justify-between hover:bg-[#F8F9FB] transition-colors cursor-pointer group active:bg-slate-50"
+                className="p-3.5 flex items-center justify-between hover:bg-white/60 transition-colors cursor-pointer group active:bg-white/80"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
                     <ShieldCheck className="w-4 h-4 stroke-[2]" />
                   </div>
                   <div>
-                    <h4 className="font-heading text-xs font-bold text-[#1F2A44] leading-tight">
+                    <h4 className="font-heading text-xs font-bold text-[#191919] leading-tight">
                       Documents Vault &amp; Deeds
                     </h4>
-                    <p className="text-[10.5px] text-[#8A93A6] font-medium mt-0.5">
+                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5">
                       Plats of survey, deeds &amp; ZBA filings
                     </p>
                   </div>
                 </div>
-                <ChevronRight className="w-4 h-4 text-[#8A93A6] group-hover:translate-x-0.5 transition-transform" />
+                <ChevronRight className="w-4 h-4 text-[#82807A] group-hover:translate-x-0.5 transition-transform" />
               </div>
             </div>
           </div>
 
           {/* 3. PREFERENCES & SUPPORT (Apex Repair Reference Group 2 - Image 3) */}
           <div className="space-y-1.5 pt-1">
-            <span className="text-[10.5px] font-bold uppercase tracking-wider text-[#8A93A6] px-1 block">
+            <span className="text-[10.5px] font-bold uppercase tracking-wider text-[#82807A] px-1 block">
               Preferences &amp; Support
             </span>
 
-            <div className="rounded-[20px] bg-white border border-[#DDE2EA] shadow-xs divide-y divide-[#EEF1F6] overflow-hidden">
+            <div className="rounded-[20px] liquid-glass-card border border-[#D8D8D8] shadow-xs divide-y divide-[#D8D8D8]/50 overflow-hidden">
               {/* Row 1: Notifications */}
               <div
                 onClick={() => navigate('/notifications')}
-                className="p-3.5 flex items-center justify-between hover:bg-[#F8F9FB] transition-colors cursor-pointer group active:bg-slate-50"
+                className="p-3.5 flex items-center justify-between hover:bg-white/60 transition-colors cursor-pointer group active:bg-white/80"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0">
                     <Bell className="w-4 h-4 stroke-[2]" />
                   </div>
                   <div>
-                    <h4 className="font-heading text-xs font-bold text-[#1F2A44] leading-tight">
+                    <h4 className="font-heading text-xs font-bold text-[#191919] leading-tight">
                       Notifications
                     </h4>
-                    <p className="text-[10.5px] text-[#8A93A6] font-medium mt-0.5">
+                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5">
                       Case alerts &amp; City Council updates
                     </p>
                   </div>
                 </div>
-                <ChevronRight className="w-4 h-4 text-[#8A93A6] group-hover:translate-x-0.5 transition-transform" />
+                <ChevronRight className="w-4 h-4 text-[#82807A] group-hover:translate-x-0.5 transition-transform" />
               </div>
 
               {/* Row 2: Support & Verification Desk */}
               <a
                 href={`tel:${BUSINESS_INFO.phoneRaw}`}
-                className="p-3.5 flex items-center justify-between hover:bg-[#F8F9FB] transition-colors cursor-pointer group active:bg-slate-50"
+                className="p-3.5 flex items-center justify-between hover:bg-white/60 transition-colors cursor-pointer group active:bg-white/80"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center flex-shrink-0">
                     <Headphones className="w-4 h-4 stroke-[2]" />
                   </div>
                   <div>
-                    <h4 className="font-heading text-xs font-bold text-[#1F2A44] leading-tight">
+                    <h4 className="font-heading text-xs font-bold text-[#191919] leading-tight">
                       Support &amp; Verification Desk
                     </h4>
-                    <p className="text-[10.5px] text-[#8A93A6] font-medium mt-0.5">
+                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5">
                       Direct hotline &bull; 630-635-7688
                     </p>
                   </div>
                 </div>
-                <ChevronRight className="w-4 h-4 text-[#8A93A6] group-hover:translate-x-0.5 transition-transform" />
+                <ChevronRight className="w-4 h-4 text-[#82807A] group-hover:translate-x-0.5 transition-transform" />
               </a>
 
               {/* Row 3: Zoning Readiness Checklist */}
               <div
                 onClick={() => navigate('/checklist')}
-                className="p-3.5 flex items-center justify-between hover:bg-[#F8F9FB] transition-colors cursor-pointer group active:bg-slate-50"
+                className="p-3.5 flex items-center justify-between hover:bg-white/60 transition-colors cursor-pointer group active:bg-white/80"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center flex-shrink-0">
                     <CheckSquare className="w-4 h-4 stroke-[2]" />
                   </div>
                   <div>
-                    <h4 className="font-heading text-xs font-bold text-[#1F2A44] leading-tight">
+                    <h4 className="font-heading text-xs font-bold text-[#191919] leading-tight">
                       Zoning Readiness Checklist
                     </h4>
-                    <p className="text-[10.5px] text-[#8A93A6] font-medium mt-0.5">
+                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5">
                       7-step permit audit for Chicago City Hall
                     </p>
                   </div>
                 </div>
-                <ChevronRight className="w-4 h-4 text-[#8A93A6] group-hover:translate-x-0.5 transition-transform" />
+                <ChevronRight className="w-4 h-4 text-[#82807A] group-hover:translate-x-0.5 transition-transform" />
               </div>
 
               {/* Row 4: Sign Out */}
@@ -867,25 +867,25 @@ export const ProfileScreen: React.FC = () => {
                 className="p-3.5 flex items-center justify-between hover:bg-rose-50/50 transition-colors cursor-pointer group active:bg-rose-50"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-rose-50 text-[#E5484D] flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-rose-50 text-[#E52E3A] flex items-center justify-center flex-shrink-0">
                     <LogOut className="w-4 h-4 stroke-[2]" />
                   </div>
                   <div>
-                    <h4 className="font-heading text-xs font-bold text-[#E5484D] leading-tight">
+                    <h4 className="font-heading text-xs font-bold text-[#E52E3A] leading-tight">
                       Sign Out
                     </h4>
-                    <p className="text-[10.5px] text-[#8A93A6] font-medium mt-0.5">
+                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5">
                       Session secured &bull; Alex Sterling
                     </p>
                   </div>
                 </div>
-                <ChevronRight className="w-4 h-4 text-[#8A93A6] group-hover:translate-x-0.5 transition-transform" />
+                <ChevronRight className="w-4 h-4 text-[#82807A] group-hover:translate-x-0.5 transition-transform" />
               </div>
             </div>
           </div>
 
           {/* Legal / Disclaimers Footer */}
-          <div className="pt-2 text-center space-y-1 text-[#8A93A6] flex flex-col items-center">
+          <div className="pt-2 text-center space-y-1 text-[#82807A] flex flex-col items-center">
             <img src="/brand-icon-navy.png" alt="" className="w-5 h-5 object-contain opacity-40 mb-1" />
             <p className="text-[10px]">
               Williams &amp; Williams LLC &bull; Chicago Zoning Specialists

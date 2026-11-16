@@ -111,27 +111,27 @@ export const HomeScreen: React.FC = () => {
   };
 
   return (
-    <div className="min-h-full flex flex-col text-[#1F2A44] pb-6">
+    <div className="min-h-full flex flex-col text-[#121214] pb-6">
       {/* 1. Global AppHeader: Brand on left, Bell & Avatar on right */}
       <AppHeader />
 
       <div className="px-4 pt-3 space-y-6">
         {/* 2. Capsule Search Bar with Divider and Filter */}
         <form onSubmit={handleSearchSubmit} className="relative">
-          <div className="h-12 bg-white rounded-full border border-[#DDE2EA] shadow-xs flex items-center px-4 gap-3 focus-within:ring-2 focus-within:ring-[#3D4D7C] focus-within:border-transparent transition-all">
-            <Search className="w-5 h-5 text-[#8A93A6] flex-shrink-0" />
+          <div className="h-12 bg-white rounded-full border border-[#D8D8D8] shadow-xs flex items-center px-4 gap-3 focus-within:ring-2 focus-within:ring-[#18181A] focus-within:border-transparent transition-all">
+            <Search className="w-5 h-5 text-[#82807A] flex-shrink-0" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search Chicago address, zoning district or service..."
-              className="flex-1 bg-transparent text-xs text-[#1F2A44] placeholder-[#8A93A6] focus:outline-none"
+              className="flex-1 bg-transparent text-xs text-[#121214] placeholder-[#82807A] focus:outline-none"
             />
-            <div className="h-5 w-[1px] bg-[#DDE2EA] flex-shrink-0" />
+            <div className="h-5 w-[1px] bg-[#D8D8D8] flex-shrink-0" />
             <button
               type="button"
               onClick={() => navigate('/zoning-lookup')}
-              className="p-1 text-[#1F2A44] hover:text-[#3D4D7C] active:scale-90 transition-all flex-shrink-0"
+              className="p-1 text-[#121214] hover:text-[#18181A] active:scale-90 transition-all flex-shrink-0"
               aria-label="Open Zoning Map and Filters"
             >
               <SlidersHorizontal className="w-4 h-4 stroke-[2]" />
@@ -145,9 +145,9 @@ export const HomeScreen: React.FC = () => {
             {/* Tile 1: Current */}
             <button
               onClick={() => navigate('/construction?tab=current')}
-              className="h-[58px] rounded-[16px] bg-[#1F2A44] text-white flex flex-col items-center justify-center shadow-sm shadow-[#1F2A44]/20 transition-all active:scale-95 group relative overflow-hidden"
+              className="h-[58px] rounded-[16px] btn-glossy-primary flex flex-col items-center justify-center shadow-xs border border-white/20 transition-all active:scale-95 group relative overflow-hidden"
             >
-              <div className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+              <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
                 <HardHat className="w-3.5 h-3.5 text-white stroke-[2.2]" />
               </div>
               <span className="text-[11px] font-bold text-white tracking-tight mt-1 text-center line-clamp-1">
@@ -158,12 +158,12 @@ export const HomeScreen: React.FC = () => {
             {/* Tile 2: Past */}
             <button
               onClick={() => navigate('/construction?tab=past')}
-              className="h-[58px] rounded-[16px] bg-white text-[#1F2A44] border border-[#DDE2EA] flex flex-col items-center justify-center shadow-2xs hover:border-[#3D4D7C]/40 transition-all active:scale-95 group"
+              className="h-[58px] rounded-[16px] liquid-glass-card text-[#323232] border border-[#D8D8D8]/75 flex flex-col items-center justify-center shadow-2xs hover:border-[#A4B3BE] transition-all active:scale-95 group"
             >
-              <div className="w-7 h-7 rounded-full bg-[#3D4D7C]/10 flex items-center justify-center text-[#3D4D7C] group-hover:bg-[#3D4D7C] group-hover:text-white transition-colors">
+              <div className="w-7 h-7 rounded-full bg-[#C0D0E1]/35 flex items-center justify-center text-[#323232] group-hover:bg-[#323232] group-hover:text-white transition-colors">
                 <CheckCircle2 className="w-3.5 h-3.5 stroke-[2.2]" />
               </div>
-              <span className="text-[11px] font-bold text-[#1F2A44] tracking-tight mt-1 text-center line-clamp-1">
+              <span className="text-[11px] font-bold text-[#323232] tracking-tight mt-1 text-center line-clamp-1">
                 Past
               </span>
             </button>
@@ -171,12 +171,12 @@ export const HomeScreen: React.FC = () => {
             {/* Tile 3: Cases */}
             <button
               onClick={() => navigate('/cases')}
-              className="h-[58px] rounded-[16px] bg-white text-[#1F2A44] border border-[#DDE2EA] flex flex-col items-center justify-center shadow-2xs hover:border-[#3D4D7C]/40 transition-all active:scale-95 group relative"
+              className="h-[58px] rounded-[16px] liquid-glass-card text-[#323232] border border-[#D8D8D8]/75 flex flex-col items-center justify-center shadow-2xs hover:border-[#A4B3BE] transition-all active:scale-95 group relative"
             >
-              <div className="w-7 h-7 rounded-full bg-[#3D4D7C]/10 flex items-center justify-center text-[#3D4D7C] group-hover:bg-[#3D4D7C] group-hover:text-white transition-colors relative">
+              <div className="w-7 h-7 rounded-full bg-[#C0D0E1]/35 flex items-center justify-center text-[#323232] group-hover:bg-[#323232] group-hover:text-white transition-colors relative">
                 <Briefcase className="w-3.5 h-3.5 stroke-[2]" />
               </div>
-              <span className="text-[11px] font-bold text-[#1F2A44] tracking-tight mt-1 text-center line-clamp-1">
+              <span className="text-[11px] font-bold text-[#323232] tracking-tight mt-1 text-center line-clamp-1">
                 Cases
               </span>
             </button>
@@ -184,12 +184,12 @@ export const HomeScreen: React.FC = () => {
             {/* Tile 4: Permits */}
             <button
               onClick={() => navigate('/checklist')}
-              className="h-[58px] rounded-[16px] bg-white text-[#1F2A44] border border-[#DDE2EA] flex flex-col items-center justify-center shadow-2xs hover:border-[#3D4D7C]/40 transition-all active:scale-95 group"
+              className="h-[58px] rounded-[16px] liquid-glass-card text-[#323232] border border-[#D8D8D8]/75 flex flex-col items-center justify-center shadow-2xs hover:border-[#A4B3BE] transition-all active:scale-95 group"
             >
-              <div className="w-7 h-7 rounded-full bg-[#3D4D7C]/10 flex items-center justify-center text-[#3D4D7C] group-hover:bg-[#3D4D7C] group-hover:text-white transition-colors">
+              <div className="w-7 h-7 rounded-full bg-[#C0D0E1]/35 flex items-center justify-center text-[#323232] group-hover:bg-[#323232] group-hover:text-white transition-colors">
                 <CheckSquare className="w-3.5 h-3.5 stroke-[2]" />
               </div>
-              <span className="text-[11px] font-bold text-[#1F2A44] tracking-tight mt-1 text-center line-clamp-1">
+              <span className="text-[11px] font-bold text-[#323232] tracking-tight mt-1 text-center line-clamp-1">
                 Permits
               </span>
             </button>
@@ -198,7 +198,7 @@ export const HomeScreen: React.FC = () => {
 
         {/* 4. Featured Banner Card (Proportional Mobile Sizing) */}
         <section aria-label="Featured Highlight">
-          <div className="relative rounded-[20px] overflow-hidden shadow-md bg-[#1F2A44] cursor-pointer group">
+          <div className="relative rounded-[20px] overflow-hidden shadow-md bg-[#191919] cursor-pointer group">
             <div className="relative h-[215px] sm:h-[235px] w-full">
               <img
                 src={featuredSlides[featuredIndex].image}
@@ -220,11 +220,11 @@ export const HomeScreen: React.FC = () => {
                     setIsFavorite(!isFavorite);
                   }}
                   aria-label="Save to favorites"
-                  className="w-7 h-7 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#1F2A44] shadow-xs hover:bg-white active:scale-90 transition-all"
+                  className="w-7 h-7 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#323232] shadow-xs hover:bg-white active:scale-90 transition-all"
                 >
                   <Heart
                     className={`w-3.5 h-3.5 transition-colors ${
-                      isFavorite ? 'fill-[#E5484D] text-[#E5484D]' : 'text-[#1F2A44]'
+                      isFavorite ? 'fill-[#A4B3BE] text-[#A4B3BE]' : 'text-[#323232]'
                     }`}
                   />
                 </button>
@@ -237,16 +237,16 @@ export const HomeScreen: React.FC = () => {
               >
                 {/* Title & Price Row */}
                 <div className="flex items-center justify-between gap-2">
-                  <h3 className="font-heading text-sm sm:text-[15px] font-bold text-white line-clamp-1 leading-snug">
+                  <h3 className="font-heading text-sm sm:text-[15px] font-bold !text-white line-clamp-1 leading-snug drop-shadow-sm">
                     {featuredSlides[featuredIndex].title}
                   </h3>
-                  <span className="text-[10px] sm:text-xs font-bold text-white/90 bg-white/15 backdrop-blur-md border border-white/20 px-2 py-0.5 rounded-full whitespace-nowrap">
+                  <span className="text-[10px] sm:text-xs font-bold !text-white bg-white/20 backdrop-blur-md border border-white/30 px-2 py-0.5 rounded-full whitespace-nowrap shadow-xs">
                     {featuredSlides[featuredIndex].price}
                   </span>
                 </div>
 
                 {/* Address */}
-                <p className="text-[10.5px] text-white/80 line-clamp-1 mt-0.5">
+                <p className="text-[10.5px] !text-[#E0E7EE] line-clamp-1 mt-0.5 drop-shadow-xs font-medium">
                   {featuredSlides[featuredIndex].location}
                 </p>
 
@@ -256,8 +256,8 @@ export const HomeScreen: React.FC = () => {
                     const StatIcon = stat.icon;
                     return (
                       <div key={sIdx} className="flex items-center gap-1 whitespace-nowrap">
-                        <StatIcon className="w-3 h-3 text-[#B7C3DA]" />
-                        <span>{stat.label}</span>
+                        <StatIcon className="w-3 h-3 text-[#C0D0E1]" />
+                        <span className="!text-[#F4F5F5] font-semibold">{stat.label}</span>
                       </div>
                     );
                   })}
@@ -271,16 +271,16 @@ export const HomeScreen: React.FC = () => {
                       e.stopPropagation();
                       navigate('/quote');
                     }}
-                    className="flex-1 h-8 rounded-full btn-glossy-navy border border-white/25 text-white font-heading font-bold text-[11px] flex items-center justify-center gap-1 shadow-sm active:scale-95 transition-all"
+                    className="flex-1 h-8 rounded-full bg-white hover:bg-white/95 text-[#191919] font-heading font-bold text-[11px] flex items-center justify-center gap-1.5 shadow-[0_4px_16px_rgba(0,0,0,0.35)] active:scale-95 transition-all"
                   >
                     <span>Request Free Quote</span>
-                    <ArrowRight className="w-3 h-3" />
+                    <ArrowRight className="w-3 h-3 stroke-[2.2]" />
                   </button>
 
                   <a
                     href={`tel:${BUSINESS_INFO.phoneRaw}`}
                     onClick={(e) => e.stopPropagation()}
-                    className="h-8 px-3.5 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white font-heading font-semibold text-[11px] flex items-center justify-center gap-1 shadow-xs active:scale-95 transition-all flex-shrink-0"
+                    className="h-8 px-3.5 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/40 !text-white font-heading font-semibold text-[11px] flex items-center justify-center gap-1 shadow-xs active:scale-95 transition-all flex-shrink-0"
                     aria-label={`Call Williams & Williams LLC at ${BUSINESS_INFO.phone}`}
                   >
                     <PhoneCall className="w-3 h-3 text-white stroke-[2.2]" />
@@ -298,8 +298,8 @@ export const HomeScreen: React.FC = () => {
                 key={i}
                 onClick={() => setFeaturedIndex(i)}
                 aria-label={`Slide ${i + 1}`}
-                className={`h-1 rounded-full transition-all duration-300 ${
-                  i === featuredIndex ? 'w-5 bg-[#3D4D7C]' : 'w-1 bg-[#DDE2EA]'
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  i === featuredIndex ? 'w-6 bg-gradient-to-r from-[#323232] to-[#191919] shadow-xs shadow-black/20' : 'w-1.5 bg-[#A4B3BE]/40 hover:bg-[#A4B3BE]'
                 }`}
               />
             ))}
@@ -309,12 +309,12 @@ export const HomeScreen: React.FC = () => {
         {/* 5. Popular Locations (Compact 1 row, 4 areas matching reference) */}
         <section aria-label="Popular Locations" className="space-y-2.5">
           <div className="flex items-center justify-between">
-            <h2 className="font-heading text-[18px] sm:text-[20px] font-bold text-[#1F2A44] tracking-tight">
+            <h2 className="font-heading text-[18px] sm:text-[20px] font-bold text-[#191919] tracking-tight">
               Popular Locations
             </h2>
             <button
               onClick={() => navigate('/zoning-lookup')}
-              className="text-xs font-semibold text-[#8A93A6] hover:text-[#3D4D7C] transition-colors"
+              className="text-xs font-semibold text-[#8C9DAA] hover:text-[#191919] transition-colors"
             >
               View all
             </button>
@@ -362,16 +362,16 @@ export const HomeScreen: React.FC = () => {
 
         {/* 6. Key Performance Metrics Bar */}
         <section aria-label="Key Performance Metrics">
-          <div className="bg-white rounded-[22px] border border-[#E2E8F0] shadow-xs p-3.5 sm:p-4 grid grid-cols-3 divide-x divide-slate-100">
+          <div className="liquid-glass-card rounded-[22px] border border-[#D8D8D8]/80 shadow-xs p-3.5 sm:p-4 grid grid-cols-3 divide-x divide-[#D8D8D8]/60">
             {/* Stat 1 */}
             <div className="flex flex-col items-center justify-center text-center px-1">
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 stroke-[2.5]" />
-                <span className="font-heading font-extrabold text-sm sm:text-base text-[#1F2A44] tracking-tight">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5]" />
+                <span className="font-heading font-extrabold text-sm sm:text-base text-[#191919] tracking-tight">
                   500+
                 </span>
               </div>
-              <span className="text-[8px] sm:text-[8.5px] uppercase tracking-wider text-[#8A93A6] font-bold mt-0.5">
+              <span className="text-[8px] sm:text-[8.5px] uppercase tracking-wider text-[#8C9DAA] font-bold mt-0.5">
                 Variances Approved
               </span>
             </div>
@@ -379,12 +379,12 @@ export const HomeScreen: React.FC = () => {
             {/* Stat 2 */}
             <div className="flex flex-col items-center justify-center text-center px-1">
               <div className="flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-sky-500 stroke-[2.5]" />
-                <span className="font-heading font-extrabold text-sm sm:text-base text-[#1F2A44] tracking-tight">
+                <Clock className="w-3.5 h-3.5 text-[#323232] stroke-[2.5]" />
+                <span className="font-heading font-extrabold text-sm sm:text-base text-[#191919] tracking-tight">
                   45-Day
                 </span>
               </div>
-              <span className="text-[8px] sm:text-[8.5px] uppercase tracking-wider text-[#8A93A6] font-bold mt-0.5">
+              <span className="text-[8px] sm:text-[8.5px] uppercase tracking-wider text-[#8C9DAA] font-bold mt-0.5">
                 Avg Approval
               </span>
             </div>
@@ -392,12 +392,12 @@ export const HomeScreen: React.FC = () => {
             {/* Stat 3 */}
             <div className="flex flex-col items-center justify-center text-center px-1">
               <div className="flex items-center gap-1.5">
-                <Building2 className="w-3.5 h-3.5 text-amber-500 stroke-[2.5]" />
-                <span className="font-heading font-extrabold text-sm sm:text-base text-[#1F2A44] tracking-tight">
+                <Building2 className="w-3.5 h-3.5 text-[#A4B3BE] stroke-[2.5]" />
+                <span className="font-heading font-extrabold text-sm sm:text-base text-[#191919] tracking-tight">
                   20+ Yrs
                 </span>
               </div>
-              <span className="text-[8px] sm:text-[8.5px] uppercase tracking-wider text-[#8A93A6] font-bold mt-0.5">
+              <span className="text-[8px] sm:text-[8.5px] uppercase tracking-wider text-[#8C9DAA] font-bold mt-0.5">
                 Experience
               </span>
             </div>
@@ -408,16 +408,16 @@ export const HomeScreen: React.FC = () => {
         <section aria-label="Practice Areas" className="space-y-3">
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#3D4D7C] block">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#8C9DAA] block">
                 Practice Areas
               </span>
-              <h2 className="font-heading text-lg font-bold text-[#1F2A44] tracking-tight mt-0.5">
+              <h2 className="font-heading text-lg font-bold text-[#191919] tracking-tight mt-0.5">
                 Specialized Zoning Solutions
               </h2>
             </div>
             <button
               onClick={() => navigate('/services')}
-              className="text-xs font-semibold text-[#3D4D7C] hover:text-[#1F2A44] flex items-center gap-0.5 transition-colors"
+              className="text-xs font-semibold text-[#323232] hover:text-[#191919] flex items-center gap-0.5 transition-colors"
             >
               <span>Explore All</span>
               <ChevronRight className="w-3.5 h-3.5" />
@@ -428,7 +428,7 @@ export const HomeScreen: React.FC = () => {
             {/* Card 1: Commercial & Mixed-Use Entitlements */}
             <div
               onClick={() => navigate('/services/zoning-analysis-consultation')}
-              className="bg-white rounded-[22px] border border-[#E2E8F0] overflow-hidden shadow-xs group cursor-pointer hover:border-[#3D4D7C]/30 active:scale-[0.99] transition-all"
+              className="liquid-glass-card rounded-[22px] border border-[#D8D8D8]/80 overflow-hidden shadow-xs group cursor-pointer hover:border-[#A4B3BE] active:scale-[0.99] transition-all"
             >
               {/* Image Banner */}
               <div className="relative h-[180px] w-full overflow-hidden">
@@ -441,7 +441,7 @@ export const HomeScreen: React.FC = () => {
 
                 {/* Top Floating Badges */}
                 <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10">
-                  <div className="w-7 h-7 rounded-lg bg-black/60 backdrop-blur-md flex items-center justify-center text-amber-400 border border-white/20 shadow-xs">
+                  <div className="w-7 h-7 rounded-lg bg-black/60 backdrop-blur-md flex items-center justify-center text-[#C0D0E1] border border-white/20 shadow-xs">
                     <Scale className="w-3.5 h-3.5" />
                   </div>
                   <span className="bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/20">
@@ -459,15 +459,15 @@ export const HomeScreen: React.FC = () => {
 
               {/* White Card Body */}
               <div className="p-3.5 space-y-2.5">
-                <p className="text-xs text-[#64748B] leading-relaxed">
+                <p className="text-xs text-[#71717A] leading-relaxed">
                   Navigate complex FAR bonuses, downtown planned developments, and City Hall aldermanic zoning amendments.
                 </p>
 
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                  <span className="text-[11px] font-semibold text-[#8A93A6]">
+                <div className="pt-2 border-t border-[#D8D8D8]/50 flex items-center justify-between text-xs">
+                  <span className="text-[11px] font-semibold text-[#8C9DAA]">
                     Municipal Counsel
                   </span>
-                  <div className="font-bold text-[#3D4D7C] group-hover:text-[#1F2A44] flex items-center gap-1 transition-colors text-xs">
+                  <div className="font-bold text-[#323232] group-hover:text-[#191919] flex items-center gap-1 transition-colors text-xs">
                     <span>Explore Service</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </div>
@@ -478,7 +478,7 @@ export const HomeScreen: React.FC = () => {
             {/* Card 2: ZBA Variances & Administrative Appeals */}
             <div
               onClick={() => navigate('/services/zba-variance-appeals')}
-              className="bg-white rounded-[22px] border border-[#E2E8F0] overflow-hidden shadow-xs group cursor-pointer hover:border-[#3D4D7C]/30 active:scale-[0.99] transition-all"
+              className="liquid-glass-card rounded-[22px] border border-[#D8D8D8]/80 overflow-hidden shadow-xs group cursor-pointer hover:border-[#A4B3BE] active:scale-[0.99] transition-all"
             >
               {/* Image Banner */}
               <div className="relative h-[180px] w-full overflow-hidden">
@@ -491,7 +491,7 @@ export const HomeScreen: React.FC = () => {
 
                 {/* Top Floating Badges */}
                 <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10">
-                  <div className="w-7 h-7 rounded-lg bg-black/60 backdrop-blur-md flex items-center justify-center text-sky-400 border border-white/20 shadow-xs">
+                  <div className="w-7 h-7 rounded-lg bg-black/60 backdrop-blur-md flex items-center justify-center text-[#C0D0E1] border border-white/20 shadow-xs">
                     <ShieldCheck className="w-3.5 h-3.5" />
                   </div>
                   <span className="bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/20">
@@ -509,15 +509,15 @@ export const HomeScreen: React.FC = () => {
 
               {/* White Card Body */}
               <div className="p-3.5 space-y-2.5">
-                <p className="text-xs text-[#64748B] leading-relaxed">
+                <p className="text-xs text-[#71717A] leading-relaxed">
                   Specialized representation for front &amp; rear yard setbacks, building height exceptions, and lot coverage relief.
                 </p>
 
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                  <span className="text-[11px] font-semibold text-[#8A93A6]">
+                <div className="pt-2 border-t border-[#D8D8D8]/50 flex items-center justify-between text-xs">
+                  <span className="text-[11px] font-semibold text-[#8C9DAA]">
                     Cook County Division
                   </span>
-                  <div className="font-bold text-[#3D4D7C] group-hover:text-[#1F2A44] flex items-center gap-1 transition-colors text-xs">
+                  <div className="font-bold text-[#323232] group-hover:text-[#191919] flex items-center gap-1 transition-colors text-xs">
                     <span>Explore Service</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </div>
@@ -531,16 +531,16 @@ export const HomeScreen: React.FC = () => {
         <section aria-label="Featured Entitlements" className="space-y-3">
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#3D4D7C] block">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#8C9DAA] block">
                 Case Studies
               </span>
-              <h2 className="font-heading text-lg font-bold text-[#1F2A44] tracking-tight mt-0.5">
+              <h2 className="font-heading text-lg font-bold text-[#191919] tracking-tight mt-0.5">
                 Featured Entitlements
               </h2>
             </div>
             <button
               onClick={() => navigate('/construction')}
-              className="text-xs font-semibold text-[#3D4D7C] hover:text-[#1F2A44] flex items-center gap-0.5 transition-colors"
+              className="text-xs font-semibold text-[#323232] hover:text-[#191919] flex items-center gap-0.5 transition-colors"
             >
               <span>Portfolio</span>
               <ChevronRight className="w-3.5 h-3.5" />
@@ -551,7 +551,7 @@ export const HomeScreen: React.FC = () => {
             {/* Case Study Card 1: Residential Rooftop System */}
             <div
               onClick={() => navigate('/cases/ww-2026-0842')}
-              className="bg-white rounded-[22px] border border-[#E2E8F0] overflow-hidden shadow-xs group cursor-pointer hover:border-[#3D4D7C]/30 active:scale-[0.99] transition-all"
+              className="liquid-glass-card rounded-[22px] border border-[#D8D8D8]/80 overflow-hidden shadow-xs group cursor-pointer hover:border-[#A4B3BE] active:scale-[0.99] transition-all"
             >
               {/* Image Banner */}
               <div className="relative h-[180px] w-full overflow-hidden">
@@ -564,7 +564,7 @@ export const HomeScreen: React.FC = () => {
 
                 {/* Top Badges */}
                 <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10">
-                  <span className="bg-[#FFF3E0] text-[#D97706] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-amber-200">
+                  <span className="bg-[#C0D0E1]/35 backdrop-blur-md text-[#323232] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-[#A4B3BE]/40">
                     Residential
                   </span>
                   <span className="bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded-full border border-white/20">
@@ -583,20 +583,20 @@ export const HomeScreen: React.FC = () => {
               {/* White Card Body */}
               <div className="p-3.5 space-y-2.5">
                 <div className="flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-1.5 text-[#64748B]">
-                    <MapPin className="w-3.5 h-3.5 text-[#8A93A6]" />
+                  <div className="flex items-center gap-1.5 text-[#71717A]">
+                    <MapPin className="w-3.5 h-3.5 text-[#8C9DAA]" />
                     <span>2144 N. Damen Ave, Chicago</span>
                   </div>
-                  <span className="font-bold text-[#1F2A44] text-[11px]">
+                  <span className="font-bold text-[#191919] text-[11px]">
                     B3-2 District
                   </span>
                 </div>
 
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                  <span className="text-[11px] font-semibold text-[#8A93A6]">
+                <div className="pt-2 border-t border-[#D8D8D8]/50 flex items-center justify-between text-xs">
+                  <span className="text-[11px] font-semibold text-[#8C9DAA]">
                     Verified Approval
                   </span>
-                  <div className="font-bold text-[#3D4D7C] group-hover:text-[#1F2A44] flex items-center gap-1 transition-colors text-xs">
+                  <div className="font-bold text-[#323232] group-hover:text-[#191919] flex items-center gap-1 transition-colors text-xs">
                     <span>Case Study</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </div>
@@ -607,7 +607,7 @@ export const HomeScreen: React.FC = () => {
             {/* Case Study Card 2: Commercial Warehouse Rooftop Array */}
             <div
               onClick={() => navigate('/cases/ww-2026-0791')}
-              className="bg-white rounded-[22px] border border-[#E2E8F0] overflow-hidden shadow-xs group cursor-pointer hover:border-[#3D4D7C]/30 active:scale-[0.99] transition-all"
+              className="liquid-glass-card rounded-[22px] border border-[#D8D8D8]/80 overflow-hidden shadow-xs group cursor-pointer hover:border-[#A4B3BE] active:scale-[0.99] transition-all"
             >
               {/* Image Banner */}
               <div className="relative h-[180px] w-full overflow-hidden">
@@ -620,7 +620,7 @@ export const HomeScreen: React.FC = () => {
 
                 {/* Top Badges */}
                 <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10">
-                  <span className="bg-[#E0F2FE] text-[#0284C7] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-sky-200">
+                  <span className="bg-[#C0D0E1]/35 backdrop-blur-md text-[#323232] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-[#A4B3BE]/40">
                     Commercial
                   </span>
                   <span className="bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded-full border border-white/20">
@@ -639,20 +639,20 @@ export const HomeScreen: React.FC = () => {
               {/* White Card Body */}
               <div className="p-3.5 space-y-2.5">
                 <div className="flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-1.5 text-[#64748B]">
-                    <MapPin className="w-3.5 h-3.5 text-[#8A93A6]" />
+                  <div className="flex items-center gap-1.5 text-[#71717A]">
+                    <MapPin className="w-3.5 h-3.5 text-[#8C9DAA]" />
                     <span>1250 W. Fulton Market, Chicago</span>
                   </div>
-                  <span className="font-bold text-[#1F2A44] text-[11px]">
+                  <span className="font-bold text-[#191919] text-[11px]">
                     DX-5 / FAR 5.0
                   </span>
                 </div>
 
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                  <span className="text-[11px] font-semibold text-[#8A93A6]">
+                <div className="pt-2 border-t border-[#D8D8D8]/50 flex items-center justify-between text-xs">
+                  <span className="text-[11px] font-semibold text-[#8C9DAA]">
                     Verified Approval
                   </span>
-                  <div className="font-bold text-[#3D4D7C] group-hover:text-[#1F2A44] flex items-center gap-1 transition-colors text-xs">
+                  <div className="font-bold text-[#323232] group-hover:text-[#191919] flex items-center gap-1 transition-colors text-xs">
                     <span>Case Study</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </div>

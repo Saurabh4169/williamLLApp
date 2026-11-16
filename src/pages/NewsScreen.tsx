@@ -20,17 +20,17 @@ export const NewsScreen: React.FC = () => {
   const regularArticles = filteredNews.slice(1);
 
   return (
-    <div className="min-h-full flex flex-col text-[#1F2A44] pb-6">
+    <div className="min-h-full flex flex-col text-[#121214] pb-6">
       {/* AppHeader with Back button */}
       <AppHeader title="Zoning News" showBack />
 
       <div className="px-4 py-3 space-y-4">
         {/* Title Header */}
         <div>
-          <h1 className="font-heading text-2xl font-bold text-[#1F2A44] tracking-tight">
+          <h1 className="font-heading text-2xl font-bold text-[#121214] tracking-tight">
             Municipal Ordinance &amp; Policy
           </h1>
-          <p className="text-xs text-[#8A93A6] mt-0.5 font-medium">
+          <p className="text-xs text-[#82807A] mt-0.5 font-medium">
             Real-time updates on Chicago City Council, ZBA, and ARO regulations.
           </p>
         </div>
@@ -38,14 +38,14 @@ export const NewsScreen: React.FC = () => {
         {/* Alerts Toggle Card */}
         <GlassCard variant="card" className="p-3.5 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-tile bg-[#3D4D7C]/10 text-[#3D4D7C] flex items-center justify-center flex-shrink-0">
-              {alertsEnabled ? <BellRing className="w-5 h-5" /> : <Bell className="w-5 h-5 text-[#8A93A6]" />}
+            <div className="w-10 h-10 rounded-tile bg-[#323232]/10 text-[#323232] flex items-center justify-center flex-shrink-0">
+              {alertsEnabled ? <BellRing className="w-5 h-5" /> : <Bell className="w-5 h-5 text-[#82807A]" />}
             </div>
             <div>
-              <h4 className="font-heading text-xs font-bold text-[#1F2A44]">
+              <h4 className="font-heading text-xs font-bold text-[#121214]">
                 Chicago Zoning Alerts
               </h4>
-              <p className="text-[11px] text-[#8A93A6] line-clamp-1">
+              <p className="text-[11px] text-[#82807A] line-clamp-1">
                 Instant notifications on ward rezonings &amp; ZBA hearings
               </p>
             </div>
@@ -55,7 +55,7 @@ export const NewsScreen: React.FC = () => {
             onClick={() => setAlertsEnabled(!alertsEnabled)}
             aria-label="Toggle push alerts"
             className={`w-11 h-6 rounded-full transition-colors relative p-0.5 flex-shrink-0 ${
-              alertsEnabled ? 'bg-[#3FA66B]' : 'bg-[#DDE2EA]'
+              alertsEnabled ? 'bg-[#3FA66B]' : 'bg-[#D8D8D8]'
             }`}
           >
             <div
@@ -82,7 +82,7 @@ export const NewsScreen: React.FC = () => {
         {/* Featured Card (Top) */}
         {featuredArticle && (
           <div className="space-y-1">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#8A93A6] block px-1">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#82807A] block px-1">
               Featured Analysis
             </span>
             <NewsCard article={featuredArticle} featured />
@@ -92,7 +92,7 @@ export const NewsScreen: React.FC = () => {
         {/* Remaining List as Equal Compact Horizontal Cards (96x96 thumbnail) */}
         {regularArticles.length > 0 && (
           <div className="space-y-2.5 pt-1">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#8A93A6] block px-1">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#82807A] block px-1">
               Latest Regulatory Briefings
             </span>
             {regularArticles.map((article) => (

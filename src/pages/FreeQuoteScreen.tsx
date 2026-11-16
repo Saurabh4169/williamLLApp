@@ -67,7 +67,7 @@ export const FreeQuoteScreen: React.FC = () => {
           particleCount: 80,
           spread: 70,
           origin: { y: 0.6 },
-          colors: ['#3D4D7C', '#1F2A44', '#B7C3DA', '#3FA66B'],
+          colors: ['#323232', '#191919', '#A4B3BE', '#C0D0E1', '#D8D8D8', '#FEFEFE'],
         });
       } catch {
         // Safe fallback
@@ -77,32 +77,32 @@ export const FreeQuoteScreen: React.FC = () => {
 
   if (isCompleted) {
     return (
-      <div className="min-h-full flex flex-col justify-between text-[#1F2A44] p-6 pb-6">
+      <div className="min-h-full flex flex-col justify-between text-[#191919] p-6 pb-6">
         <div className="pt-12 text-center space-y-4">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: 'spring', damping: 15 }}
-            className="w-20 h-20 mx-auto rounded-full bg-[#3FA66B]/15 text-[#3FA66B] flex items-center justify-center border-2 border-[#3FA66B]/30"
+            className="w-20 h-20 mx-auto rounded-full bg-[#22C55E]/15 text-[#22C55E] flex items-center justify-center border-2 border-[#22C55E]/30"
           >
             <CheckCircle2 className="w-10 h-10 stroke-[2.2]" />
           </motion.div>
 
-          <h1 className="font-heading text-2xl font-bold text-[#1F2A44] tracking-tight">
+          <h1 className="font-heading text-2xl font-bold text-[#191919] tracking-tight">
             Free Quote Request Received!
           </h1>
-          <p className="text-xs text-[#8A93A6] max-w-sm mx-auto leading-relaxed">
+          <p className="text-xs text-[#71717A] max-w-sm mx-auto leading-relaxed">
             Thank you, {formData.name}. Our zoning consultants will evaluate your property and reach out within 1 business day.
           </p>
 
           <GlassCard className="p-4 text-left space-y-2 mt-6">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#3D4D7C]">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#323232]">
               Submitted Details
             </span>
             <div className="text-xs space-y-1">
-              <div><strong className="text-[#1F2A44]">Service:</strong> {formData.serviceType}</div>
-              <div><strong className="text-[#1F2A44]">Type:</strong> {formData.propertyType}</div>
-              <div><strong className="text-[#1F2A44]">Address:</strong> {formData.address}</div>
+              <div><strong className="text-[#191919]">Service:</strong> {formData.serviceType}</div>
+              <div><strong className="text-[#191919]">Type:</strong> {formData.propertyType}</div>
+              <div><strong className="text-[#191919]">Address:</strong> {formData.address}</div>
             </div>
           </GlassCard>
         </div>
@@ -128,17 +128,17 @@ export const FreeQuoteScreen: React.FC = () => {
   }
 
   return (
-    <div className="min-h-full flex flex-col text-[#1F2A44] pb-6">
+    <div className="min-h-full flex flex-col text-[#191919] pb-6">
       <AppHeader title="Free Quote Request" showBack />
 
       <div className="px-4 py-4 space-y-5">
         {/* Progress Tracker Bar */}
         <div className="space-y-2">
           <div className="flex items-center justify-between text-xs">
-            <span className="font-bold text-[#3D4D7C] uppercase tracking-wider">
+            <span className="font-bold text-[#323232] uppercase tracking-wider">
               Step {step} of 4
             </span>
-            <span className="text-[#8A93A6]">
+            <span className="text-[#8C9DAA]">
               {step === 1 && 'Service & Property Type'}
               {step === 2 && 'Your Contact Info'}
               {step === 3 && 'Project Details'}
@@ -148,7 +148,7 @@ export const FreeQuoteScreen: React.FC = () => {
 
           <div className="w-full h-2 rounded-full bg-white/60 border border-white overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-[#3D4D7C] to-[#7D90B5] transition-all duration-300 rounded-full"
+              className="h-full bg-gradient-to-r from-[#323232] via-[#A4B3BE] to-[#C0D0E1] transition-all duration-300 rounded-full shadow-xs"
               style={{ width: `${(step / 4) * 100}%` }}
             />
           </div>
@@ -163,13 +163,13 @@ export const FreeQuoteScreen: React.FC = () => {
             className="space-y-4"
           >
             <GlassCard className="p-4 space-y-3">
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#1F2A44]">
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#191919]">
                 1. Select Zoning Service
               </label>
               <select
                 value={formData.serviceType}
                 onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
-                className="w-full h-11 px-3 rounded-xl border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#1F2A44] font-medium focus:ring-2 focus:ring-[#3D4D7C]"
+                className="w-full h-11 px-3 rounded-xl border border-[#D8D8D8] bg-white/70 backdrop-blur-md text-xs text-[#191919] font-medium focus:ring-2 focus:ring-[#C0D0E1]"
               >
                 {SERVICES_DATA.map((s) => (
                   <option key={s.id} value={s.title}>
@@ -180,7 +180,7 @@ export const FreeQuoteScreen: React.FC = () => {
             </GlassCard>
 
             <GlassCard className="p-4 space-y-3">
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#1F2A44]">
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#191919]">
                 2. Property Classification
               </label>
               <div className="grid grid-cols-2 gap-2">
@@ -191,8 +191,8 @@ export const FreeQuoteScreen: React.FC = () => {
                     onClick={() => setFormData({ ...formData, propertyType: type })}
                     className={`p-3 rounded-xl border text-xs font-semibold transition-all select-none text-left ${
                       formData.propertyType === type
-                        ? 'btn-glossy-navy shadow-xs text-white'
-                        : 'liquid-glass-chip text-[#1F2A44] hover:border-[#3D4D7C]/40'
+                        ? 'btn-glossy-primary shadow-xs text-white'
+                        : 'liquid-glass-chip text-[#323232] hover:border-[#A4B3BE]'
                     }`}
                   >
                     {type}
@@ -212,12 +212,12 @@ export const FreeQuoteScreen: React.FC = () => {
             className="space-y-4"
           >
             <GlassCard className="p-4 space-y-4">
-              <h3 className="font-heading text-base font-bold text-[#1F2A44]">
+              <h3 className="font-heading text-base font-bold text-[#121214]">
                 Contact Details
               </h3>
 
               <div>
-                <label className="block text-xs font-bold text-[#8A93A6] mb-1">
+                <label className="block text-xs font-bold text-[#82807A] mb-1">
                   Full Name *
                 </label>
                 <input
@@ -225,12 +225,12 @@ export const FreeQuoteScreen: React.FC = () => {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. Alex Sterling"
-                  className="w-full h-11 px-3 rounded-xl border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#1F2A44] focus:ring-2 focus:ring-[#3D4D7C]"
+                  className="w-full h-11 px-3 rounded-xl border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#121214] focus:ring-2 focus:ring-[#323232]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#8A93A6] mb-1">
+                <label className="block text-xs font-bold text-[#82807A] mb-1">
                   Email Address *
                 </label>
                 <input
@@ -238,12 +238,12 @@ export const FreeQuoteScreen: React.FC = () => {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="e.g. alex@example.com"
-                  className="w-full h-11 px-3 rounded-xl border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#1F2A44] focus:ring-2 focus:ring-[#3D4D7C]"
+                  className="w-full h-11 px-3 rounded-xl border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#121214] focus:ring-2 focus:ring-[#323232]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#8A93A6] mb-1">
+                <label className="block text-xs font-bold text-[#82807A] mb-1">
                   Phone Number *
                 </label>
                 <input
@@ -251,7 +251,7 @@ export const FreeQuoteScreen: React.FC = () => {
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="e.g. 312-555-0198"
-                  className="w-full h-11 px-3 rounded-xl border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#1F2A44] focus:ring-2 focus:ring-[#3D4D7C]"
+                  className="w-full h-11 px-3 rounded-xl border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#121214] focus:ring-2 focus:ring-[#323232]"
                 />
               </div>
             </GlassCard>
@@ -267,7 +267,7 @@ export const FreeQuoteScreen: React.FC = () => {
             className="space-y-4"
           >
             <GlassCard className="p-4 space-y-3">
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#1F2A44]">
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#121214]">
                 Chicago Property Address or PIN
               </label>
               <input
@@ -275,12 +275,12 @@ export const FreeQuoteScreen: React.FC = () => {
                 value={formData.address}
                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                 placeholder="e.g. 2144 N Damen Ave, Chicago, IL"
-                className="w-full h-11 px-3 rounded-xl border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#1F2A44] focus:ring-2 focus:ring-[#3D4D7C]"
+                className="w-full h-11 px-3 rounded-xl border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#121214] focus:ring-2 focus:ring-[#323232]"
               />
             </GlassCard>
 
             <GlassCard className="p-4 space-y-2">
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#1F2A44]">
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#121214]">
                 Project Scope / Summary (min 15 chars)
               </label>
               <textarea
@@ -288,22 +288,22 @@ export const FreeQuoteScreen: React.FC = () => {
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="Describe your intended use, square footage, building height, or denial history..."
-                className="w-full p-3 rounded-xl border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#1F2A44] focus:ring-2 focus:ring-[#3D4D7C]"
+                className="w-full p-3 rounded-xl border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#121214] focus:ring-2 focus:ring-[#323232]"
               />
-              <span className="text-[10px] text-[#8A93A6] block text-right">
+              <span className="text-[10px] text-[#82807A] block text-right">
                 {formData.message.length} characters
               </span>
             </GlassCard>
 
-            <GlassCard className="p-4 space-y-2 border border-dashed border-[#3D4D7C]/40 text-center">
-              <UploadCloud className="w-7 h-7 mx-auto text-[#3D4D7C]" />
-              <div className="text-xs font-semibold text-[#1F2A44]">
+            <GlassCard className="p-4 space-y-2 border border-dashed border-[#323232]/40 text-center">
+              <UploadCloud className="w-7 h-7 mx-auto text-[#323232]" />
+              <div className="text-xs font-semibold text-[#121214]">
                 Upload Plat of Survey or Denial Letter (Optional)
               </div>
-              <p className="text-[10px] text-[#8A93A6]">
+              <p className="text-[10px] text-[#82807A]">
                 PDF, DWG, PNG up to 25 MB
               </p>
-              <label className="inline-block mt-2 px-3 py-1.5 rounded-full liquid-glass-chip text-xs font-semibold text-[#3D4D7C] cursor-pointer hover:border-[#3D4D7C]/40">
+              <label className="inline-block mt-2 px-3 py-1.5 rounded-full liquid-glass-chip text-xs font-semibold text-[#323232] cursor-pointer hover:border-[#323232]/40">
                 <span>Select File</span>
                 <input
                   type="file"
@@ -332,26 +332,26 @@ export const FreeQuoteScreen: React.FC = () => {
             className="space-y-4"
           >
             <GlassCard className="p-5 space-y-3">
-              <h3 className="font-heading text-base font-bold text-[#1F2A44]">
+              <h3 className="font-heading text-base font-bold text-[#121214]">
                 Review Your Request
               </h3>
 
               <div className="space-y-2 text-xs divide-y divide-white/60">
                 <div className="pt-1 flex justify-between">
-                  <span className="text-[#8A93A6]">Service:</span>
-                  <span className="font-bold text-[#1F2A44]">{formData.serviceType}</span>
+                  <span className="text-[#82807A]">Service:</span>
+                  <span className="font-bold text-[#121214]">{formData.serviceType}</span>
                 </div>
                 <div className="pt-2 flex justify-between">
-                  <span className="text-[#8A93A6]">Property Type:</span>
-                  <span className="font-bold text-[#1F2A44]">{formData.propertyType}</span>
+                  <span className="text-[#82807A]">Property Type:</span>
+                  <span className="font-bold text-[#121214]">{formData.propertyType}</span>
                 </div>
                 <div className="pt-2 flex justify-between">
-                  <span className="text-[#8A93A6]">Client:</span>
-                  <span className="font-bold text-[#1F2A44]">{formData.name}</span>
+                  <span className="text-[#82807A]">Client:</span>
+                  <span className="font-bold text-[#121214]">{formData.name}</span>
                 </div>
                 <div className="pt-2 flex justify-between">
-                  <span className="text-[#8A93A6]">Address:</span>
-                  <span className="font-bold text-[#1F2A44]">{formData.address}</span>
+                  <span className="text-[#82807A]">Address:</span>
+                  <span className="font-bold text-[#121214]">{formData.address}</span>
                 </div>
               </div>
 
@@ -362,7 +362,7 @@ export const FreeQuoteScreen: React.FC = () => {
               </div>
             </GlassCard>
 
-            <p className="text-[11px] text-[#8A93A6] leading-relaxed">
+            <p className="text-[11px] text-[#82807A] leading-relaxed">
               By submitting, you agree to receive a follow-up assessment from Williams &amp; Williams LLC. {BUSINESS_INFO.disclaimer}
             </p>
           </motion.div>

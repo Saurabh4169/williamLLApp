@@ -87,7 +87,7 @@ export const BookConsultationScreen: React.FC = () => {
         particleCount: 80,
         spread: 70,
         origin: { y: 0.5 },
-        colors: ['#3D4D7C', '#1F2A44', '#B7C3DA', '#3FA66B'],
+        colors: ['#323232', '#191919', '#A4B3BE', '#C0D0E1', '#D8D8D8', '#FEFEFE'],
       });
     } catch {
       // fallback
@@ -98,7 +98,7 @@ export const BookConsultationScreen: React.FC = () => {
 
   if (isBooked) {
     return (
-      <div className="min-h-full flex flex-col text-[#1F2A44] bg-[#F2F3F5] pb-24">
+      <div className="min-h-full flex flex-col text-[#191919] bg-transparent pb-24">
         <AppHeader title="Booking Confirmed" />
 
         <div className="px-4 py-6 max-w-md mx-auto w-full space-y-5">
@@ -107,22 +107,22 @@ export const BookConsultationScreen: React.FC = () => {
             <div className="w-16 h-16 rounded-full bg-emerald-500/15 text-emerald-600 flex items-center justify-center mx-auto ring-8 ring-emerald-500/10 shadow-sm animate-bounce">
               <CheckCircle2 className="w-9 h-9 stroke-[2.4]" />
             </div>
-            <h1 className="font-heading text-xl font-black text-[#1F2A44]">
+            <h1 className="font-heading text-xl font-black text-[#191919]">
               Appointment Confirmed!
             </h1>
-            <p className="text-xs text-[#5A657D] max-w-xs mx-auto leading-relaxed">
+            <p className="text-xs text-[#71717A] max-w-xs mx-auto leading-relaxed">
               Your consultation has been booked with Williams &amp; Williams LLC. We have emailed you calendar details and access links.
             </p>
           </div>
 
           {/* Ticket Card */}
-          <div className="p-4 rounded-[22px] bg-white border border-[#DDE2EA] shadow-md space-y-3.5 relative overflow-hidden">
-            <div className="flex items-center justify-between border-b border-[#EEF1F6] pb-3">
+          <div className="p-4 rounded-[22px] liquid-glass-card shadow-md space-y-3.5 relative overflow-hidden">
+            <div className="flex items-center justify-between border-b border-[#D8D8D8]/60 pb-3">
               <div>
-                <span className="text-[9.5px] font-bold text-[#8A93A6] uppercase tracking-wider block">
+                <span className="text-[9.5px] font-bold text-[#8C9DAA] uppercase tracking-wider block">
                   Reference Code
                 </span>
-                <span className="font-mono text-xs font-bold text-[#1F2A44]">
+                <span className="font-mono text-xs font-bold text-[#191919]">
                   WW-{selectedDay.toUpperCase()}-2026
                 </span>
               </div>
@@ -132,29 +132,29 @@ export const BookConsultationScreen: React.FC = () => {
             </div>
 
             <div className="space-y-2">
-              <h3 className="font-heading text-sm font-bold text-[#1F2A44]">
+              <h3 className="font-heading text-sm font-bold text-[#191919]">
                 {selectedService}
               </h3>
 
               <div className="grid grid-cols-2 gap-2 pt-1 text-xs">
-                <div className="rounded-xl p-2 bg-[#F8F9FB] border border-[#EEF1F6]">
-                  <span className="text-[10px] font-medium text-[#8A93A6] block">Date &amp; Time</span>
-                  <span className="font-bold text-[#1F2A44] mt-0.5 block">
+                <div className="rounded-xl p-2 bg-white/80 border border-[#D8D8D8]/70">
+                  <span className="text-[10px] font-medium text-[#8C9DAA] block">Date &amp; Time</span>
+                  <span className="font-bold text-[#191919] mt-0.5 block">
                     {selectedDateObj.day}, Nov {selectedDateObj.num} &bull; {selectedTime}
                   </span>
                 </div>
 
-                <div className="rounded-xl p-2 bg-[#F8F9FB] border border-[#EEF1F6]">
-                  <span className="text-[10px] font-medium text-[#8A93A6] block">Consultation Format</span>
-                  <span className="font-bold text-[#1F2A44] mt-0.5 block">
+                <div className="rounded-xl p-2 bg-white/80 border border-[#D8D8D8]/70">
+                  <span className="text-[10px] font-medium text-[#8C9DAA] block">Consultation Format</span>
+                  <span className="font-bold text-[#191919] mt-0.5 block">
                     {consultType === 'Video' ? 'Video Meeting (Zoom)' : consultType === 'Phone' ? 'Direct Phone Call' : 'Chicago Office'}
                   </span>
                 </div>
               </div>
 
-              <div className="pt-2 text-xs text-[#5A657D] flex items-center gap-2">
-                <User className="w-4 h-4 text-[#3D4D7C] flex-shrink-0" />
-                <span>Advisor: <strong className="text-[#1F2A44]">Marcus Vance, Esq.</strong> (Principal Zoning Strategist)</span>
+              <div className="pt-2 text-xs text-[#71717A] flex items-center gap-2">
+                <User className="w-4 h-4 text-[#323232] flex-shrink-0" />
+                <span>Advisor: <strong className="text-[#191919]">Marcus Vance, Esq.</strong> (Principal Zoning Strategist)</span>
               </div>
             </div>
           </div>
@@ -164,7 +164,7 @@ export const BookConsultationScreen: React.FC = () => {
             <button
               type="button"
               onClick={() => navigate('/profile?tab=bookings')}
-              className="w-full py-3 rounded-full btn-glossy-navy text-xs font-bold shadow-md flex items-center justify-center gap-2 active:scale-98 transition-all"
+              className="w-full py-3 rounded-full btn-glossy-primary text-xs font-bold shadow-md flex items-center justify-center gap-2 active:scale-98 transition-all"
             >
               <span>View in My Bookings</span>
               <ArrowRight className="w-4 h-4" />
@@ -173,7 +173,7 @@ export const BookConsultationScreen: React.FC = () => {
             <button
               type="button"
               onClick={() => navigate('/')}
-              className="w-full py-2.5 rounded-full bg-white border border-[#DDE2EA] text-[#1F2A44] text-xs font-bold text-center hover:bg-[#F2F3F5] active:scale-98 transition-all"
+              className="w-full py-2.5 rounded-full bg-white/90 backdrop-blur-md border border-[#D8D8D8] text-[#191919] text-xs font-bold text-center hover:bg-[#F4F5F5] active:scale-98 transition-all"
             >
               Return to Home
             </button>
@@ -184,29 +184,29 @@ export const BookConsultationScreen: React.FC = () => {
   }
 
   return (
-    <div className="min-h-full flex flex-col text-[#1F2A44] bg-[#F2F3F5] pb-28">
+    <div className="min-h-full flex flex-col text-[#191919] bg-transparent pb-28">
       <AppHeader title="Book Consultation" showBack />
 
       <form onSubmit={handleBooking} className="px-4 py-3 space-y-4 max-w-md mx-auto w-full">
         {/* Top Summary Banner */}
-        <div className="p-3.5 rounded-[20px] bg-white border border-[#DDE2EA] shadow-xs space-y-2">
+        <div className="p-3.5 rounded-[20px] liquid-glass-card shadow-xs space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#3D4D7C] flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5" />
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#323232] flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-[#A4B3BE]" />
               <span>Chicago Zoning Advisory</span>
             </span>
-            <span className="text-[10px] font-bold text-[#3FA66B] bg-[#3FA66B]/12 px-2.5 py-0.5 rounded-full">
+            <span className="text-[10px] font-bold text-[#22C55E] bg-[#22C55E]/12 px-2.5 py-0.5 rounded-full border border-[#22C55E]/20">
               $0.00 Free Initial
             </span>
           </div>
 
           <div>
-            <h2 className="font-heading text-sm sm:text-base font-bold text-[#1F2A44] leading-snug">
+            <h2 className="font-heading text-sm sm:text-base font-bold text-[#191919] leading-snug">
               {selectedService}
             </h2>
-            <div className="flex items-center gap-2 text-[11px] text-[#8A93A6] mt-1">
-              <span className="flex items-center gap-1 font-semibold text-[#3D4D7C]">
-                <Clock className="w-3.5 h-3.5" />
+            <div className="flex items-center gap-2 text-[11px] text-[#71717A] mt-1">
+              <span className="flex items-center gap-1 font-semibold text-[#323232]">
+                <Clock className="w-3.5 h-3.5 text-[#A4B3BE]" />
                 <span>45 Min Strategy</span>
               </span>
               <span>&bull;</span>
@@ -218,10 +218,10 @@ export const BookConsultationScreen: React.FC = () => {
         {/* 1. Format Selection */}
         <div className="space-y-1.5">
           <div className="flex items-center gap-1.5 px-0.5">
-            <span className="w-4 h-4 rounded-full bg-[#1F2A44] text-white text-[10px] font-bold flex items-center justify-center">
+            <span className="w-4 h-4 rounded-full bg-gradient-to-b from-[#323232] to-[#191919] text-[#FEFEFE] text-[10px] font-bold flex items-center justify-center shadow-xs">
               1
             </span>
-            <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-[#1F2A44]">
+            <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-[#191919]">
               Select Consultation Format
             </h3>
           </div>
@@ -241,13 +241,13 @@ export const BookConsultationScreen: React.FC = () => {
                   onClick={() => setConsultType(item.type)}
                   className={`py-3 px-2 rounded-[16px] flex flex-col items-center justify-center gap-1 text-center transition-all select-none border active:scale-95 ${
                     isSelected
-                      ? 'bg-[#1F2A44] text-white border-[#1F2A44] shadow-sm'
-                      : 'bg-white text-[#1F2A44] border-[#DDE2EA] hover:border-[#3D4D7C]/40'
+                      ? 'bg-gradient-to-b from-[#323232] to-[#191919] text-[#FEFEFE] border-[#191919] shadow-md shadow-black/20'
+                      : 'liquid-glass-card text-[#323232] border-[#D8D8D8] hover:border-[#A4B3BE]'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 stroke-[2.2] ${isSelected ? 'text-white' : 'text-[#3D4D7C]'}`} />
+                  <Icon className={`w-4 h-4 stroke-[2.2] ${isSelected ? 'text-[#FEFEFE]' : 'text-[#323232]'}`} />
                   <span className="text-[11px] font-bold leading-tight">{item.label}</span>
-                  <span className={`text-[9px] ${isSelected ? 'text-white/70' : 'text-[#8A93A6]'}`}>
+                  <span className={`text-[9px] ${isSelected ? 'text-[#C0D0E1]' : 'text-[#71717A]'}`}>
                     {item.sub}
                   </span>
                 </button>
@@ -260,14 +260,14 @@ export const BookConsultationScreen: React.FC = () => {
         <div className="space-y-1.5">
           <div className="flex items-center justify-between px-0.5">
             <div className="flex items-center gap-1.5">
-              <span className="w-4 h-4 rounded-full bg-[#1F2A44] text-white text-[10px] font-bold flex items-center justify-center">
+              <span className="w-4 h-4 rounded-full bg-gradient-to-b from-[#323232] to-[#191919] text-[#FEFEFE] text-[10px] font-bold flex items-center justify-center shadow-xs">
                 2
               </span>
-              <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-[#1F2A44]">
+              <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-[#191919]">
                 Select Date
               </h3>
             </div>
-            <span className="text-[10px] font-semibold text-[#8A93A6]">
+            <span className="text-[10px] font-semibold text-[#8C9DAA]">
               Monday &ndash; Friday
             </span>
           </div>
@@ -282,14 +282,14 @@ export const BookConsultationScreen: React.FC = () => {
                   onClick={() => setSelectedDay(d.day)}
                   className={`py-2 rounded-[14px] flex flex-col items-center justify-center transition-all select-none border active:scale-95 ${
                     isSelected
-                      ? 'bg-[#1F2A44] text-white border-[#1F2A44] shadow-sm'
-                      : 'bg-white text-[#1F2A44] border-[#DDE2EA] hover:border-[#3D4D7C]/40'
+                      ? 'bg-gradient-to-b from-[#323232] to-[#191919] text-[#FEFEFE] border-[#191919] shadow-md shadow-black/20'
+                      : 'liquid-glass-card text-[#323232] border-[#D8D8D8] hover:border-[#A4B3BE]'
                   }`}
                 >
-                  <span className={`text-[10px] font-semibold ${isSelected ? 'text-white/80' : 'text-[#8A93A6]'}`}>
+                  <span className={`text-[10px] font-semibold ${isSelected ? 'text-[#C0D0E1]' : 'text-[#71717A]'}`}>
                     {d.day}
                   </span>
-                  <span className="text-sm font-heading font-black mt-0.5">
+                  <span className={`text-sm font-heading font-black mt-0.5 ${isSelected ? 'text-[#FEFEFE]' : 'text-[#191919]'}`}>
                     {d.num}
                   </span>
                 </button>
@@ -302,14 +302,14 @@ export const BookConsultationScreen: React.FC = () => {
         <div className="space-y-1.5">
           <div className="flex items-center justify-between px-0.5">
             <div className="flex items-center gap-1.5">
-              <span className="w-4 h-4 rounded-full bg-[#1F2A44] text-white text-[10px] font-bold flex items-center justify-center">
+              <span className="w-4 h-4 rounded-full bg-gradient-to-b from-[#323232] to-[#191919] text-[#FEFEFE] text-[10px] font-bold flex items-center justify-center shadow-xs">
                 3
               </span>
-              <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-[#1F2A44]">
+              <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-[#191919]">
                 Select Time Slot
               </h3>
             </div>
-            <span className="text-[10px] font-semibold text-[#8A93A6]">
+            <span className="text-[10px] font-semibold text-[#8C9DAA]">
               Chicago CST
             </span>
           </div>
@@ -325,16 +325,16 @@ export const BookConsultationScreen: React.FC = () => {
                   onClick={() => setSelectedTime(slot.time)}
                   className={`h-11 rounded-[14px] px-3 flex items-center justify-between transition-all select-none border text-xs font-semibold ${
                     !slot.available
-                      ? 'bg-slate-100/70 border-slate-200 text-[#8A93A6] line-through cursor-not-allowed opacity-60'
+                      ? 'bg-[#ECEEF0]/70 border-[#D8D8D8] text-[#8C9DAA] line-through cursor-not-allowed opacity-60'
                       : isSelected
-                      ? 'bg-[#1F2A44] text-white border-[#1F2A44] shadow-sm'
-                      : 'bg-white text-[#1F2A44] border-[#DDE2EA] hover:border-[#3D4D7C]/40 active:scale-95'
+                      ? 'bg-gradient-to-b from-[#323232] to-[#191919] text-[#FEFEFE] border-[#191919] shadow-md shadow-black/20'
+                      : 'liquid-glass-card text-[#323232] border-[#D8D8D8] hover:border-[#A4B3BE] active:scale-95'
                   }`}
                 >
                   <span>{slot.time}</span>
-                  {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
+                  {isSelected && <Check className="w-3.5 h-3.5 text-[#FEFEFE] stroke-[2.5]" />}
                   {!slot.available && (
-                    <span className="text-[9px] uppercase font-bold no-underline text-[#8A93A6]">
+                    <span className="text-[9px] uppercase font-bold no-underline text-[#8C9DAA]">
                       Booked
                     </span>
                   )}
@@ -347,96 +347,96 @@ export const BookConsultationScreen: React.FC = () => {
         {/* 4. Client & Parcel Information */}
         <div className="space-y-1.5">
           <div className="flex items-center gap-1.5 px-0.5">
-            <span className="w-4 h-4 rounded-full bg-[#1F2A44] text-white text-[10px] font-bold flex items-center justify-center">
+            <span className="w-4 h-4 rounded-full bg-gradient-to-b from-[#323232] to-[#191919] text-[#FEFEFE] text-[10px] font-bold flex items-center justify-center shadow-xs">
               4
             </span>
-            <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-[#1F2A44]">
+            <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-[#191919]">
               Your Contact &amp; Property Details
             </h3>
           </div>
 
-          <div className="p-3.5 rounded-[20px] bg-white border border-[#DDE2EA] shadow-xs space-y-2.5">
+          <div className="p-3.5 rounded-[20px] liquid-glass-card space-y-2.5">
             <div>
-              <label className="block text-[10px] font-bold text-[#8A93A6] uppercase tracking-wider mb-1">
+              <label className="block text-[10px] font-bold text-[#8C9DAA] uppercase tracking-wider mb-1">
                 Full Name *
               </label>
               <div className="relative">
-                <User className="w-3.5 h-3.5 text-[#8A93A6] absolute left-3 top-3" />
+                <User className="w-3.5 h-3.5 text-[#A4B3BE] absolute left-3 top-3" />
                 <input
                   type="text"
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Alex Sterling"
-                  className="w-full h-10 pl-8 pr-3 rounded-[12px] border border-[#DDE2EA] bg-[#F8F9FB] text-xs text-[#1F2A44] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#3D4D7C]"
+                  className="w-full h-10 pl-8 pr-3 rounded-[12px] border border-[#D8D8D8] bg-white/90 text-xs text-[#191919] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#C0D0E1] focus:border-[#323232]"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="block text-[10px] font-bold text-[#8A93A6] uppercase tracking-wider mb-1">
+                <label className="block text-[10px] font-bold text-[#8C9DAA] uppercase tracking-wider mb-1">
                   Mobile Phone *
                 </label>
                 <div className="relative">
-                  <Phone className="w-3.5 h-3.5 text-[#8A93A6] absolute left-3 top-3" />
+                  <Phone className="w-3.5 h-3.5 text-[#A4B3BE] absolute left-3 top-3" />
                   <input
                     type="tel"
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="312-555-0198"
-                    className="w-full h-10 pl-8 pr-3 rounded-[12px] border border-[#DDE2EA] bg-[#F8F9FB] text-xs text-[#1F2A44] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#3D4D7C]"
+                    className="w-full h-10 pl-8 pr-3 rounded-[12px] border border-[#D8D8D8] bg-white/90 text-xs text-[#191919] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#C0D0E1] focus:border-[#323232]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-[#8A93A6] uppercase tracking-wider mb-1">
+                <label className="block text-[10px] font-bold text-[#8C9DAA] uppercase tracking-wider mb-1">
                   Email Address *
                 </label>
                 <div className="relative">
-                  <Mail className="w-3.5 h-3.5 text-[#8A93A6] absolute left-3 top-3" />
+                  <Mail className="w-3.5 h-3.5 text-[#A4B3BE] absolute left-3 top-3" />
                   <input
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="alex@example.com"
-                    className="w-full h-10 pl-8 pr-3 rounded-[12px] border border-[#DDE2EA] bg-[#F8F9FB] text-xs text-[#1F2A44] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#3D4D7C]"
+                    className="w-full h-10 pl-8 pr-3 rounded-[12px] border border-[#D8D8D8] bg-white/90 text-xs text-[#191919] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#C0D0E1] focus:border-[#323232]"
                   />
                 </div>
               </div>
             </div>
 
             <div>
-              <label className="block text-[10px] font-bold text-[#8A93A6] uppercase tracking-wider mb-1">
+              <label className="block text-[10px] font-bold text-[#8C9DAA] uppercase tracking-wider mb-1">
                 Chicago Property Address or PIN
               </label>
               <div className="relative">
-                <MapPin className="w-3.5 h-3.5 text-[#8A93A6] absolute left-3 top-3" />
+                <MapPin className="w-3.5 h-3.5 text-[#A4B3BE] absolute left-3 top-3" />
                 <input
                   type="text"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   placeholder="e.g. 2144 N Damen Ave or PIN"
-                  className="w-full h-10 pl-8 pr-3 rounded-[12px] border border-[#DDE2EA] bg-[#F8F9FB] text-xs text-[#1F2A44] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#3D4D7C]"
+                  className="w-full h-10 pl-8 pr-3 rounded-[12px] border border-[#D8D8D8] bg-white/90 text-xs text-[#191919] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#C0D0E1] focus:border-[#323232]"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[10px] font-bold text-[#8A93A6] uppercase tracking-wider mb-1">
+              <label className="block text-[10px] font-bold text-[#8C9DAA] uppercase tracking-wider mb-1">
                 Project Goals / Notes (Optional)
               </label>
               <div className="relative">
-                <FileText className="w-3.5 h-3.5 text-[#8A93A6] absolute left-3 top-2.5" />
+                <FileText className="w-3.5 h-3.5 text-[#A4B3BE] absolute left-3 top-2.5" />
                 <textarea
                   rows={2}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder="Describe your parcel, zoning denial, or expansion goals..."
-                  className="w-full pl-8 pr-3 py-2 rounded-[12px] border border-[#DDE2EA] bg-[#F8F9FB] text-xs text-[#1F2A44] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#3D4D7C]"
+                  className="w-full pl-8 pr-3 py-2 rounded-[12px] border border-[#D8D8D8] bg-white/90 text-xs text-[#191919] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#C0D0E1] focus:border-[#323232]"
                 />
               </div>
             </div>
@@ -444,19 +444,19 @@ export const BookConsultationScreen: React.FC = () => {
         </div>
 
         {/* Submit Booking Action inside the form with ample spacing */}
-        <div className="p-3.5 rounded-[20px] bg-white border border-[#DDE2EA] shadow-sm flex items-center justify-between gap-3">
+        <div className="p-3.5 rounded-[20px] liquid-glass-card shadow-sm flex items-center justify-between gap-3">
           <div>
-            <span className="text-[9.5px] uppercase font-bold tracking-wider text-[#8A93A6] block leading-none">
+            <span className="text-[9.5px] uppercase font-bold tracking-wider text-[#8C9DAA] block leading-none">
               Consultation Fee
             </span>
-            <span className="font-heading text-sm font-bold text-[#3FA66B] mt-0.5 block">
+            <span className="font-heading text-sm font-bold text-[#22C55E] mt-0.5 block">
               $0.00 (Free Initial)
             </span>
           </div>
 
           <button
             type="submit"
-            className="h-10 px-5 rounded-full btn-glossy-navy font-bold text-xs flex items-center gap-2 shadow-sm active:scale-98 transition-transform"
+            className="h-10 px-5 rounded-full btn-glossy-primary font-bold text-xs flex items-center gap-2 shadow-sm active:scale-98 transition-transform"
           >
             <span>Confirm Booking</span>
             <ArrowRight className="w-3.5 h-3.5 stroke-[2.2]" />

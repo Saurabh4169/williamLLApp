@@ -40,49 +40,49 @@ export const ReviewsScreen: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-full flex flex-col text-[#1F2A44] pb-8">
+    <div className="min-h-full flex flex-col text-[#121214] pb-8">
       {/* 1. Global Brand AppHeader */}
       <AppHeader showBack />
 
       <div className="px-4 py-4 space-y-6">
         {/* Title & Introduction */}
         <div>
-          <h1 className="font-heading text-2xl font-bold text-[#1F2A44] tracking-tight">
+          <h1 className="font-heading text-2xl font-bold text-[#121214] tracking-tight">
             Client Reviews
           </h1>
-          <p className="text-xs text-[#8A93A6] mt-0.5 font-medium">
+          <p className="text-xs text-[#82807A] mt-0.5 font-medium">
             Real feedback from Chicago homeowners, architects, and developers.
           </p>
         </div>
 
         {/* Rating Summary Card with 5 Breakdown Bars */}
         <GlassCard className="p-5 space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#DDE2EA]">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#D8D8D8]">
             <div>
               <div className="flex items-baseline gap-2">
-                <span className="font-heading text-4xl font-extrabold text-[#1F2A44] tracking-tight">
+                <span className="font-heading text-4xl font-extrabold text-[#121214] tracking-tight">
                   [4.9]
                 </span>
-                <span className="text-xs text-[#8A93A6] font-medium">out of 5.0</span>
+                <span className="text-xs text-[#82807A] font-medium">out of 5.0</span>
               </div>
 
-              <div className="flex items-center gap-1 mt-1 text-[#3D4D7C]">
+              <div className="flex items-center gap-1 mt-1 text-[#323232]">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[#3D4D7C] text-[#3D4D7C]" />
+                  <Star key={i} className="w-4 h-4 fill-[#323232] text-[#323232]" />
                 ))}
               </div>
 
-              <p className="text-[11px] text-[#8A93A6] mt-1 font-medium">
-                Based on <strong className="text-[#1F2A44]">[120+]</strong> Chicago zoning casework reviews
+              <p className="text-[11px] text-[#82807A] mt-1 font-medium">
+                Based on <strong className="text-[#191919]">[120+]</strong> Chicago zoning casework reviews
               </p>
             </div>
 
             <div className="flex sm:flex-col items-center sm:items-end justify-between gap-1 pt-2 sm:pt-0">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-[#3FA66B]/10 text-[#3FA66B] border border-[#3FA66B]/25">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-[#22C55E]/10 text-[#16A34A] border border-[#22C55E]/25">
                 <ShieldCheck className="w-3.5 h-3.5" /> 100% Verified Clients
               </span>
-              <span className="text-[11px] text-[#8A93A6] mt-1">
-                <strong className="text-[#1F2A44]">[15+]</strong> Years Experience
+              <span className="text-[11px] text-[#82807A] mt-1">
+                <strong className="text-[#191919]">[15+]</strong> Years Experience
               </span>
             </div>
           </div>
@@ -91,16 +91,16 @@ export const ReviewsScreen: React.FC = () => {
           <div className="space-y-2 pt-1">
             {ratingBreakdown.map((row) => (
               <div key={row.stars} className="flex items-center gap-3 text-xs">
-                <span className="w-12 font-medium text-[#1F2A44] flex items-center gap-1 tabular-nums">
-                  {row.stars} <Star className="w-3 h-3 fill-[#3D4D7C] text-[#3D4D7C]" />
+                <span className="w-12 font-medium text-[#191919] flex items-center gap-1 tabular-nums">
+                  {row.stars} <Star className="w-3 h-3 fill-[#323232] text-[#323232]" />
                 </span>
-                <div className="flex-1 h-2 rounded-full bg-[#DDE2EA] overflow-hidden">
+                <div className="flex-1 h-2 rounded-full bg-[#D8D8D8] overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-[#7D90B5] to-[#3D4D7C] rounded-full transition-all duration-500"
+                    className="h-full bg-gradient-to-r from-[#C0D0E1] to-[#323232] rounded-full transition-all duration-500"
                     style={{ width: `${row.pct}%` }}
                   />
                 </div>
-                <span className="w-8 text-right text-[11px] text-[#8A93A6] tabular-nums">
+                <span className="w-8 text-right text-[11px] text-[#82807A] tabular-nums">
                   {row.pct}%
                 </span>
               </div>
@@ -110,9 +110,9 @@ export const ReviewsScreen: React.FC = () => {
 
         {/* Filter Chips */}
         <div className="space-y-2">
-          <div className="flex items-center justify-between text-xs text-[#8A93A6] px-1">
-            <span className="font-semibold text-[#1F2A44] flex items-center gap-1.5">
-              <Filter className="w-3.5 h-3.5 text-[#3D4D7C]" /> Filter by Casework
+          <div className="flex items-center justify-between text-xs text-[#82807A] px-1">
+            <span className="font-semibold text-[#191919] flex items-center gap-1.5">
+              <Filter className="w-3.5 h-3.5 text-[#323232]" /> Filter by Casework
             </span>
             <span>{filteredReviews.length} results</span>
           </div>
@@ -147,47 +147,47 @@ export const ReviewsScreen: React.FC = () => {
                 {/* Top Row: Stars + Verified Chip */}
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-1.5">
-                    <Quote className="w-4 h-4 text-[#3D4D7C]/30 -scale-x-100 flex-shrink-0" />
-                    <div className="flex items-center gap-0.5 text-[#3D4D7C]">
+                    <Quote className="w-4 h-4 text-[#323232]/30 -scale-x-100 flex-shrink-0" />
+                    <div className="flex items-center gap-0.5 text-[#323232]">
                       {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-[#3D4D7C] text-[#3D4D7C]" />
+                        <Star key={i} className="w-3.5 h-3.5 fill-[#323232] text-[#323232]" />
                       ))}
                     </div>
                   </div>
 
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-[#3FA66B]/10 text-[#3FA66B] border border-[#3FA66B]/25 flex items-center gap-1 flex-shrink-0">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-[#22C55E]/10 text-[#16A34A] border border-[#22C55E]/25 flex items-center gap-1 flex-shrink-0">
                     <CheckCircle2 className="w-3 h-3" /> Verified client
                   </span>
                 </div>
 
                 {/* Review Text */}
-                <p className="font-sans text-xs sm:text-sm text-[#1F2A44] leading-[22px]">
+                <p className="font-sans text-xs sm:text-sm text-[#121214] leading-[22px]">
                   {review.text}
                 </p>
 
                 {/* Divider */}
-                <div className="h-[1px] bg-[#DDE2EA]" />
+                <div className="h-[1px] bg-[#D8D8D8]" />
 
                 {/* Footer: Avatar, Name, Role, Date, Service */}
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#1F2A44] to-[#7D90B5] text-white font-heading font-bold text-xs sm:text-sm flex items-center justify-center flex-shrink-0 shadow-xs ring-2 ring-white/60">
+                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#121214] to-[#DFD5C5] text-white font-heading font-bold text-xs sm:text-sm flex items-center justify-center flex-shrink-0 shadow-xs ring-2 ring-white/60">
                       {initials || 'WW'}
                     </div>
                     <div className="min-w-0">
-                      <h4 className="font-heading font-semibold text-xs sm:text-sm text-[#1F2A44] truncate">
+                      <h4 className="font-heading font-semibold text-xs sm:text-sm text-[#121214] truncate">
                         {review.name}
                       </h4>
-                      <p className="text-[11px] text-[#8A93A6] truncate">
+                      <p className="text-[11px] text-[#82807A] truncate">
                         {review.role} &bull; {review.neighbourhood}
                       </p>
-                      <p className="text-[10px] text-[#8A93A6]/80 tabular-nums">
+                      <p className="text-[10px] text-[#82807A]/80 tabular-nums">
                         {review.date}
                       </p>
                     </div>
                   </div>
 
-                  <span className="px-2.5 py-1 rounded-full bg-[#3D4D7C]/10 text-[#3D4D7C] text-[10px] font-semibold whitespace-nowrap flex-shrink-0 border border-[#3D4D7C]/15">
+                  <span className="px-2.5 py-1 rounded-full bg-[#C0D0E1]/30 text-[#323232] text-[10px] font-semibold whitespace-nowrap flex-shrink-0 border border-[#A4B3BE]/40">
                     {review.service}
                   </span>
                 </div>
@@ -198,22 +198,22 @@ export const ReviewsScreen: React.FC = () => {
 
         {/* Bottom "Free Quote" CTA Card */}
         <section aria-label="Consultation Callout">
-          <GlassCard className="p-5 space-y-3.5 bg-gradient-to-br from-white/90 to-[#B7C3DA]/25 border border-white/80">
+          <GlassCard className="p-5 space-y-3.5 bg-gradient-to-br from-white/95 to-[#F4F5F5] border border-[#D8D8D8]">
             <div className="flex items-start justify-between gap-3">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#3D4D7C]">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#323232]">
                   Zoning Solutions Chicago
                 </span>
-                <h3 className="font-heading text-lg font-bold text-[#1F2A44] mt-0.5">
+                <h3 className="font-heading text-lg font-bold text-[#191919] mt-0.5">
                   Have a Chicago Zoning Project?
                 </h3>
-                <p className="text-xs text-[#8A93A6] mt-1 leading-relaxed">
+                <p className="text-xs text-[#82807A] mt-1 leading-relaxed">
                   Join hundreds of satisfied property owners. Speak directly with our senior zoning specialists or request a free preliminary evaluation.
                 </p>
               </div>
               <a
                 href={`tel:${BUSINESS_INFO.phoneRaw}`}
-                className="w-11 h-11 rounded-full btn-glossy-navy flex items-center justify-center text-white shadow-md active:scale-95 transition-all flex-shrink-0"
+                className="w-11 h-11 rounded-full btn-glossy-primary flex items-center justify-center text-[#FEFEFE] shadow-md active:scale-95 transition-all flex-shrink-0"
                 aria-label="Call Williams & Williams LLC"
               >
                 <PhoneCall className="w-5 h-5 stroke-[2]" />
@@ -223,14 +223,14 @@ export const ReviewsScreen: React.FC = () => {
             <div className="pt-2 flex flex-col sm:flex-row gap-2.5">
               <button
                 onClick={() => navigate('/quote')}
-                className="w-full sm:flex-1 h-11 rounded-full btn-glossy-navy text-xs font-semibold text-white flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition-all"
+                className="w-full sm:flex-1 h-11 rounded-full btn-glossy-primary text-xs font-semibold text-[#FEFEFE] flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition-all"
               >
                 <span>Request Free Quote</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
               <button
                 onClick={() => navigate('/book-consultation')}
-                className="w-full sm:flex-1 h-11 rounded-full bg-white border border-[#DDE2EA] text-xs font-semibold text-[#1F2A44] flex items-center justify-center shadow-xs hover:border-[#3D4D7C]/40 active:scale-95 transition-all"
+                className="w-full sm:flex-1 h-11 rounded-full bg-white border border-[#D8D8D8] text-xs font-semibold text-[#191919] flex items-center justify-center shadow-xs hover:border-[#323232]/40 active:scale-95 transition-all"
               >
                 Book Consultation
               </button>

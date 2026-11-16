@@ -19,15 +19,15 @@ export const Badge: React.FC<BadgeProps> = ({
   };
 
   const variantClasses = {
-    primary: 'bg-[#3D4D7C]/12 text-[#3D4D7C] border border-[#3D4D7C]/20',
-    success: 'bg-[#3FA66B]/15 text-[#2C784C] border border-[#3FA66B]/25',
-    danger: 'bg-[#E5484D]/15 text-[#B82B30] border border-[#E5484D]/25',
+    primary: 'bg-[#C0D0E1]/35 text-[#323232] border border-[#A4B3BE]/45',
+    success: 'bg-[#22C55E]/15 text-[#16A34A] border border-[#22C55E]/30',
+    danger: 'bg-rose-500/15 text-rose-700 border border-rose-500/25',
     warning: 'bg-amber-500/15 text-amber-800 border border-amber-500/25',
-    neutral: 'bg-[#DDE2EA]/60 text-[#1F2A44] border border-[#DDE2EA]',
-    glass: 'bg-white/85 backdrop-blur-md text-[#1F2A44] border border-white/90 shadow-xs',
-    'solid-primary': 'bg-[#3D4D7C] text-white border border-white/30 shadow-xs',
-    'solid-success': 'bg-[#3FA66B] text-white border border-white/30 shadow-xs',
-    'solid-danger': 'bg-[#E5484D] text-white border border-white/30 shadow-xs',
+    neutral: 'bg-[#D8D8D8]/50 text-[#323232] border border-[#D8D8D8]',
+    glass: 'bg-white/85 backdrop-blur-md text-[#191919] border border-white/90 shadow-xs',
+    'solid-primary': 'bg-gradient-to-b from-[#323232] to-[#191919] text-[#FEFEFE] border border-[#191919]/50 shadow-xs',
+    'solid-success': 'bg-[#22C55E] text-white border border-white/30 shadow-xs',
+    'solid-danger': 'bg-rose-600 text-white border border-white/30 shadow-xs',
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { APP_IMAGES } from '../../data/images';
 
 interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -24,7 +24,7 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   const asset = imageKey ? APP_IMAGES[imageKey] : undefined;
   const imageSrc = hasError ? (fallbackSrc || APP_IMAGES.heroChicagoSkyline.src) : (asset?.src || src || APP_IMAGES.heroChicagoSkyline.src);
   const imageAlt = alt || asset?.alt || 'Williams & Williams LLC Chicago Zoning';
-  const blurColor = asset?.blurColor || '#1F2A44';
+  const blurColor = asset?.blurColor || '#121214';
 
   return (
     <div

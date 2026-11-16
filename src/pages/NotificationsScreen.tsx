@@ -47,7 +47,7 @@ export const NotificationsScreen: React.FC = () => {
         rightAction={
           <button
             onClick={markAllNotificationsRead}
-            className="flex items-center gap-1 text-xs font-semibold text-[#3D4D7C] hover:text-[#1F2A44] transition-colors px-2 py-1.5 rounded-full liquid-glass-chip"
+            className="flex items-center gap-1 text-xs font-semibold text-[#323232] hover:text-[#121214] transition-colors px-2 py-1.5 rounded-full liquid-glass-chip"
           >
             <CheckCheck className="w-3.5 h-3.5" />
             <span className="hidden xs:inline min-[360px]:inline">Mark all read</span>
@@ -65,7 +65,7 @@ export const NotificationsScreen: React.FC = () => {
               className={`flex-1 py-1.5 text-xs font-semibold rounded-full transition-all select-none min-h-[36px] ${
                 activeTab === tab
                   ? 'nav-pill-active text-white shadow-xs'
-                  : 'text-[#8A93A6] hover:text-[#1F2A44]'
+                  : 'text-[#82807A] hover:text-[#121214]'
               }`}
             >
               {tab}
@@ -82,9 +82,9 @@ export const NotificationsScreen: React.FC = () => {
 
               return (
                 <div key={groupName} className="space-y-2">
-                  <div className="sticky top-16 z-20 py-1 px-1 text-[11px] font-bold uppercase tracking-wider text-[#8A93A6] flex items-center justify-between">
+                  <div className="sticky top-16 z-20 py-1 px-1 text-[11px] font-bold uppercase tracking-wider text-[#82807A] flex items-center justify-between">
                     <span>{groupName}</span>
-                    <span className="text-[10px] font-medium text-[#8A93A6]/80">
+                    <span className="text-[10px] font-medium text-[#82807A]/80">
                       Swipe &larr; delete / read &rarr;
                     </span>
                   </div>
@@ -107,13 +107,13 @@ export const NotificationsScreen: React.FC = () => {
         ) : (
           /* Empty State */
           <div className="liquid-glass-card p-8 text-center space-y-3 mt-6">
-            <div className="w-16 h-16 rounded-full bg-[#3D4D7C]/10 text-[#3D4D7C] flex items-center justify-center mx-auto">
+            <div className="w-16 h-16 rounded-full bg-[#323232]/10 text-[#323232] flex items-center justify-center mx-auto">
               <BellOff className="w-8 h-8 stroke-[1.75]" />
             </div>
-            <h3 className="font-heading text-lg font-bold text-[#1F2A44]">
+            <h3 className="font-heading text-lg font-bold text-[#121214]">
               You're All Caught Up!
             </h3>
-            <p className="text-xs text-[#8A93A6] max-w-xs mx-auto leading-relaxed">
+            <p className="text-xs text-[#82807A] max-w-xs mx-auto leading-relaxed">
               No new proceedings or appointment alerts right now. We will notify you when the City Hall or ZBA schedule updates.
             </p>
           </div>
@@ -123,7 +123,7 @@ export const NotificationsScreen: React.FC = () => {
         <div className="pt-2 text-center">
           <button
             onClick={() => setShowSettingsModal(true)}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#3D4D7C] hover:underline"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#323232] hover:underline"
           >
             <Sliders className="w-3.5 h-3.5" />
             <span>Manage Notification Preferences</span>
@@ -136,67 +136,67 @@ export const NotificationsScreen: React.FC = () => {
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4">
           <div className="w-full max-w-sm bg-white rounded-t-card-lg sm:rounded-card-lg p-5 shadow-2xl space-y-4 animate-in slide-in-from-bottom-4">
             <div className="flex items-center justify-between">
-              <h3 className="font-heading text-base font-bold text-[#1F2A44]">
+              <h3 className="font-heading text-base font-bold text-[#121214]">
                 Notification Settings
               </h3>
               <button
                 onClick={() => setShowSettingsModal(false)}
-                className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[#1F2A44]"
+                className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[#121214]"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            <div className="space-y-3 divide-y divide-[#DDE2EA] text-xs">
+            <div className="space-y-3 divide-y divide-[#D8D8D8] text-xs">
               <div className="pt-2 flex items-center justify-between">
                 <div>
-                  <span className="font-bold text-[#1F2A44] block">Case Updates</span>
-                  <span className="text-[#8A93A6]">ZBA hearings, filings, and denials</span>
+                  <span className="font-bold text-[#121214] block">Case Updates</span>
+                  <span className="text-[#82807A]">ZBA hearings, filings, and denials</span>
                 </div>
                 <input
                   type="checkbox"
                   checked={notificationSettings.caseUpdates}
                   onChange={() => toggleNotificationSetting('caseUpdates')}
-                  className="w-5 h-5 accent-[#3D4D7C] rounded"
+                  className="w-5 h-5 accent-[#323232] rounded"
                 />
               </div>
 
               <div className="pt-2 flex items-center justify-between">
                 <div>
-                  <span className="font-bold text-[#1F2A44] block">Appointments</span>
-                  <span className="text-[#8A93A6]">Reminders &amp; confirmations</span>
+                  <span className="font-bold text-[#121214] block">Appointments</span>
+                  <span className="text-[#82807A]">Reminders &amp; confirmations</span>
                 </div>
                 <input
                   type="checkbox"
                   checked={notificationSettings.appointments}
                   onChange={() => toggleNotificationSetting('appointments')}
-                  className="w-5 h-5 accent-[#3D4D7C] rounded"
+                  className="w-5 h-5 accent-[#323232] rounded"
                 />
               </div>
 
               <div className="pt-2 flex items-center justify-between">
                 <div>
-                  <span className="font-bold text-[#1F2A44] block">Chicago Zoning Alerts</span>
-                  <span className="text-[#8A93A6]">City Council ordinances &amp; ARO</span>
+                  <span className="font-bold text-[#121214] block">Chicago Zoning Alerts</span>
+                  <span className="text-[#82807A]">City Council ordinances &amp; ARO</span>
                 </div>
                 <input
                   type="checkbox"
                   checked={notificationSettings.zoningAlerts}
                   onChange={() => toggleNotificationSetting('zoningAlerts')}
-                  className="w-5 h-5 accent-[#3D4D7C] rounded"
+                  className="w-5 h-5 accent-[#323232] rounded"
                 />
               </div>
 
               <div className="pt-2 flex items-center justify-between">
                 <div>
-                  <span className="font-bold text-[#1F2A44] block">Consultant Messages</span>
-                  <span className="text-[#8A93A6]">Direct replies in chat</span>
+                  <span className="font-bold text-[#121214] block">Consultant Messages</span>
+                  <span className="text-[#82807A]">Direct replies in chat</span>
                 </div>
                 <input
                   type="checkbox"
                   checked={notificationSettings.messages}
                   onChange={() => toggleNotificationSetting('messages')}
-                  className="w-5 h-5 accent-[#3D4D7C] rounded"
+                  className="w-5 h-5 accent-[#323232] rounded"
                 />
               </div>
             </div>

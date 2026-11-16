@@ -24,29 +24,29 @@ export const FAQScreen: React.FC = () => {
   });
 
   return (
-    <div className="min-h-full flex flex-col text-[#1F2A44] pb-6">
+    <div className="min-h-full flex flex-col text-[#121214] pb-6">
       <AppHeader title="Frequently Asked Questions" showBack />
 
       <div className="px-4 py-4 space-y-5">
         {/* Title Header */}
         <div>
-          <h1 className="font-heading text-xl font-bold text-[#1F2A44] tracking-tight">
+          <h1 className="font-heading text-xl font-bold text-[#121214] tracking-tight">
             Chicago Zoning FAQ
           </h1>
-          <p className="text-xs text-[#8A93A6]">
+          <p className="text-xs text-[#82807A]">
             Answers to common questions regarding Chicago permits, appeals, and zoning codes.
           </p>
         </div>
 
         {/* Search Input */}
         <div className="relative">
-          <Search className="absolute left-3.5 top-3.5 w-4 h-4 text-[#8A93A6]" />
+          <Search className="absolute left-3.5 top-3.5 w-4 h-4 text-[#82807A]" />
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search questions or keywords..."
-            className="w-full h-11 pl-10 pr-4 rounded-full border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#1F2A44] focus:ring-2 focus:ring-[#3D4D7C] shadow-xs"
+            className="w-full h-11 pl-10 pr-4 rounded-full border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#121214] focus:ring-2 focus:ring-[#323232] shadow-xs"
           />
         </div>
 
@@ -59,7 +59,7 @@ export const FAQScreen: React.FC = () => {
               className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap min-h-[38px] transition-all select-none ${
                 activeCategory === cat
                   ? 'btn-glossy-navy shadow-sm'
-                  : 'liquid-glass-chip text-[#1F2A44] hover:border-[#3D4D7C]/40'
+                  : 'liquid-glass-chip text-[#121214] hover:border-[#323232]/40'
               }`}
             >
               {cat === 'all' ? 'All Questions' : cat}
@@ -81,20 +81,20 @@ export const FAQScreen: React.FC = () => {
                   className="w-full p-4 text-left flex items-center justify-between gap-3 min-h-[50px]"
                 >
                   <div className="flex items-center gap-2.5">
-                    <HelpCircle className="w-4 h-4 text-[#3D4D7C] flex-shrink-0" />
-                    <span className="text-xs font-bold text-[#1F2A44] leading-snug">
+                    <HelpCircle className="w-4 h-4 text-[#323232] flex-shrink-0" />
+                    <span className="text-xs font-bold text-[#121214] leading-snug">
                       {faq.question}
                     </span>
                   </div>
                   <ChevronDown
-                    className={`w-4 h-4 text-[#8A93A6] flex-shrink-0 transition-transform ${
+                    className={`w-4 h-4 text-[#82807A] flex-shrink-0 transition-transform ${
                       isOpen ? 'rotate-180' : ''
                     }`}
                   />
                 </button>
 
                 {isOpen && (
-                  <div className="px-4 pb-4 pt-1 text-xs text-[#8A93A6] leading-relaxed border-t border-white/60">
+                  <div className="px-4 pb-4 pt-1 text-xs text-[#82807A] leading-relaxed border-t border-white/60">
                     <p>{faq.answer}</p>
                     <div className="mt-2.5 flex items-center justify-between text-[10px]">
                       <Badge variant="primary" size="sm">
@@ -102,7 +102,7 @@ export const FAQScreen: React.FC = () => {
                       </Badge>
                       <button
                         onClick={() => navigate('/chat')}
-                        className="text-[#3D4D7C] font-semibold hover:underline"
+                        className="text-[#323232] font-semibold hover:underline"
                       >
                         Need more details? Ask in Chat &rarr;
                       </button>
@@ -116,10 +116,10 @@ export const FAQScreen: React.FC = () => {
 
         {/* Still Have Questions Box */}
         <GlassCard className="p-4 text-center space-y-2">
-          <h4 className="font-heading text-sm font-bold text-[#1F2A44]">
+          <h4 className="font-heading text-sm font-bold text-[#121214]">
             Have a Specific Property Question?
           </h4>
-          <p className="text-xs text-[#8A93A6]">
+          <p className="text-xs text-[#82807A]">
             Every parcel in Chicago has unique setback, density, and historical conditions.
           </p>
           <div className="pt-1">

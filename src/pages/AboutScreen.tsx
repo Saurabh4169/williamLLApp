@@ -17,14 +17,14 @@ export const AboutScreen: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-full flex flex-col text-[#1F2A44] pb-6">
+    <div className="min-h-full flex flex-col text-[#121214] pb-6">
       <AppHeader title="About Our Firm" showBack />
 
       <div className="px-4 py-4 space-y-6">
         {/* Hero Header */}
-        <div className="relative rounded-card-lg overflow-hidden bg-[#1F2A44] text-white p-6 shadow-glass">
+        <div className="relative rounded-card-lg overflow-hidden bg-[#121214] text-white p-6 shadow-glass">
           <div className="relative z-10 space-y-2">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[#B7C3DA] bg-white/10 px-2.5 py-1 rounded-full border border-white/20">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#EFE7DC] bg-white/10 px-2.5 py-1 rounded-full border border-white/20">
               CHICAGO ZONING SPECIALISTS
             </span>
             <h1 className="font-heading text-2xl font-bold leading-tight">
@@ -41,13 +41,13 @@ export const AboutScreen: React.FC = () => {
 
         {/* Firm Story */}
         <GlassCard className="p-5 space-y-3">
-          <h2 className="font-heading text-lg font-bold text-[#1F2A44]">
+          <h2 className="font-heading text-lg font-bold text-[#121214]">
             Our Firm Story
           </h2>
-          <p className="text-xs text-[#8A93A6] leading-relaxed">
+          <p className="text-xs text-[#82807A] leading-relaxed">
             Founded in Chicago, Williams &amp; Williams LLC was established to bring clarity, speed, and strategic precision to an otherwise daunting municipal zoning process.
           </p>
-          <p className="text-xs text-[#8A93A6] leading-relaxed">
+          <p className="text-xs text-[#82807A] leading-relaxed">
             Whether representing a homeowner seeking a rear-yard variance in Lincoln Park or guiding an institutional developer through a high-density transit-oriented rezoning in Fulton Market, our team combines technical code expertise with proactive civic engagement.
           </p>
         </GlassCard>
@@ -55,7 +55,7 @@ export const AboutScreen: React.FC = () => {
         {/* Founder Profile */}
         <GlassCard className="p-5 space-y-4">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#3D4D7C]">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#323232]">
               Leadership
             </span>
             <Badge variant="glass" size="sm">
@@ -64,20 +64,20 @@ export const AboutScreen: React.FC = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-4">
-            <div className="w-24 h-24 rounded-2xl overflow-hidden bg-[#1F2A44] flex-shrink-0 shadow-sm border border-white/60">
+            <div className="w-24 h-24 rounded-2xl overflow-hidden bg-[#191919] flex-shrink-0 shadow-sm border border-white/60">
               <ImageWithFallback
                 imageKey="aboutFounder"
                 aspectRatio="aspect-square w-full h-full"
               />
             </div>
             <div className="text-center sm:text-left space-y-1">
-              <h3 className="font-heading text-lg font-bold text-[#1F2A44]">
+              <h3 className="font-heading text-lg font-bold text-[#191919]">
                 Marcus Vance [Placeholder]
               </h3>
-              <p className="text-xs font-semibold text-[#3D4D7C]">
+              <p className="text-xs font-semibold text-[#323232]">
                 Managing Principal &amp; Senior Zoning Strategist
               </p>
-              <p className="text-xs text-[#8A93A6] leading-relaxed pt-1">
+              <p className="text-xs text-[#82807A] leading-relaxed pt-1">
                 20+ years of zoning advisory, municipal code analysis, and expert testimony before the Chicago Zoning Board of Appeals.
               </p>
             </div>
@@ -86,47 +86,47 @@ export const AboutScreen: React.FC = () => {
 
         {/* Brand Values (Experienced. Knowledgeable. Dedicated.) */}
         <div className="space-y-3">
-          <h2 className="font-heading text-lg font-bold text-[#1F2A44]">
+          <h2 className="font-heading text-lg font-bold text-[#191919]">
             Our Positioning &amp; Values
           </h2>
           <div className="grid grid-cols-1 gap-2.5">
             <GlassCard className="p-4 flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#3D4D7C]/10 text-[#3D4D7C] flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-[#C0D0E1]/35 text-[#323232] flex items-center justify-center flex-shrink-0">
                 <Award className="w-5 h-5 stroke-[2]" />
               </div>
               <div>
-                <h4 className="font-heading text-sm font-bold text-[#1F2A44]">
+                <h4 className="font-heading text-sm font-bold text-[#191919]">
                   Experienced
                 </h4>
-                <p className="text-xs text-[#8A93A6] mt-0.5 leading-relaxed">
+                <p className="text-xs text-[#82807A] mt-0.5 leading-relaxed">
                   Decades of direct interaction with City Hall plan examiners, aldermen, and Cook County commissioners.
                 </p>
               </div>
             </GlassCard>
 
             <GlassCard className="p-4 flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#3D4D7C]/10 text-[#3D4D7C] flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-[#C0D0E1]/35 text-[#323232] flex items-center justify-center flex-shrink-0">
                 <ShieldCheck className="w-5 h-5 stroke-[2]" />
               </div>
               <div>
-                <h4 className="font-heading text-sm font-bold text-[#1F2A44]">
+                <h4 className="font-heading text-sm font-bold text-[#191919]">
                   Knowledgeable
                 </h4>
-                <p className="text-xs text-[#8A93A6] mt-0.5 leading-relaxed">
+                <p className="text-xs text-[#82807A] mt-0.5 leading-relaxed">
                   Authoritative command of Title 17 Chicago Zoning Ordinance, Connected Communities, and building code matrices.
                 </p>
               </div>
             </GlassCard>
 
             <GlassCard className="p-4 flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#3D4D7C]/10 text-[#3D4D7C] flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-[#C0D0E1]/35 text-[#323232] flex items-center justify-center flex-shrink-0">
                 <Users2 className="w-5 h-5 stroke-[2]" />
               </div>
               <div>
-                <h4 className="font-heading text-sm font-bold text-[#1F2A44]">
+                <h4 className="font-heading text-sm font-bold text-[#191919]">
                   Dedicated
                 </h4>
-                <p className="text-xs text-[#8A93A6] mt-0.5 leading-relaxed">
+                <p className="text-xs text-[#82807A] mt-0.5 leading-relaxed">
                   Passionate advocates for our clients’ architectural ambitions and property rights.
                 </p>
               </div>
@@ -137,36 +137,36 @@ export const AboutScreen: React.FC = () => {
         {/* Community Engagement Section */}
         <GlassCard className="p-5 space-y-4">
           <div className="flex items-center gap-2">
-            <HeartHandshake className="w-5 h-5 text-[#3D4D7C]" />
-            <h2 className="font-heading text-lg font-bold text-[#1F2A44]">
+            <HeartHandshake className="w-5 h-5 text-[#323232]" />
+            <h2 className="font-heading text-lg font-bold text-[#191919]">
               Community Engagement Commitment
             </h2>
           </div>
 
           <div className="space-y-3 text-xs">
             <div className="p-3 bg-white/70 backdrop-blur-sm rounded-xl border border-white space-y-1">
-              <span className="font-bold text-[#1F2A44] block">
+              <span className="font-bold text-[#121214] block">
                 1. Enhanced Project Support
               </span>
-              <p className="text-[#8A93A6]">
+              <p className="text-[#82807A]">
                 Facilitating constructive dialogue between developers and neighborhood groups to align projects with neighborhood priorities.
               </p>
             </div>
 
             <div className="p-3 bg-white/70 backdrop-blur-sm rounded-xl border border-white space-y-1">
-              <span className="font-bold text-[#1F2A44] block">
+              <span className="font-bold text-[#121214] block">
                 2. Inclusive Decision-Making
               </span>
-              <p className="text-[#8A93A6]">
+              <p className="text-[#82807A]">
                 Ensuring community meetings are accessible and transparent, providing accurate architectural facts to ease neighbor concerns.
               </p>
             </div>
 
             <div className="p-3 bg-white/70 backdrop-blur-sm rounded-xl border border-white space-y-1">
-              <span className="font-bold text-[#1F2A44] block">
+              <span className="font-bold text-[#121214] block">
                 3. Community Benefits Realization
               </span>
-              <p className="text-[#8A93A6]">
+              <p className="text-[#82807A]">
                 Assisting projects in delivering affordable housing units, pedestrian improvements, and green infrastructure for Chicago.
               </p>
             </div>
@@ -174,9 +174,9 @@ export const AboutScreen: React.FC = () => {
         </GlassCard>
 
         {/* Legal Disclaimer Box */}
-        <div className="p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-white text-xs text-[#1F2A44] space-y-1">
+        <div className="p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-white text-xs text-[#121214] space-y-1">
           <span className="font-bold block">General Information Notice:</span>
-          <p className="text-[10px] text-[#8A93A6] leading-relaxed">
+          <p className="text-[10px] text-[#82807A] leading-relaxed">
             {BUSINESS_INFO.disclaimer} Williams &amp; Williams LLC is a professional land-use and zoning consultancy.
           </p>
         </div>

@@ -37,7 +37,7 @@ export const CasesScreen: React.FC = () => {
   };
 
   return (
-    <div className="min-h-full flex flex-col text-[#1F2A44] pb-6">
+    <div className="min-h-full flex flex-col text-[#121214] pb-6">
       {/* Standard AppHeader with single-line title */}
       <AppHeader title="My Cases" />
 
@@ -45,10 +45,10 @@ export const CasesScreen: React.FC = () => {
         {/* Title Header with New Case Action */}
         <div className="flex items-center justify-between pt-1">
           <div>
-            <h1 className="font-heading text-2xl font-bold text-[#1F2A44] tracking-tight">
+            <h1 className="font-heading text-2xl font-bold text-[#121214] tracking-tight">
               My Cases &amp; Bookings
             </h1>
-            <p className="text-xs text-[#8A93A6] mt-0.5 font-medium">
+            <p className="text-xs text-[#82807A] mt-0.5 font-medium">
               Real-time monitoring of City Hall permits and ZBA hearings.
             </p>
           </div>
@@ -68,7 +68,7 @@ export const CasesScreen: React.FC = () => {
             className={`flex-1 py-2 text-xs font-semibold rounded-full transition-all select-none min-h-[36px] ${
               activeCaseFilter === 'Active'
                 ? 'btn-glossy-navy shadow-sm'
-                : 'text-[#8A93A6] hover:text-[#1F2A44]'
+                : 'text-[#82807A] hover:text-[#121214]'
             }`}
           >
             Active Cases ({activeCases.length})
@@ -78,7 +78,7 @@ export const CasesScreen: React.FC = () => {
             className={`flex-1 py-2 text-xs font-semibold rounded-full transition-all select-none min-h-[36px] ${
               activeCaseFilter === 'Completed'
                 ? 'btn-glossy-navy shadow-sm'
-                : 'text-[#8A93A6] hover:text-[#1F2A44]'
+                : 'text-[#82807A] hover:text-[#121214]'
             }`}
           >
             Past Archive ({pastCases.length})
@@ -88,7 +88,7 @@ export const CasesScreen: React.FC = () => {
         {/* Section 1: Upcoming / Active Cases */}
         {activeCaseFilter === 'Active' && (
           <section aria-label="Active Cases List" className="space-y-4">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#8A93A6] block px-1">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#82807A] block px-1">
               Active Proceedings
             </span>
 
@@ -96,11 +96,11 @@ export const CasesScreen: React.FC = () => {
               <GlassCard
                 key={c.id}
                 onClick={() => navigate(`/cases/${c.id}`)}
-                className="overflow-hidden p-3.5 cursor-pointer group active:scale-[0.99] transition-all bg-white/85 border border-white/90 shadow-[0_8px_30px_rgba(31,42,68,0.06)] rounded-[24px]"
+                className="overflow-hidden p-3.5 cursor-pointer group active:scale-[0.99] transition-all bg-white/85 border border-white/90 shadow-[0_8px_30px_rgba(18, 18, 20,0.06)] rounded-[24px]"
               >
                 <div className="flex flex-col space-y-3">
                   {/* Thumbnail Image with Clean Rounded Frame */}
-                  <div className="relative aspect-[16/9] w-full rounded-[16px] overflow-hidden bg-[#1F2A44]">
+                  <div className="relative aspect-[16/9] w-full rounded-[16px] overflow-hidden bg-[#121214]">
                     <ImageWithFallback
                       imageKey={c.imageKey}
                       aspectRatio="aspect-video h-full w-full"
@@ -110,7 +110,7 @@ export const CasesScreen: React.FC = () => {
 
                     {/* Case Number Badge - Crisp Light Glass Pill */}
                     <div className="absolute top-2.5 left-2.5">
-                      <span className="bg-white/95 backdrop-blur-md text-[#1F2A44] font-mono text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm border border-white">
+                      <span className="bg-white/95 backdrop-blur-md text-[#121214] font-mono text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm border border-white">
                         {c.caseNumber}
                       </span>
                     </div>
@@ -126,34 +126,34 @@ export const CasesScreen: React.FC = () => {
                   {/* Case Content */}
                   <div className="px-1 flex flex-col justify-between space-y-2.5">
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-widest text-[#3D4D7C] block">
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-[#323232] block">
                         {c.type}
                       </span>
-                      <h3 className="font-heading text-[17px] font-bold text-[#1F2A44] leading-snug line-clamp-2 mt-0.5">
+                      <h3 className="font-heading text-[17px] font-bold text-[#121214] leading-snug line-clamp-2 mt-0.5">
                         {c.title}
                       </h3>
-                      <div className="flex items-center gap-1.5 text-xs text-[#8A93A6] mt-1">
-                        <MapPin className="w-3.5 h-3.5 text-[#3D4D7C] flex-shrink-0" />
+                      <div className="flex items-center gap-1.5 text-xs text-[#82807A] mt-1">
+                        <MapPin className="w-3.5 h-3.5 text-[#323232] flex-shrink-0" />
                         <span className="truncate">{c.address}</span>
                       </div>
                     </div>
 
                     {/* Next Hearing / Event Date Banner */}
-                    <div className="bg-[#F8F9FB] border border-[#DDE2EA] rounded-xl p-3 flex items-center justify-between text-xs">
+                    <div className="bg-[#F8F9FB] border border-[#D8D8D8] rounded-xl p-3 flex items-center justify-between text-xs">
                       <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 rounded-lg bg-[#3D4D7C]/10 text-[#3D4D7C] flex items-center justify-center flex-shrink-0">
+                        <div className="w-8 h-8 rounded-lg bg-[#323232]/10 text-[#323232] flex items-center justify-center flex-shrink-0">
                           <Calendar className="w-4 h-4 stroke-[2]" />
                         </div>
                         <div>
-                          <span className="text-[10px] text-[#8A93A6] font-medium block leading-none">
+                          <span className="text-[10px] text-[#82807A] font-medium block leading-none">
                             Next Event
                           </span>
-                          <span className="font-semibold text-[#1F2A44] leading-tight mt-0.5 block">
+                          <span className="font-semibold text-[#121214] leading-tight mt-0.5 block">
                             {c.nextDate}
                           </span>
                         </div>
                       </div>
-                      <span className="text-xs font-semibold text-[#3D4D7C] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                      <span className="text-xs font-semibold text-[#323232] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                         <span>View Details</span>
                         <ChevronRight className="w-4 h-4" />
                       </span>
@@ -168,7 +168,7 @@ export const CasesScreen: React.FC = () => {
         {/* Section 2: Completed / Past Cases List */}
         {activeCaseFilter === 'Completed' && (
           <section aria-label="Completed Cases" className="space-y-3">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#8A93A6] block px-1">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#82807A] block px-1">
               Successfully Resolved Cases
             </span>
 
@@ -178,7 +178,7 @@ export const CasesScreen: React.FC = () => {
                 onClick={() => navigate(`/cases/${c.id}`)}
                 className="p-3 flex items-center gap-3.5 cursor-pointer active:scale-[0.99] transition-all bg-white/85 border border-white/90 rounded-[20px]"
               >
-                <div className="w-16 h-16 rounded-[14px] overflow-hidden flex-shrink-0 bg-[#1F2A44]">
+                <div className="w-16 h-16 rounded-[14px] overflow-hidden flex-shrink-0 bg-[#121214]">
                   <ImageWithFallback
                     imageKey={c.imageKey}
                     aspectRatio="aspect-square w-full h-full"
@@ -188,23 +188,23 @@ export const CasesScreen: React.FC = () => {
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold font-mono text-[#8A93A6]">
+                    <span className="text-[10px] font-bold font-mono text-[#82807A]">
                       {c.caseNumber}
                     </span>
                     <Badge variant="solid-success" size="sm">
                       {c.status}
                     </Badge>
                   </div>
-                  <h4 className="font-heading text-[15px] font-bold text-[#1F2A44] truncate mt-0.5">
+                  <h4 className="font-heading text-[15px] font-bold text-[#121214] truncate mt-0.5">
                     {c.title}
                   </h4>
-                  <div className="flex items-center gap-2 text-[11px] text-[#8A93A6] mt-1">
+                  <div className="flex items-center gap-2 text-[11px] text-[#82807A] mt-1">
                     <FileCheck2 className="w-3.5 h-3.5 text-[#3FA66B]" />
                     <span className="truncate">{c.nextEventTitle}</span>
                   </div>
                 </div>
 
-                <ChevronRight className="w-5 h-5 text-[#8A93A6] flex-shrink-0" />
+                <ChevronRight className="w-5 h-5 text-[#82807A] flex-shrink-0" />
               </GlassCard>
             ))}
           </section>
@@ -213,12 +213,12 @@ export const CasesScreen: React.FC = () => {
         {/* Upcoming Consultations Appointments */}
         <section aria-label="Upcoming Consultations" className="space-y-3">
           <div className="flex items-center justify-between px-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#8A93A6]">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#82807A]">
               Upcoming Consultations ({appointments.length})
             </span>
             <button
               onClick={() => navigate('/book-consultation')}
-              className="text-xs font-semibold text-[#3D4D7C] hover:underline"
+              className="text-xs font-semibold text-[#323232] hover:underline"
             >
               + Book Another
             </button>
@@ -231,12 +231,12 @@ export const CasesScreen: React.FC = () => {
                 className="p-3.5 flex items-center justify-between bg-white/85 rounded-[18px] border border-white/90"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-[#3D4D7C]/10 flex items-center justify-center text-[#3D4D7C]">
+                  <div className="w-10 h-10 rounded-xl bg-[#323232]/10 flex items-center justify-center text-[#323232]">
                     <Clock className="w-5 h-5 stroke-[2]" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-[#1F2A44]">{app.title}</h4>
-                    <p className="text-[11px] text-[#8A93A6] mt-0.5">
+                    <h4 className="text-xs font-bold text-[#121214]">{app.title}</h4>
+                    <p className="text-[11px] text-[#82807A] mt-0.5">
                       {app.date} &bull; {app.time} &bull; {app.type}
                     </p>
                   </div>
@@ -253,10 +253,10 @@ export const CasesScreen: React.FC = () => {
         <section aria-label="Need Help Support Card">
           <GlassCard className="p-5 flex items-center justify-between gap-4 bg-white/85 rounded-[24px] border border-white/90">
             <div className="space-y-1.5 flex-1">
-              <h3 className="font-heading text-lg font-bold text-[#1F2A44]">
+              <h3 className="font-heading text-lg font-bold text-[#121214]">
                 Need Help?
               </h3>
-              <p className="text-xs text-[#8A93A6] leading-relaxed">
+              <p className="text-xs text-[#82807A] leading-relaxed">
                 Our support team is here to assist you with your queries and City Hall filings.
               </p>
               <div className="pt-2">
