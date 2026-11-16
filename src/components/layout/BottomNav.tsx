@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, Sparkles, Calendar, HardHat, Menu } from 'lucide-react';
+import { Home, Briefcase, Calendar, HardHat, Menu } from 'lucide-react';
 import { useAppStore } from '../../store/useAppStore';
 
 export const BottomNav: React.FC = () => {
@@ -68,7 +68,7 @@ export const BottomNav: React.FC = () => {
         aria-label="Services"
         className="w-full flex flex-col items-center justify-center py-1 transition-all active:scale-95 group"
       >
-        <Sparkles
+        <Briefcase
           className={`w-5 h-5 transition-colors ${
             isServices ? 'text-[#191919] stroke-[2.5]' : 'text-[#334454] stroke-[1.9] group-hover:text-[#191919]'
           }`}

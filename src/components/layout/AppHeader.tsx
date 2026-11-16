@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ArrowLeft, Bell } from 'lucide-react';
+import { Bell } from 'lucide-react';
 import { useAppStore } from '../../store/useAppStore';
 
 export interface AppHeaderProps {
@@ -13,7 +13,7 @@ export interface AppHeaderProps {
 
 export const AppHeader: React.FC<AppHeaderProps> = ({
   isMaster = false,
-  showBack,
+  showBack: _showBack,
   rightAction,
 }) => {
   const navigate = useNavigate();
@@ -40,23 +40,10 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
     return null;
   }
 
-  const isHome = location.pathname === '/' || location.pathname === '/home';
-  const shouldShowBack = showBack !== undefined ? showBack : !isHome;
-
   return (
     <header className="w-full h-16 liquid-glass-bar flex items-center justify-between px-4 flex-shrink-0 select-none">
       {/* Zone 1: Left Brand / Logo (Always consistent on every page) */}
       <div className="flex items-center gap-2 min-w-0">
-        {shouldShowBack && (
-          <button
-            onClick={() => navigate(-1)}
-            aria-label="Go back"
-            className="flex items-center justify-center w-8 h-8 rounded-full bg-white/90 text-[#191919] border border-white/95 shadow-xs hover:bg-white active:scale-95 transition-all flex-shrink-0"
-          >
-            <ArrowLeft className="w-4 h-4 stroke-[2]" />
-          </button>
-        )}
-
         <div
           onClick={() => navigate('/')}
           className="flex items-center gap-2 cursor-pointer select-none flex-shrink-0"

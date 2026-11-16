@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CheckCheck, Sliders, BellOff, X } from 'lucide-react';
 import { useAppStore, AppNotification } from '../store/useAppStore';
-import AppHeader from '../components/layout/AppHeader';
 import NotificationItem from '../components/features/NotificationItem';
 import GlassCard from '../components/ui/GlassCard';
 import GlassButton from '../components/ui/GlassButton';
@@ -40,21 +39,6 @@ export const NotificationsScreen: React.FC = () => {
 
   return (
     <div className="min-h-full flex flex-col pb-6">
-      {/* AppHeader with "Mark all read" action */}
-      <AppHeader
-        title="Notifications"
-        showBack
-        rightAction={
-          <button
-            onClick={markAllNotificationsRead}
-            className="flex items-center gap-1 text-xs font-semibold text-[#323232] hover:text-[#121214] transition-colors px-2 py-1.5 rounded-full liquid-glass-chip"
-          >
-            <CheckCheck className="w-3.5 h-3.5" />
-            <span className="hidden xs:inline min-[360px]:inline">Mark all read</span>
-          </button>
-        }
-      />
-
       <div className="px-4 py-4 space-y-4">
         {/* Segmented Filter Control */}
         <div className="flex rounded-full liquid-glass-chip p-1 shadow-xs">
@@ -71,6 +55,22 @@ export const NotificationsScreen: React.FC = () => {
               {tab}
             </button>
           ))}
+        </div>
+
+        {/* Action bar with category count & Mark all read */}
+        <div className="flex items-center justify-between px-1">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-[#82807A]">
+            Inbox ({filteredNotifications.length})
+          </span>
+          {notifications.some((n) => !n.read) && (
+            <button
+              onClick={markAllNotificationsRead}
+              className="flex items-center gap-1.5 text-xs font-semibold text-[#323232] hover:text-[#191919] transition-all px-3 py-1 rounded-full liquid-glass-chip active:scale-95 shadow-2xs"
+            >
+              <CheckCheck className="w-3.5 h-3.5 text-[#323232]" />
+              <span>Mark all read</span>
+            </button>
+          )}
         </div>
 
         {/* Grouped Notifications List */}
