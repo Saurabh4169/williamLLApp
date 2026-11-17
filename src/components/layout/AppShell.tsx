@@ -3,12 +3,14 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
 import { BottomNav } from './BottomNav';
 import { AppHeader } from './AppHeader';
+import { DraggableAskAiButton } from '../common/DraggableAskAiButton';
 import { useAppStore } from '../../store/useAppStore';
 
 export const AppShell: React.FC = () => {
   const location = useLocation();
   const { desktopFrameMode, toast, darkMode } = useAppStore();
   const mainRef = useRef<HTMLElement>(null);
+  const phoneFrameRef = useRef<HTMLDivElement>(null);
 
   // Automatically scroll main content to top on navigation
   useEffect(() => {
@@ -21,8 +23,28 @@ export const AppShell: React.FC = () => {
   const isAssessment =
     location.pathname.startsWith('/project-assessment') ||
     location.pathname.startsWith('/assessment');
-  const hideBottomNav = isSplash || isServiceDetail || isAssessment;
-  const hideTopBar = isSplash;
+  const isAiAssistant =
+    location.pathname.startsWith('/ai-assistant') ||
+    location.pathname.startsWith('/ai-chat');
+  const isCostEstimator =
+    location.pathname.startsWith('/cost-estimator') ||
+    location.pathname.startsWith('/estimator');
+  const isQuote = location.pathname.startsWith('/quote');
+  const isQuoteSuccess = isQuote && location.search.includes('success=true');
+  const hideBottomNav =
+    isSplash ||
+    isServiceDetail ||
+    isAssessment ||
+    isAiAssistant ||
+    isCostEstimator ||
+    (isQuote && !isQuoteSuccess);
+  const hideTopBar =
+    isSplash ||
+    isCostEstimator ||
+    isQuote ||
+    isServiceDetail ||
+    isAssessment ||
+    isAiAssistant;
 
   return (
     <div
@@ -51,6 +73,7 @@ export const AppShell: React.FC = () => {
       {/* Main Container - edge-to-edge native on mobile (390px standard), framed on desktop */}
       <div
         id="phone-frame"
+        ref={phoneFrameRef}
         className={`w-full h-full max-h-[100dvh] transition-all duration-300 relative flex flex-col overflow-hidden border-0 rounded-none shadow-none ${
           desktopFrameMode
             ? 'lg:max-w-[390px] lg:min-h-0 lg:h-[844px] lg:max-h-[92vh] lg:rounded-[44px] lg:shadow-[0_25px_70px_rgba(25,25,25,0.20)] lg:border-[8px] lg:border-[#191919]'
@@ -98,6 +121,9 @@ export const AppShell: React.FC = () => {
             <BottomNav />
           </div>
         )}
+
+        {/* Global Draggable Floating Ask AI Circle */}
+        <DraggableAskAiButton scrollContainerRef={mainRef} containerRef={phoneFrameRef} />
       </div>
     </div>
   );

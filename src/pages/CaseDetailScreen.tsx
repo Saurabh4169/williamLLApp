@@ -10,6 +10,8 @@ import {
   Bell,
   BellRing,
   Phone,
+  Sparkles,
+  ChevronRight,
 } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
 import BackButton from '../components/ui/BackButton';
@@ -65,6 +67,28 @@ export const CaseDetailScreen: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* AI Case Explainer Button */}
+          <button
+            type="button"
+            onClick={() =>
+              navigate(
+                `/ai-assistant?caseId=${encodeURIComponent(caseItem.id)}&caseTitle=${encodeURIComponent(
+                  caseItem.title
+                )}`
+              )
+            }
+            className="w-full py-2.5 px-3.5 rounded-full bg-white dark:bg-white/10 border border-[#D8D8D8] dark:border-white/15 flex items-center justify-between text-xs font-semibold text-[#191919] dark:text-white shadow-2xs hover:border-[#191919] active:scale-[0.99] transition-all group"
+          >
+            <span className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#B8860B]" />
+              <span>Explain in simple words</span>
+            </span>
+            <span className="text-[11px] text-[#82807A] dark:text-[#A0B0BC] flex items-center gap-1 group-hover:text-[#191919] dark:group-hover:text-white transition-colors">
+              <span>AI Case Explainer</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </span>
+          </button>
 
           {/* Next Hearing / Event Reminder Box */}
           <div className="btn-glossy-navy rounded-2xl p-3.5 flex items-center justify-between shadow-md text-white">

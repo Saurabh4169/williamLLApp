@@ -149,6 +149,7 @@ export const ServicesScreen: React.FC = () => {
           </div>
         )}
 
+
         {/* Services in a strict 2-column grid (always 2 per row from 320px up) */}
         <div className="grid grid-cols-2 gap-3 pt-1 auto-rows-fr">
           {filteredServices.map((service) => (

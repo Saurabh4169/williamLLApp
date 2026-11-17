@@ -33,6 +33,8 @@ import {
   Check,
   AlertCircle,
   Clock,
+  Sparkles,
+  Calculator,
   User,
   Newspaper,
   PhoneCall,
@@ -1262,6 +1264,38 @@ export const ProfileScreen: React.FC = () => {
           </div>
 
           <div className="space-y-3">
+            {/* Card: AI Assistant */}
+            <div className="p-4 rounded-[20px] liquid-glass-card border border-[#D8D8D8] shadow-xs space-y-2">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#323232] to-[#191919] text-white flex items-center justify-center flex-shrink-0 shadow-xs">
+                  <Sparkles className="w-5 h-5 text-[#C7D3DC]" />
+                </div>
+                <div>
+                  <h3 className="font-heading text-xs font-bold text-[#191919]">
+                    AI Assistant
+                  </h3>
+                  <p className="text-[11px] text-[#82807A]">
+                    Instant 24/7 answers to Chicago zoning questions &amp; case explainer
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-2 flex items-center justify-between border-t border-[#D8D8D8]/60">
+                <span className="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>24/7 Available &bull; Instant</span>
+                </span>
+
+                <button
+                  type="button"
+                  onClick={() => navigate('/ai-assistant')}
+                  className="py-1.5 px-4 rounded-full btn-glossy-primary text-white text-xs font-bold active:scale-95 transition-all"
+                >
+                  Ask AI
+                </button>
+              </div>
+            </div>
+
             {/* Card 1: Direct Hotline */}
             <div className="p-4 rounded-[20px] liquid-glass-card border border-[#D8D8D8] shadow-xs space-y-2">
               <div className="flex items-center gap-3">
@@ -1848,21 +1882,21 @@ export const ProfileScreen: React.FC = () => {
                 onClick={() => handleOpenView('bookings')}
                 className="p-3.5 flex items-center justify-between hover:bg-white/60 transition-colors cursor-pointer group active:bg-white/80"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
                   <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center flex-shrink-0">
                     <Calendar className="w-4 h-4 stroke-[2]" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1 pr-2">
                     <h4 className="font-heading text-xs font-bold text-[#191919] leading-tight">
                       My Bookings
                     </h4>
-                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5">
+                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5 truncate">
                       Scheduled strategy consultations
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 flex-shrink-0">
                   <span className="text-[11px] font-bold text-[#82807A]">
                     {appointments.length}
                   </span>
@@ -1875,21 +1909,21 @@ export const ProfileScreen: React.FC = () => {
                 onClick={() => handleOpenView('saved')}
                 className="p-3.5 flex items-center justify-between hover:bg-white/60 transition-colors cursor-pointer group active:bg-white/80"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
                   <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center flex-shrink-0">
                     <Heart className="w-4 h-4 stroke-[2]" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1 pr-2">
                     <h4 className="font-heading text-xs font-bold text-[#191919] leading-tight">
                       Saved Items
                     </h4>
-                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5">
+                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5 truncate">
                       Saved services &amp; construction projects
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 flex-shrink-0">
                   <span className="text-[11px] font-bold text-[#82807A]">
                     {totalSavedCount}
                   </span>
@@ -1902,21 +1936,21 @@ export const ProfileScreen: React.FC = () => {
                 onClick={() => handleOpenView('quotes')}
                 className="p-3.5 flex items-center justify-between hover:bg-white/60 transition-colors cursor-pointer group active:bg-white/80"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
                   <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0">
                     <FileText className="w-4 h-4 stroke-[2]" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1 pr-2">
                     <h4 className="font-heading text-xs font-bold text-[#191919] leading-tight">
                       My Quotes
                     </h4>
-                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5">
+                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5 truncate">
                       Fee estimates, downloads &amp; authorizations
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 flex-shrink-0">
                   <span className="text-[11px] font-bold text-[#82807A]">
                     {quotesList.length}
                   </span>
@@ -1924,26 +1958,53 @@ export const ProfileScreen: React.FC = () => {
                 </div>
               </div>
 
+              {/* Row 4.5: Cost Estimator */}
+              <div
+                onClick={() => navigate('/cost-estimator')}
+                className="p-3.5 flex items-center justify-between hover:bg-white/60 transition-colors cursor-pointer group active:bg-white/80"
+              >
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center flex-shrink-0">
+                    <Calculator className="w-4 h-4 stroke-[2]" />
+                  </div>
+                  <div className="min-w-0 flex-1 pr-2">
+                    <div className="flex items-center gap-1.5">
+                      <h4 className="font-heading text-xs font-bold text-[#191919] leading-tight">
+                        Cost Estimator
+                      </h4>
+                      <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded-full bg-teal-100 text-teal-800 dark:bg-teal-900/40 dark:text-teal-300">
+                        NEW
+                      </span>
+                    </div>
+                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5 truncate">
+                      Estimate fees &amp; timeline
+                    </p>
+                  </div>
+                </div>
+
+                <ChevronRight className="w-4 h-4 text-[#82807A] group-hover:translate-x-0.5 transition-transform flex-shrink-0" />
+              </div>
+
               {/* Row 5: My Enquiries (NEW) */}
               <div
                 onClick={() => handleOpenView('enquiries')}
                 className="p-3.5 flex items-center justify-between hover:bg-white/60 transition-colors cursor-pointer group active:bg-white/80"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
                   <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0">
                     <MessageSquare className="w-4 h-4 stroke-[2]" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1 pr-2">
                     <h4 className="font-heading text-xs font-bold text-[#191919] leading-tight">
                       My Enquiries
                     </h4>
-                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5">
+                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5 truncate">
                       Support tickets &amp; live assistance
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 flex-shrink-0">
                   <span className="text-[11px] font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded-full border border-indigo-200">
                     {tickets.length}
                   </span>
@@ -1956,21 +2017,21 @@ export const ProfileScreen: React.FC = () => {
                 onClick={() => handleOpenView('payments')}
                 className="p-3.5 flex items-center justify-between hover:bg-white/60 transition-colors cursor-pointer group active:bg-white/80"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
                   <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
                     <CreditCard className="w-4 h-4 stroke-[2]" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1 pr-2">
                     <h4 className="font-heading text-xs font-bold text-[#191919] leading-tight">
                       Payments &amp; Invoices
                     </h4>
-                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5">
+                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5 truncate">
                       Outstanding balance &bull; ${totalOutstandingBalance.toFixed(0)} due
                     </p>
                   </div>
                 </div>
 
-                <ChevronRight className="w-4 h-4 text-[#82807A] group-hover:translate-x-0.5 transition-transform" />
+                <ChevronRight className="w-4 h-4 text-[#82807A] group-hover:translate-x-0.5 transition-transform flex-shrink-0" />
               </div>
 
               {/* Row 7: Documents Vault & Deeds (existing) */}
@@ -1978,20 +2039,20 @@ export const ProfileScreen: React.FC = () => {
                 onClick={() => navigate('/vault')}
                 className="p-3.5 flex items-center justify-between hover:bg-white/60 transition-colors cursor-pointer group active:bg-white/80"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
                   <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center flex-shrink-0">
                     <ShieldCheck className="w-4 h-4 stroke-[2]" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1 pr-2">
                     <h4 className="font-heading text-xs font-bold text-[#191919] leading-tight">
                       Documents Vault &amp; Deeds
                     </h4>
-                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5">
+                    <p className="text-[10.5px] text-[#82807A] font-medium mt-0.5 truncate">
                       Plats of survey, deeds &amp; ZBA filings
                     </p>
                   </div>
                 </div>
-                <ChevronRight className="w-4 h-4 text-[#82807A] group-hover:translate-x-0.5 transition-transform" />
+                <ChevronRight className="w-4 h-4 text-[#82807A] group-hover:translate-x-0.5 transition-transform flex-shrink-0" />
               </div>
             </div>
           </div>

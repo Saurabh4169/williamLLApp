@@ -20,6 +20,7 @@ import {
   Check,
   Star,
   Mail,
+  Sparkles,
 } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
 import { BUSINESS_INFO } from '../data/businessInfo';
@@ -176,7 +177,12 @@ export const HomeScreen: React.FC = () => {
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      navigate('/quote');
+                      const currentSlide = featuredSlides[featuredIndex];
+                      navigate(
+                        `/quote?item=${encodeURIComponent(currentSlide.title)}&tags=${encodeURIComponent(
+                          currentSlide.stats.map((s) => s.label).join(',')
+                        )}&address=${encodeURIComponent(currentSlide.location)}`
+                      );
                     }}
                     className="flex-1 h-8 rounded-full bg-white hover:bg-white/95 text-[#191919] font-heading font-bold text-[11px] flex items-center justify-center gap-1.5 shadow-[0_4px_16px_rgba(0,0,0,0.35)] active:scale-95 transition-all"
                   >

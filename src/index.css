@@ -244,6 +244,20 @@ button, .btn-label, .nav-label {
   opacity: 0.90;
 }
 
+.dark .liquid-glass-card {
+  background: linear-gradient(135deg, rgba(28, 28, 32, 0.94) 0%, rgba(22, 22, 26, 0.90) 50%, rgba(26, 26, 30, 0.94) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.20),
+    inset 0 1px 1px rgba(255, 255, 255, 0.14),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.40);
+}
+
+.dark .liquid-glass-card::before {
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.12) 0%, rgba(199, 211, 220, 0.05) 35%, rgba(255, 255, 255, 0) 65%);
+}
+
 .liquid-glass-chip {
   position: relative;
   background: linear-gradient(135deg, rgba(254, 254, 254, 0.92), rgba(240, 244, 248, 0.80));
@@ -260,6 +274,20 @@ button, .btn-label, .nav-label {
 .liquid-glass-chip:hover {
   border-color: rgba(165, 181, 193, 0.85);
   background: linear-gradient(135deg, rgba(254, 254, 254, 0.98), rgba(232, 240, 248, 0.90));
+}
+
+.dark .liquid-glass-chip {
+  background: linear-gradient(135deg, rgba(38, 38, 44, 0.92), rgba(28, 28, 32, 0.85));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.10);
+  color: #FEFEFE;
+}
+
+.dark .liquid-glass-chip:hover {
+  border-color: rgba(199, 211, 220, 0.40);
+  background: linear-gradient(135deg, rgba(46, 46, 54, 0.95), rgba(34, 34, 40, 0.90));
 }
 
 /* Water-Glass Misty Blue Gradient Elements */
@@ -302,6 +330,20 @@ button, .btn-label, .nav-label {
   height: 40%;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.05) 100%);
   pointer-events: none;
+}
+
+.dark .liquid-glass-bar {
+  background: linear-gradient(180deg, rgba(28, 28, 32, 0.96) 0%, rgba(22, 22, 25, 0.92) 50%, rgba(20, 20, 23, 0.95) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.35),
+    0 1px 2px rgba(0, 0, 0, 0.20),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.50);
+}
+
+.dark .liquid-glass-bar::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%);
 }
 
 /* Ensure sticky app header stays permanently fixed on scroll across all mobile & desktop browsers */

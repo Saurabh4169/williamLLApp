@@ -38,6 +38,11 @@ export const ProjectAssessmentScreen: React.FC = () => {
 
   const projectId = searchParams.get('projectId');
   const isCompletedParam = searchParams.get('completed') === 'true';
+  const projectTypeParam = searchParams.get('projectType');
+  const propertyTypeParam = searchParams.get('propertyType');
+  const addressParam = searchParams.get('address');
+  const sqftParam = searchParams.get('sqft');
+  const zoningParam = searchParams.get('zoning');
 
   // Find referred project if any
   const matchedProject: PortfolioProject | undefined = PORTFOLIO_PROJECTS.find(
@@ -53,19 +58,21 @@ export const ProjectAssessmentScreen: React.FC = () => {
   const [showPinModal, setShowPinModal] = useState<boolean>(false);
 
   // Form State
-  const [projectType, setProjectType] = useState<string>('New construction');
-  const [propertyType, setPropertyType] = useState<string>('Residential');
+  const [projectType, setProjectType] = useState<string>(projectTypeParam || 'New construction');
+  const [propertyType, setPropertyType] = useState<string>(propertyTypeParam || 'Residential');
   const [zoningApproval, setZoningApproval] = useState<string>('Yes (variance or rezoning)');
 
   // Step 2: Property Details
   const [propertyAddress, setPropertyAddress] = useState<string>(
-    matchedProject ? matchedProject.address : '2144 N Damen Ave, Chicago, IL 60647'
+    addressParam || (matchedProject ? matchedProject.address : '2144 N Damen Ave, Chicago, IL 60647')
   );
   const [pinNumber, setPinNumber] = useState<string>('14-31-108-024-0000');
   const [zoningDistrict, setZoningDistrict] = useState<string>(
-    matchedProject?.specs?.zoningDistrict || 'RT-4'
+    zoningParam || matchedProject?.specs?.zoningDistrict || 'RT-4'
   );
-  const [lotSize, setLotSize] = useState<string>('3,125 sq ft (25 x 125)');
+  const [lotSize, setLotSize] = useState<string>(
+    sqftParam ? `${Number(sqftParam).toLocaleString()} sq ft` : '3,125 sq ft (25 x 125)'
+  );
   const [ownershipStatus, setOwnershipStatus] = useState<string>('Yes I own it');
   const [lotCurrentCondition, setLotCurrentCondition] = useState<string>('Existing building');
 

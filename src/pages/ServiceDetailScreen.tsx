@@ -479,6 +479,28 @@ export const ServiceDetailScreen: React.FC = () => {
           </div>
         </div>
 
+        {/* 2.2 ASK AI ABOUT THIS SERVICE BUTTON */}
+        <button
+          type="button"
+          onClick={() =>
+            navigate(
+              `/ai-assistant?service=${encodeURIComponent(service.slug)}&serviceName=${encodeURIComponent(
+                service.title
+              )}`
+            )
+          }
+          className="w-full py-2.5 px-3.5 rounded-full bg-white dark:bg-white/10 border border-[#D8D8D8] dark:border-white/15 flex items-center justify-between text-xs font-semibold text-[#191919] dark:text-white shadow-2xs hover:border-[#191919] active:scale-[0.99] transition-all group"
+        >
+          <span className="flex items-center gap-2">
+            <Sparkles className="w-4 h-4 text-[#B8860B]" />
+            <span>Ask AI about this service</span>
+          </span>
+          <span className="text-[11px] text-[#82807A] dark:text-[#A0B0BC] flex items-center gap-1 group-hover:text-[#191919] dark:group-hover:text-white transition-colors">
+            <span>Instant guidance</span>
+            <ChevronRight className="w-3.5 h-3.5" />
+          </span>
+        </button>
+
         {/* ========================================================
             3. FOUR QUICK INFO BOXES (Real values, never placeholders)
         ======================================================== */}
@@ -760,6 +782,26 @@ export const ServiceDetailScreen: React.FC = () => {
           <div className="p-2.5 rounded-[12px] bg-amber-500/10 border border-amber-500/20 text-[11px] text-amber-800 dark:text-amber-300 flex items-center gap-2">
             <AlertCircle className="w-4 h-4 flex-shrink-0" />
             <span>City permit fees are paid separately to the City of Chicago.</span>
+          </div>
+
+          {/* Request Free Quote Alternative */}
+          <div className="pt-1 text-center">
+            <button
+              type="button"
+              onClick={() =>
+                navigate(
+                  `/quote?service=${encodeURIComponent(service.slug)}&item=${encodeURIComponent(
+                    service.title
+                  )}&code=${encodeURIComponent(service.code)}&tags=${encodeURIComponent(
+                    service.category
+                  )}`
+                )
+              }
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#191919] dark:text-white underline hover:opacity-85 active:scale-95 transition-all"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>Prefer a preliminary estimate? Request Free Quote</span>
+            </button>
           </div>
         </div>
       </div>
