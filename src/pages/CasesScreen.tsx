@@ -5,7 +5,6 @@ import {
   ChevronRight,
   Headphones,
   MapPin,
-  Plus,
   FileCheck2,
   FolderCheck,
   Building2,
@@ -21,6 +20,7 @@ import { GlassButton } from '../components/ui/GlassButton';
 import Badge from '../components/ui/Badge';
 import ImageWithFallback from '../components/ui/ImageWithFallback';
 import PhonePortal from '../components/ui/PhonePortal';
+import BackButton from '../components/ui/BackButton';
 
 export const CasesScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -118,22 +118,21 @@ export const CasesScreen: React.FC = () => {
 
       <div className="px-4 py-3 space-y-5">
         {/* Title Header with New Case Action */}
-        <div className="flex items-center justify-between pt-1">
-          <div>
-            <h1 className="font-heading text-2xl font-bold text-[#191919] dark:text-[#FEFEFE] tracking-tight">
+        <div className="flex items-center justify-between gap-3 pt-1">
+          <div className="min-w-0 flex-1">
+            <h1 className="font-heading text-xl font-bold text-[#191919] dark:text-[#FEFEFE] tracking-tight">
               Track Cases
             </h1>
-            <p className="text-xs text-[#82807A] dark:text-[#A0B0BC] mt-0.5 font-medium">
+            <p className="text-[11px] text-[#82807A] dark:text-[#A0B0BC] mt-0.5 font-medium leading-snug truncate">
               Real-time monitoring of City Hall permits and ZBA hearings.
             </p>
           </div>
           <button
             type="button"
             onClick={() => setShowNewCaseModal(true)}
-            className="flex items-center gap-1.5 text-xs font-semibold text-white btn-glossy-primary px-3.5 py-2 rounded-full shadow-xs active:scale-95 transition-all flex-shrink-0"
+            className="text-[11px] font-bold text-white btn-glossy-primary px-3 py-1.5 rounded-full shadow-2xs active:scale-95 transition-all flex-shrink-0"
           >
-            <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
-            <span>New Case</span>
+            New Case
           </button>
         </div>
 
@@ -325,15 +324,8 @@ export const CasesScreen: React.FC = () => {
           <div className="absolute inset-0 z-50 bg-[#FAFBFC] dark:bg-[#18181A] text-[#191919] dark:text-[#FEFEFE] flex flex-col overflow-hidden animate-in fade-in duration-200">
             {/* Header */}
             <div className="flex-shrink-0 px-4 py-3.5 border-b border-[#D8D8D8] dark:border-white/10 flex items-center justify-between bg-white/95 dark:bg-[#1C1C1F]/95 backdrop-blur-md">
-              <div className="flex items-center gap-2.5">
-                <button
-                  type="button"
-                  onClick={() => setShowNewCaseModal(false)}
-                  className="w-9 h-9 rounded-full bg-white dark:bg-white/10 border border-[#D8D8D8] dark:border-white/10 text-[#191919] dark:text-[#FEFEFE] flex items-center justify-center shadow-2xs hover:bg-slate-50 active:scale-95 transition-all"
-                  aria-label="Back"
-                >
-                  <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
-                </button>
+              <div className="flex items-center gap-2">
+                <BackButton onClick={() => setShowNewCaseModal(false)} ariaLabel="Back" />
                 <div>
                   <h2 className="font-heading text-base font-bold text-[#191919] dark:text-[#FEFEFE]">
                     Start Case Request

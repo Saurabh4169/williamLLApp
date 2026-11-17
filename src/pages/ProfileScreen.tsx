@@ -19,7 +19,6 @@ import {
   ChevronRight,
   ChevronDown,
   ArrowLeft,
-  Plus,
   Video,
   ExternalLink,
   CreditCard,
@@ -35,12 +34,16 @@ import {
   AlertCircle,
   Clock,
   User,
-  PlusCircle,
   Newspaper,
   PhoneCall,
+  Ruler,
+  MapPin,
+  X,
 } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
+import { Appointment } from '../data/cases';
 import { SERVICES_DATA } from '../data/services';
+import BackButton from '../components/ui/BackButton';
 import { PORTFOLIO_PROJECTS } from '../data/portfolio';
 import { APP_IMAGES } from '../data/images';
 import { BUSINESS_INFO } from '../data/businessInfo';
@@ -112,9 +115,18 @@ export const ProfileScreen: React.FC = () => {
     }
   }, [paramTab]);
 
+  const paramCategory = searchParams.get('category');
+  useEffect(() => {
+    if (paramCategory === 'zoning' || paramCategory === 'construction') {
+      setBookingDivisionFilter(paramCategory);
+    }
+  }, [paramCategory]);
+
   // Sub-filters for views
   const [savedFilter, setSavedFilter] = useState<'all' | 'services' | 'construction'>('all');
   const [bookingFilter, setBookingFilter] = useState<'upcoming' | 'past'>('upcoming');
+  const [bookingDivisionFilter, setBookingDivisionFilter] = useState<'all' | 'zoning' | 'construction'>('all');
+  const [summaryAppointment, setSummaryAppointment] = useState<Appointment | null>(null);
   const [quoteFilter, setQuoteFilter] = useState<'all' | 'Approved' | 'In Review' | 'Accepted & Paid'>('all');
   const [invoiceFilter, setInvoiceFilter] = useState<'all' | 'Due' | 'Paid'>('all');
 
@@ -200,7 +212,15 @@ export const ProfileScreen: React.FC = () => {
   // Filtered Bookings: Upcoming and Past
   const upcomingAppointments = appointments.filter((app) => app.status !== 'Completed');
   const pastAppointments = appointments.filter((app) => app.status === 'Completed');
-  const filteredAppointments = bookingFilter === 'upcoming' ? upcomingAppointments : pastAppointments;
+  const currentTabAppointments = bookingFilter === 'upcoming' ? upcomingAppointments : pastAppointments;
+
+  const filteredAppointments = currentTabAppointments.filter((app) => {
+    if (bookingDivisionFilter === 'all') return true;
+    if (bookingDivisionFilter === 'construction') {
+      return app.serviceCategory === 'construction';
+    }
+    return (app.serviceCategory || 'zoning') === 'zoning';
+  });
 
   // Filtered Quotes
   const filteredQuotes = quotesList.filter((q) => {
@@ -280,15 +300,8 @@ export const ProfileScreen: React.FC = () => {
         <div className="px-4 py-3 space-y-4 max-w-md mx-auto w-full">
           {/* Sub-screen header with Back Arrow & Title */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <button
-                type="button"
-                onClick={handleBackToMain}
-                className="w-8 h-8 rounded-full bg-white/90 border border-[#D8D8D8] text-[#191919] flex items-center justify-center shadow-2xs hover:bg-white active:scale-95 transition-all"
-                aria-label="Back to Account"
-              >
-                <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
-              </button>
+            <div className="flex items-center gap-2">
+              <BackButton onClick={handleBackToMain} ariaLabel="Back to Account" />
               <div>
                 <h2 className="font-heading text-base font-bold text-[#191919]">
                   My Bookings
@@ -326,140 +339,317 @@ export const ProfileScreen: React.FC = () => {
             </button>
           </div>
 
+          {/* Filter Chips: All, Zoning, Construction & Design */}
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pt-0.5">
+            <button
+              type="button"
+              onClick={() => setBookingDivisionFilter('all')}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all shadow-2xs ${
+                bookingDivisionFilter === 'all'
+                  ? 'bg-gradient-to-b from-[#323232] to-[#191919] text-[#FEFEFE]'
+                  : 'bg-white/80 text-[#82807A] border border-[#D8D8D8] hover:text-[#191919]'
+              }`}
+            >
+              All
+            </button>
+            <button
+              type="button"
+              onClick={() => setBookingDivisionFilter('zoning')}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all shadow-2xs ${
+                bookingDivisionFilter === 'zoning'
+                  ? 'bg-gradient-to-b from-[#323232] to-[#191919] text-[#FEFEFE]'
+                  : 'bg-white/80 text-[#82807A] border border-[#D8D8D8] hover:text-[#191919]'
+              }`}
+            >
+              Zoning
+            </button>
+            <button
+              type="button"
+              onClick={() => setBookingDivisionFilter('construction')}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all shadow-2xs ${
+                bookingDivisionFilter === 'construction'
+                  ? 'bg-gradient-to-b from-[#323232] to-[#191919] text-[#FEFEFE]'
+                  : 'bg-white/80 text-[#82807A] border border-[#D8D8D8] hover:text-[#191919]'
+              }`}
+            >
+              Construction &amp; Design
+            </button>
+          </div>
+
           {/* Bookings List */}
           <div className="space-y-3">
             {filteredAppointments.length === 0 ? (
               <div className="p-8 text-center liquid-glass-card rounded-[22px] border border-[#D8D8D8] space-y-2">
                 <Calendar className="w-10 h-10 text-[#82807A] mx-auto opacity-50" />
                 <h3 className="font-heading text-sm font-bold text-[#191919]">
-                  {bookingFilter === 'upcoming'
+                  {bookingDivisionFilter === 'construction'
+                    ? 'No construction bookings yet'
+                    : bookingDivisionFilter === 'zoning'
+                    ? 'No zoning bookings yet'
+                    : bookingFilter === 'upcoming'
                     ? 'No upcoming consultations'
                     : 'No past consultations'}
                 </h3>
                 <p className="text-xs text-[#82807A]">
-                  {bookingFilter === 'upcoming'
+                  {bookingDivisionFilter === 'construction'
+                    ? 'Explore our architectural design consultations, new construction planning, or permit drawing services.'
+                    : bookingDivisionFilter === 'zoning'
+                    ? 'Select any service from the Services tab to book a 1-on-1 strategy session.'
+                    : bookingFilter === 'upcoming'
                     ? 'Select any service from the Services tab to book a 1-on-1 strategy session.'
                     : 'Your completed consultation sessions and briefs will appear here.'}
                 </p>
-                {bookingFilter === 'upcoming' && (
-                  <div className="pt-2">
-                    <button
-                      type="button"
-                      onClick={() => navigate('/services')}
-                      className="py-2 px-4 rounded-full btn-glossy-primary text-[#FEFEFE] text-xs font-bold shadow-xs active:scale-95"
-                    >
-                      Browse Services
-                    </button>
-                  </div>
-                )}
+                <div className="pt-2">
+                  <button
+                    type="button"
+                    onClick={() => navigate('/services')}
+                    className="py-2 px-4 rounded-full btn-glossy-primary text-[#FEFEFE] text-xs font-bold shadow-xs active:scale-95"
+                  >
+                    Browse Services
+                  </button>
+                </div>
               </div>
             ) : (
-              filteredAppointments.map((app) => (
-                <div
-                  key={app.id}
-                  className="p-3.5 rounded-[20px] liquid-glass-card border border-[#D8D8D8] shadow-2xs space-y-3"
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-full bg-[#191919] text-white flex items-center justify-center flex-shrink-0 shadow-2xs">
-                        {app.type === 'Video' ? (
-                          <Video className="w-4 h-4 stroke-[2]" />
-                        ) : app.type === 'Phone' ? (
+              filteredAppointments.map((app) => {
+                const isConstruction = app.serviceCategory === 'construction';
+                const normType = (app.type || 'Video').toLowerCase();
+                const isSiteVisit = normType.includes('site');
+                const isOffice = normType.includes('office');
+                const isPhone = normType.includes('phone');
+                const isVideo = normType.includes('video');
+
+                const formatLabel =
+                  app.type === 'In-office' || app.type === 'Office'
+                    ? 'Office'
+                    : app.type;
+
+                const amountText = app.amountPaid
+                  ? app.amountPaid % 1 === 0
+                    ? app.amountPaid.toFixed(0)
+                    : app.amountPaid.toFixed(2)
+                  : '450.00';
+
+                return (
+                  <div
+                    key={app.id}
+                    className="p-3.5 rounded-[20px] liquid-glass-card border border-[#D8D8D8] shadow-2xs space-y-3"
+                  >
+                    {/* Top Row: Category Tag & Format / Status Tag */}
+                    <div className="flex items-center justify-between gap-2">
+                      {isConstruction ? (
+                        <span className="text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-[#7A4B2A]/15 text-[#7A4B2A] border border-[#7A4B2A]/30 tracking-wider">
+                          CONSTRUCTION &amp; DESIGN
+                        </span>
+                      ) : (
+                        <span className="text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-slate-100 text-[#555] border border-slate-200 tracking-wider">
+                          ZONING
+                        </span>
+                      )}
+
+                      {bookingFilter === 'upcoming' ? (
+                        <span className="text-[9.5px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-[#C0D0E1]/30 border border-[#A4B3BE]/40 text-[#191919]">
+                          {formatLabel}
+                        </span>
+                      ) : (
+                        <span className="text-[9.5px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 tracking-wider">
+                          COMPLETED
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Icon & Service Info */}
+                    <div className="flex items-start gap-2.5">
+                      <div
+                        className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 shadow-2xs mt-0.5 ${
+                          isConstruction
+                            ? 'bg-[#7A4B2A] text-white'
+                            : 'bg-[#191919] text-white'
+                        }`}
+                      >
+                        {isConstruction ? (
+                          isSiteVisit ? (
+                            <MapPin className="w-4 h-4 stroke-[2]" />
+                          ) : isOffice ? (
+                            <Building2 className="w-4 h-4 stroke-[2]" />
+                          ) : (
+                            <Ruler className="w-4 h-4 stroke-[2]" />
+                          )
+                        ) : isPhone ? (
                           <Phone className="w-4 h-4 stroke-[2]" />
-                        ) : (
+                        ) : isOffice ? (
                           <Building2 className="w-4 h-4 stroke-[2]" />
+                        ) : (
+                          <Video className="w-4 h-4 stroke-[2]" />
                         )}
                       </div>
-                      <div>
-                        <span className="text-[9.5px] font-bold text-[#82807A] uppercase tracking-wide block">
-                          {app.caseNumber || 'ZONING CONSULTATION'}
+                      <div className="flex-1 min-w-0">
+                        <span className="text-[9.5px] font-bold text-[#82807A] uppercase tracking-wide block truncate">
+                          {app.serviceCode || app.caseNumber || 'WW-2026-0842'}
                         </span>
-                        <h4 className="font-heading text-xs font-bold text-[#191919]">
+                        <h4 className="font-heading text-xs font-bold text-[#191919] leading-snug">
                           {app.title}
                         </h4>
                       </div>
                     </div>
 
-                    <span className="text-[9.5px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-[#C0D0E1]/30 border border-[#A4B3BE]/40 text-[#191919]">
-                      Format: {app.type === 'In-office' ? 'In-Office' : app.type}
-                    </span>
-                  </div>
+                    {/* Construction Specific Details: Property & Package */}
+                    {isConstruction && (
+                      <div className="p-2 rounded-[12px] bg-white/60 border border-[#E5E5E5] space-y-1 text-[11px] text-[#555]">
+                        {app.propertyAddress && (
+                          <div className="flex items-start gap-1.5">
+                            <span className="font-bold text-[#191919] flex-shrink-0">
+                              Property:
+                            </span>
+                            <span className="truncate text-[#333]">
+                              {app.propertyAddress}
+                            </span>
+                          </div>
+                        )}
+                        {app.packageDetails && (
+                          <div className="flex items-start gap-1.5">
+                            <span className="font-bold text-[#191919] flex-shrink-0">
+                              Package:
+                            </span>
+                            <span className="text-[#333] font-medium">
+                              {app.packageDetails}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    )}
 
-                  {/* Date and Time Details */}
-                  <div className="p-2.5 rounded-[12px] bg-white/80 border border-[#D8D8D8]/70 flex items-center justify-between text-xs">
-                    <div>
-                      <span className="text-[9.5px] text-[#82807A] font-medium block">
-                        Scheduled Date &amp; Time
-                      </span>
-                      <span className="font-bold text-[#191919] text-[11px] mt-0.5 block">
-                        {app.date} &bull; {app.time}
-                      </span>
+                    {/* Scheduled Date & Time Details Box */}
+                    <div className="p-2.5 rounded-[12px] bg-white/80 border border-[#D8D8D8]/70 flex items-center justify-between text-xs">
+                      <div>
+                        <span className="text-[9.5px] text-[#82807A] font-medium block">
+                          Scheduled Date &amp; Time
+                        </span>
+                        <span className="font-bold text-[#191919] text-[11px] mt-0.5 block">
+                          {app.date} &bull; {app.time}
+                        </span>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-[9.5px] text-[#82807A] font-medium block">
+                          {app.expertRole ||
+                            (isConstruction
+                              ? 'Assigned Architect'
+                              : 'Assigned Counsel')}
+                        </span>
+                        <span className="font-bold text-[#191919] text-[11px] mt-0.5 block truncate max-w-[140px]">
+                          {app.expertName}
+                        </span>
+                      </div>
                     </div>
-                    <div className="text-right">
-                      <span className="text-[9.5px] text-[#82807A] font-medium block">
-                        Assigned Counsel
-                      </span>
-                      <span className="font-bold text-[#191919] text-[11px] mt-0.5 block truncate max-w-[140px]">
-                        {app.expertName}
-                      </span>
-                    </div>
-                  </div>
 
-                  {/* Buttons per requirement */}
-                  {bookingFilter === 'upcoming' ? (
-                    <div className="flex items-center justify-end gap-2 pt-1 border-t border-[#D8D8D8]/60">
-                      <button
-                        type="button"
-                        onClick={() => showToast('Reschedule request sent to your zoning attorney.')}
-                        className="py-1.5 px-3 rounded-full bg-white border border-[#D8D8D8] text-[#191919] text-[10.5px] font-bold hover:bg-slate-50 active:scale-95 transition-all shadow-2xs"
-                      >
-                        Reschedule
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const confirmed = window.confirm('Cancel this consultation?');
-                          if (confirmed) {
-                            showToast('Consultation cancelled successfully.');
-                          }
-                        }}
-                        className="py-1.5 px-3 rounded-full bg-white border border-[#D8D8D8] text-red-600 text-[10.5px] font-bold hover:bg-red-50 active:scale-95 transition-all shadow-2xs"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          showToast(
-                            app.type === 'In-office'
-                              ? 'Office directions (125 S. Wacker Dr) sent to email.'
-                              : app.type === 'Phone'
-                              ? 'Connecting direct phone conference line...'
-                              : 'Opening encrypted Google Meet session...'
-                          )
-                        }
-                        className="py-1.5 px-3.5 rounded-full btn-glossy-primary text-[#FEFEFE] text-[10.5px] font-bold shadow-xs active:scale-95 transition-all"
-                      >
-                        Join call
-                      </button>
-                    </div>
-                  ) : (
+                    {/* Footer: Paid Amount on Left, Buttons on Right */}
                     <div className="flex items-center justify-between pt-1 border-t border-[#D8D8D8]/60">
-                      <span className="text-[10px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                        Completed
+                      <span className="text-xs font-bold text-emerald-600">
+                        Paid ${amountText}
                       </span>
-                      <button
-                        type="button"
-                        onClick={() => navigate('/services')}
-                        className="py-1.5 px-3.5 rounded-full btn-glossy-primary text-[#FEFEFE] text-[10.5px] font-bold shadow-xs active:scale-95 transition-all flex items-center gap-1"
-                      >
-                        <span>Book again</span>
-                        <ChevronRight className="w-3.5 h-3.5" />
-                      </button>
+
+                      {bookingFilter === 'upcoming' ? (
+                        <div className="flex items-center gap-1.5">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              showToast(
+                                isConstruction
+                                  ? 'Reschedule request sent to your assigned architect.'
+                                  : 'Reschedule request sent to your zoning counsel.'
+                              )
+                            }
+                            className="py-1.5 px-2.5 rounded-full bg-white border border-[#D8D8D8] text-[#191919] text-[10.5px] font-bold hover:bg-slate-50 active:scale-95 transition-all shadow-2xs"
+                          >
+                            Reschedule
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const confirmed = window.confirm(
+                                'Cancel this consultation?'
+                              );
+                              if (confirmed) {
+                                showToast('Consultation cancelled successfully.');
+                              }
+                            }}
+                            className="py-1.5 px-2.5 rounded-full bg-white border border-[#D8D8D8] text-red-600 text-[10.5px] font-bold hover:bg-red-50 active:scale-95 transition-all shadow-2xs"
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              if (isSiteVisit) {
+                                showToast(
+                                  `Opening directions to property: ${
+                                    app.propertyAddress ||
+                                    '1508 N Talman Ave, Chicago, IL'
+                                  }`
+                                );
+                              } else if (isOffice) {
+                                showToast(
+                                  'Opening directions to Chicago office: 125 S. Wacker Dr, Suite 1400...'
+                                );
+                              } else if (isPhone) {
+                                showToast(
+                                  'Connecting direct phone conference line (+1 312 555-0198)...'
+                                );
+                              } else {
+                                showToast(
+                                  'Opening encrypted Google Meet session...'
+                                );
+                              }
+                            }}
+                            className="py-1.5 px-3 rounded-full btn-glossy-primary text-[#FEFEFE] text-[10.5px] font-bold shadow-xs active:scale-95 transition-all"
+                          >
+                            {isSiteVisit || isOffice
+                              ? 'Directions'
+                              : isPhone
+                              ? 'Call now'
+                              : 'Join call'}
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-1.5">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              showToast(
+                                `Downloading receipt for ${
+                                  app.serviceCode || app.caseNumber || 'booking'
+                                }...`
+                              )
+                            }
+                            className="py-1.5 px-2.5 rounded-full bg-white border border-[#D8D8D8] text-[#191919] text-[10.5px] font-bold hover:bg-slate-50 active:scale-95 transition-all shadow-2xs flex items-center gap-1"
+                          >
+                            <Download className="w-3 h-3 stroke-[2.2]" />
+                            <span>Receipt</span>
+                          </button>
+
+                          {isConstruction && (
+                            <button
+                              type="button"
+                              onClick={() => setSummaryAppointment(app)}
+                              className="py-1.5 px-2.5 rounded-full bg-white border border-[#D8D8D8] text-[#191919] text-[10.5px] font-bold hover:bg-slate-50 active:scale-95 transition-all shadow-2xs"
+                            >
+                              Summary
+                            </button>
+                          )}
+
+                          <button
+                            type="button"
+                            onClick={() => navigate('/services')}
+                            className="py-1.5 px-3 rounded-full btn-glossy-primary text-[#FEFEFE] text-[10.5px] font-bold shadow-xs active:scale-95 transition-all flex items-center gap-1"
+                          >
+                            <span>Book again</span>
+                            <ChevronRight className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              ))
+                  </div>
+                );
+              })
             )}
           </div>
         </div>
@@ -472,15 +662,8 @@ export const ProfileScreen: React.FC = () => {
         <div className="px-4 py-3 space-y-4 max-w-md mx-auto w-full">
           {/* Sub-screen header with Back Arrow & Title */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <button
-                type="button"
-                onClick={handleBackToMain}
-                className="w-8 h-8 rounded-full bg-white/90 border border-[#D8D8D8] text-[#191919] flex items-center justify-center shadow-2xs hover:bg-white active:scale-95 transition-all"
-                aria-label="Back to Account"
-              >
-                <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
-              </button>
+            <div className="flex items-center gap-2">
+              <BackButton onClick={handleBackToMain} ariaLabel="Back to Account" />
               <h2 className="font-heading text-base font-bold text-[#191919]">
                 Saved Items
               </h2>
@@ -638,15 +821,8 @@ export const ProfileScreen: React.FC = () => {
         <div className="px-4 py-3 space-y-4 max-w-md mx-auto w-full">
           {/* Sub-screen header with Back Arrow & Title */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <button
-                type="button"
-                onClick={handleBackToMain}
-                className="w-8 h-8 rounded-full bg-white/90 border border-[#D8D8D8] text-[#191919] flex items-center justify-center shadow-2xs hover:bg-white active:scale-95 transition-all"
-                aria-label="Back to Account"
-              >
-                <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
-              </button>
+            <div className="flex items-center gap-2">
+              <BackButton onClick={handleBackToMain} ariaLabel="Back to Account" />
               <div>
                 <h2 className="font-heading text-base font-bold text-[#191919]">
                   My Quotes
@@ -660,10 +836,9 @@ export const ProfileScreen: React.FC = () => {
             <button
               type="button"
               onClick={() => setShowNewQuoteModal(true)}
-              className="py-1.5 px-3 rounded-full btn-glossy-primary text-[10.5px] font-bold text-[#FEFEFE] flex items-center gap-1 shadow-2xs active:scale-95 flex-shrink-0"
+              className="py-1.5 px-3 rounded-full btn-glossy-primary text-[10.5px] font-bold text-[#FEFEFE] shadow-2xs active:scale-95 flex-shrink-0"
             >
-              <Plus className="w-3 h-3" />
-              <span>Request a new quote</span>
+              Request quote
             </button>
           </div>
 
@@ -721,10 +896,12 @@ export const ProfileScreen: React.FC = () => {
                           ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                           : q.status === 'Accepted & Paid'
                           ? 'bg-[#191919] text-white'
+                          : q.quoteNumber.startsWith('#AS-')
+                          ? 'bg-[#7A4B2A]/15 text-[#7A4B2A] border border-[#7A4B2A]/30'
                           : 'bg-amber-50 text-amber-700 border border-amber-200'
                       }`}
                     >
-                      {q.status}
+                      {q.quoteNumber.startsWith('#AS-') ? 'Assessment · In review' : q.status}
                     </span>
                   </div>
 
@@ -749,10 +926,10 @@ export const ProfileScreen: React.FC = () => {
                   <div className="flex items-center justify-between pt-1">
                     <div>
                       <span className="text-[9.5px] text-[#82807A] uppercase font-bold block">
-                        Estimate Amount
+                        {q.estimateAmount === 0 ? 'Assessment Fee' : 'Estimate Amount'}
                       </span>
                       <span className="font-heading text-sm font-extrabold text-[#191919]">
-                        ${q.estimateAmount.toFixed(2)}
+                        {q.estimateAmount === 0 ? 'Free Initial Review' : `$${q.estimateAmount.toFixed(2)}`}
                       </span>
                     </div>
 
@@ -766,7 +943,7 @@ export const ProfileScreen: React.FC = () => {
                         <span>Download</span>
                       </button>
 
-                      {q.status !== 'Accepted & Paid' ? (
+                      {q.estimateAmount > 0 && q.status !== 'Accepted & Paid' ? (
                         <button
                           type="button"
                           onClick={() => {
@@ -784,6 +961,10 @@ export const ProfileScreen: React.FC = () => {
                           <CreditCard className="w-3 h-3" />
                           <span>Accept &amp; pay</span>
                         </button>
+                      ) : q.estimateAmount === 0 ? (
+                        <span className="py-1.5 px-3 rounded-full bg-slate-100 text-[#191919] text-[10.5px] font-bold border border-slate-200">
+                          In Review
+                        </span>
                       ) : (
                         <span className="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold flex items-center gap-1">
                           <Check className="w-3 h-3" />
@@ -806,15 +987,8 @@ export const ProfileScreen: React.FC = () => {
         <div className="px-4 py-3 space-y-4 max-w-md mx-auto w-full">
           {/* Sub-screen header with Back Arrow & Title */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <button
-                type="button"
-                onClick={handleBackToMain}
-                className="w-8 h-8 rounded-full bg-white/90 border border-[#D8D8D8] text-[#191919] flex items-center justify-center shadow-2xs hover:bg-white active:scale-95 transition-all"
-                aria-label="Back to Account"
-              >
-                <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
-              </button>
+            <div className="flex items-center gap-2">
+              <BackButton onClick={handleBackToMain} ariaLabel="Back to Account" />
               <div>
                 <h2 className="font-heading text-base font-bold text-[#191919]">
                   My Enquiries
@@ -828,10 +1002,9 @@ export const ProfileScreen: React.FC = () => {
             <button
               type="button"
               onClick={() => setShowEnquiryModal(true)}
-              className="py-1.5 px-3 rounded-full btn-glossy-primary text-[10.5px] font-bold text-[#FEFEFE] flex items-center gap-1 shadow-2xs active:scale-95 flex-shrink-0"
+              className="py-1.5 px-3 rounded-full btn-glossy-primary text-[10.5px] font-bold text-[#FEFEFE] shadow-2xs active:scale-95 flex-shrink-0"
             >
-              <Plus className="w-3 h-3" />
-              <span>+ Raise a new enquiry</span>
+              Raise enquiry
             </button>
           </div>
 
@@ -902,15 +1075,8 @@ export const ProfileScreen: React.FC = () => {
       {activeView === 'payments' && (
         <div className="px-4 py-3 space-y-4 max-w-md mx-auto w-full">
           {/* Sub-screen header with Back Arrow & Title */}
-          <div className="flex items-center gap-2.5">
-            <button
-              type="button"
-              onClick={handleBackToMain}
-              className="w-8 h-8 rounded-full bg-white/90 border border-[#D8D8D8] text-[#191919] flex items-center justify-center shadow-2xs hover:bg-white active:scale-95 transition-all"
-              aria-label="Back to Account"
-            >
-              <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
-            </button>
+          <div className="flex items-center gap-2">
+            <BackButton onClick={handleBackToMain} ariaLabel="Back to Account" />
             <div>
               <h2 className="font-heading text-base font-bold text-[#191919]">
                 Payments &amp; Invoices
@@ -1083,15 +1249,8 @@ export const ProfileScreen: React.FC = () => {
       {activeView === 'support' && (
         <div className="px-4 py-3 space-y-4 max-w-md mx-auto w-full">
           {/* Sub-screen header with Back Arrow & Title */}
-          <div className="flex items-center gap-2.5">
-            <button
-              type="button"
-              onClick={handleBackToMain}
-              className="w-8 h-8 rounded-full bg-white/90 border border-[#D8D8D8] text-[#191919] flex items-center justify-center shadow-2xs hover:bg-white active:scale-95 transition-all"
-              aria-label="Back to Account"
-            >
-              <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
-            </button>
+          <div className="flex items-center gap-2">
+            <BackButton onClick={handleBackToMain} ariaLabel="Back to Account" />
             <div>
               <h2 className="font-heading text-base font-bold text-[#191919]">
                 Support &amp; Verification Desk
@@ -1205,15 +1364,8 @@ export const ProfileScreen: React.FC = () => {
       {activeView === 'language' && (
         <div className="px-4 py-3 space-y-4 max-w-md mx-auto w-full">
           {/* Sub-screen header with Back Arrow & Title */}
-          <div className="flex items-center gap-2.5">
-            <button
-              type="button"
-              onClick={handleBackToMain}
-              className="w-8 h-8 rounded-full bg-white/90 border border-[#D8D8D8] text-[#191919] flex items-center justify-center shadow-2xs hover:bg-white active:scale-95 transition-all"
-              aria-label="Back to Account"
-            >
-              <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
-            </button>
+          <div className="flex items-center gap-2">
+            <BackButton onClick={handleBackToMain} ariaLabel="Back to Account" />
             <div>
               <h2 className="font-heading text-base font-bold text-[#191919]">
                 Language / Idioma
@@ -1267,15 +1419,8 @@ export const ProfileScreen: React.FC = () => {
       {activeView === 'settings' && (
         <div className="px-4 py-3 space-y-4 max-w-md mx-auto w-full">
           {/* Sub-screen header with Back Arrow & Title */}
-          <div className="flex items-center gap-2.5">
-            <button
-              type="button"
-              onClick={handleBackToMain}
-              className="w-8 h-8 rounded-full bg-white/90 border border-[#D8D8D8] text-[#191919] flex items-center justify-center shadow-2xs hover:bg-white active:scale-95 transition-all"
-              aria-label="Back to Account"
-            >
-              <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
-            </button>
+          <div className="flex items-center gap-2">
+            <BackButton onClick={handleBackToMain} ariaLabel="Back to Account" />
             <div>
               <h2 className="font-heading text-base font-bold text-[#191919]">
                 Settings &amp; Security
@@ -1498,15 +1643,8 @@ export const ProfileScreen: React.FC = () => {
       {activeView === 'terms' && (
         <div className="px-4 py-3 space-y-4 max-w-md mx-auto w-full">
           {/* Sub-screen header with Back Arrow & Title */}
-          <div className="flex items-center gap-2.5">
-            <button
-              type="button"
-              onClick={handleBackToMain}
-              className="w-8 h-8 rounded-full bg-white/90 border border-[#D8D8D8] text-[#191919] flex items-center justify-center shadow-2xs hover:bg-white active:scale-95 transition-all"
-              aria-label="Back to Account"
-            >
-              <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
-            </button>
+          <div className="flex items-center gap-2">
+            <BackButton onClick={handleBackToMain} ariaLabel="Back to Account" />
             <div>
               <h2 className="font-heading text-base font-bold text-[#191919]">
                 Privacy Policy &amp; Terms
@@ -2083,15 +2221,8 @@ export const ProfileScreen: React.FC = () => {
           <div className="absolute inset-0 z-50 bg-[#FAFBFC] dark:bg-[#18181A] text-[#191919] dark:text-[#FEFEFE] flex flex-col overflow-hidden animate-in fade-in duration-200">
             {/* Top Header with Back Arrow and Title */}
             <div className="flex-shrink-0 px-4 py-3 border-b border-[#D8D8D8] dark:border-white/10 flex items-center justify-between bg-white/95 dark:bg-[#1C1C1F]/95 backdrop-blur-md">
-              <div className="flex items-center gap-2.5">
-                <button
-                  type="button"
-                  onClick={() => setShowEnquiryModal(false)}
-                  className="w-9 h-9 rounded-full bg-white dark:bg-white/10 border border-[#D8D8D8] dark:border-white/10 text-[#191919] dark:text-[#FEFEFE] flex items-center justify-center shadow-2xs hover:bg-slate-50 active:scale-95 transition-all"
-                  aria-label="Back"
-                >
-                  <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
-                </button>
+              <div className="flex items-center gap-2">
+                <BackButton onClick={() => setShowEnquiryModal(false)} ariaLabel="Back" />
                 <div>
                   <h2 className="font-heading text-base font-bold text-[#191919] dark:text-[#FEFEFE]">
                     Raise a New Enquiry
@@ -2411,6 +2542,133 @@ export const ProfileScreen: React.FC = () => {
                   </button>
                 </div>
               </form>
+            </div>
+          </div>
+        </PhonePortal>
+      )}
+
+      {/* ========================================================
+          MODAL: CONSULTATION SUMMARY & DELIVERABLES (Past Construction)
+      ======================================================== */}
+      {summaryAppointment && (
+        <PhonePortal>
+          <div className="absolute inset-0 z-50 flex items-center justify-center p-3 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+            <div className="w-full max-w-[360px] rounded-[24px] bg-[#FAFBFC] dark:bg-[#18181A] border border-white/80 dark:border-white/10 shadow-2xl p-4 sm:p-5 space-y-4 max-h-[85vh] overflow-y-auto no-scrollbar">
+              <div className="flex items-center justify-between pb-2 border-b border-[#D8D8D8] dark:border-white/10">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-full bg-[#7A4B2A] text-white flex items-center justify-center">
+                    <Ruler className="w-3.5 h-3.5 stroke-[2.2]" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading text-xs font-bold text-[#191919] dark:text-[#FEFEFE]">
+                      Consultation Summary
+                    </h3>
+                    <span className="text-[10px] text-[#82807A] font-medium block">
+                      {summaryAppointment.serviceCode || 'WW-CON'}
+                    </span>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setSummaryAppointment(null)}
+                  className="w-7 h-7 rounded-full bg-slate-100 dark:bg-white/10 text-[#82807A] dark:text-[#A0B0BC] flex items-center justify-center hover:bg-slate-200 transition-all"
+                  aria-label="Close"
+                >
+                  <X className="w-4 h-4 stroke-[2.2]" />
+                </button>
+              </div>
+
+              {/* Service & Expert Details */}
+              <div className="p-3 rounded-2xl bg-white dark:bg-[#202023] border border-[#E5E5E5] dark:border-white/10 space-y-2 text-xs">
+                <div>
+                  <span className="text-[9.5px] font-bold text-[#82807A] uppercase tracking-wide block">
+                    Service
+                  </span>
+                  <span className="font-heading font-bold text-[#191919] dark:text-[#FEFEFE] text-xs">
+                    {summaryAppointment.title}
+                  </span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 pt-1 border-t border-slate-100 dark:border-white/5 text-[11px]">
+                  <div>
+                    <span className="text-[9.5px] text-[#82807A] block">Date & Time</span>
+                    <span className="font-semibold text-[#191919] dark:text-[#E0E0E0]">
+                      {summaryAppointment.date}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[9.5px] text-[#82807A] block">Assigned Architect</span>
+                    <span className="font-semibold text-[#191919] dark:text-[#E0E0E0] truncate block">
+                      {summaryAppointment.expertName}
+                    </span>
+                  </div>
+                </div>
+                {summaryAppointment.propertyAddress && (
+                  <div className="pt-1 border-t border-slate-100 dark:border-white/5 text-[11px]">
+                    <span className="text-[9.5px] text-[#82807A] block">Property</span>
+                    <span className="font-medium text-[#191919] dark:text-[#E0E0E0]">
+                      {summaryAppointment.propertyAddress}
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* Written Notes */}
+              <div className="space-y-1.5">
+                <span className="text-[11px] font-bold text-[#191919] dark:text-[#FEFEFE] uppercase tracking-wider block">
+                  Architect Notes &amp; Findings
+                </span>
+                <div className="p-3 rounded-2xl bg-white dark:bg-[#202023] border border-[#E5E5E5] dark:border-white/10 text-xs text-[#444] dark:text-[#CCC] leading-relaxed">
+                  {summaryAppointment.summaryNotes ||
+                    'Completed 4K exterior daylight/twilight renderings and zoning envelope animation for West Loop mixed-use submission. All Chicago DOB massing and setback clearance checks verified.'}
+                </div>
+              </div>
+
+              {/* Deliverables / Design Files */}
+              <div className="space-y-2">
+                <span className="text-[11px] font-bold text-[#191919] dark:text-[#FEFEFE] uppercase tracking-wider block">
+                  Design Deliverables
+                </span>
+                <div className="space-y-1.5">
+                  {(summaryAppointment.deliverables && summaryAppointment.deliverables.length > 0
+                    ? summaryAppointment.deliverables
+                    : [
+                        'Rendering_Package_Randolph_St.pdf',
+                        'Zoning_Envelope_3D_Schematic.dwg',
+                      ]
+                  ).map((file, idx) => (
+                    <div
+                      key={idx}
+                      className="p-2.5 rounded-xl bg-white dark:bg-[#202023] border border-[#E5E5E5] dark:border-white/10 flex items-center justify-between gap-2 text-xs"
+                    >
+                      <div className="flex items-center gap-2 min-w-0">
+                        <FileCode2 className="w-4 h-4 text-[#7A4B2A] flex-shrink-0" />
+                        <span className="truncate font-medium text-[#191919] dark:text-[#FEFEFE] text-[11.5px]">
+                          {file}
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => showToast(`Downloading ${file}...`)}
+                        className="py-1 px-2.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-[#191919] dark:text-white text-[10.5px] font-bold flex items-center gap-1 flex-shrink-0 transition-all active:scale-95"
+                      >
+                        <Download className="w-3 h-3" />
+                        <span>Download</span>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Close Button */}
+              <div className="pt-2">
+                <button
+                  type="button"
+                  onClick={() => setSummaryAppointment(null)}
+                  className="w-full h-11 rounded-2xl btn-glossy-primary font-heading font-bold text-xs text-[#FEFEFE] flex items-center justify-center shadow-md active:scale-98 transition-all"
+                >
+                  Done
+                </button>
+              </div>
             </div>
           </div>
         </PhonePortal>

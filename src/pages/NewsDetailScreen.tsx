@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Clock, ArrowRight } from 'lucide-react';
 import { ZONING_NEWS } from '../data/news';
 import ImageWithFallback from '../components/ui/ImageWithFallback';
-import { AppHeader } from '../components/layout/AppHeader';
+import BackButton from '../components/ui/BackButton';
 import { GlassCard } from '../components/ui/GlassCard';
 import { GlassButton } from '../components/ui/GlassButton';
 import Badge from '../components/ui/Badge';
@@ -16,15 +16,24 @@ export const NewsDetailScreen: React.FC = () => {
 
   return (
     <div className="min-h-full flex flex-col text-[#121214] pb-6">
-      <AppHeader
-        showBack
-        title="Ordinance Update"
-        rightAction={
-          <Badge variant="primary" size="sm">
-            {article.category}
-          </Badge>
-        }
-      />
+      {/* Sub-screen Header with Back Arrow and Title */}
+      <div className="px-4 pt-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <BackButton ariaLabel="Back to Updates" />
+          <div>
+            <h1 className="font-heading text-sm font-bold text-[#121214]">
+              Ordinance Update
+            </h1>
+            <span className="text-[10px] text-[#82807A] block">
+              Chicago City Council
+            </span>
+          </div>
+        </div>
+
+        <Badge variant="primary" size="sm">
+          {article.category}
+        </Badge>
+      </div>
 
       <div className="px-4 py-4 space-y-4">
         {/* Hero Image */}

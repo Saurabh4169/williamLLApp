@@ -5,13 +5,13 @@ import {
   Paperclip,
   ShieldCheck,
   PhoneCall,
-  ArrowLeft,
   User,
   Clock,
   Sparkles,
 } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
 import { BUSINESS_INFO } from '../data/businessInfo';
+import BackButton from '../components/ui/BackButton';
 
 export const ChatScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -60,15 +60,8 @@ export const ChatScreen: React.FC = () => {
     <div className="min-h-full flex flex-col justify-between text-[#191919] pb-0">
       {/* Sub-screen Header with Back Arrow and Title */}
       <div className="px-4 pt-3 pb-2 flex items-center justify-between border-b border-[#D8D8D8]/70 bg-white/70 backdrop-blur-md sticky top-0 z-20">
-        <div className="flex items-center gap-2.5">
-          <button
-            type="button"
-            onClick={() => navigate(-1)}
-            className="w-8 h-8 rounded-full bg-white border border-[#D8D8D8] text-[#191919] flex items-center justify-center shadow-2xs hover:bg-white active:scale-95 transition-all flex-shrink-0"
-            aria-label="Back"
-          >
-            <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
-          </button>
+        <div className="flex items-center gap-2">
+          <BackButton ariaLabel="Back" />
           <div>
             <h1 className="font-heading text-sm font-bold text-[#191919]">
               Ticket &amp; Live Chat

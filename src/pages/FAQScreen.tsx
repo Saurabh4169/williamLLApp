@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, ChevronDown, HelpCircle, ArrowLeft, MessageSquare, PlusCircle } from 'lucide-react';
+import { Search, ChevronDown, HelpCircle, MessageSquare } from 'lucide-react';
 import { FAQS_DATA } from '../data/faqs';
 import { GlassCard } from '../components/ui/GlassCard';
 import Badge from '../components/ui/Badge';
+import BackButton from '../components/ui/BackButton';
 
 export const FAQScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -24,15 +25,8 @@ export const FAQScreen: React.FC = () => {
   return (
     <div className="min-h-full flex flex-col text-[#191919] pb-24">
       {/* Sub-screen header with Back Arrow and Title */}
-      <div className="px-4 pt-3 flex items-center gap-2.5">
-        <button
-          type="button"
-          onClick={() => navigate(-1)}
-          className="w-8 h-8 rounded-full bg-white/90 border border-[#D8D8D8] text-[#191919] flex items-center justify-center shadow-2xs hover:bg-white active:scale-95 transition-all flex-shrink-0"
-          aria-label="Back"
-        >
-          <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
-        </button>
+      <div className="px-4 pt-3 flex items-center gap-2">
+        <BackButton ariaLabel="Back" />
         <div>
           <h1 className="font-heading text-base font-bold text-[#191919]">
             Frequently Asked Questions
@@ -139,7 +133,6 @@ export const FAQScreen: React.FC = () => {
               onClick={() => navigate('/profile?tab=enquiries&action=new')}
               className="py-2.5 px-3 rounded-full bg-white border border-[#D8D8D8] text-[#191919] text-xs font-bold flex items-center justify-center gap-1.5 shadow-2xs hover:bg-[#F4F5F5] active:scale-95 transition-all"
             >
-              <PlusCircle className="w-3.5 h-3.5 text-[#323232]" />
               <span>Raise enquiry</span>
             </button>
 

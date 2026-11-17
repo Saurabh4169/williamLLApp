@@ -21,7 +21,7 @@ import {
 import { PORTFOLIO_PROJECTS } from '../data/portfolio';
 import { APP_IMAGES } from '../data/images';
 import { useAppStore } from '../store/useAppStore';
-import AppHeader from '../components/layout/AppHeader';
+import BackButton from '../components/ui/BackButton';
 
 export const ProjectDetailScreen: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -48,11 +48,12 @@ export const ProjectDetailScreen: React.FC = () => {
 
   return (
     <div className="min-h-full flex flex-col text-[#191919] bg-[#F4F5F5] pb-24">
-      {/* Standard Unified AppHeader */}
-      <AppHeader
-        showBack
-        rightAction={
-          <div className="flex items-center gap-1.5">
+      {/* Sub-screen Header with Back Arrow and Share / Heart */}
+      <div className="px-4 pt-3 flex items-center justify-between">
+        <BackButton ariaLabel="Back to Projects" />
+
+        <div className="flex items-center gap-2.5">
+          <div className="w-11 h-11 flex items-center justify-center">
             <button
               type="button"
               onClick={() => {
@@ -65,25 +66,32 @@ export const ProjectDetailScreen: React.FC = () => {
                 }
               }}
               aria-label="Share Project"
-              className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md border border-[#D8D8D8] text-[#191919] flex items-center justify-center hover:bg-white active:scale-95 transition-all shadow-2xs"
+              className="w-10 h-10 rounded-full bg-white border border-[#D8D8D8] text-[#191919] flex items-center justify-center hover:bg-slate-50 active:scale-95 transition-all shadow-2xs cursor-pointer"
             >
-              <Share2 className="w-3.5 h-3.5 stroke-[2]" />
+              <Share2 className="w-5 h-5 stroke-[2.2]" />
             </button>
+          </div>
+
+          <div className="w-11 h-11 flex items-center justify-center">
             <button
               type="button"
               onClick={() => toggleSavedProject(project.id)}
               aria-label={isFavorite ? 'Remove from saved' : 'Save project'}
-              className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md border border-[#D8D8D8] text-[#191919] flex items-center justify-center hover:bg-white active:scale-95 transition-all shadow-2xs"
+              className={`w-10 h-10 rounded-full border shadow-2xs flex items-center justify-center active:scale-95 transition-all cursor-pointer ${
+                isFavorite
+                  ? 'bg-[#E52E3A] text-white border-[#E52E3A]'
+                  : 'bg-white border-[#D8D8D8] text-[#191919] hover:bg-slate-50'
+              }`}
             >
               <Heart
-                className={`w-3.5 h-3.5 transition-colors ${
-                  isFavorite ? 'fill-[#323232] text-[#323232]' : 'text-[#8C9DAA]'
+                className={`w-5 h-5 ${
+                  isFavorite ? 'fill-current' : 'stroke-[2.2]'
                 }`}
               />
             </button>
           </div>
-        }
-      />
+        </div>
+      </div>
 
       <div className="px-4 py-3 space-y-4 max-w-md mx-auto w-full">
         {/* Project Header Info */}
@@ -350,7 +358,7 @@ export const ProjectDetailScreen: React.FC = () => {
           <div className="space-y-2 pt-1">
             <button
               type="button"
-              onClick={() => navigate('/quote')}
+              onClick={() => navigate(`/project-assessment?projectId=${project.id}`)}
               className="w-full py-2.5 px-4 rounded-full btn-glossy-primary text-xs font-bold text-[#FEFEFE] shadow-xs flex items-center justify-center gap-2 active:scale-98 transition-all"
             >
               <span>Request Project Assessment</span>
@@ -368,7 +376,7 @@ export const ProjectDetailScreen: React.FC = () => {
 
               <button
                 type="button"
-                onClick={() => navigate('/services/zoning-analysis-consultation')}
+                onClick={() => navigate('/services?tab=construction')}
                 className="py-2 px-3 rounded-full bg-white border border-[#D8D8D8] text-[#191919] text-xs font-semibold text-center flex items-center justify-center gap-1.5 hover:bg-[#F4F5F5] active:scale-95 transition-all"
               >
                 <Calendar className="w-3 h-3 text-[#323232]" />

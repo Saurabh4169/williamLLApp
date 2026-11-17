@@ -15,9 +15,13 @@ export const AppShell: React.FC = () => {
     mainRef.current?.scrollTo({ top: 0, behavior: 'instant' });
   }, [location.pathname]);
 
-  // Top header and bottom nav are always fixed across the entire app, hidden only on splash
+  // Top header and bottom nav are fixed across the entire app, hidden on splash, service details & assessment
   const isSplash = location.pathname === '/splash';
-  const hideBottomNav = isSplash;
+  const isServiceDetail = location.pathname.startsWith('/services/');
+  const isAssessment =
+    location.pathname.startsWith('/project-assessment') ||
+    location.pathname.startsWith('/assessment');
+  const hideBottomNav = isSplash || isServiceDetail || isAssessment;
   const hideTopBar = isSplash;
 
   return (

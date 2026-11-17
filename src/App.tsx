@@ -26,6 +26,7 @@ const ContactScreen = lazy(() => import('./pages/ContactScreen'));
 const ProfileScreen = lazy(() => import('./pages/ProfileScreen'));
 const ChecklistScreen = lazy(() => import('./pages/ChecklistScreen'));
 const ReviewsScreen = lazy(() => import('./pages/ReviewsScreen'));
+const ProjectAssessmentScreen = lazy(() => import('./pages/ProjectAssessmentScreen'));
 
 // Scroll to top helper on route change
 function ScrollToTop() {
@@ -83,6 +84,8 @@ export function App() {
             <Route path="/construction" element={<PortfolioScreen />} />
             <Route path="/construction/:id" element={<ProjectDetailScreen />} />
             <Route path="/projects" element={<PortfolioScreen />} />
+            <Route path="/project-assessment" element={<ProjectAssessmentScreen />} />
+            <Route path="/assessment" element={<ProjectAssessmentScreen />} />
             <Route path="/about" element={<AboutScreen />} />
             <Route path="/faq" element={<FAQScreen />} />
             <Route path="/contact" element={<ContactScreen />} />

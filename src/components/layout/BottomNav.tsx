@@ -12,7 +12,9 @@ export const BottomNav: React.FC = () => {
   const isConstruction =
     location.pathname.startsWith('/construction') ||
     location.pathname.startsWith('/portfolio') ||
-    location.pathname.startsWith('/projects');
+    location.pathname.startsWith('/projects') ||
+    location.pathname.startsWith('/project-assessment') ||
+    location.pathname.startsWith('/assessment');
   const isMore =
     location.pathname === '/profile' ||
     location.pathname === '/chat' ||

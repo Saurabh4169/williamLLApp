@@ -12,7 +12,7 @@ import {
   Phone,
 } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
-import { AppHeader } from '../components/layout/AppHeader';
+import BackButton from '../components/ui/BackButton';
 import { GlassCard } from '../components/ui/GlassCard';
 import { GlassButton } from '../components/ui/GlassButton';
 import Badge from '../components/ui/Badge';
@@ -29,16 +29,24 @@ export const CaseDetailScreen: React.FC = () => {
 
   return (
     <div className="min-h-full flex flex-col text-[#121214] pb-6">
-      {/* Standard AppHeader */}
-      <AppHeader
-        showBack
-        title={caseItem.caseNumber}
-        rightAction={
-          <Badge variant={caseItem.status === 'Approved' ? 'success' : 'primary'} size="sm">
-            {caseItem.status}
-          </Badge>
-        }
-      />
+      {/* Sub-screen Header with Back Arrow and Title */}
+      <div className="px-4 pt-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <BackButton ariaLabel="Back to Cases" />
+          <div>
+            <h1 className="font-heading text-sm font-bold text-[#121214]">
+              {caseItem.caseNumber}
+            </h1>
+            <span className="text-[10px] text-[#82807A] block truncate max-w-[200px]">
+              {caseItem.title}
+            </span>
+          </div>
+        </div>
+
+        <Badge variant={caseItem.status === 'Approved' ? 'success' : 'primary'} size="sm">
+          {caseItem.status}
+        </Badge>
+      </div>
 
       <div className="px-4 py-4 space-y-5">
         {/* Case Summary Card */}

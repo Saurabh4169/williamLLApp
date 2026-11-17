@@ -53,13 +53,21 @@ export interface ClientCase {
 export interface Appointment {
   id: string;
   caseNumber?: string;
+  serviceCode?: string;
   title: string;
-  type: 'Phone' | 'Video' | 'In-office';
+  serviceCategory?: 'zoning' | 'construction';
+  type: 'Phone' | 'Video' | 'Office' | 'In-office' | 'Site Visit' | 'Site visit';
   date: string;
   time: string;
   expertName: string;
+  expertRole?: 'Assigned Counsel' | 'Assigned Architect';
   location: string;
+  propertyAddress?: string;
+  packageDetails?: string;
+  amountPaid?: number;
   status: 'Confirmed' | 'Completed' | 'Rescheduled';
+  summaryNotes?: string;
+  deliverables?: string[];
 }
 
 export const CLIENT_CASES: ClientCase[] = [
@@ -396,46 +404,148 @@ export const UPCOMING_APPOINTMENTS: Appointment[] = [
   {
     id: 'app-1',
     caseNumber: 'WW-2026-0842',
+    serviceCode: 'WW-2026-0842',
     title: 'ZBA Hearing Strategy Dry-Run',
+    serviceCategory: 'zoning',
     type: 'Video',
     date: 'Nov 20, 2026',
     time: '10:00 AM CST',
-    expertName: 'Marcus Vance',
-    location: 'Google Meet / Zoom',
+    expertName: 'Marcus Vance, Esq.',
+    expertRole: 'Assigned Counsel',
+    location: 'Google Meet Secure Room',
+    propertyAddress: '2144 N. Damen Ave, Chicago, IL 60647',
+    packageDetails: 'Standard Strategy Package',
+    amountPaid: 450.0,
     status: 'Confirmed',
   },
   {
     id: 'app-2',
     caseNumber: 'WW-2026-0791',
+    serviceCode: 'WW-2026-0791',
     title: 'City Plan Examiner Status Briefing',
+    serviceCategory: 'zoning',
     type: 'Phone',
     date: 'Nov 17, 2026',
     time: '2:30 PM CST',
     expertName: 'Elena Rostova',
-    location: 'Phone Call (630-635-7688)',
+    expertRole: 'Assigned Counsel',
+    location: 'Phone Call (+1 312 555-0198)',
+    propertyAddress: '1840 W. Division St, Chicago, IL 60622',
+    packageDetails: 'Permit Assistance Review',
+    amountPaid: 350.0,
     status: 'Confirmed',
   },
+  // Sample Card a: WW-CON-01, Architectural Design Consultation, Nov 24, 2026 • 10:00 AM CST, Site Visit, Daniel Reyes, 1508 N Talman Ave, Chicago, IL 60622, Standard + 3D rendering, Paid $771.75
+  {
+    id: 'app-con-1',
+    serviceCode: 'WW-CON-01',
+    caseNumber: 'WW-CON-01',
+    title: 'Architectural Design Consultation',
+    serviceCategory: 'construction',
+    date: 'Nov 24, 2026',
+    time: '10:00 AM CST',
+    type: 'Site Visit',
+    expertName: 'Daniel Reyes',
+    expertRole: 'Assigned Architect',
+    propertyAddress: '1508 N Talman Ave, Chicago, IL 60622',
+    packageDetails: 'Standard + 3D rendering',
+    amountPaid: 771.75,
+    location: '1508 N Talman Ave, Chicago, IL 60622',
+    status: 'Confirmed',
+  },
+  // Sample Card b: WW-CON-04, Permit Drawings & Plans, Nov 26, 2026 • 1:00 PM CST, Video, Priya Nair, Paid $600
+  {
+    id: 'app-con-2',
+    serviceCode: 'WW-CON-04',
+    caseNumber: 'WW-CON-04',
+    title: 'Permit Drawings & Plans',
+    serviceCategory: 'construction',
+    date: 'Nov 26, 2026',
+    time: '1:00 PM CST',
+    type: 'Video',
+    expertName: 'Priya Nair',
+    expertRole: 'Assigned Architect',
+    propertyAddress: '2144 N. Damen Ave, Chicago, IL 60647',
+    packageDetails: 'Standard Plan Set',
+    amountPaid: 600.0,
+    location: 'Google Meet Video Session',
+    status: 'Confirmed',
+  },
+  // Sample Card c: WW-CON-03, Renovation & Addition Consultation, Dec 2, 2026 • 3:30 PM CST, Office, Daniel Reyes, Paid $200
+  {
+    id: 'app-con-3',
+    serviceCode: 'WW-CON-03',
+    caseNumber: 'WW-CON-03',
+    title: 'Renovation & Addition Consultation',
+    serviceCategory: 'construction',
+    date: 'Dec 2, 2026',
+    time: '3:30 PM CST',
+    type: 'Office',
+    expertName: 'Daniel Reyes',
+    expertRole: 'Assigned Architect',
+    propertyAddress: '432 W. Webster Ave, Chicago, IL 60614',
+    packageDetails: 'Site Visit Assessment',
+    amountPaid: 200.0,
+    location: '125 S. Wacker Dr, Suite 1400, Chicago, IL',
+    status: 'Confirmed',
+  },
+  // Past appointments
   {
     id: 'app-3',
     caseNumber: 'WW-2026-0618',
+    serviceCode: 'WW-2026-0618',
     title: 'Preliminary Zoning & Setback Review',
+    serviceCategory: 'zoning',
     type: 'Video',
     date: 'Oct 28, 2026',
     time: '11:00 AM CST',
     expertName: 'Marcus Vance, Esq.',
+    expertRole: 'Assigned Counsel',
     location: 'Google Meet Secure Room',
+    propertyAddress: '2144 N. Damen Ave, Chicago, IL',
+    packageDetails: 'Standard Strategy Package',
+    amountPaid: 450.0,
     status: 'Completed',
   },
   {
     id: 'app-4',
     caseNumber: 'WW-2026-0520',
+    serviceCode: 'WW-2026-0520',
     title: 'ADU Coach House Ordinance Audit',
-    type: 'In-office',
+    serviceCategory: 'zoning',
+    type: 'Office',
     date: 'Sep 15, 2026',
     time: '3:00 PM CST',
     expertName: 'Elena Rostova',
+    expertRole: 'Assigned Counsel',
     location: '125 S. Wacker Dr, Suite 1400, Chicago',
+    propertyAddress: '1508 N Talman Ave, Chicago, IL',
+    packageDetails: 'Basic Ordinance Review',
+    amountPaid: 450.0,
     status: 'Completed',
+  },
+  {
+    id: 'app-con-past-1',
+    caseNumber: 'WW-CON-05',
+    serviceCode: 'WW-CON-05',
+    title: '3D Visualization & Film',
+    serviceCategory: 'construction',
+    type: 'Video',
+    date: 'Oct 12, 2026',
+    time: '2:00 PM CST',
+    expertName: 'Daniel Reyes',
+    expertRole: 'Assigned Architect',
+    propertyAddress: '910 W. Randolph St, Chicago, IL 60607',
+    packageDetails: 'Full Plan + 3D rendering',
+    amountPaid: 1450.0,
+    location: 'Google Meet Studio',
+    status: 'Completed',
+    summaryNotes:
+      'Completed 4K exterior daylight/twilight renderings and zoning envelope animation for West Loop mixed-use submission. All Chicago DOB massing and setback clearance checks verified.',
+    deliverables: [
+      'Rendering_Package_Randolph_St.pdf',
+      'Zoning_Envelope_3D_Schematic.dwg',
+    ],
   },
 ];
 

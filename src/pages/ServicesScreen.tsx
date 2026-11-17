@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Search, SlidersHorizontal, PhoneCall } from 'lucide-react';
 import { SERVICES_DATA } from '../data/services';
 import { BUSINESS_INFO } from '../data/businessInfo';
@@ -9,19 +9,57 @@ import ServiceCard from '../components/features/ServiceCard';
 
 export const ServicesScreen: React.FC = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const tabParam = searchParams.get('tab');
   const [searchTerm, setSearchTerm] = useState('');
+  const [activeTab, setActiveTab] = useState<'zoning' | 'construction'>(
+    tabParam === 'construction' ? 'construction' : 'zoning'
+  );
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
-  const categories = ['all', 'Analysis', 'Permits & Appeals', 'Consulting', 'Development'];
+  useEffect(() => {
+    if (tabParam === 'construction' || tabParam === 'zoning') {
+      setActiveTab(tabParam);
+    }
+  }, [tabParam]);
+
+  const zoningChips = [
+    { id: 'all', label: 'All' },
+    { id: 'Analysis', label: 'Analysis' },
+    { id: 'Permits & Appeals', label: 'Permits & Appeals' },
+    { id: 'Consulting', label: 'Consulting' },
+  ];
+
+  const constructionChips = [
+    { id: 'all', label: 'All' },
+    { id: 'Design', label: 'Design' },
+    { id: 'Construction', label: 'Construction' },
+    { id: 'Permits', label: 'Permits' },
+    { id: 'Planning', label: 'Planning' },
+  ];
+
+  const currentChips = activeTab === 'zoning' ? zoningChips : constructionChips;
 
   const filteredServices = SERVICES_DATA.filter((service) => {
+    const matchesDivision = (service.division || 'zoning') === activeTab;
     const matchesCategory =
       selectedCategory === 'all' || service.category === selectedCategory;
     const matchesSearch =
+      !searchTerm.trim() ||
       service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      service.shortDescription.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
+      service.shortDescription.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      service.serviceCode.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesDivision && matchesCategory && matchesSearch;
   });
+
+  const otherDivisionCount = SERVICES_DATA.filter(
+    (s) =>
+      (s.division || 'zoning') !== activeTab &&
+      searchTerm.trim() &&
+      (s.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        s.shortDescription.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        s.serviceCode.toLowerCase().includes(searchTerm.toLowerCase()))
+  ).length;
 
   return (
     <div className="min-h-full flex flex-col text-[#121214] pb-24 overflow-visible">
@@ -37,7 +75,7 @@ export const ServicesScreen: React.FC = () => {
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search all 10 zoning services..."
+              placeholder="Search all 16 services..."
               className="flex-1 bg-transparent text-xs text-[#191919] placeholder-[#82807A] focus:outline-none"
             />
             <button
@@ -50,18 +88,66 @@ export const ServicesScreen: React.FC = () => {
           </div>
         </div>
 
-        {/* Category Pills (horizontally scrollable) */}
+        {/* Division Switch: Zoning vs Construction & Design */}
+        <div className="flex rounded-full liquid-glass-card p-1 shadow-xs border border-[#D8D8D8] dark:border-white/10 bg-white/80 dark:bg-white/5">
+          <button
+            type="button"
+            onClick={() => {
+              setActiveTab('zoning');
+              setSelectedCategory('all');
+            }}
+            className={`flex-1 py-2 text-xs font-bold rounded-full transition-all select-none min-h-[36px] ${
+              activeTab === 'zoning'
+                ? 'btn-glossy-primary text-white shadow-xs'
+                : 'text-[#82807A] dark:text-[#A0B0BC] hover:text-[#191919]'
+            }`}
+          >
+            Zoning
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setActiveTab('construction');
+              setSelectedCategory('all');
+            }}
+            className={`flex-1 py-2 text-xs font-bold rounded-full transition-all select-none min-h-[36px] ${
+              activeTab === 'construction'
+                ? 'btn-glossy-primary text-white shadow-xs'
+                : 'text-[#82807A] dark:text-[#A0B0BC] hover:text-[#191919]'
+            }`}
+          >
+            Construction &amp; Design
+          </button>
+        </div>
+
+        {/* Category Filter Chips for Selected Side */}
         <div className="flex gap-1.5 overflow-x-auto no-scrollbar py-0.5 -mx-4 px-4">
-          {categories.map((cat) => (
+          {currentChips.map((chip) => (
             <Chip
-              key={cat}
-              active={selectedCategory === cat}
-              onClick={() => setSelectedCategory(cat)}
+              key={chip.id}
+              active={selectedCategory === chip.id}
+              onClick={() => setSelectedCategory(chip.id)}
             >
-              {cat === 'all' ? 'All Services (10)' : cat}
+              {chip.label}
             </Chip>
           ))}
         </div>
+
+        {/* Search match switch pill if matches found in other division */}
+        {otherDivisionCount > 0 && (
+          <div className="pt-0.5">
+            <button
+              type="button"
+              onClick={() => {
+                setActiveTab(activeTab === 'zoning' ? 'construction' : 'zoning');
+                setSelectedCategory('all');
+              }}
+              className="text-[11px] text-[#334454] dark:text-[#A0B0BC] bg-slate-100 dark:bg-white/10 px-3 py-1.5 rounded-full flex items-center gap-1.5 hover:text-[#191919] transition-colors"
+            >
+              <span>Found {otherDivisionCount} result{otherDivisionCount > 1 ? 's' : ''} in {activeTab === 'zoning' ? 'Construction & Design' : 'Zoning'}. Tap to switch.</span>
+            </button>
+          </div>
+        )}
 
         {/* Services in a strict 2-column grid (always 2 per row from 320px up) */}
         <div className="grid grid-cols-2 gap-3 pt-1 auto-rows-fr">

@@ -83,16 +83,19 @@ export interface AppNotification {
 }
 
 export interface BookingPayload {
+  serviceId?: string;
   serviceTitle: string;
-  packageType: 'Basic' | 'Standard' | 'Full analysis';
+  serviceCode?: string;
+  serviceCategory?: 'zoning' | 'construction';
+  packageType: string;
   amount: number;
   date: string;
   time: string;
-  meetingType: 'In person' | 'Phone' | 'Video';
+  meetingType: 'In person' | 'Phone' | 'Video' | 'Office' | 'Site visit' | 'Site Visit';
   propertyAddress: string;
   pin?: string;
   zoningDistrict?: string;
-  projectType: string;
+  projectType?: string;
   description?: string;
   clientName: string;
   clientEmail: string;
@@ -547,24 +550,49 @@ export const useAppStore = create<AppState>((set, get) => ({
     })),
 
   addBooking: (payload) => {
+    const isConstruction =
+      payload.serviceCategory === 'construction' ||
+      payload.serviceId?.includes('con') ||
+      payload.serviceTitle.toLowerCase().includes('construction') ||
+      payload.serviceTitle.toLowerCase().includes('architectural') ||
+      payload.serviceTitle.toLowerCase().includes('renovation') ||
+      payload.serviceTitle.toLowerCase().includes('drawing') ||
+      payload.serviceTitle.toLowerCase().includes('visualization');
+
     const bookingNum = Math.floor(1000 + Math.random() * 9000);
     const bookingId = `#BK-${bookingNum}`;
     const invoiceId = `#INV-2026-${bookingNum}`;
+    const code =
+      payload.serviceCode ||
+      (isConstruction ? `WW-CON-0${Math.floor(1 + Math.random() * 5)}` : `WW-2026-${bookingNum}`);
 
     const newAppointment: Appointment = {
       id: bookingId,
-      caseNumber: bookingId,
-      title: `${payload.serviceTitle} (${payload.packageType})`,
-      type: payload.meetingType === 'In person' ? 'In-office' : (payload.meetingType as 'Phone' | 'Video'),
+      caseNumber: code,
+      serviceCode: code,
+      title: payload.serviceTitle,
+      serviceCategory: isConstruction ? 'construction' : 'zoning',
+      type:
+        payload.meetingType === 'In person'
+          ? 'Office'
+          : payload.meetingType === 'Site visit'
+          ? 'Site Visit'
+          : (payload.meetingType as any),
       date: payload.date,
       time: payload.time,
-      expertName: 'Marcus Vance, Esq. (Lead Counsel)',
+      expertName: isConstruction ? 'Daniel Reyes, AIA' : 'Marcus Vance, Esq. (Lead Counsel)',
+      expertRole: isConstruction ? 'Assigned Architect' : 'Assigned Counsel',
       location:
-        payload.meetingType === 'In person'
+        payload.meetingType === 'Site visit' || payload.meetingType === 'Site Visit'
+          ? payload.propertyAddress
+          : payload.meetingType === 'In person' || payload.meetingType === 'Office'
           ? '125 S. Wacker Dr, Suite 1400, Chicago, IL'
           : payload.meetingType === 'Video'
-          ? 'Google Meet (Chicago Room)'
+          ? 'Google Meet Video Session'
           : '+1 (312) 555-0198',
+      propertyAddress: payload.propertyAddress,
+      packageDetails: `${payload.packageType} Package`,
+      amountPaid: payload.amount,
       status: 'Confirmed',
     };
 

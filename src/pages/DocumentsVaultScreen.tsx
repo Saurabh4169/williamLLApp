@@ -7,7 +7,6 @@ import {
   CheckCircle2,
   FileCode,
   FileSpreadsheet,
-  Plus,
   Search,
   Compass,
   Layers,
@@ -237,8 +236,8 @@ export const DocumentsVaultScreen: React.FC = () => {
             </div>
           </div>
 
-          <label className="flex items-center gap-1 px-3 py-1.5 rounded-full btn-glossy-navy text-xs font-bold shadow-2xs cursor-pointer active:scale-95 transition-all flex-shrink-0">
-            <Plus className="w-3.5 h-3.5" />
+          <label className="flex items-center gap-1.5 px-3 py-1.5 rounded-full btn-glossy-navy text-xs font-bold shadow-2xs cursor-pointer active:scale-95 transition-all flex-shrink-0">
+            <UploadCloud className="w-3.5 h-3.5" />
             <span>Upload</span>
             <input type="file" className="hidden" onChange={handleFileUpload} />
           </label>

@@ -22,6 +22,7 @@ import { useAppStore } from '../store/useAppStore';
 import { BUSINESS_INFO } from '../data/businessInfo';
 import AppHeader from '../components/layout/AppHeader';
 import PaymentModal from '../components/features/PaymentModal';
+import BackButton from '../components/ui/BackButton';
 
 export const BookConsultationScreen: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -233,15 +234,8 @@ export const BookConsultationScreen: React.FC = () => {
   return (
     <div className="min-h-full flex flex-col text-[#191919] bg-transparent pb-28">
       {/* Sub-screen Header with Back Arrow & Title */}
-      <div className="px-4 pt-3 flex items-center gap-2.5">
-        <button
-          type="button"
-          onClick={() => navigate(-1)}
-          className="w-8 h-8 rounded-full bg-white/90 border border-[#D8D8D8] text-[#191919] flex items-center justify-center shadow-2xs hover:bg-white active:scale-95 transition-all flex-shrink-0"
-          aria-label="Go back"
-        >
-          <ArrowRight className="w-4 h-4 rotate-180 stroke-[2.2]" />
-        </button>
+      <div className="px-4 pt-3 flex items-center gap-2">
+        <BackButton ariaLabel="Go back" />
         <div>
           <h1 className="font-heading text-base font-bold text-[#191919] leading-tight">
             Book a Service
