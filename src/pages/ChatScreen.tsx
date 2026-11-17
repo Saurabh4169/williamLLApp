@@ -1,27 +1,44 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Send,
   Paperclip,
-  Sparkles,
   ShieldCheck,
   PhoneCall,
+  ArrowLeft,
+  User,
+  Clock,
+  Sparkles,
 } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
 import { BUSINESS_INFO } from '../data/businessInfo';
-import { AppHeader } from '../components/layout/AppHeader';
-import { GlassCard } from '../components/ui/GlassCard';
 
 export const ChatScreen: React.FC = () => {
-  const { chatMessages, sendChatMessage } = useAppStore();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { tickets, sendTicketReply, user, showToast } = useAppStore();
+
+  const ticketParam = searchParams.get('ticketId');
+  const activeTicket =
+    tickets.find((t) => t.id === ticketParam) ||
+    tickets[0] || {
+      id: '#TK-1043',
+      subject: 'Aldermanic Hearing Support - 32nd Ward',
+      topic: 'ZBA Hearing & Aldermanic Rapport',
+      relatedCase: 'WW-2026-0842',
+      priority: 'Urgent' as const,
+      status: 'Open' as const,
+      lastReplyTime: '5m ago',
+      assignedConsultant: {
+        name: 'Marcus Vance, Esq.',
+        title: 'Principal Zoning Counsel',
+        isOnline: true,
+      },
+      messages: [],
+    };
+
   const [inputText, setInputText] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  const quickAiPrompts = [
-    'Can I add a coach house (ADU)?',
-    'What is the maximum FAR for RT-4?',
-    'How long does a ZBA appeal take?',
-    'Can I eliminate parking near CTA?',
-  ];
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -29,136 +46,148 @@ export const ChatScreen: React.FC = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [chatMessages]);
+  }, [activeTicket.messages]);
 
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
     if (inputText.trim()) {
-      sendChatMessage(inputText.trim());
+      sendTicketReply(activeTicket.id, inputText.trim());
       setInputText('');
     }
   };
 
-  const handleChipClick = (prompt: string) => {
-    sendChatMessage(prompt);
-  };
-
   return (
-    <div className="min-h-full flex flex-col justify-between text-[#121214] pb-0">
-      {/* Top Header */}
-      <AppHeader
-        title="Zoning Counsel Chat"
-        showBack
-        rightAction={
-          <a
-            href={`tel:${BUSINESS_INFO.phoneRaw}`}
-            className="w-10 h-10 rounded-full liquid-glass-chip flex items-center justify-center text-[#323232] hover:border-[#323232]/50 active:scale-95 transition-all"
-            aria-label="Direct Phone Call"
+    <div className="min-h-full flex flex-col justify-between text-[#191919] pb-0">
+      {/* Sub-screen Header with Back Arrow and Title */}
+      <div className="px-4 pt-3 pb-2 flex items-center justify-between border-b border-[#D8D8D8]/70 bg-white/70 backdrop-blur-md sticky top-0 z-20">
+        <div className="flex items-center gap-2.5">
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            className="w-8 h-8 rounded-full bg-white border border-[#D8D8D8] text-[#191919] flex items-center justify-center shadow-2xs hover:bg-white active:scale-95 transition-all flex-shrink-0"
+            aria-label="Back"
           >
-            <PhoneCall className="w-4 h-4 stroke-[2]" />
-          </a>
-        }
-      />
-
-      {/* Online Status Bar */}
-      <div className="liquid-glass-bar px-4 py-2 flex items-center justify-between text-xs border-b border-white/60">
-        <div className="flex items-center gap-2">
-          <div className="relative">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#3FA66B]" />
-            <div className="w-2.5 h-2.5 rounded-full bg-[#3FA66B] absolute inset-0 animate-ping opacity-60" />
+            <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
+          </button>
+          <div>
+            <h1 className="font-heading text-sm font-bold text-[#191919]">
+              Ticket &amp; Live Chat
+            </h1>
+            <span className="text-[10px] font-mono font-bold text-[#8C9DAA] block">
+              {activeTicket.id}
+            </span>
           </div>
-          <span className="font-semibold text-[#121214]">
-            Williams &amp; Williams Senior Advisory
-          </span>
         </div>
-        <span className="text-[10px] text-[#82807A]">Avg response: 15 min</span>
+
+        <a
+          href={`tel:${BUSINESS_INFO.phoneRaw}`}
+          className="w-8 h-8 rounded-full bg-white/90 border border-[#D8D8D8] text-[#191919] flex items-center justify-center shadow-2xs hover:bg-white active:scale-95 transition-all flex-shrink-0"
+          aria-label="Call Counsel Hotline"
+        >
+          <PhoneCall className="w-3.5 h-3.5 stroke-[2]" />
+        </a>
       </div>
 
-      {/* Messages Thread Container */}
-      <div className="flex-1 p-4 space-y-4 overflow-y-auto">
-        {/* Chat Intro Banner */}
-        <GlassCard className="p-3.5 text-center space-y-1.5 max-w-sm mx-auto">
-          <ShieldCheck className="w-6 h-6 mx-auto text-[#323232]" />
-          <h4 className="font-heading text-xs font-bold text-[#121214]">
-            Direct Encrypted Zoning Channel
-          </h4>
-          <p className="text-[10px] text-[#82807A]">
-            Communicate directly with your assigned Chicago zoning consultant regarding permits, appeals, and hearings.
-          </p>
-        </GlassCard>
+      {/* Ticket Details & Assigned Consultant Banner */}
+      <div className="p-3.5 mx-4 mt-2.5 rounded-[18px] liquid-glass-card border border-[#D8D8D8] space-y-2 shadow-2xs">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1.5">
+            <span className="text-[9.5px] font-bold uppercase tracking-wider text-[#191919] bg-[#C0D0E1]/30 border border-[#A4B3BE]/40 px-2 py-0.5 rounded-full">
+              {activeTicket.id}
+            </span>
+            <span className="text-[9.5px] font-bold text-[#71717A]">
+              &bull; {activeTicket.priority} Priority
+            </span>
+          </div>
 
-        {/* Message Bubbles */}
-        {chatMessages.map((msg) => {
-          const isUser = msg.sender === 'user';
-          return (
-            <div
-              key={msg.id}
-              className={`flex flex-col ${isUser ? 'items-end' : 'items-start'} space-y-1`}
-            >
-              <div className="flex items-center gap-1.5 text-[10px] text-[#82807A] px-1">
-                <span>{msg.authorName}</span>
-                <span>&bull;</span>
-                <span>{msg.timestamp}</span>
-              </div>
+          <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[9.5px] font-bold flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span>{activeTicket.status}</span>
+          </span>
+        </div>
 
-              <div
-                className={`max-w-[82%] p-3.5 rounded-2xl text-xs leading-relaxed shadow-xs ${
-                  isUser
-                    ? 'btn-glossy-navy text-white rounded-br-xs'
-                    : 'liquid-glass-card text-[#121214] rounded-bl-xs'
-                }`}
-              >
-                {msg.text}
-
-                {msg.attachmentName && (
-                  <div className="mt-2 pt-2 border-t border-white/20 text-[10px] flex items-center gap-1 opacity-90">
-                    <Paperclip className="w-3 h-3" />
-                    <span>Attached: {msg.attachmentName}</span>
-                  </div>
-                )}
-              </div>
+        <div>
+          <h2 className="font-heading text-xs font-bold text-[#191919]">
+            {activeTicket.subject}
+          </h2>
+          <div className="flex items-center justify-between text-[10.5px] text-[#71717A] mt-1 pt-1.5 border-t border-[#D8D8D8]/60">
+            <div className="flex items-center gap-1">
+              <User className="w-3 h-3 text-[#323232]" />
+              <span>Assigned: <strong className="text-[#191919]">{activeTicket.assignedConsultant.name}</strong></span>
             </div>
-          );
-        })}
+            <div className="flex items-center gap-1 text-emerald-600 font-semibold text-[10px]">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <span>Online</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Live Chat Thread: user messages on right in dark bubbles, consultant on left in light bubbles */}
+      <div className="flex-1 p-4 space-y-3 overflow-y-auto">
+        {activeTicket.messages.length === 0 ? (
+          <div className="p-6 text-center text-xs text-[#82807A] space-y-2">
+            <ShieldCheck className="w-8 h-8 text-[#A4B3BE] mx-auto" />
+            <p className="font-semibold text-[#191919]">
+              Encrypted Chicago Municipal Live Thread
+            </p>
+            <p className="text-[11px] max-w-xs mx-auto">
+              Type your message below to communicate directly with {activeTicket.assignedConsultant.name}.
+            </p>
+          </div>
+        ) : (
+          activeTicket.messages.map((msg) => {
+            const isUser = msg.sender === 'user';
+            return (
+              <div
+                key={msg.id}
+                className={`flex flex-col ${isUser ? 'items-end' : 'items-start'} space-y-1`}
+              >
+                <div className="flex items-center gap-1.5 text-[9.5px] text-[#8C9DAA] px-1 font-medium">
+                  <span>{msg.authorName}</span>
+                  <span>&bull;</span>
+                  <span>{msg.time}</span>
+                </div>
+
+                <div
+                  className={`max-w-[84%] p-3 rounded-[16px] text-xs leading-relaxed shadow-2xs ${
+                    isUser
+                      ? 'bg-gradient-to-b from-[#323232] to-[#191919] text-[#FEFEFE] rounded-br-xs'
+                      : 'liquid-glass-card text-[#191919] rounded-bl-xs border border-[#D8D8D8]'
+                  }`}
+                >
+                  <p>{msg.text}</p>
+
+                  {msg.attachment && (
+                    <div className="mt-2 pt-1.5 border-t border-white/20 text-[10px] flex items-center gap-1 opacity-90 font-mono">
+                      <Paperclip className="w-3 h-3" />
+                      <span>{msg.attachment}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })
+        )}
         <div ref={messagesEndRef} />
       </div>
 
-      {/* "Ask AI / Quick Questions" Chips Row */}
-      <div className="px-4 py-2">
-        <div className="flex items-center gap-1.5 mb-1.5">
-          <Sparkles className="w-3.5 h-3.5 text-[#323232]" />
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#323232]">
-            Quick Ordinance Questions
-          </span>
-        </div>
-        <div className="flex gap-2 overflow-x-auto no-scrollbar py-1">
-          {quickAiPrompts.map((prompt, idx) => (
-            <button
-              key={idx}
-              onClick={() => handleChipClick(prompt)}
-              className="px-3 py-1.5 rounded-full liquid-glass-chip text-[11px] font-medium text-[#121214] whitespace-nowrap hover:border-[#323232]/40 active:scale-95 transition-all select-none"
-            >
-              {prompt}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Chat Input Bar */}
+      {/* Chat Message Input Bar */}
       <form
         onSubmit={handleSend}
-        className="p-3 liquid-glass-bar border-t border-white/70 flex items-center gap-2 sticky bottom-0 z-30"
+        className="p-3 bg-white/95 backdrop-blur-md border-t border-[#D8D8D8] flex items-center gap-2 sticky bottom-0 z-30"
       >
         <button
           type="button"
           onClick={() => {
-            const fileName = prompt('Enter document name to attach (mock):', 'Plat_of_survey_2026.pdf');
-            if (fileName) {
-              sendChatMessage(`Uploaded document for review: ${fileName}`, fileName);
+            const mockDoc = prompt('Enter document name to attach (mock):', 'Exhibit_C_Setback_Plat.pdf');
+            if (mockDoc) {
+              sendTicketReply(activeTicket.id, `Uploaded attachment for review: ${mockDoc}`);
+              showToast(`Attached ${mockDoc}`);
             }
           }}
           aria-label="Attach File"
-          className="w-10 h-10 rounded-full liquid-glass-chip flex items-center justify-center text-[#82807A] hover:text-[#121214] active:scale-95 transition-all flex-shrink-0"
+          className="w-10 h-10 rounded-full bg-white border border-[#D8D8D8] flex items-center justify-center text-[#82807A] hover:text-[#191919] active:scale-95 transition-all flex-shrink-0 shadow-2xs"
         >
           <Paperclip className="w-4 h-4 stroke-[2]" />
         </button>
@@ -167,15 +196,15 @@ export const ChatScreen: React.FC = () => {
           type="text"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
-          placeholder="Ask a zoning question or send update..."
-          className="flex-1 h-11 px-4 rounded-full border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#121214] placeholder-[#82807A] focus:outline-none focus:ring-2 focus:ring-[#323232] transition-all"
+          placeholder={`Message ${activeTicket.assignedConsultant.name.split(' ')[0]}...`}
+          className="flex-1 h-10 px-4 rounded-full border border-[#D8D8D8] bg-white text-xs text-[#191919] placeholder-[#8C9DAA] focus:outline-none focus:ring-2 focus:ring-[#323232] transition-all"
         />
 
         <button
           type="submit"
           disabled={!inputText.trim()}
           aria-label="Send message"
-          className="w-11 h-11 rounded-full btn-glossy-navy flex items-center justify-center shadow-xs disabled:opacity-40 disabled:pointer-events-none active:scale-95 transition-all flex-shrink-0 text-white"
+          className="w-10 h-10 rounded-full btn-glossy-primary flex items-center justify-center shadow-xs disabled:opacity-40 disabled:pointer-events-none active:scale-95 transition-all flex-shrink-0 text-white"
         >
           <Send className="w-4 h-4 stroke-[2.2]" />
         </button>
@@ -185,3 +214,4 @@ export const ChatScreen: React.FC = () => {
 };
 
 export default ChatScreen;
+

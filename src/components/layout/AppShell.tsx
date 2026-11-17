@@ -1,12 +1,13 @@
 import React, { useRef, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
+import { CheckCircle2 } from 'lucide-react';
 import { BottomNav } from './BottomNav';
 import { AppHeader } from './AppHeader';
 import { useAppStore } from '../../store/useAppStore';
 
 export const AppShell: React.FC = () => {
   const location = useLocation();
-  const { desktopFrameMode } = useAppStore();
+  const { desktopFrameMode, toast, darkMode } = useAppStore();
   const mainRef = useRef<HTMLElement>(null);
 
   // Automatically scroll main content to top on navigation
@@ -20,22 +21,46 @@ export const AppShell: React.FC = () => {
   const hideTopBar = isSplash;
 
   return (
-    <div className="h-screen h-[100dvh] max-h-[100dvh] w-full bg-[#FAFBFC] lg:bg-gradient-to-br lg:from-[#C0D0E1]/10 lg:via-[#FAFBFC] lg:to-[#A4B3BE]/10 flex flex-col items-center justify-start py-0 lg:py-6 px-0 lg:px-4 overflow-hidden">
-      {/* Main Container - edge-to-edge native on mobile, framed only on desktop */}
+    <div
+      className={`h-screen h-[100dvh] max-h-[100dvh] w-full ${
+        darkMode ? 'dark bg-[#121214]' : 'bg-[#FAFBFC]'
+      } lg:bg-gradient-to-br ${
+        darkMode
+          ? 'lg:from-[#191919] lg:via-[#121214] lg:to-[#0A0D15]'
+          : 'lg:from-[#C0D0E1]/10 lg:via-[#FAFBFC] lg:to-[#A4B3BE]/10'
+      } flex flex-col items-center justify-start py-0 lg:py-4 px-0 lg:px-4 overflow-hidden select-none transition-colors duration-300`}
+    >
+      {/* Floating Global Toast Banner */}
+      {toast && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 max-w-[340px] px-4 py-2.5 rounded-full bg-[#191919]/95 text-[#FEFEFE] border border-white/20 shadow-[0_12px_30px_rgba(0,0,0,0.35)] text-xs font-semibold flex items-center gap-2 animate-in fade-in slide-in-from-top-3 duration-200 pointer-events-none"
+        >
+          <div className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
+            <CheckCircle2 className="w-3.5 h-3.5 stroke-[2.5]" />
+          </div>
+          <span className="truncate">{toast}</span>
+        </div>
+      )}
+
+      {/* Main Container - edge-to-edge native on mobile (390px standard), framed on desktop */}
       <div
+        id="phone-frame"
         className={`w-full h-full max-h-[100dvh] transition-all duration-300 relative flex flex-col overflow-hidden border-0 rounded-none shadow-none ${
           desktopFrameMode
-            ? 'lg:max-w-[430px] lg:min-h-0 lg:h-[890px] lg:max-h-[92vh] lg:rounded-[44px] lg:shadow-[0_25px_70px_rgba(25,25,25,0.12)] lg:border-[8px] lg:border-[#191919]'
-            : 'lg:max-w-2xl lg:h-full lg:shadow-md'
-        }`}
+            ? 'lg:max-w-[390px] lg:min-h-0 lg:h-[844px] lg:max-h-[92vh] lg:rounded-[44px] lg:shadow-[0_25px_70px_rgba(25,25,25,0.20)] lg:border-[8px] lg:border-[#191919]'
+            : 'lg:max-w-md lg:h-full lg:shadow-md'
+        } ${darkMode ? 'bg-[#18181A] text-[#FEFEFE]' : 'bg-[#FAFBFC] text-[#191919]'}`}
       >
         {/* Fixed full-screen soft ambient liquid-glass canvas with misty-blue reflections */}
         <div
           aria-hidden="true"
           className="absolute inset-0 z-0 pointer-events-none"
           style={{
-            background:
-              'radial-gradient(circle at 50% 25%, rgba(199, 211, 220, 0.12) 0%, transparent 65%), radial-gradient(circle at 85% 65%, rgba(165, 181, 193, 0.08) 0%, transparent 50%), linear-gradient(180deg, #FFFFFF 0%, #FAFBFC 40%, #F5F7F8 100%)',
+            background: darkMode
+              ? 'radial-gradient(circle at 50% 25%, rgba(60, 75, 90, 0.20) 0%, transparent 65%), radial-gradient(circle at 85% 65%, rgba(30, 40, 50, 0.25) 0%, transparent 50%), linear-gradient(180deg, #1C1C1F 0%, #151517 40%, #121214 100%)'
+              : 'radial-gradient(circle at 50% 25%, rgba(199, 211, 220, 0.12) 0%, transparent 65%), radial-gradient(circle at 85% 65%, rgba(165, 181, 193, 0.08) 0%, transparent 50%), linear-gradient(180deg, #FFFFFF 0%, #FAFBFC 40%, #F5F7F8 100%)',
           }}
         />
 

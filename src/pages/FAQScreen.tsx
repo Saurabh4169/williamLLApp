@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, ChevronDown, HelpCircle } from 'lucide-react';
+import { Search, ChevronDown, HelpCircle, ArrowLeft, MessageSquare, PlusCircle } from 'lucide-react';
 import { FAQS_DATA } from '../data/faqs';
-import { AppHeader } from '../components/layout/AppHeader';
 import { GlassCard } from '../components/ui/GlassCard';
-import { GlassButton } from '../components/ui/GlassButton';
 import Badge from '../components/ui/Badge';
 
 export const FAQScreen: React.FC = () => {
@@ -24,20 +22,28 @@ export const FAQScreen: React.FC = () => {
   });
 
   return (
-    <div className="min-h-full flex flex-col text-[#121214] pb-6">
-      <AppHeader title="Frequently Asked Questions" showBack />
-
-      <div className="px-4 py-4 space-y-5">
-        {/* Title Header */}
+    <div className="min-h-full flex flex-col text-[#191919] pb-24">
+      {/* Sub-screen header with Back Arrow and Title */}
+      <div className="px-4 pt-3 flex items-center gap-2.5">
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
+          className="w-8 h-8 rounded-full bg-white/90 border border-[#D8D8D8] text-[#191919] flex items-center justify-center shadow-2xs hover:bg-white active:scale-95 transition-all flex-shrink-0"
+          aria-label="Back"
+        >
+          <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
+        </button>
         <div>
-          <h1 className="font-heading text-xl font-bold text-[#121214] tracking-tight">
-            Chicago Zoning FAQ
+          <h1 className="font-heading text-base font-bold text-[#191919]">
+            Frequently Asked Questions
           </h1>
-          <p className="text-xs text-[#82807A]">
-            Answers to common questions regarding Chicago permits, appeals, and zoning codes.
+          <p className="text-[10.5px] text-[#82807A]">
+            Chicago zoning codes, permits &amp; hearings
           </p>
         </div>
+      </div>
 
+      <div className="px-4 py-3 space-y-4 max-w-md mx-auto w-full">
         {/* Search Input */}
         <div className="relative">
           <Search className="absolute left-3.5 top-3.5 w-4 h-4 text-[#82807A]" />
@@ -46,7 +52,7 @@ export const FAQScreen: React.FC = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search questions or keywords..."
-            className="w-full h-11 pl-10 pr-4 rounded-full border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#121214] focus:ring-2 focus:ring-[#323232] shadow-xs"
+            className="w-full h-11 pl-10 pr-4 rounded-full border border-[#D8D8D8] bg-white/90 backdrop-blur-md text-xs text-[#191919] focus:outline-none focus:ring-2 focus:ring-[#323232] shadow-xs"
           />
         </div>
 
@@ -56,10 +62,10 @@ export const FAQScreen: React.FC = () => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap min-h-[38px] transition-all select-none ${
+              className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap min-h-[34px] transition-all select-none ${
                 activeCategory === cat
-                  ? 'btn-glossy-navy shadow-sm'
-                  : 'liquid-glass-chip text-[#121214] hover:border-[#323232]/40'
+                  ? 'btn-glossy-primary text-white shadow-xs'
+                  : 'liquid-glass-chip text-[#191919] hover:border-[#323232]/40'
               }`}
             >
               {cat === 'all' ? 'All Questions' : cat}
@@ -68,21 +74,22 @@ export const FAQScreen: React.FC = () => {
         </div>
 
         {/* Accordion List */}
-        <div className="space-y-2.5">
+        <div className="space-y-2">
           {filteredFaqs.map((faq) => {
             const isOpen = openId === faq.id;
             return (
-              <GlassCard
+              <div
                 key={faq.id}
-                className="overflow-hidden p-0"
+                className="rounded-[18px] liquid-glass-card border border-[#D8D8D8] overflow-hidden transition-all shadow-2xs"
               >
                 <button
+                  type="button"
                   onClick={() => setOpenId(isOpen ? null : faq.id)}
-                  className="w-full p-4 text-left flex items-center justify-between gap-3 min-h-[50px]"
+                  className="w-full p-3.5 text-left flex items-center justify-between gap-3 min-h-[48px]"
                 >
                   <div className="flex items-center gap-2.5">
                     <HelpCircle className="w-4 h-4 text-[#323232] flex-shrink-0" />
-                    <span className="text-xs font-bold text-[#121214] leading-snug">
+                    <span className="text-xs font-bold text-[#191919] leading-snug">
                       {faq.question}
                     </span>
                   </div>
@@ -94,44 +101,58 @@ export const FAQScreen: React.FC = () => {
                 </button>
 
                 {isOpen && (
-                  <div className="px-4 pb-4 pt-1 text-xs text-[#82807A] leading-relaxed border-t border-white/60">
+                  <div className="px-4 pb-3.5 pt-1 text-xs text-[#71717A] leading-relaxed border-t border-[#D8D8D8]/70">
                     <p>{faq.answer}</p>
                     <div className="mt-2.5 flex items-center justify-between text-[10px]">
-                      <Badge variant="primary" size="sm">
+                      <span className="px-2 py-0.5 rounded-md bg-[#C0D0E1]/30 text-[#323232] border border-[#A4B3BE]/40 font-bold">
                         {faq.category}
-                      </Badge>
+                      </span>
                       <button
+                        type="button"
                         onClick={() => navigate('/chat')}
-                        className="text-[#323232] font-semibold hover:underline"
+                        className="text-[#191919] font-bold hover:underline"
                       >
-                        Need more details? Ask in Chat &rarr;
+                        Ask in Live Chat &rarr;
                       </button>
                     </div>
                   </div>
                 )}
-              </GlassCard>
+              </div>
             );
           })}
         </div>
 
-        {/* Still Have Questions Box */}
-        <GlassCard className="p-4 text-center space-y-2">
-          <h4 className="font-heading text-sm font-bold text-[#121214]">
-            Have a Specific Property Question?
-          </h4>
-          <p className="text-xs text-[#82807A]">
-            Every parcel in Chicago has unique setback, density, and historical conditions.
-          </p>
-          <div className="pt-1">
-            <GlassButton
-              variant="primary"
-              size="sm"
-              onClick={() => navigate('/chat')}
-            >
-              Ask Our Zoning Counsel
-            </GlassButton>
+        {/* "Still need help?" Section with "Raise enquiry" and "Live chat" buttons */}
+        <div className="p-4 rounded-[22px] liquid-glass-card border border-[#D8D8D8] text-center space-y-3 shadow-xs">
+          <div>
+            <h4 className="font-heading text-sm font-bold text-[#191919]">
+              Still need help?
+            </h4>
+            <p className="text-xs text-[#82807A] mt-0.5 max-w-xs mx-auto">
+              Can&apos;t find an answer to your zoning or setback scenario? Our Chicago municipal team is available to assist.
+            </p>
           </div>
-        </GlassCard>
+
+          <div className="grid grid-cols-2 gap-2 pt-1">
+            <button
+              type="button"
+              onClick={() => navigate('/profile?tab=enquiries&action=new')}
+              className="py-2.5 px-3 rounded-full bg-white border border-[#D8D8D8] text-[#191919] text-xs font-bold flex items-center justify-center gap-1.5 shadow-2xs hover:bg-[#F4F5F5] active:scale-95 transition-all"
+            >
+              <PlusCircle className="w-3.5 h-3.5 text-[#323232]" />
+              <span>Raise enquiry</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => navigate('/chat')}
+              className="py-2.5 px-3 rounded-full btn-glossy-primary text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs active:scale-95 transition-all"
+            >
+              <MessageSquare className="w-3.5 h-3.5" />
+              <span>Live chat</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -368,7 +368,7 @@ export const ProjectDetailScreen: React.FC = () => {
 
               <button
                 type="button"
-                onClick={() => navigate('/book-consultation')}
+                onClick={() => navigate('/services/zoning-analysis-consultation')}
                 className="py-2 px-3 rounded-full bg-white border border-[#D8D8D8] text-[#191919] text-xs font-semibold text-center flex items-center justify-center gap-1.5 hover:bg-[#F4F5F5] active:scale-95 transition-all"
               >
                 <Calendar className="w-3 h-3 text-[#323232]" />

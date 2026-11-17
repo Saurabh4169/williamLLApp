@@ -25,6 +25,52 @@ export interface QuoteRequest {
   status: 'Received' | 'In Review';
 }
 
+export interface QuoteItem {
+  id: string;
+  quoteNumber: string;
+  service: string;
+  address: string;
+  estimateAmount: number;
+  status: 'In Review' | 'Approved' | 'Accepted & Paid';
+  dateSubmitted: string;
+  scope: string;
+}
+
+export interface TicketMessage {
+  id: string;
+  sender: 'user' | 'consultant';
+  authorName: string;
+  text: string;
+  time: string;
+  attachment?: string;
+}
+
+export interface Ticket {
+  id: string;
+  subject: string;
+  topic: string;
+  relatedCase?: string;
+  priority: 'Low' | 'Normal' | 'Urgent';
+  status: 'Open' | 'Resolved';
+  lastReplyTime: string;
+  assignedConsultant: {
+    name: string;
+    title: string;
+    isOnline: boolean;
+  };
+  messages: TicketMessage[];
+}
+
+export interface InvoiceItem {
+  id: string;
+  title: string;
+  caseNumber?: string;
+  date: string;
+  dueDate: string;
+  amount: number;
+  status: 'Paid' | 'Due';
+}
+
 export interface AppNotification {
   id: string;
   type: 'case' | 'appointment' | 'document' | 'update' | 'message';
@@ -34,6 +80,23 @@ export interface AppNotification {
   group: 'Today' | 'Yesterday' | 'Earlier';
   read: boolean;
   link: string;
+}
+
+export interface BookingPayload {
+  serviceTitle: string;
+  packageType: 'Basic' | 'Standard' | 'Full analysis';
+  amount: number;
+  date: string;
+  time: string;
+  meetingType: 'In person' | 'Phone' | 'Video';
+  propertyAddress: string;
+  pin?: string;
+  zoningDistrict?: string;
+  projectType: string;
+  description?: string;
+  clientName: string;
+  clientEmail: string;
+  clientPhone: string;
 }
 
 export interface AppState {
@@ -57,12 +120,27 @@ export interface AppState {
   toggleSavedService: (serviceId: string) => void;
   toggleSavedProject: (projectId: string) => void;
 
+  // Toast System
+  toast: string | null;
+  showToast: (message: string) => void;
+
+  // Appearance & Localization
+  darkMode: boolean;
+  toggleDarkMode: () => void;
+  language: 'English' | 'Español';
+  setLanguage: (lang: 'English' | 'Español') => void;
+  biometricLogin: boolean;
+  toggleBiometricLogin: () => void;
+  analyticsSharing: boolean;
+  toggleAnalyticsSharing: () => void;
+
   // Client Cases & Appointments
   cases: ClientCase[];
   appointments: Appointment[];
   activeCaseFilter: 'Active' | 'Completed';
   setActiveCaseFilter: (filter: 'Active' | 'Completed') => void;
   addAppointment: (appointment: Omit<Appointment, 'id'>) => void;
+  addBooking: (payload: BookingPayload) => { bookingId: string; invoiceId: string };
   addCase: (newCase: Omit<ClientCase, 'id'>) => void;
 
   // Vault Documents
@@ -75,7 +153,29 @@ export interface AppState {
   chatMessages: ChatMessage[];
   sendChatMessage: (text: string, attachmentName?: string) => void;
 
-  // Notifications
+  // Support Tickets / Enquiries
+  tickets: Ticket[];
+  createEnquiry: (data: {
+    topic: string;
+    relatedCase?: string;
+    priority: 'Low' | 'Normal' | 'Urgent';
+    subject: string;
+    message: string;
+    attachment?: string;
+  }) => string;
+  sendTicketReply: (ticketId: string, text: string) => void;
+
+  // Invoices & Billing
+  invoices: InvoiceItem[];
+  payInvoice: (invoiceId: string) => void;
+  payOutstandingBalance: () => void;
+
+  // Quotes
+  quotesList: QuoteItem[];
+  acceptAndPayQuote: (quoteId: string) => void;
+  addQuoteRequest: (quote: Partial<QuoteItem>) => void;
+
+  // Legacy Quotes & Notifications
   notifications: AppNotification[];
   markNotificationRead: (id: string) => void;
   markAllNotificationsRead: () => void;
@@ -89,7 +189,6 @@ export interface AppState {
   };
   toggleNotificationSetting: (key: keyof AppState['notificationSettings']) => void;
 
-  // Quote Submissions
   quotes: QuoteRequest[];
   submitQuoteRequest: (quote: Omit<QuoteRequest, 'id' | 'dateSubmitted' | 'status'>) => void;
 
@@ -188,6 +287,171 @@ const INITIAL_QUOTES: QuoteRequest[] = [
   },
 ];
 
+const INITIAL_QUOTES_LIST: QuoteItem[] = [
+  {
+    id: 'quote-101',
+    quoteNumber: 'WW-QT-2026-44',
+    service: 'Rear Yard Setback Variance & ZBA Representation',
+    address: '2144 N. Damen Ave, Chicago, IL 60647',
+    estimateAmount: 1850.0,
+    status: 'Approved',
+    dateSubmitted: 'Nov 14, 2026',
+    scope: 'Complete Title 17 ordinance hardship brief, 250-ft neighbor certified mailings, aldermanic brief preparation & oral argument at ZBA.',
+  },
+  {
+    id: 'quote-102',
+    quoteNumber: 'WW-QT-2026-38',
+    service: 'TOD Commercial Parking Reduction Review',
+    address: '1250 W. Fulton Market, Chicago, IL 60607',
+    estimateAmount: 3200.0,
+    status: 'In Review',
+    dateSubmitted: 'Nov 10, 2026',
+    scope: 'Transit-Served Location (TSL) parking count reduction petition under Chicago Connected Communities Ordinance.',
+  },
+  {
+    id: 'quote-103',
+    quoteNumber: 'WW-QT-2026-29',
+    service: 'Preliminary Zoning & Permitted Uses Audit',
+    address: '1508 N. Talman Ave, Chicago, IL 60622',
+    estimateAmount: 950.0,
+    status: 'Accepted & Paid',
+    dateSubmitted: 'Oct 28, 2026',
+    scope: 'Certified lot dimension audit, permitted floor area ratio (FAR), and building height envelope checklist.',
+  },
+];
+
+const INITIAL_TICKETS: Ticket[] = [
+  {
+    id: '#TK-1043',
+    subject: 'Aldermanic Hearing Support - 32nd Ward',
+    topic: 'ZBA Hearing & Aldermanic Rapport',
+    relatedCase: 'WW-2026-0842 (Damen Ave)',
+    priority: 'Urgent',
+    status: 'Open',
+    lastReplyTime: '12m ago',
+    assignedConsultant: {
+      name: 'Marcus Vance, Esq.',
+      title: 'Principal Zoning Counsel',
+      isOnline: true,
+    },
+    messages: [
+      {
+        id: 'tm-1',
+        sender: 'consultant',
+        authorName: 'Marcus Vance, Esq.',
+        text: 'Good morning Alex. We reviewed the Damen Ave RT-4 hardship brief. The aldermanic liaison confirmed they will support the 18% setback variance.',
+        time: 'Today, 10:15 AM',
+      },
+      {
+        id: 'tm-2',
+        sender: 'user',
+        authorName: 'Alex Sterling',
+        text: 'Excellent news! Did they ask for any landscape screening or permeable surface commitments?',
+        time: 'Today, 10:28 AM',
+      },
+      {
+        id: 'tm-3',
+        sender: 'consultant',
+        authorName: 'Marcus Vance, Esq.',
+        text: 'Only standard permeable paving on the two garage spaces. We have updated Exhibit C accordingly for the Nov 24 hearing docket.',
+        time: 'Today, 10:35 AM',
+      },
+    ],
+  },
+  {
+    id: '#TK-1028',
+    subject: 'ADU Coach House Ordinance Eligibility',
+    topic: 'Zoning Classification & Permitted Uses',
+    relatedCase: 'General Property Review',
+    priority: 'Normal',
+    status: 'Open',
+    lastReplyTime: '2h ago',
+    assignedConsultant: {
+      name: 'Elena Rostova',
+      title: 'Senior Expediter',
+      isOnline: true,
+    },
+    messages: [
+      {
+        id: 'tm-4',
+        sender: 'user',
+        authorName: 'Alex Sterling',
+        text: 'Hi Elena, does the RS-3 parcel qualify for an administrative ADU permit without a full variance?',
+        time: 'Today, 8:30 AM',
+      },
+      {
+        id: 'tm-5',
+        sender: 'consultant',
+        authorName: 'Elena Rostova',
+        text: 'Yes! The lot area exceeds 3,125 sq ft and is within the designated North Pilot ADU zone. We can file under standard administrative track.',
+        time: 'Today, 9:10 AM',
+      },
+    ],
+  },
+  {
+    id: '#TK-0985',
+    subject: 'ZBA Special Use Stenographer Filing Deposit',
+    topic: 'Billing & Invoicing',
+    relatedCase: 'WW-2026-0842',
+    priority: 'Low',
+    status: 'Resolved',
+    lastReplyTime: 'Nov 12',
+    assignedConsultant: {
+      name: 'Sarah Jenkins',
+      title: 'Billing Specialist',
+      isOnline: false,
+    },
+    messages: [
+      {
+        id: 'tm-6',
+        sender: 'consultant',
+        authorName: 'Sarah Jenkins',
+        text: 'Your court reporter and stenographer deposit for City Hall Hearing Room 201 has been processed and credited to Invoice #INV-2026-002.',
+        time: 'Nov 12, 2:40 PM',
+      },
+    ],
+  },
+];
+
+const INITIAL_INVOICES: InvoiceItem[] = [
+  {
+    id: 'INV-2026-004',
+    title: 'ZBA Hearing Representation & Stenographer Fee',
+    caseNumber: 'WW-2026-0842',
+    date: 'Nov 15, 2026',
+    dueDate: 'Dec 01, 2026',
+    amount: 1400.0,
+    status: 'Due',
+  },
+  {
+    id: 'INV-2026-003',
+    title: 'Connected Communities Transit Parking Review',
+    caseNumber: 'WW-2026-0791',
+    date: 'Nov 12, 2026',
+    dueDate: 'Nov 28, 2026',
+    amount: 1450.0,
+    status: 'Due',
+  },
+  {
+    id: 'INV-2026-002',
+    title: 'Preliminary Title 17 Ordinance & Plat Audit',
+    caseNumber: 'WW-2026-0715',
+    date: 'Oct 20, 2026',
+    dueDate: 'Nov 05, 2026',
+    amount: 850.0,
+    status: 'Paid',
+  },
+  {
+    id: 'INV-2026-001',
+    title: 'Initial Zoning Strategy Retainer & File Setup',
+    caseNumber: 'WW-2026-0680',
+    date: 'Oct 01, 2026',
+    dueDate: 'Oct 15, 2026',
+    amount: 1200.0,
+    status: 'Paid',
+  },
+];
+
 export const useAppStore = create<AppState>((set, get) => ({
   hasSeenOnboarding: true,
   completeOnboarding: () => set({ hasSeenOnboarding: true }),
@@ -223,6 +487,49 @@ export const useAppStore = create<AppState>((set, get) => ({
       return { user: { ...state.user, savedProjectIds } };
     }),
 
+  // Toast System
+  toast: null,
+  showToast: (message: string) => {
+    set({ toast: message });
+    setTimeout(() => {
+      if (get().toast === message) {
+        set({ toast: null });
+      }
+    }, 2800);
+  },
+
+  // Appearance & Preferences
+  darkMode: false,
+  toggleDarkMode: () =>
+    set((state) => {
+      const next = !state.darkMode;
+      if (next) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      return { darkMode: next };
+    }),
+  language: 'English',
+  setLanguage: (lang) => {
+    set({ language: lang });
+    get().showToast(lang === 'Español' ? 'Idioma cambiado a Español' : 'Language set to English');
+  },
+  biometricLogin: true,
+  toggleBiometricLogin: () =>
+    set((state) => {
+      const next = !state.biometricLogin;
+      get().showToast(next ? 'Biometric authentication enabled' : 'Biometric authentication disabled');
+      return { biometricLogin: next };
+    }),
+  analyticsSharing: false,
+  toggleAnalyticsSharing: () =>
+    set((state) => {
+      const next = !state.analyticsSharing;
+      get().showToast(next ? 'Analytics data sharing enabled' : 'Analytics data sharing disabled');
+      return { analyticsSharing: next };
+    }),
+
   cases: CLIENT_CASES,
   appointments: UPCOMING_APPOINTMENTS,
   activeCaseFilter: 'Active',
@@ -238,6 +545,58 @@ export const useAppStore = create<AppState>((set, get) => ({
         ...state.appointments,
       ],
     })),
+
+  addBooking: (payload) => {
+    const bookingNum = Math.floor(1000 + Math.random() * 9000);
+    const bookingId = `#BK-${bookingNum}`;
+    const invoiceId = `#INV-2026-${bookingNum}`;
+
+    const newAppointment: Appointment = {
+      id: bookingId,
+      caseNumber: bookingId,
+      title: `${payload.serviceTitle} (${payload.packageType})`,
+      type: payload.meetingType === 'In person' ? 'In-office' : (payload.meetingType as 'Phone' | 'Video'),
+      date: payload.date,
+      time: payload.time,
+      expertName: 'Marcus Vance, Esq. (Lead Counsel)',
+      location:
+        payload.meetingType === 'In person'
+          ? '125 S. Wacker Dr, Suite 1400, Chicago, IL'
+          : payload.meetingType === 'Video'
+          ? 'Google Meet (Chicago Room)'
+          : '+1 (312) 555-0198',
+      status: 'Confirmed',
+    };
+
+    const newInvoice: InvoiceItem = {
+      id: invoiceId,
+      title: `${payload.serviceTitle} (${payload.packageType} Package)`,
+      caseNumber: bookingId,
+      date: 'Today',
+      dueDate: 'Paid in Full',
+      amount: payload.amount,
+      status: 'Paid',
+    };
+
+    const newNotification: AppNotification = {
+      id: `notif-${Date.now()}`,
+      type: 'appointment',
+      title: 'Consultation Confirmed',
+      message: `Your booking ${bookingId} for ${payload.serviceTitle} on ${payload.date} at ${payload.time} is confirmed.`,
+      time: 'Just now',
+      group: 'Today',
+      read: false,
+      link: '/profile?tab=bookings',
+    };
+
+    set((state) => ({
+      appointments: [newAppointment, ...state.appointments],
+      invoices: [newInvoice, ...state.invoices],
+      notifications: [newNotification, ...state.notifications],
+    }));
+
+    return { bookingId, invoiceId };
+  },
 
   addCase: (newCase) =>
     set((state) => ({
@@ -312,6 +671,155 @@ export const useAppStore = create<AppState>((set, get) => ({
       };
       set((state) => ({ chatMessages: [...state.chatMessages, replyMsg] }));
     }, 1200);
+  },
+
+  // Support Tickets / Enquiries
+  tickets: INITIAL_TICKETS,
+  createEnquiry: (data) => {
+    const ticketNum = `#TK-${Math.floor(1000 + Math.random() * 9000)}`;
+    const newTicket: Ticket = {
+      id: ticketNum,
+      subject: data.subject,
+      topic: data.topic,
+      relatedCase: data.relatedCase || 'General Chicago Zoning Review',
+      priority: data.priority,
+      status: 'Open',
+      lastReplyTime: 'Just now',
+      assignedConsultant: {
+        name: 'Marcus Vance, Esq.',
+        title: 'Principal Zoning Counsel',
+        isOnline: true,
+      },
+      messages: [
+        {
+          id: `tm-${Date.now()}`,
+          sender: 'user',
+          authorName: get().user.name,
+          text: data.message,
+          time: 'Just now',
+          attachment: data.attachment,
+        },
+      ],
+    };
+
+    set((state) => ({ tickets: [newTicket, ...state.tickets] }));
+    get().showToast('Ticket raised');
+
+    // Simulate auto-acknowledgement after 1.5s
+    setTimeout(() => {
+      set((state) => ({
+        tickets: state.tickets.map((t) =>
+          t.id === ticketNum
+            ? {
+                ...t,
+                messages: [
+                  ...t.messages,
+                  {
+                    id: `tm-${Date.now() + 1}`,
+                    sender: 'consultant',
+                    authorName: 'Marcus Vance, Esq.',
+                    text: `Thank you for reaching out regarding "${data.subject}". We have logged your request under ${ticketNum} and our municipal team is reviewing the Cook County ordinance parameters right now.`,
+                    time: 'Just now',
+                  },
+                ],
+              }
+            : t
+        ),
+      }));
+    }, 1500);
+
+    return ticketNum;
+  },
+
+  sendTicketReply: (ticketId, text) => {
+    const userMsg: TicketMessage = {
+      id: `tm-${Date.now()}`,
+      sender: 'user',
+      authorName: get().user.name,
+      text,
+      time: 'Just now',
+    };
+
+    set((state) => ({
+      tickets: state.tickets.map((t) =>
+        t.id === ticketId
+          ? {
+              ...t,
+              lastReplyTime: 'Just now',
+              messages: [...t.messages, userMsg],
+            }
+          : t
+      ),
+    }));
+
+    setTimeout(() => {
+      const replyMsg: TicketMessage = {
+        id: `tm-${Date.now() + 2}`,
+        sender: 'consultant',
+        authorName: 'Marcus Vance, Esq.',
+        text: 'Received! We have added this note directly to your City Hall expediente and will advise on next steps.',
+        time: 'Just now',
+      };
+
+      set((state) => ({
+        tickets: state.tickets.map((t) =>
+          t.id === ticketId
+            ? {
+                ...t,
+                lastReplyTime: 'Just now',
+                messages: [...t.messages, replyMsg],
+              }
+            : t
+        ),
+      }));
+    }, 1200);
+  },
+
+  // Invoices & Billing
+  invoices: INITIAL_INVOICES,
+  payInvoice: (invoiceId) => {
+    set((state) => ({
+      invoices: state.invoices.map((inv) =>
+        inv.id === invoiceId ? { ...inv, status: 'Paid' as const } : inv
+      ),
+    }));
+    get().showToast(`Payment successful! Invoice ${invoiceId} marked as Paid.`);
+  },
+
+  payOutstandingBalance: () => {
+    set((state) => ({
+      invoices: state.invoices.map((inv) => ({ ...inv, status: 'Paid' as const })),
+    }));
+    get().showToast('Payment successful! All outstanding balances cleared.');
+  },
+
+  // Quotes
+  quotesList: INITIAL_QUOTES_LIST,
+  acceptAndPayQuote: (quoteId) => {
+    set((state) => ({
+      quotesList: state.quotesList.map((q) =>
+        q.id === quoteId || q.quoteNumber === quoteId
+          ? { ...q, status: 'Accepted & Paid' as const }
+          : q
+      ),
+    }));
+    get().showToast('Payment successful! Quote accepted and retainer recorded.');
+  },
+
+  addQuoteRequest: (quote) => {
+    const quoteNum = `WW-QT-2026-${Math.floor(50 + Math.random() * 50)}`;
+    const newQuote: QuoteItem = {
+      id: `quote-${Date.now()}`,
+      quoteNumber: quoteNum,
+      service: quote.service || 'Zoning Consultation & Fee Estimate',
+      address: quote.address || 'Chicago, IL',
+      estimateAmount: quote.estimateAmount || 1500.0,
+      status: 'In Review',
+      dateSubmitted: 'Today',
+      scope: quote.scope || 'Preliminary parcel review and zoning fee assessment.',
+    };
+    set((state) => ({ quotesList: [newQuote, ...state.quotesList] }));
+    get().showToast(`Quote request ${quoteNum} submitted`);
   },
 
   notifications: INITIAL_NOTIFICATIONS,

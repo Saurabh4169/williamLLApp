@@ -229,7 +229,7 @@ export const ReviewsScreen: React.FC = () => {
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
               <button
-                onClick={() => navigate('/book-consultation')}
+                onClick={() => navigate('/services/zoning-analysis-consultation')}
                 className="w-full sm:flex-1 h-11 rounded-full bg-white border border-[#D8D8D8] text-xs font-semibold text-[#191919] flex items-center justify-center shadow-xs hover:border-[#323232]/40 active:scale-95 transition-all"
               >
                 Book Consultation

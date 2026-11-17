@@ -1,18 +1,14 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, Briefcase, Calendar, HardHat, Menu } from 'lucide-react';
-import { useAppStore } from '../../store/useAppStore';
+import { Home, Briefcase, FolderCheck, HardHat, Menu } from 'lucide-react';
 
 export const BottomNav: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { cases } = useAppStore();
-
-  const activeCasesCount = cases.filter((c) => c.category === 'Active').length;
 
   const isHome = location.pathname === '/' || location.pathname === '/home';
   const isServices = location.pathname.startsWith('/services');
-  const isBook = location.pathname === '/book-consultation' || location.pathname === '/quote';
+  const isTrackCases = location.pathname.startsWith('/cases');
   const isConstruction =
     location.pathname.startsWith('/construction') ||
     location.pathname.startsWith('/portfolio') ||
@@ -26,7 +22,6 @@ export const BottomNav: React.FC = () => {
     location.pathname === '/faq' ||
     location.pathname === '/contact' ||
     location.pathname === '/checklist' ||
-    location.pathname === '/cases' ||
     location.pathname === '/notifications';
 
   return (
@@ -87,15 +82,32 @@ export const BottomNav: React.FC = () => {
         />
       </button>
 
-      {/* 3. Center Raised Button: Book */}
-      <div className="w-full flex items-center justify-center relative">
+      {/* 3. Center Raised Circle Button: Track Cases */}
+      <div className="w-full flex flex-col items-center justify-center relative">
         <button
-          onClick={() => navigate('/book-consultation')}
-          aria-label="Book Consultation"
-          className="w-[50px] h-[50px] rounded-full liquid-charcoal-water-button flex items-center justify-center ring-4 ring-white shadow-[0_8px_24px_rgba(25,25,25,0.35),0_0_16px_rgba(165,181,193,0.40)] active:scale-95 transition-all -translate-y-3.5 z-10 group"
+          onClick={() => navigate('/cases')}
+          aria-label="Track Cases"
+          className={`w-[50px] h-[50px] rounded-full flex items-center justify-center transition-all -translate-y-3.5 z-10 group relative ${
+            isTrackCases
+              ? 'liquid-charcoal-water-button ring-4 ring-[#191919] shadow-[0_10px_28px_rgba(25,25,25,0.45),0_0_20px_rgba(165,181,193,0.6)] scale-105'
+              : 'liquid-charcoal-water-button ring-4 ring-white shadow-[0_8px_24px_rgba(25,25,25,0.35),0_0_16px_rgba(165,181,193,0.40)] active:scale-95'
+          }`}
         >
-          <Calendar className="w-5 h-5 text-white stroke-[2.2] relative z-10 drop-shadow-xs" />
+          <FolderCheck className="w-5 h-5 text-white stroke-[2.2] relative z-10 drop-shadow-xs" />
         </button>
+
+        <span
+          className={`text-[10px] -mt-2 tracking-tight leading-tight transition-colors ${
+            isTrackCases ? 'font-bold text-[#191919]' : 'font-semibold text-[#334454] group-hover:text-[#191919]'
+          }`}
+        >
+          Track Cases
+        </span>
+        <span
+          className={`w-1.5 h-1.5 rounded-full mt-0.5 transition-all ${
+            isTrackCases ? 'bg-[#191919] shadow-[0_0_8px_rgba(25,25,25,0.4)] scale-100 opacity-100' : 'bg-transparent scale-0 opacity-0'
+          }`}
+        />
       </div>
 
       {/* 4. Construction & Design */}

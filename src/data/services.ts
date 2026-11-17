@@ -1,6 +1,7 @@
 export interface ServiceItem {
   id: string;
   slug: string;
+  serviceCode: string;
   title: string;
   category: 'Analysis' | 'Permits & Appeals' | 'Consulting' | 'Development';
   shortDescription: string;
@@ -9,7 +10,7 @@ export interface ServiceItem {
   badge?: string;
   stats: {
     whoItsFor: string;
-    typicalTimeline: string; // marked as [TYPICAL TIMELINE] placeholder where appropriate
+    typicalTimeline: string;
     documentsNeeded: string;
     supportLevel: string;
   };
@@ -26,6 +27,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   {
     id: 'zoning-analysis',
     slug: 'zoning-analysis-consultation',
+    serviceCode: 'WW-SRV-01',
     title: 'Zoning Analysis & Consultation',
     category: 'Analysis',
     shortDescription: 'Comprehensive property evaluation against the Chicago Zoning Ordinance to uncover development potential.',
@@ -34,7 +36,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     badge: 'Popular',
     stats: {
       whoItsFor: 'Property buyers, architects, developers',
-      typicalTimeline: '[TIMELINE: 3–5 Business Days]',
+      typicalTimeline: '5 to 7 days',
       documentsNeeded: 'Plat of survey, address, PIN',
       supportLevel: 'Dedicated Senior Consultant',
     },
@@ -65,6 +67,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   {
     id: 'zoning-appeals',
     slug: 'zoning-appeals-hearings',
+    serviceCode: 'WW-SRV-02',
     title: 'Zoning Appeals & Hearings',
     category: 'Permits & Appeals',
     shortDescription: 'Facing a zoning denial can be frustrating. We specialize in zoning appeals in Chicago, IL and work to overturn unfavourable decisions.',
@@ -73,7 +76,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     badge: 'High Impact',
     stats: {
       whoItsFor: 'Owners with denials or variance needs',
-      typicalTimeline: '[TIMELINE: 6–10 Weeks to Hearing]',
+      typicalTimeline: '6 to 8 weeks',
       documentsNeeded: 'Denial letter, plans, site photos',
       supportLevel: 'Full Hearing Representation',
     },
@@ -104,6 +107,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   {
     id: 'zoning-law-updates',
     slug: 'zoning-law-updates',
+    serviceCode: 'WW-SRV-03',
     title: 'Zoning Law Updates & Monitoring',
     category: 'Analysis',
     shortDescription: 'Stay ahead of Chicago City Council ordinance amendments, ARO adjustments, and zoning map changes.',
@@ -111,7 +115,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     imageKey: 'serviceUrbanPlanning',
     stats: {
       whoItsFor: 'Commercial owners, portfolio managers',
-      typicalTimeline: '[TIMELINE: Ongoing / Monthly Briefings]',
+      typicalTimeline: 'Ongoing updates',
       documentsNeeded: 'Portfolio asset list or address',
       supportLevel: 'Executive Regulatory Advisory',
     },
@@ -137,6 +141,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   {
     id: 'strategic-zoning-insights',
     slug: 'strategic-zoning-insights',
+    serviceCode: 'WW-SRV-04',
     title: 'Strategic Zoning Insights',
     category: 'Consulting',
     shortDescription: 'Forward-looking entitlement roadmaps that maximize density, return on investment, and development speed.',
@@ -145,7 +150,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     badge: 'Strategic',
     stats: {
       whoItsFor: 'Institutional investors & land developers',
-      typicalTimeline: '[TIMELINE: 1–2 Weeks]',
+      typicalTimeline: '1 to 2 weeks',
       documentsNeeded: 'Project pro-forma, conceptual sketches',
       supportLevel: 'Senior Partner Engagement',
     },
@@ -171,6 +176,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   {
     id: 'permit-assistance',
     slug: 'permit-assistance',
+    serviceCode: 'WW-SRV-05',
     title: 'Permit Assistance & Expediting',
     category: 'Permits & Appeals',
     shortDescription: 'Streamline building permits through the Chicago Department of Buildings with zero bureaucratic friction.',
@@ -179,7 +185,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     badge: 'Essential',
     stats: {
       whoItsFor: 'Contractors, interior designers, owners',
-      typicalTimeline: '[TIMELINE: 2–6 Weeks typical]',
+      typicalTimeline: '2 to 4 weeks',
       documentsNeeded: 'Architectural drawings, MEP plans, contractor info',
       supportLevel: 'Dedicated Project Expediter',
     },
@@ -206,6 +212,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   {
     id: 'compliance-planning',
     slug: 'compliance-and-planning',
+    serviceCode: 'WW-SRV-06',
     title: 'Compliance & Planning',
     category: 'Consulting',
     shortDescription: 'Proactive code audits to protect existing properties from municipal citations and stop-work orders.',
@@ -213,7 +220,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     imageKey: 'serviceCompliance',
     stats: {
       whoItsFor: 'Commercial landlords, property managers',
-      typicalTimeline: '[TIMELINE: 1–2 Weeks]',
+      typicalTimeline: '1 to 2 weeks',
       documentsNeeded: 'Current lease roster, prior permits, certificate of occupancy',
       supportLevel: 'Auditor & Compliance Counsel',
     },
@@ -239,6 +246,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   {
     id: 'community-engagement',
     slug: 'community-engagement',
+    serviceCode: 'WW-SRV-07',
     title: 'Community Engagement & Ward Liaison',
     category: 'Development',
     shortDescription: 'Build strong neighborhood consensus and secure aldermanic approval for ambitious projects.',
@@ -246,7 +254,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     imageKey: 'serviceCommunity',
     stats: {
       whoItsFor: 'Developers seeking re-zoning or special uses',
-      typicalTimeline: '[TIMELINE: 4–8 Weeks]',
+      typicalTimeline: '4 to 6 weeks',
       documentsNeeded: 'Proposed rendering, traffic study, site plan',
       supportLevel: 'Full Public Affairs Campaign',
     },
@@ -272,6 +280,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   {
     id: 'feasibility-studies',
     slug: 'feasibility-studies',
+    serviceCode: 'WW-SRV-08',
     title: 'Feasibility Studies & Site Selection',
     category: 'Development',
     shortDescription: 'In-depth due diligence reports that validate site suitability before capital commitment.',
@@ -280,7 +289,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     badge: 'Investor Favorite',
     stats: {
       whoItsFor: 'Acquisitions teams, private developers',
-      typicalTimeline: '[TIMELINE: 5–7 Business Days]',
+      typicalTimeline: '5 to 7 days',
       documentsNeeded: 'Target parcel address or coordinates',
       supportLevel: 'Multi-disciplinary Analysis',
     },
@@ -306,6 +315,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   {
     id: 'urban-planning',
     slug: 'urban-planning-consultation',
+    serviceCode: 'WW-SRV-09',
     title: 'Urban Planning Consultation',
     category: 'Consulting',
     shortDescription: 'Master planning and transit-oriented development expertise tailored to Chicago neighborhoods.',
@@ -313,7 +323,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     imageKey: 'serviceUrbanPlanning',
     stats: {
       whoItsFor: 'Master developers, civic organizations',
-      typicalTimeline: '[TIMELINE: 4–12 Weeks]',
+      typicalTimeline: '4 to 8 weeks',
       documentsNeeded: 'Area boundary survey, program requirements',
       supportLevel: 'Principal Urban Planner',
     },
@@ -339,6 +349,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   {
     id: 'construction-design',
     slug: 'construction-and-design-zoning',
+    serviceCode: 'WW-SRV-10',
     title: 'Construction & Design Integration',
     category: 'Development',
     shortDescription: 'Bridge architectural vision with Chicago zoning codes during schematic design.',
@@ -346,7 +357,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     imageKey: 'serviceConstruction',
     stats: {
       whoItsFor: 'Architects, design-build firms, GC teams',
-      typicalTimeline: '[TIMELINE: Integrated with Design Schedule]',
+      typicalTimeline: 'Integrated with design schedule',
       documentsNeeded: 'Revit / CAD schematics, BIM models',
       supportLevel: 'Embedded Zoning Specialist',
     },

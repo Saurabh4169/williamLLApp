@@ -415,5 +415,27 @@ export const UPCOMING_APPOINTMENTS: Appointment[] = [
     location: 'Phone Call (630-635-7688)',
     status: 'Confirmed',
   },
+  {
+    id: 'app-3',
+    caseNumber: 'WW-2026-0618',
+    title: 'Preliminary Zoning & Setback Review',
+    type: 'Video',
+    date: 'Oct 28, 2026',
+    time: '11:00 AM CST',
+    expertName: 'Marcus Vance, Esq.',
+    location: 'Google Meet Secure Room',
+    status: 'Completed',
+  },
+  {
+    id: 'app-4',
+    caseNumber: 'WW-2026-0520',
+    title: 'ADU Coach House Ordinance Audit',
+    type: 'In-office',
+    date: 'Sep 15, 2026',
+    time: '3:00 PM CST',
+    expertName: 'Elena Rostova',
+    location: '125 S. Wacker Dr, Suite 1400, Chicago',
+    status: 'Completed',
+  },
 ];
 
