@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
@@ -17,6 +17,7 @@ import { GlassButton } from '../components/ui/GlassButton';
 
 export const FreeQuoteScreen: React.FC = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { submitQuoteRequest, user } = useAppStore();
 
   const [step, setStep] = useState(1);
@@ -30,7 +31,7 @@ export const FreeQuoteScreen: React.FC = () => {
     name: user.name || '',
     email: user.email || '',
     phone: user.phone || '',
-    address: '2144 N Damen Ave, Chicago, IL',
+    address: searchParams.get('address') || '2144 N Damen Ave, Chicago, IL',
     message: 'Seeking a zoning analysis and setback review for an addition on our residential lot.',
     fileName: '',
   });

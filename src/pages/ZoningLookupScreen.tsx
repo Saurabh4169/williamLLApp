@@ -8,12 +8,13 @@ import {
   XCircle,
   ArrowRight,
   Info,
+  ShieldCheck,
+  X,
 } from 'lucide-react';
 import { lookupChicagoAddress, ZoningLookupResult } from '../data/zoningLookup';
 import { BUSINESS_INFO } from '../data/businessInfo';
 import { AppHeader } from '../components/layout/AppHeader';
 import { GlassCard } from '../components/ui/GlassCard';
-import { GlassButton } from '../components/ui/GlassButton';
 import Badge from '../components/ui/Badge';
 
 export const ZoningLookupScreen: React.FC = () => {
@@ -63,18 +64,28 @@ export const ZoningLookupScreen: React.FC = () => {
 
         {/* Address Search Form */}
         <form onSubmit={handleSearch} className="relative">
-          <div className="flex items-center">
-            <Search className="absolute left-3.5 w-4 h-4 text-[#82807A]" />
+          <div className="h-12 pl-4 pr-2 rounded-full bg-white/90 backdrop-blur-md border border-[#D8D8D8] shadow-xs flex items-center gap-2 focus-within:border-[#323232] focus-within:ring-2 focus-within:ring-[#323232]/10 transition-all">
+            <Search className="w-4 h-4 text-[#82807A] flex-shrink-0" />
             <input
               type="text"
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
               placeholder="Enter Chicago street address or PIN..."
-              className="w-full h-12 pl-10 pr-22 rounded-full border border-white/80 bg-white/70 backdrop-blur-md text-xs text-[#191919] focus:ring-2 focus:ring-[#323232] shadow-xs"
+              className="flex-1 min-w-0 bg-transparent text-xs text-[#191919] placeholder-[#82807A] focus:outline-none"
             />
+            {inputVal && (
+              <button
+                type="button"
+                onClick={() => setInputVal('')}
+                className="w-5 h-5 rounded-full bg-black/5 hover:bg-black/10 flex items-center justify-center text-[#82807A] hover:text-[#191919] transition-colors flex-shrink-0"
+                aria-label="Clear search input"
+              >
+                <X className="w-3 h-3" />
+              </button>
+            )}
             <button
               type="submit"
-              className="absolute right-1.5 px-3.5 py-2 rounded-full btn-glossy-primary text-xs font-semibold active:scale-95 transition-all"
+              className="h-8 px-4 rounded-full btn-glossy-primary text-xs font-semibold text-white flex items-center justify-center flex-shrink-0 shadow-xs hover:shadow-sm active:scale-95 transition-all"
             >
               Lookup
             </button>
@@ -167,27 +178,30 @@ export const ZoningLookupScreen: React.FC = () => {
         </GlassCard>
 
         {/* Tab Controls for Detailed Zoning Breakdown */}
-        <div className="flex rounded-full liquid-glass-card p-1 shadow-xs border border-white/60">
+        <div className="grid grid-cols-3 gap-1.5 p-1 rounded-full bg-white/85 backdrop-blur-md border border-[#D8D8D8] shadow-xs">
           <button
+            type="button"
             onClick={() => setActiveTab('uses')}
-            className={`flex-1 py-1.5 text-xs font-bold rounded-full transition-all min-h-[36px] ${
-              activeTab === 'uses' ? 'btn-glossy-navy shadow-sm' : 'text-[#82807A] hover:text-[#121214]'
+            className={`h-9 px-1 rounded-full text-[11px] font-semibold transition-all duration-150 flex items-center justify-center text-center tracking-tight leading-none select-none ${
+              activeTab === 'uses' ? 'btn-glossy-primary text-white font-bold shadow-xs' : 'text-[#6E6E73] hover:text-[#121214] hover:bg-black/5'
             }`}
           >
             Allowed Uses
           </button>
           <button
+            type="button"
             onClick={() => setActiveTab('envelope')}
-            className={`flex-1 py-1.5 text-xs font-bold rounded-full transition-all min-h-[36px] ${
-              activeTab === 'envelope' ? 'btn-glossy-navy shadow-sm' : 'text-[#82807A] hover:text-[#121214]'
+            className={`h-9 px-1 rounded-full text-[11px] font-semibold transition-all duration-150 flex items-center justify-center text-center tracking-tight leading-none select-none ${
+              activeTab === 'envelope' ? 'btn-glossy-primary text-white font-bold shadow-xs' : 'text-[#6E6E73] hover:text-[#121214] hover:bg-black/5'
             }`}
           >
             Building Envelope
           </button>
           <button
+            type="button"
             onClick={() => setActiveTab('ward')}
-            className={`flex-1 py-1.5 text-xs font-bold rounded-full transition-all min-h-[36px] ${
-              activeTab === 'ward' ? 'btn-glossy-navy shadow-sm' : 'text-[#82807A] hover:text-[#121214]'
+            className={`h-9 px-1 rounded-full text-[11px] font-semibold transition-all duration-150 flex items-center justify-center text-center tracking-tight leading-none select-none ${
+              activeTab === 'ward' ? 'btn-glossy-primary text-white font-bold shadow-xs' : 'text-[#6E6E73] hover:text-[#121214] hover:bg-black/5'
             }`}
           >
             Ward &amp; Council
@@ -270,25 +284,48 @@ export const ZoningLookupScreen: React.FC = () => {
           </GlassCard>
         )}
 
-        {/* Legal Disclaimer Box */}
-        <div className="p-3 bg-white/60 backdrop-blur-sm rounded-xl border border-white/80 flex items-start gap-2.5 text-xs text-[#191919]">
-          <Info className="w-4 h-4 text-[#323232] flex-shrink-0 mt-0.5" />
-          <p className="text-[10px] text-[#82807A] leading-tight">
-            <strong>Legal Note:</strong> Informational only, not legal advice. Zoning codes are subject to municipal map amendments and aldermanic prerogatives.
-          </p>
-        </div>
+        {/* Modernized Premium Expert Assistance Card */}
+        <div className="pt-1 pb-24 space-y-3">
+          <div className="p-4 rounded-2xl bg-white/85 backdrop-blur-md border border-[#D8D8D8] shadow-xs space-y-3 relative overflow-hidden">
+            {/* Subtle decorative glow */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#C7D3DC]/20 to-transparent rounded-full blur-xl pointer-events-none" />
 
-        {/* Primary CTA: Get Expert Help */}
-        <div className="pt-2">
-          <GlassButton
-            variant="primary"
-            fullWidth
-            onClick={() => navigate(`/quote?address=${encodeURIComponent(result.address)}`)}
-            className="flex items-center justify-center gap-2 min-h-[48px]"
-          >
-            <span>Get Expert Help with this Property</span>
-            <ArrowRight className="w-4 h-4" />
-          </GlassButton>
+            <div className="relative z-10 flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-full bg-[#191919] text-white flex items-center justify-center shadow-xs flex-shrink-0">
+                <ShieldCheck className="w-4 h-4 text-[#C7D3DC]" />
+              </div>
+              <div className="min-w-0">
+                <h4 className="text-xs font-bold text-[#121214] tracking-tight">
+                  Need Expert Zoning &amp; Permitting Help?
+                </h4>
+                <p className="text-[11px] text-[#82807A] truncate">
+                  Direct consultation with Chicago zoning counsel &amp; architects
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => navigate(`/quote?address=${encodeURIComponent(result.address)}`)}
+              className="w-full h-11 px-4 rounded-full btn-glossy-primary text-xs font-bold text-white flex items-center justify-between shadow-xs hover:shadow-sm active:scale-[0.98] transition-all group"
+            >
+              <span className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Get Expert Help with this Property</span>
+              </span>
+              <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:translate-x-0.5 transition-transform flex-shrink-0">
+                <ArrowRight className="w-3.5 h-3.5 text-white" />
+              </div>
+            </button>
+          </div>
+
+          {/* Legal Disclaimer Box */}
+          <div className="p-2.5 bg-white/50 backdrop-blur-sm rounded-xl border border-[#E2E4E8] flex items-start gap-2 text-[10px] text-[#82807A] leading-tight">
+            <Info className="w-3.5 h-3.5 text-[#82807A] flex-shrink-0 mt-0.5" />
+            <p>
+              <strong>Legal Note:</strong> Informational only, not legal advice. Zoning codes are subject to municipal map amendments and aldermanic prerogatives.
+            </p>
+          </div>
         </div>
       </div>
     </div>
