@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Search,
-  SlidersHorizontal,
   MapPin,
   Scale,
   CalendarCheck,
-  CheckSquare,
   Heart,
   Clock,
   ShieldCheck,
@@ -17,9 +14,7 @@ import {
   PhoneCall,
   Phone,
   FileText,
-  HardHat,
   CheckCircle2,
-  Briefcase,
   Building2,
   ChevronRight,
   Check,
@@ -35,7 +30,6 @@ import AppHeader from '../components/layout/AppHeader';
 export const HomeScreen: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAppStore();
-  const [searchQuery, setSearchQuery] = useState('');
   const [featuredIndex, setFeaturedIndex] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -103,100 +97,13 @@ export const HomeScreen: React.FC = () => {
     },
   ];
 
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/zoning-lookup?q=${encodeURIComponent(searchQuery.trim())}`);
-    }
-  };
-
   return (
     <div className="min-h-full flex flex-col text-[#121214] pb-6">
       {/* 1. Global AppHeader: Brand on left, Bell & Avatar on right */}
       <AppHeader />
 
       <div className="px-4 pt-3 space-y-6">
-        {/* 2. Capsule Search Bar with Divider and Filter */}
-        <form onSubmit={handleSearchSubmit} className="relative">
-          <div className="h-12 bg-white rounded-full border border-[#D8D8D8] shadow-xs flex items-center px-4 gap-3 focus-within:ring-2 focus-within:ring-[#18181A] focus-within:border-transparent transition-all">
-            <Search className="w-5 h-5 text-[#82807A] flex-shrink-0" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search Chicago address, zoning district or service..."
-              className="flex-1 bg-transparent text-xs text-[#121214] placeholder-[#82807A] focus:outline-none"
-            />
-            <div className="h-5 w-[1px] bg-[#D8D8D8] flex-shrink-0" />
-            <button
-              type="button"
-              onClick={() => navigate('/zoning-lookup')}
-              className="p-1 text-[#121214] hover:text-[#18181A] active:scale-90 transition-all flex-shrink-0"
-              aria-label="Open Zoning Map and Filters"
-            >
-              <SlidersHorizontal className="w-4 h-4 stroke-[2]" />
-            </button>
-          </div>
-        </form>
-
-        {/* 3. 4 Clean Quick-Action Tiles */}
-        <section aria-label="Quick Actions">
-          <div className="grid grid-cols-4 gap-2 sm:gap-2.5">
-            {/* Tile 1: Current */}
-            <button
-              onClick={() => navigate('/construction?tab=current')}
-              className="h-[58px] rounded-[16px] btn-glossy-primary flex flex-col items-center justify-center shadow-xs border border-white/20 transition-all active:scale-95 group relative overflow-hidden"
-            >
-              <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
-                <HardHat className="w-3.5 h-3.5 text-white stroke-[2.2]" />
-              </div>
-              <span className="text-[11px] font-bold text-white tracking-tight mt-1 text-center line-clamp-1">
-                Current
-              </span>
-            </button>
-
-            {/* Tile 2: Past */}
-            <button
-              onClick={() => navigate('/construction?tab=past')}
-              className="h-[58px] rounded-[16px] liquid-glass-card text-[#323232] border border-[#D8D8D8]/75 flex flex-col items-center justify-center shadow-2xs hover:border-[#A3B4C0] transition-all active:scale-95 group"
-            >
-              <div className="w-7 h-7 rounded-full misty-icon-badge flex items-center justify-center text-[#191919] group-hover:bg-[#323232] group-hover:text-white transition-colors">
-                <CheckCircle2 className="w-3.5 h-3.5 stroke-[2.2]" />
-              </div>
-              <span className="text-[11px] font-bold text-[#323232] tracking-tight mt-1 text-center line-clamp-1">
-                Past
-              </span>
-            </button>
-
-            {/* Tile 3: Cases */}
-            <button
-              onClick={() => navigate('/cases')}
-              className="h-[58px] rounded-[16px] liquid-glass-card text-[#323232] border border-[#D8D8D8]/75 flex flex-col items-center justify-center shadow-2xs hover:border-[#A3B4C0] transition-all active:scale-95 group relative"
-            >
-              <div className="w-7 h-7 rounded-full misty-icon-badge flex items-center justify-center text-[#191919] group-hover:bg-[#323232] group-hover:text-white transition-colors relative">
-                <Briefcase className="w-3.5 h-3.5 stroke-[2]" />
-              </div>
-              <span className="text-[11px] font-bold text-[#323232] tracking-tight mt-1 text-center line-clamp-1">
-                Cases
-              </span>
-            </button>
-
-            {/* Tile 4: Permits */}
-            <button
-              onClick={() => navigate('/checklist')}
-              className="h-[58px] rounded-[16px] liquid-glass-card text-[#323232] border border-[#D8D8D8]/75 flex flex-col items-center justify-center shadow-2xs hover:border-[#A3B4C0] transition-all active:scale-95 group"
-            >
-              <div className="w-7 h-7 rounded-full misty-icon-badge flex items-center justify-center text-[#191919] group-hover:bg-[#323232] group-hover:text-white transition-colors">
-                <CheckSquare className="w-3.5 h-3.5 stroke-[2]" />
-              </div>
-              <span className="text-[11px] font-bold text-[#323232] tracking-tight mt-1 text-center line-clamp-1">
-                Permits
-              </span>
-            </button>
-          </div>
-        </section>
-
-        {/* 4. Featured Banner Card (Proportional Mobile Sizing) */}
+        {/* Featured Banner Card (Proportional Mobile Sizing) */}
         <section aria-label="Featured Highlight">
           <div className="relative rounded-[20px] overflow-hidden shadow-md bg-[#191919] cursor-pointer group">
             <div className="relative h-[215px] sm:h-[235px] w-full">
