@@ -37,7 +37,7 @@ export const AppShell: React.FC = () => {
     isAssessment ||
     isAiAssistant ||
     isCostEstimator ||
-    (isQuote && !isQuoteSuccess);
+    isQuote;
   const hideTopBar =
     isSplash ||
     isCostEstimator ||
@@ -110,7 +110,11 @@ export const AppShell: React.FC = () => {
         {/* Scrollable Content Container (hides ugly desktop scrollbars, native momentum scrolling) */}
         <main
           ref={mainRef}
-          className="flex-1 w-full overflow-y-auto overflow-x-clip no-scrollbar flex flex-col relative z-10 overscroll-contain"
+          className={`flex-1 w-full min-h-0 no-scrollbar flex flex-col relative z-10 ${
+            isQuote || isCostEstimator || isAiAssistant
+              ? 'h-full overflow-hidden'
+              : 'overflow-y-auto overflow-x-clip overscroll-contain'
+          }`}
         >
           <Outlet />
         </main>

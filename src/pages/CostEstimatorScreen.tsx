@@ -217,11 +217,11 @@ export const CostEstimatorScreen: React.FC = () => {
   };
 
   return (
-    <div className="min-h-full flex flex-col text-[#121214] bg-[#FAFBFC] dark:bg-[#121214] relative">
+    <div className="h-full w-full flex flex-col overflow-hidden text-[#121214] bg-[#FAFBFC] dark:bg-[#121214] relative select-none">
       {/* ========================================================
-          1. HEADER & 3-PART SEGMENTED PROGRESS BAR
+          1. PERMANENTLY FIXED HEADER & 3-PART SEGMENTED PROGRESS BAR (0 movement on scroll)
       ======================================================== */}
-      <header className="sticky top-0 z-40 liquid-glass-bar border-b border-[#A4B3BE]/30 px-4 py-3 flex-shrink-0">
+      <header className="w-full flex-shrink-0 z-40 liquid-glass-bar border-b border-[#A4B3BE]/30 px-4 py-3">
         <div className="flex items-center justify-between mb-2">
           <BackButton onClick={handleBack} ariaLabel="Back" />
 
@@ -269,9 +269,9 @@ export const CostEstimatorScreen: React.FC = () => {
       </header>
 
       {/* ========================================================
-          2. STEP-BY-STEP FORM BODY (16px side padding, generous clearance)
+          2. STEP-BY-STEP FORM BODY (Scrollable area, 16px side padding)
       ======================================================== */}
-      <div className="flex-1 px-4 py-4 space-y-4 pb-8 max-w-md mx-auto w-full">
+      <div className="flex-1 w-full min-h-0 overflow-y-auto overflow-x-hidden no-scrollbar px-4 py-4 space-y-4 pb-6 max-w-md mx-auto">
         {/* ========================================================
             STEP 1: PROJECT TYPE & PROPERTY TYPE
         ======================================================== */}
@@ -877,11 +877,11 @@ export const CostEstimatorScreen: React.FC = () => {
       </div>
 
       {/* ========================================================
-          3. STICKY BOTTOM DOCK (Steps 1 to 3)
-          - Never covers content, stays pinned at bottom, ends cleanly
+          3. PERMANENTLY FIXED BOTTOM DOCK (Steps 1 to 3)
+          - Zero movement on scroll, permanently docked at bottom
       ======================================================== */}
       {step <= 3 && (
-        <div className="sticky bottom-0 left-0 right-0 z-30 liquid-glass-bar border-t border-[#A4B3BE]/30 backdrop-blur-2xl px-4 py-3 shadow-[0_-8px_25px_rgba(25,25,25,0.06)] mt-auto flex-shrink-0">
+        <div className="w-full flex-shrink-0 z-30 liquid-glass-bar border-t border-[#A4B3BE]/30 backdrop-blur-2xl px-4 py-3 shadow-[0_-8px_25px_rgba(25,25,25,0.06)]">
           <div className="flex items-center gap-2.5 max-w-md mx-auto">
             <button
               type="button"

@@ -14,32 +14,9 @@ export const DraggableAskAiButton: React.FC<DraggableAskAiButtonProps> = ({
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Route visibility logic:
-  // Show on: Home, Services, Service Details, Construction, Track Cases, and More.
-  // Hide on: AI chat, Payment screens, forms (Free Quote, Project Assessment, Book a Service, Chat enquiry), success screens.
+  // Show ONLY on Home, as requested
   const path = location.pathname;
-  const isAiAssistant = path.startsWith('/ai-assistant') || path.startsWith('/ai-chat');
-  const isPayment = path.includes('/payment') || path.includes('/checkout');
-  const isForm =
-    path.startsWith('/quote') ||
-    path.startsWith('/project-assessment') ||
-    path.startsWith('/assessment') ||
-    path.startsWith('/book-consultation');
-  const isSuccess = location.search.includes('success=true');
-
-  const shouldShow =
-    !isAiAssistant &&
-    !isPayment &&
-    !isForm &&
-    !isSuccess &&
-    (path === '/' ||
-      path === '/home' ||
-      path.startsWith('/services') ||
-      path.startsWith('/cases') ||
-      path.startsWith('/construction') ||
-      path.startsWith('/portfolio') ||
-      path.startsWith('/projects') ||
-      path === '/profile');
+  const shouldShow = path === '/' || path === '/home';
 
   // Scrolling state: 60% opacity while scrolling, 100% when stopped
   const [isScrolling, setIsScrolling] = useState(false);

@@ -112,9 +112,9 @@ export const FreeQuoteScreen: React.FC = () => {
   // ========================================================
   if (isSuccessParam) {
     return (
-      <div className="min-h-full flex flex-col text-[#121214] bg-[#FAFBFC] dark:bg-[#121214] animate-in fade-in duration-300">
-        {/* Compact Header */}
-        <header className="sticky top-0 z-40 liquid-glass-bar border-b border-[#A4B3BE]/25 px-3 h-12 flex items-center justify-between flex-shrink-0">
+      <div className="h-full w-full flex flex-col overflow-hidden text-[#121214] bg-[#FAFBFC] dark:bg-[#121214] animate-in fade-in duration-300">
+        {/* Compact Header (Fixed, zero movement) */}
+        <header className="w-full flex-shrink-0 z-40 liquid-glass-bar border-b border-[#A4B3BE]/25 px-3 h-12 flex items-center justify-between">
           <button
             type="button"
             onClick={() => navigate('/')}
@@ -127,8 +127,8 @@ export const FreeQuoteScreen: React.FC = () => {
           <div className="w-8" />
         </header>
 
-        {/* Content Body */}
-        <div className="flex-1 px-4 py-6 space-y-4 max-w-md mx-auto w-full">
+        {/* Content Body (Scrollable container) */}
+        <div className="flex-1 w-full min-h-0 overflow-y-auto no-scrollbar px-4 py-6 space-y-4 max-w-md mx-auto">
           {/* Confirmed Hero Card */}
           <div className="liquid-glass-card rounded-[24px] p-6 text-center space-y-3 border border-[#E2E6EB] dark:border-white/10 shadow-glass">
             <div className="w-14 h-14 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto shadow-xs">
@@ -238,9 +238,9 @@ export const FreeQuoteScreen: React.FC = () => {
   // FORM VIEW: Proper structured sections with shiny glossy effects
   // ========================================================
   return (
-    <div className="min-h-full flex flex-col text-[#121214] bg-[#FAFBFC] dark:bg-[#121214] relative">
-      {/* 1. Compact Header (Reduced height, slim & sleek 48px) */}
-      <header className="sticky top-0 z-40 liquid-glass-bar border-b border-[#A4B3BE]/25 px-3 h-12 flex items-center justify-between flex-shrink-0">
+    <div className="h-full w-full flex flex-col overflow-hidden text-[#121214] bg-[#FAFBFC] dark:bg-[#121214] relative select-none">
+      {/* 1. Permanently Fixed Top Header (48px slim & sleek liquid glass, 0 movement on scroll) */}
+      <header className="w-full flex-shrink-0 z-30 liquid-glass-bar border-b border-[#A4B3BE]/25 px-3 h-12 flex items-center justify-between">
         <div className="w-9 h-9 flex items-center justify-center flex-shrink-0">
           <button
             type="button"
@@ -261,17 +261,15 @@ export const FreeQuoteScreen: React.FC = () => {
           </span>
         </div>
 
-        <div className="w-9 h-9 flex items-center justify-center flex-shrink-0">
-          <div className="w-7 h-7 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center text-[#191919] dark:text-white">
-            <Sparkles className="w-3.5 h-3.5 text-[#B8860B]" />
-          </div>
-        </div>
+        {/* Clean balanced spacer (Sparkle removed as requested) */}
+        <div className="w-9 h-9 flex-shrink-0" />
       </header>
 
-      {/* 2. Structured Scrollable Body */}
-      <form onSubmit={handleSubmit} className="flex-1 px-4 py-4 space-y-4 pb-8 max-w-md mx-auto w-full">
-        {/* Sleek Shiny "QUOTE FOR" Card */}
-        <div className="p-3.5 rounded-[20px] bg-gradient-to-r from-[#222428] via-[#191919] to-[#141517] text-white border border-white/15 shadow-md relative overflow-hidden">
+      {/* 2. Structured Scrollable Body (Only this area scrolls) */}
+      <div className="flex-1 w-full min-h-0 overflow-y-auto overflow-x-hidden no-scrollbar px-4 py-4 space-y-4 pb-6 max-w-md mx-auto">
+        <form onSubmit={handleSubmit} id="free-quote-form" className="space-y-4">
+          {/* Sleek Shiny "QUOTE FOR" Card */}
+          <div className="p-3.5 rounded-[20px] bg-gradient-to-r from-[#222428] via-[#191919] to-[#141517] text-white border border-white/15 shadow-md relative overflow-hidden">
           <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/15 to-transparent pointer-events-none" />
 
           <div className="relative z-10 space-y-2">
@@ -507,13 +505,14 @@ export const FreeQuoteScreen: React.FC = () => {
             </div>
           </div>
         </div>
-      </form>
+        </form>
+      </div>
 
       {/* ========================================================
-          4. STICKY BOTTOM SUBMIT DOCK (Liquid Glass with Shiny Glossy Button)
-          - Never covers content, stays pinned at bottom, ends cleanly
+          3. PERMANENTLY FIXED BOTTOM SUBMIT DOCK (Liquid Glass with Shiny Glossy Button)
+          - Zero movement on scroll, permanently docked at bottom
       ======================================================== */}
-      <div className="sticky bottom-0 left-0 right-0 z-30 liquid-glass-bar border-t border-[#A4B3BE]/30 backdrop-blur-2xl px-4 py-3 shadow-[0_-8px_25px_rgba(25,25,25,0.06)] mt-auto flex-shrink-0">
+      <div className="w-full flex-shrink-0 z-30 liquid-glass-bar border-t border-[#A4B3BE]/30 backdrop-blur-2xl px-4 py-3 shadow-[0_-8px_25px_rgba(25,25,25,0.06)]">
         <div className="max-w-md mx-auto space-y-2">
           {/* Main 54px Premium Shiny Submit Button */}
           <button
